@@ -130,9 +130,11 @@ void CaseCocherCB(Fl_Widget* w, void* data){
 }
 
 void BoutonRadioCB(Fl_Widget* w, void* data){
-    // On regarde quel bouton est s?ectionn?    if ( gInterface.BoutonRadio1->value() == 1 )
+    // On regarde quel bouton est s?ectionn?    
+if ( gInterface.BoutonRadio1->value() == 1 )
         gDonnees.Option2 = 1;
-    else  if ( gInterface.BoutonRadio2->value() == 1 )
+    else  
+	if ( gInterface.BoutonRadio2->value() == 1 )
         gDonnees.Option2 = 2;
     else
         gDonnees.Option2 = 3;
