@@ -5,11 +5,13 @@ Visionneur de fractales, développé dans le cadre du BE d'informatique de Phelm
 
 Contributeurs :
 
+> Julia Dupuis
+
+> Nils Exibar
+
+
 > Félix Piédallu
 
-> Benz0X
-
-> Julia
 
 Caractéristiques futures
 ----------------
