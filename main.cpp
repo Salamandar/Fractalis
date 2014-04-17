@@ -7,8 +7,6 @@
 #include "u4-fonctions.h"
 using namespace std;
 
-//Small issue
-
 void CycleCB( void* );
 
 int main (int argc, char ** argv)
