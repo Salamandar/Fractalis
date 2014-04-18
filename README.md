@@ -7,8 +7,7 @@ Contributeurs :
 
 > Julia Dupuis
 
-> Nils Exibar
-
+> Nils Exibard
 
 > Félix Piédallu
 
