@@ -1,16 +1,17 @@
 #ifndef _u4_fonctions_h
 #define _u4_fonctions_h
-#include <complex.h>
 // Max d'étapes à vérifier
 #define PROFONDEUR_MAX 10000
 // Données utilisateurs initiales :
-#define I_G_INIT
-#define S_D_INIT
-#define CONST_INIT
-#define FRACT_INIT
+#define FRACT_INIT MANDELBROT
+#define N_INIT  250
+#define Z_INIT  1
+#define C_INIT  (1,1)
+#define IG_INIT (1,1)
+#define SD_INIT (2,2)
 // Taille du tableau, à ne pas modifier normalement :
-#define HAUTEUR
-#define LARGEUR
+#define HAUTEUR 100
+#define LARGEUR 100
 
 // Structure de Pixel
 struct Pixel {
@@ -29,7 +30,7 @@ struct Donnees {
     enum fractype F;    // Type de fractales choisie (Type énuméré)
     int N;              // Rang maximal de convergence
     int Z:              // Module de convergence (détermination de la convergence on non de la fonction)
-    complex c;          // Constante de calcul
+    complex C;          // Constante de calcul
     complex ig;         // Coordonnées du point inférieur gauche
     complex sd;         // Coordonnées du point haut droit
     struct Pixel Tab[HAUTEUR][LARGEUR];     // Matrice des pixels de l'image.
@@ -40,10 +41,25 @@ extern struct Donnees gDonnees;
 
 // Déclaration des sous-programmes
 void InitialiserDonnees() ;
-void DeplacerBouleSansRebond() ;
-void DeplacerBouleAvecRebonds() ;
+
 
 void JouerSon(const char *) ;
 void Attente(double Seconds);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #endif // _u4_fonctions_h
