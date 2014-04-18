@@ -1,8 +1,12 @@
 #include <iostream>
+#include <complex>
+#include <stdlib.h>
 #include <FL/Fl.H>
 #include <FL/fl_draw.H>
+#include <complex>
 #include "main.h"
 #include "u1-interface.h"
+#include "u2-dessin.h"
 #include "u3-callbacks.h"
 #include "u4-fonctions.h"
 using namespace std;
@@ -11,16 +15,12 @@ void CycleCB( void* );
 
 int main (int argc, char ** argv)
 {
-    // Creation de l'interface
     CreerInterface();
 
     // Initialisation du logiciel
     InitialiserDonnees(); // On initialise les donnees
     ActualiserInterface(); // On affiche les donnees sur l'interface
     gInterface.ZoneDessin->redraw(); // On redessine la zone de dessin
-
-    // Armement de la fonction cyclique
-    Fl::add_timeout(DUREE_CYCLE, CycleCB, NULL );
 
     // Lancer la boucle de gestion des evenements
     return Fl::run();
@@ -32,8 +32,6 @@ void CycleCB( void* )
     // Appel de la fonction TraiterCycleCB ( u3-callbacks )
     TraiterCycleCB();
 
-    // Rearmement de la fonction cyclique
-    Fl::add_timeout(DUREE_CYCLE, CycleCB, NULL );
 }
 
 
@@ -49,7 +47,7 @@ void CycleCB( void* )
 
 
 
-
+// Déclaré dans drawing.h
 //  Classe et methodes DrawingArea : a considerer comme une librairie fournie, NE PAS MODIFIER
 
 DrawingArea::DrawingArea(int X,int Y,int W,int H)

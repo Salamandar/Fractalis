@@ -1,9 +1,6 @@
-// u1-interface.h
-// Sentinelle d'inclusion
 #ifndef _u1_interface_h
 #define _u1_interface_h
 
-// Declarations externes - inclusion des fichiers d'entete
 #include "main.h"
 #include <FL/Fl_Double_Window.H>
 #include <FL/Fl_Button.H>
@@ -22,8 +19,7 @@
 #define L_ZONE  400
 #define H_ZONE  400
 
-struct Interface
-{
+struct Interface {
     Fl_Double_Window*   Fenetre;
     DrawingArea*        ZoneDessin;
     Fl_Button*          BoutonQuitter;
@@ -49,7 +45,6 @@ struct Interface
     Fl_Button*          BoutonSaisirEntier;
 };
 
-// Declaration des objets de l'interface generale - ne pas supprimer
 extern struct Interface gInterface;
 
 

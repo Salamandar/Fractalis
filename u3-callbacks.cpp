@@ -1,56 +1,28 @@
 #include <iostream>
+#include <complex>
+#include <stdlib.h>
 #include <FL/Fl.H>
 #include <FL/fl_ask.H>
 #include <FL/Fl_File_Chooser.H>
+
 #include "u1-interface.h"
+
 #include "u3-callbacks.h"
 #include "u4-fonctions.h"
 using namespace std;
 
-void TraiterCycleCB()
-{
-    // Trace pour bien montrer que la fonction est appelee cycliquement
-    // printf(""Appel de TraiterCycleCB");
-
-    // On incremente Valeur de 1 ET on la reaffiche
-    gDonnees.Valeur = gDonnees.Valeur + 1;
-    gInterface.ChampNum->value(gDonnees.Valeur);
-
-    // Deplacement de la boule
-    if ( gDonnees.Rebond == 0 )
-        DeplacerBouleSansRebond();
-    else
-        DeplacerBouleAvecRebonds();
-
-    // On redessine la zone
+void TraiterCycleCB() {
     gInterface.ZoneDessin->redraw();
-
-    // Code a activer en cas de probleme pour saisir les evenements du clavier
-    // Probleme : si les evenements du clavier ne sont pas bien pris en compte pour agir sur la zone de dessin.
-    // Solution : On ramene systematiquement le focus des evenements sur la zone de dessin
-    // Attention, cela peut perturber certains elements d'interface comme des champs de saisie texte ou numerique
-
-    // Fl::focus(gInterface.ZoneDessin);
-
-    // Fin code a activer en cas de probleme
 }
 
-void ZoneDessinSourisCB( Fl_Widget* widget, void* data )
-{
+void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
     // ATTENTION : X et Y ne sont pas relatifs a la zone mais a la fenetre qui la contient !!!!
 
-    if ( Fl::event() == FL_PUSH )
-    {
+    if ( Fl::event() == FL_PUSH ){
         printf("Mouse push = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
-
-        // On repositionne la boule a l'endroit du clic
-        gDonnees.Boule.X = Fl::event_x() - X_ZONE;
-        gDonnees.Boule.Y = Fl::event_y() - Y_ZONE;
     }
 
-    if ( Fl::event() == FL_MOVE )
-    {
-        printf("Mouse move : x = %i y = %i\n", Fl::event_x(), Fl::event_y());
+    if ( Fl::event() == FL_MOVE ){
     }
 }
 
@@ -99,7 +71,6 @@ void BoutonQuitterCB(Fl_Widget* w, void* data){
 }
 
 void CaseRebondCB(Fl_Widget* w, void* data){
-    gDonnees.Rebond = gInterface.CaseRebond->value();
 }
 
 void BoutonActionCB(Fl_Widget* w, void* data){
@@ -120,31 +91,15 @@ void ChampSaisieNumCB(Fl_Widget* w, void* data){
 
 
 void CurseurCB(Fl_Widget* w, void* data){
-    gDonnees.Parametre = (int)gInterface.Curseur->value();
-    printf("CurseurCB : Parametre = %i\n", gDonnees.Parametre);
 }
 
 void CaseCocherCB(Fl_Widget* w, void* data){
-    gDonnees.Option1 = gInterface.CaseCocher->value();
-    printf("CaseCocherCB : Option1 = %i\n", gDonnees.Option1);
 }
 
 void BoutonRadioCB(Fl_Widget* w, void* data){
-    // On regarde quel bouton est s?ectionn?
-    if ( gInterface.BoutonRadio1->value() == 1 )
-        gDonnees.Option2 = 1;
-    else
-	if ( gInterface.BoutonRadio2->value() == 1 )
-        gDonnees.Option2 = 2;
-    else
-        gDonnees.Option2 = 3;
-
-    printf("BoutonRadioCB : Option2 = %i\n", gDonnees.Option2);
 }
 
 void MenuOptionsCB(Fl_Widget* w, void* data){
-    gDonnees.Option3 =  gInterface.MenuOptions->value();
-    printf("MenuOptionsCB : Option3 = %i\n", gDonnees.Option3);
 }
 
 
