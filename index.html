@@ -1,77 +1,100 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
     <title>Fractalis by Salamandar</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
   </head>
-
   <body>
-    <header>
-      <div class="container">
-        <h1>Fractalis</h1>
-        <h2></h2>
-        <section id="downloads">
-          <a href="https://github.com/Salamandar/Fractalis/zipball/master" class="btn">Archive .zip</a>
-          <a href="https://github.com/Salamandar/Fractalis/tarball/master" class="btn">Archive .tar.gz (Recommandée)</a>
-          <a href="https://github.com/Salamandar/Fractalis" class="btn btn-github"><span class="icon"></span>Page du projet</a>
-        </section>
-      </div>
-    </header>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/Salamandar/Fractalis">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/Salamandar/Fractalis/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/Salamandar/Fractalis/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
 
-    <div class="container">
-      <section id="main_content">
-        <h1><a name="fractalis" class="anchor" href="#fractalis"><span class="octicon octicon-link"></span></a>
-            Fractalis
-        </h1>
-        <p>Visionneur de fractales, développé dans le cadre du BE d'informatique de Phelma.</p>
+    <div class="wrapper">
 
-        <p>Contributeurs :</p>
-        <blockquote>
-            <p>Julia Dupuis</p>
-            <p>Nils Exibar</p>
-            <p>Félix Piédallu</p>
-        </blockquote>
+      <section>
+        <div id="title">
+          <h1>Fractalis</h1>
+          <p></p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/Salamandar">Salamandar</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
 
-        <h2><a name="caract%C3%A9ristiques-futures" class="anchor" href="#caract%C3%A9ristiques-futures"><span class="octicon octicon-link"></span></a>Caractéristiques futures
-        </h2>
+        <h1>
+<a name="fractalis" class="anchor" href="#fractalis"><span class="octicon octicon-link"></span></a>Fractalis</h1>
 
-        <ul>
-            <li><p>Modélisation de fractales de Mandelbrot et d'ensembles de Julia.</p>
-            </li>
-            <li><p>Représentation de fractales issues de plusieurs fonctions complexes :</p>
-            <ul><li><code>F(z)=z²+C</code></li>
-                <li><code>F(z)=cos(z)×C</code></li>
-                <li><code>F(z)=sin(z)×z_0</code></li>
-                <li><code>F(z)=z²+z_0</code></li>
-            </ul>
-            </li>
-            <li><p>Paramètres d'affichage modifiables :</p>
-            <ul><li>Zoom</li>
-                <li>Déplacement</li>
-                <li>Profondeur de calcul</li>
-                <li>Constance C</li>
-            </ul>
-            </li>
-            <li><p>Gestion des couleurs (Réglage par 8 points d'un dégradé)</p></li>
+<p>Visionneur de fractales, développé dans le cadre du BE d'informatique de Phelma.</p>
 
-            <li><p>Sauvegarde de la configuration (xml ?), et de l'image :</p>
-            <ul><li>Dans un premier temps, au format PPM</li>
-                <li>Ensuite, si possible, PNG.</li>
-            </ul>
-            </li>
-        </ul>
+<p>Contributeurs :</p>
 
-        <h2><a name="liens-utiles" class="anchor" href="#liens-utiles"><span class="octicon octicon-link"></span></a>
-            Liens utiles
-        </h2>
+<blockquote>
+<p>Julia Dupuis</p>
 
-        <p>Documentation PPM : <a href="http://netpbm.sourceforge.net/doc/ppm.html">http://netpbm.sourceforge.net/doc/ppm.html</a>
-        </p>
+<p>Nils Exibard</p>
+
+<p>Félix Piédallu</p>
+</blockquote>
+
+<h2>
+<a name="caract%C3%A9ristiques-futures" class="anchor" href="#caract%C3%A9ristiques-futures"><span class="octicon octicon-link"></span></a>Caractéristiques futures</h2>
+
+<ul>
+<li><p>Modélisation de fractales de Mandelbrot et d'ensembles de Julia.</p></li>
+<li>
+<p>Représentation de fractales issues de plusieurs fonctions complexes :</p>
+
+<ul>
+<li><code>F(z)=z²+C</code></li>
+<li><code>F(z)=cos(z)×C</code></li>
+<li><code>F(z)=sin(z)×z_0</code></li>
+<li><code>F(z)=z²+z_0</code></li>
+</ul>
+</li>
+<li>
+<p>Paramètres d'affichage modifiables :</p>
+
+<ul>
+<li>Zoom</li>
+<li>Déplacement</li>
+<li>Profondeur de calcul</li>
+<li>Constance C</li>
+</ul>
+</li>
+<li><p>Gestion des couleurs (Réglage par 8 points d'un dégradé)</p></li>
+<li>
+<p>Sauvegarde de la configuration (xml ?), et de l'image :</p>
+
+<ul>
+<li>Dans un premier temps, au format PPM</li>
+<li>Ensuite, si possible, PNG.</li>
+</ul>
+</li>
+</ul><h2>
+<a name="liens-utiles" class="anchor" href="#liens-utiles"><span class="octicon octicon-link"></span></a>Liens utiles</h2>
+
+<p>Documentation PPM : <a href="http://netpbm.sourceforge.net/doc/ppm.html">http://netpbm.sourceforge.net/doc/ppm.html</a></p>
       </section>
+
     </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
   </body>
 </html>
