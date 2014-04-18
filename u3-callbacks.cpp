@@ -4,7 +4,6 @@
 #include <FL/Fl.H>
 #include <FL/fl_ask.H>
 #include <FL/Fl_File_Chooser.H>
-
 #include "u1-interface.h"
 
 #include "u3-callbacks.h"

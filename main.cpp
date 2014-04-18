@@ -1,6 +1,7 @@
 #include <iostream>
 #include <complex>
 #include <stdlib.h>
+#include <complex.h>
 #include <FL/Fl.H>
 #include <FL/fl_draw.H>
 #include <complex>

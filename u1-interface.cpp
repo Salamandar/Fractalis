@@ -1,7 +1,6 @@
 #include <iostream>
 #include <complex>
 #include <stdlib.h>
-#include "main.h"
 #include "u1-interface.h"
 #include "u2-dessin.h"
 #include "u3-callbacks.h"

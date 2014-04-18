@@ -3,9 +3,13 @@
 #include <string.h>
 #include <api/inc/fmod.h>
 #include <api/inc/fmod_errors.h>
+#include <complex>
+using namespace std;
+
 #include "u1-interface.h"
 #include "u4-fonctions.h"
-using namespace std;
+
+// Definition des donnees fonctionnelles du projet - structure globale de variables
 struct Donnees gDonnees;
 
 void InitialiserDonnees() {

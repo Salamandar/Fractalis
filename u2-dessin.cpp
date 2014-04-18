@@ -4,7 +4,6 @@
 #include <FL/Fl.H>
 #include <FL/fl_draw.H>
 #include <complex>
-
 #include "main.h"
 #include "u1-interface.h"
 #include "u2-dessin.h"
