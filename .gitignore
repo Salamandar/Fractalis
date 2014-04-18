@@ -4,3 +4,5 @@ Makefile
 projet-type-windows.depend
 projet-type-windows.cbp
 projet-type-windows.layout
+bin
+obj
