@@ -1,4 +1,5 @@
 #include <iostream>
+#include <complex>
 #include "u1-interface.h"
 #include "u2-dessin.h"
 #include "u3-callbacks.h"
@@ -126,11 +127,5 @@ void CreerInterface()
 
 void ActualiserInterface()
 {
-    gInterface.CaseRebond->value( gDonnees.Rebond );
-    gInterface.ChampTxt->value( gDonnees.Texte );
-    gInterface.ChampNum->value( gDonnees.Valeur );
-    gInterface.Curseur->value( gDonnees.Parametre );
-    gInterface.CaseCocher->value( gDonnees.Option1 );
-    gInterface.BoutonRadio3->value( gDonnees.Option2 );
-    gInterface.MenuOptions->value( gDonnees.Option3 );
+    
 }
