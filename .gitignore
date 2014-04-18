@@ -1,0 +1,6 @@
+projet
+Makefile
+*.o
+projet-type-windows.depend
+projet-type-windows.cbp
+projet-type-windows.layout
