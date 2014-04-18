@@ -1,27 +1,40 @@
 #ifndef _u4_fonctions_h
 #define _u4_fonctions_h
-#define DUREE_CYCLE 0.015    // 0.500 secondes, depend du materiel utilise
-#define RAYON_BOULE  20
+#include <complex.h>
+// Max d'étapes à vérifier
+#define PROFONDEUR_MAX 10000
+// Données utilisateurs initiales :
+#define I_G_INIT
+#define S_D_INIT
+#define CONST_INIT
+#define FRACT_INIT
+// Taille du tableau, à ne pas modifier normalement :
+#define HAUTEUR
+#define LARGEUR
 
-struct Boule {
-    int X;
-    int Y;
-    int VX;
-    int VY;
-} ;
-
-// Structure globale pour les variables fonctionnelles
-struct Donnees {
-    struct Boule    Boule ;
-
-    int             Rebond ;
-    char            Texte[80] ;
-    unsigned int    Valeur ;
-    int             Parametre ;
-    int             Option1 ;
-    int             Option2 ;
-    int             Option3 ;
+// Structure de Pixel
+struct Pixel {
+    complex z;  // Coordonnées dans le plan complexe
+    int n;      // rang de divergence
 };
+
+enum fractype {
+    MANDELBROT,
+    JULIA
+}
+
+
+// Structure des paramètres utilisateur
+struct Donnees {
+    enum fractype F;    // Type de fractales choisie (Type énuméré)
+    int N;              // Rang maximal de convergence
+    int Z:              // Module de convergence (détermination de la convergence on non de la fonction)
+    complex c;          // Constante de calcul
+    complex ig;         // Coordonnées du point inférieur gauche
+    complex sd;         // Coordonnées du point haut droit
+    struct Pixel Tab[HAUTEUR][LARGEUR];     // Matrice des pixels de l'image.
+};
+
 
 extern struct Donnees gDonnees;
 
