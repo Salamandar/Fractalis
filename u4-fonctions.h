@@ -7,7 +7,7 @@
 // Données utilisateurs initiales :
 #define FRACT_INIT MANDELBROT
 #define RANGMAX_INIT    250
-#define MODULEMAX_INIT  1
+#define MODULEMAX_INIT  2
 #define C_INIT  (1,1)
 #define IG_INIT (1,1)
 #define SD_INIT (2,2)
@@ -44,8 +44,9 @@ struct Donnees {
 void InitialiserDonnees() ;
 
 //int couleurN(int N);    // Sort une couleur à partir d'un N. Géré par Nils ?
+int testFonction();
 
-int convergence(std::complex<double> position); // Donne un rang de convergence pour un point du plan complexe
+int convergence(std::complex<double> position, pointeurFct); // Donne un rang de convergence pour un point du plan complexe
 
 pointeurFct retourne_fonction();    // Pointe vers les fonctions suivantes en fonction de la fractale choisie
 

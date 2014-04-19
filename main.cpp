@@ -10,6 +10,16 @@
 #include "u2-dessin.h"
 #include "u3-callbacks.h"
 #include "u4-fonctions.h"
+#include <iostream>
+#include <complex>
+#include <stdlib.h>
+#include <FL/Fl.H>
+#include <FL/fl_ask.H>
+#include <FL/Fl_File_Chooser.H>
+#include "u1-interface.h"
+
+#include "u3-callbacks.h"
+#include "u4-fonctions.h"
 using namespace std;
 
 void CycleCB( void* );
@@ -20,9 +30,10 @@ int main (int argc, char ** argv)
 
     // Initialisation du logiciel
     InitialiserDonnees(); // On initialise les donnees
+
+    testFonction();
     ActualiserInterface(); // On affiche les donnees sur l'interface
     gInterface.ZoneDessin->redraw(); // On redessine la zone de dessin
-
     // Lancer la boucle de gestion des evenements
     return Fl::run();
 }

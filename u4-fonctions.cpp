@@ -1,9 +1,11 @@
 #include <iostream>
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 #include <api/inc/fmod.h>
 #include <api/inc/fmod_errors.h>
 #include <complex>
+#include <iomanip>
 using namespace std;
 
 #include "u1-interface.h"
@@ -11,15 +13,32 @@ using namespace std;
 
 struct Donnees gDonnees;
 
-// Donne un rang de convergence pour un point du plan complexe, à utiliser pour déterminer couleur d'affichage
-int convergence(std::complex<double> position){
+int testFonction(){
     pointeurFct fonction = retourne_fonction();
-    int rangDivergence = -1;
-    int i=0;
-    std::complex<double> terme = position;
-    while ((std::abs(terme = fonction(position,terme)))>gDonnees.moduleMax){
-        i++;
+    double i=0;
+    for (i = 0; i < 200; ++i)
+    {
+        for (int j = 0; j < 200; ++j)
+        {
+            cout <<convergence(std::complex<double>(j/100,i/100), fonction);
+        }
+        cout<<"\n";
     }
+    return i;
+}
+// Donne un rang de convergence pour un point du plan complexe, à utiliser pour déterminer couleur d'affichage
+int convergence(std::complex<double> position, pointeurFct fonction){
+    cout << ";";
+    int rang=0;
+    std::complex<double> Zrang(0.,0.);
+    do {
+        Zrang=fonction(position,Zrang);
+        rang++;
+    } while (std::abs(Zrang) < gDonnees.moduleMax && rang<gDonnees.rangMax);
+    if (rang==gDonnees.rangMax)
+        return -1;
+    else
+        return rang;
 }
 
 
@@ -39,8 +58,8 @@ pointeurFct retourne_fonction() {
 }
 
 
-std::complex<double> mandelbrot(std::complex<double> positZero, std::complex<double> position){
-    return position*position + gDonnees.C;
+std::complex<double> mandelbrot(std::complex<double> position, std::complex<double> z){
+    return z*z + position;
 }
 std::complex<double> julia     (std::complex<double> positZero, std::complex<double> position){
     return position*position + positZero;
