@@ -81,6 +81,7 @@ struct Interface {
     Fl_Button*ZoomPlus;             // Zoomer
     Fl_Button*ZoomMoins;            // Dézoomer
 };
+```
 
 ### Définition des callbacks associées aux objets de l’interface dans ``u3-fonctions.h``
 ```c++
