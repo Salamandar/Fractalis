@@ -74,7 +74,8 @@
     <span class="c1">//Position initiale de la fenêtre sur le plan complexe</span>
 <span class="cp">#define IG_INIT (1,1)</span>
 <span class="cp">#define SD_INIT (2,2)</span>
-    <span class="c1">// Taille du tableau, à ne pas modifier normalement : (=Taille de la fenêtre d'affichage en pixels)</span>
+    <span class="c1">// Taille du tableau, à ne pas modifier normalement :</span>
+    <span class="c1">//( = Taille de la fenêtre d'affichage en pixels)</span>
 <span class="cp">#define HAUTEUR 400</span>
 <span class="cp">#define LARGEUR 600</span>
 
@@ -98,7 +99,8 @@
 <span class="k">struct</span> <span class="n">Donnees</span> <span class="p">{</span>
     <span class="k">enum</span> <span class="n">fractype</span> <span class="n">Fractale</span><span class="p">;</span>     <span class="c1">// Type de fractales choisie</span>
     <span class="kt">int</span>     <span class="n">rangMax</span><span class="p">;</span>            <span class="c1">// Rang de convergence</span>
-    <span class="kt">double</span>  <span class="n">moduleMax</span><span class="p">;</span>          <span class="c1">// Module de convergence (détermination de la convergence on non de la fonction)</span>
+    <span class="kt">double</span>  <span class="n">moduleMax</span><span class="p">;</span>          <span class="c1">// Module de convergence</span>
+                                <span class="c1">// (détermination de la vitesse de convergence de la fonction)</span>
     <span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">C</span><span class="p">;</span>     <span class="c1">// Constante de calcul</span>
     <span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">ig</span><span class="p">;</span>    <span class="c1">// Coordonnées du point inférieur gauche</span>
     <span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">sd</span><span class="p">;</span>    <span class="c1">// Coordonnées du point haut droit</span>
@@ -171,13 +173,13 @@
     <span class="c1">// Fonction de test, utilisée pour tester sans l'affichage des paramètres sensibles</span>
 <span class="kt">int</span> <span class="nf">testFonction</span><span class="p">();</span>
 
-    <span class="c1">// Pointe vers la fonction fractale utilisée. Permet de gérer plus facilement les différents types.</span>
+    <span class="c1">// Pointe vers la fonction utilisée. Permet de gérer plus facilement les différents types.</span>
 <span class="n">pointeurFct</span> <span class="nf">retourne_fonction</span><span class="p">();</span>
 
     <span class="c1">// Donne un rang de convergence pour un point du plan complexe et une fonction</span>
 <span class="kt">int</span> <span class="nf">convergence</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">position</span><span class="p">,</span> <span class="n">pointeurFct</span><span class="p">);</span>
 
-    <span class="c1">// Fonctions fractales, prenant en entrée la position de calcul et le terme Zn de calcul de convergence</span>
+    <span class="c1">// Fonctions fractales, prenant en entrée la position de calcul Z0, et Zn.</span>
 <span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">mandelbrot</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">position</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">z</span><span class="p">);</span>
 <span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">julia</span>     <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">position</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">z</span><span class="p">);</span>
 <span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">personna</span>  <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">position</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">z</span><span class="p">);</span>
@@ -222,6 +224,6 @@ L'interface devra être complète et attractive pour l'utilisateur .</p>
 
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
+
   </body>
 </html>
