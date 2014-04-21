@@ -26,16 +26,16 @@ void CycleCB( void* );
 
 int main (int argc, char ** argv)
 {
-    CreerInterface();
+    //CreerInterface();
 
     // Initialisation du logiciel
     InitialiserDonnees(); // On initialise les donnees
 
     testFonction();
-    ActualiserInterface(); // On affiche les donnees sur l'interface
-    gInterface.ZoneDessin->redraw(); // On redessine la zone de dessin
+    //ActualiserInterface(); // On affiche les donnees sur l'interface
+    //gInterface.ZoneDessin->redraw(); // On redessine la zone de dessin
     // Lancer la boucle de gestion des evenements
-    return Fl::run();
+    //return Fl::run();
 }
 
 // Fonction cyclique
@@ -132,4 +132,3 @@ int DrawingArea::handle(int event){
 }
 
 //  Fin classe et methodes DrawingArea
-

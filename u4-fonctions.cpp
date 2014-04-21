@@ -16,19 +16,16 @@ struct Donnees gDonnees;
 int testFonction(){
     pointeurFct fonction = retourne_fonction();
     double i=0;
-    for (i = 0; i < 200; ++i)
-    {
-        for (int j = 0; j < 200; ++j)
-        {
-            cout <<convergence(std::complex<double>(j/100,i/100), fonction);
+    for (i = 0; i < HAUTEUR; ++i) {
+        for (int j = 0; j < LARGEUR; ++j) {
+            /*cout <<*/convergence(std::complex<double>(j/100,i/100), fonction)/*<<"("<<i<<j<<";"*/;
         }
-        cout<<"\n";
+        //cout<<"\n";
     }
     return i;
 }
 // Donne un rang de convergence pour un point du plan complexe, à utiliser pour déterminer couleur d'affichage
 int convergence(std::complex<double> position, pointeurFct fonction){
-    cout << ";";
     int rang=0;
     std::complex<double> Zrang(0.,0.);
     do {
@@ -61,10 +58,10 @@ pointeurFct retourne_fonction() {
 std::complex<double> mandelbrot(std::complex<double> position, std::complex<double> z){
     return z*z + position;
 }
-std::complex<double> julia     (std::complex<double> positZero, std::complex<double> position){
-    return position*position + positZero;
+std::complex<double> julia     (std::complex<double> position, std::complex<double> z){
+    return position*position + z;
 }
-std::complex<double> personna  (std::complex<double> constante, std::complex<double> position){
+std::complex<double> personna  (std::complex<double> position, std::complex<double> z){
     return (0,0);
 }
 /*  À voir. Ce sera la fonction personnalisable, mais implémentée seulement quand TOUT le reste fonctionnera.

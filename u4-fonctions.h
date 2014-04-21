@@ -12,8 +12,8 @@
 #define IG_INIT (1,1)
 #define SD_INIT (2,2)
 // Taille du tableau, à ne pas modifier normalement :
-#define HAUTEUR 100
-#define LARGEUR 100
+#define HAUTEUR 400
+#define LARGEUR 600
 
 typedef std::complex<double> (*pointeurFct)(std::complex<double>, std::complex<double>);
     // Type d'une fonction qui renvoie un pointeur vers le type de fractale
@@ -50,9 +50,9 @@ int convergence(std::complex<double> position, pointeurFct); // Donne un rang de
 
 pointeurFct retourne_fonction();    // Pointe vers les fonctions suivantes en fonction de la fractale choisie
 
-std::complex<double> mandelbrot(std::complex<double> constante, std::complex<double> position);
-std::complex<double> julia     (std::complex<double> constante, std::complex<double> position);
-std::complex<double> personna  (std::complex<double> constante, std::complex<double> position);
+std::complex<double> mandelbrot(std::complex<double> position, std::complex<double> z);
+std::complex<double> julia     (std::complex<double> position, std::complex<double> z);
+std::complex<double> personna  (std::complex<double> position, std::complex<double> z);
 
 
 #endif
