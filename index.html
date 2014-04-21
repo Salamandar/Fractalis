@@ -39,7 +39,7 @@
         </div>
 
         <h1>
-<a name="fractalis" class="anchor" href="#fractalis"><span class="octicon octicon-link"></span></a>Fractalis</h1>
+<a name="projet-fractales" class="anchor" href="#projet-fractales"><span class="octicon octicon-link"></span></a>Projet Fractales</h1>
 
 <p>Visionneur de fractales, développé dans le cadre du BE d'informatique de Phelma.</p>
 
@@ -54,43 +54,170 @@
 </blockquote>
 
 <h2>
-<a name="caract%C3%A9ristiques-futures" class="anchor" href="#caract%C3%A9ristiques-futures"><span class="octicon octicon-link"></span></a>Caractéristiques futures</h2>
+<a name="1-structure-des-donn%C3%A9es-fonctionnelles" class="anchor" href="#1-structure-des-donn%C3%A9es-fonctionnelles"><span class="octicon octicon-link"></span></a>1. Structure des données fonctionnelles</h2>
+
+<h3>
+<a name="d%C3%A9finition-des-donn%C3%A9es-fonctionnelles-dans-u4-fonctionsh" class="anchor" href="#d%C3%A9finition-des-donn%C3%A9es-fonctionnelles-dans-u4-fonctionsh"><span class="octicon octicon-link"></span></a>Définition des données fonctionnelles dans <code>u4-fonctions.h</code>
+</h3>
+
+<div class="highlight highlight-c++"><pre><span class="c1">// Profondeur max à vérifier (Maximum du réglage utilisateur)</span>
+<span class="cp">#define PROFONDEUR_MAX 10000</span>
+<span class="c1">// Données utilisateurs initiales :</span>
+    <span class="c1">// Type de fractale initiale (au lancement du logiciel)</span>
+<span class="cp">#define FRACT_INIT MANDELBROT</span>
+    <span class="c1">// Rang de convergence</span>
+<span class="cp">#define RANGMAX_INIT    250</span>
+    <span class="c1">// Module maximal de convergence</span>
+<span class="cp">#define MODULEMAX_INIT  2</span>
+    <span class="c1">// Constante de calcul initiale</span>
+<span class="cp">#define C_INIT  (1,1)</span>
+    <span class="c1">//Position initiale de la fenêtre sur le plan complexe</span>
+<span class="cp">#define IG_INIT (1,1)</span>
+<span class="cp">#define SD_INIT (2,2)</span>
+    <span class="c1">// Taille du tableau, à ne pas modifier normalement : (=Taille de la fenêtre d'affichage en pixels)</span>
+<span class="cp">#define HAUTEUR 400</span>
+<span class="cp">#define LARGEUR 600</span>
+
+    <span class="c1">// Type de fractale initiale (au lancement du logiciel)</span>
+<span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="p">(</span><span class="o">*</span><span class="n">pointeurFct</span><span class="p">)(</span><span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">);</span>
+
+    <span class="c1">// Type énuméré définissant les fractales possibles</span>
+<span class="k">enum</span> <span class="n">fractype</span> <span class="p">{</span>
+    <span class="n">MANDELBROT</span><span class="p">,</span>
+    <span class="n">JULIA</span><span class="p">,</span>
+    <span class="n">PERSONNA</span>
+<span class="p">};</span>
+
+    <span class="c1">// Structure de Pixels contenus dans un tableau</span>
+<span class="k">struct</span> <span class="n">Pixel</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">z</span><span class="p">;</span> <span class="c1">// Coordonnées dans le plan std::complexe</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>  <span class="c1">// rang de divergence</span>
+<span class="p">};</span>
+
+    <span class="c1">// Structure des paramètres utilisateur</span>
+<span class="k">struct</span> <span class="n">Donnees</span> <span class="p">{</span>
+    <span class="k">enum</span> <span class="n">fractype</span> <span class="n">Fractale</span><span class="p">;</span>     <span class="c1">// Type de fractales choisie</span>
+    <span class="kt">int</span>     <span class="n">rangMax</span><span class="p">;</span>            <span class="c1">// Rang de convergence</span>
+    <span class="kt">double</span>  <span class="n">moduleMax</span><span class="p">;</span>          <span class="c1">// Module de convergence (détermination de la convergence on non de la fonction)</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">C</span><span class="p">;</span>     <span class="c1">// Constante de calcul</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">ig</span><span class="p">;</span>    <span class="c1">// Coordonnées du point inférieur gauche</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">sd</span><span class="p">;</span>    <span class="c1">// Coordonnées du point haut droit</span>
+    <span class="k">struct</span> <span class="n">Pixel</span> <span class="n">Tab</span><span class="p">[</span><span class="n">HAUTEUR</span><span class="p">][</span><span class="n">LARGEUR</span><span class="p">];</span> <span class="c1">// Matrice des pixels de l'image.</span>
+<span class="p">};</span>
+</pre></div>
+
+<h2>
+<a name="2-structure-des-donn%C3%A9es-de-linterface-graphique" class="anchor" href="#2-structure-des-donn%C3%A9es-de-linterface-graphique"><span class="octicon octicon-link"></span></a>2. Structure des données de l’interface graphique</h2>
+
+<h3>
+<a name="esquisse-de-linterface-" class="anchor" href="#esquisse-de-linterface-"><span class="octicon octicon-link"></span></a>Esquisse de l’interface :</h3>
+
+<h3>
+<a name="d%C3%A9finition-des-donn%C3%A9es-de-linterface-graphique-dans-u2-fonctionsh" class="anchor" href="#d%C3%A9finition-des-donn%C3%A9es-de-linterface-graphique-dans-u2-fonctionsh"><span class="octicon octicon-link"></span></a>Définition des données de l’interface graphique dans <code>u2-fonctions.h</code>
+</h3>
+
+<div class="highlight highlight-c++"><pre><span class="c1">// Declaration des objets de l'interface</span>
+<span class="k">struct</span> <span class="n">Interface</span> <span class="p">{</span>
+    <span class="n">Fl_Double_Window</span><span class="o">*</span><span class="n">Fenetre</span><span class="p">;</span>       <span class="c1">// Fenêtre du projet</span>
+    <span class="n">DrawingArea</span><span class="o">*</span> <span class="n">ZoneDessin</span><span class="p">;</span>        <span class="c1">// Zone de dessin</span>
+    <span class="n">Fl_Button</span><span class="o">*</span> <span class="n">BoutonQuitter</span><span class="p">;</span>       <span class="c1">// Quitter le programme</span>
+    <span class="n">Fl_Button</span><span class="o">*</span> <span class="n">BoutonEnregistrer</span><span class="p">;</span>   <span class="c1">// Enregistrer l'image</span>
+    <span class="n">Fl_Button</span><span class="o">*</span> <span class="n">BoutonSauvePosition</span><span class="p">;</span> <span class="c1">// Enregistrer les paramètres actuels</span>
+    <span class="n">Fl_Button</span><span class="o">*</span> <span class="n">BoutonReset</span><span class="p">;</span>         <span class="c1">// Revenir aux paramères par défaut</span>
+    <span class="n">Fl_Value_Input</span><span class="o">*</span><span class="n">ModuleDeSortie</span><span class="p">;</span>  <span class="c1">// Module de sortie</span>
+    <span class="n">Fl_Value_Input</span><span class="o">*</span><span class="n">Profondeur</span><span class="p">;</span>      <span class="c1">// Profondeur</span>
+    <span class="n">Fl_Choice</span><span class="o">*</span> <span class="n">TypeFractale</span><span class="p">;</span>        <span class="c1">// Type de fractale</span>
+    <span class="n">Fl_Button</span><span class="o">*</span><span class="n">ZoomPlus</span><span class="p">;</span>             <span class="c1">// Zoomer</span>
+    <span class="n">Fl_Button</span><span class="o">*</span><span class="n">ZoomMoins</span><span class="p">;</span>            <span class="c1">// Dézoomer</span>
+<span class="p">};</span>
+</pre></div>
+
+<h3>
+<a name="d%C3%A9finition-des-callbacks-associ%C3%A9es-aux-objets-de-linterface-dans-u3-fonctionsh" class="anchor" href="#d%C3%A9finition-des-callbacks-associ%C3%A9es-aux-objets-de-linterface-dans-u3-fonctionsh"><span class="octicon octicon-link"></span></a>Définition des callbacks associées aux objets de l’interface dans <code>u3-fonctions.h</code>
+</h3>
+
+<div class="highlight highlight-c++"><pre>    <span class="c1">// Prototypes des callbacks</span>
+<span class="kt">void</span> <span class="nf">ModuleDeSortieCB</span>   <span class="p">(</span><span class="n">Fl_Widget</span><span class="o">*</span> <span class="n">w</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">data</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">ProfondeurCB</span>       <span class="p">(</span><span class="n">Fl_Widget</span><span class="o">*</span> <span class="n">w</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">data</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">FractaleCB</span>         <span class="p">(</span><span class="n">Fl_Widget</span><span class="o">*</span> <span class="n">w</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">data</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">BoutonQuitterCB</span>    <span class="p">(</span><span class="n">Fl_Widget</span><span class="o">*</span> <span class="n">w</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">data</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">BoutonEnregistrerCB</span><span class="p">(</span><span class="n">Fl_Widget</span><span class="o">*</span> <span class="n">w</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">data</span><span class="p">);</span>
+
+    <span class="c1">// On peut utiliser de préférence la souris, sinon :</span>
+<span class="kt">void</span> <span class="nf">BoutonZoomPlusCB</span>   <span class="p">(</span><span class="n">Fl_Widget</span><span class="o">*</span> <span class="n">w</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">data</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">BoutonZoomMoinsCB</span>  <span class="p">(</span><span class="n">Fl_Widget</span><span class="o">*</span> <span class="n">w</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">data</span><span class="p">);</span>
+</pre></div>
+
+<h2>
+<a name="3-fonctions-de-calcul-et-daffichage-d%C3%A9finies-dans-u4-fonctionscpp" class="anchor" href="#3-fonctions-de-calcul-et-daffichage-d%C3%A9finies-dans-u4-fonctionscpp"><span class="octicon octicon-link"></span></a>3. Fonctions de calcul et d'affichage, définies dans <code>u4-fonctions.cpp</code>
+</h2>
+
+<div class="highlight highlight-c++"><pre><span class="kt">void</span> <span class="nf">Initialiser</span> <span class="p">();</span>
+    <span class="c1">// Inialiser l'interface avec un premier affichage avec les paramètres par défaut</span>
+
+<span class="kt">void</span> <span class="nf">Affichage</span><span class="p">();</span>
+    <span class="c1">// Affiche la fractale dans la zone de dessin</span>
+
+<span class="kt">void</span> <span class="nf">calcule</span><span class="p">(</span><span class="k">struct</span> <span class="n">Donnee</span><span class="p">);</span>
+    <span class="c1">// Calcule la fractale et retourne les profondeurs.</span>
+
+<span class="n">CalculeCouleurs</span><span class="p">(</span><span class="k">struct</span> <span class="n">Donnee</span><span class="p">);</span>
+
+    <span class="c1">// Initialisation des données, effectué au démarrage du programme ou au reset des paramètres</span>
+<span class="kt">void</span> <span class="nf">InitialiserDonnees</span><span class="p">()</span> <span class="p">;</span>
+
+    <span class="c1">//int couleurN(int N);    // Sort une couleur à partir d'un N. Géré par Nils ?</span>
+
+    <span class="c1">// Fonction de test, utilisée pour tester sans l'affichage des paramètres sensibles</span>
+<span class="kt">int</span> <span class="nf">testFonction</span><span class="p">();</span>
+
+    <span class="c1">// Pointe vers la fonction fractale utilisée. Permet de gérer plus facilement les différents types.</span>
+<span class="n">pointeurFct</span> <span class="nf">retourne_fonction</span><span class="p">();</span>
+
+    <span class="c1">// Donne un rang de convergence pour un point du plan complexe et une fonction</span>
+<span class="kt">int</span> <span class="nf">convergence</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">position</span><span class="p">,</span> <span class="n">pointeurFct</span><span class="p">);</span>
+
+    <span class="c1">// Fonctions fractales, prenant en entrée la position de calcul et le terme Zn de calcul de convergence</span>
+<span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">mandelbrot</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">position</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">z</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">julia</span>     <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">position</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">z</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">personna</span>  <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">position</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">z</span><span class="p">);</span>
+
+    <span class="c1">// Fonctions de conversion Position dans le tableau -- Position sur le plan complexe</span>
+    <span class="c1">// (Demande des pointeurs car 2 valeurs à ressortir)</span>
+<span class="kt">void</span> <span class="nf">tableauFromComplex</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">position</span><span class="p">,</span> <span class="kt">int</span><span class="o">*</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span><span class="o">*</span> <span class="n">y</span><span class="p">);</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">position</span> <span class="n">complexFromTableau</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">);</span>
+
+</pre></div>
+
+<h2>
+<a name="4-directions-" class="anchor" href="#4-directions-"><span class="octicon octicon-link"></span></a>4. Directions :</h2>
+
+<p><em>Dans un premier temps</em>, il s'agira de déveloper un projet assez simple, permettant d'afficher les quatre types de fractale définies dans le sujet.
+Le travail sur la couleur sera effectué uniquement entre deux couleurs choisies par l'utilisateur.
+Nous réaliserons également un zoom basique et un enregistrement au fomat PPM de l'image, ainsi que des paramètres choisis dans un fichier texte.
+L'interface devra être complète et attractive pour l'utilisateur .</p>
+
+<p><em>Dans un second temps</em>, nous pourrons ajouter des fonctionnalités avancées, telles que :</p>
 
 <ul>
-<li><p>Modélisation de fractales de Mandelbrot et d'ensembles de Julia.</p></li>
-<li>
-<p>Représentation de fractales issues de plusieurs fonctions complexes :</p>
+<li>Zoom plus efficace (upscaling puis recalcul)</li>
+<li>Bon système de couleurs, avec points de contrôle et fonction d'interpolation non linéaire (quadratique,…)</li>
+<li>Changement progressif de couleur (animation)</li>
+<li>Meilleure qualité d'enregistrement d'images (meilleure que l'affichage)</li>
+<li>Fractales 3D</li>
+<li>Interface plus conviviale (changement de couleur graphique si possible,…)</li>
+<li>Enregistrement des paramètres dans un fichier texte. (Zooms et positions actuelles)</li>
+<li>Fonction éditable par l'utilisateur</li>
+</ul><p>Répartition des taches :</p>
 
-<ul>
-<li><code>F(z)=z²+C</code></li>
-<li><code>F(z)=cos(z)×C</code></li>
-<li><code>F(z)=sin(z)×z_0</code></li>
-<li><code>F(z)=z²+z_0</code></li>
-</ul>
-</li>
-<li>
-<p>Paramètres d'affichage modifiables :</p>
+<blockquote>
+<p>Nils :gestion des couleurs</p>
 
-<ul>
-<li>Zoom</li>
-<li>Déplacement</li>
-<li>Profondeur de calcul</li>
-<li>Constance C</li>
-</ul>
-</li>
-<li><p>Gestion des couleurs (Réglage par 8 points d'un dégradé)</p></li>
-<li>
-<p>Sauvegarde de la configuration (xml ?), et de l'image :</p>
+<p>Félix : Fonctions et définitions</p>
 
-<ul>
-<li>Dans un premier temps, au format PPM</li>
-<li>Ensuite, si possible, PNG.</li>
-</ul>
-</li>
-</ul><h2>
-<a name="liens-utiles" class="anchor" href="#liens-utiles"><span class="octicon octicon-link"></span></a>Liens utiles</h2>
-
-<p>Documentation PPM : <a href="http://netpbm.sourceforge.net/doc/ppm.html">http://netpbm.sourceforge.net/doc/ppm.html</a></p>
+<p>Julia : Interface et Callbacks</p>
+</blockquote>
       </section>
 
     </div>
