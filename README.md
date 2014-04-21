@@ -35,44 +35,7 @@ Caractéristiques futures
  * Ensuite, si possible, PNG.
 
 
-Structure des données fonctionnelles
------
-
-### Définition des données fonctionnelles dans ``u4-fonctions.h``
-Constantes :
-
-```c
-// Paramètres par défaut
-# define PROFONDEUR_MAX
-# define POINT_I_G
-# define POINT_S_D
-# define CONSTANTE
-```
-
-Variables :
-```c
-// Structure globale pour les variables fonctionnelles
-struct Donnees_Image
-{
-    int X; //coordonnées dans le plan complexe
-    int Y;
-    int n;//rang de divergence
-};
-// Structure paramètres utilisateur
-{
-    int F; // fractale choisie
-    int N; //profondeur
-    int Z: // module de convergence (détermination de la convergence on non de la fonction)
-    complex c; // constante de calcul
-    complex ig; //point inferieur gauche
-    complex sd; //point haut droit
-}
-```
-
-
-
-
-Projet fractales
+Projet Fractales
 ======
 
 ## 1) Structure des données fonctionnelles

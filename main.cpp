@@ -1,23 +1,11 @@
 #include <iostream>
 #include <complex>
 #include <stdlib.h>
-#include <complex.h>
 #include <FL/Fl.H>
 #include <FL/fl_draw.H>
-#include <complex>
 #include "main.h"
 #include "u1-interface.h"
 #include "u2-dessin.h"
-#include "u3-callbacks.h"
-#include "u4-fonctions.h"
-#include <iostream>
-#include <complex>
-#include <stdlib.h>
-#include <FL/Fl.H>
-#include <FL/fl_ask.H>
-#include <FL/Fl_File_Chooser.H>
-#include "u1-interface.h"
-
 #include "u3-callbacks.h"
 #include "u4-fonctions.h"
 using namespace std;
