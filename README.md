@@ -159,5 +159,7 @@ L'interface devra être complète et attractive pour l'utilisateur .
 
 Répartition des taches :
 > Nils :gestion des couleurs
+
 > Félix : Fonctions et définitions
+
 > Julia : Interface et Callbacks
