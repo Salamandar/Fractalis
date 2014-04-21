@@ -100,16 +100,13 @@ void BoutonZoomMoinsCB  (Fl_Widget* w, void* data);
 ## 3. Fonctions de calcul et d'affichage, définies dans ``u4-fonctions.cpp``
 ```c++
 void Initialiser ();
-Inialiser l'interface avec un premier affichage avec les paramètres par défaut
-
-void init tableau
+    // Inialiser l'interface avec un premier affichage avec les paramètres par défaut
 
 void Affichage();
-Affiche la fractale dans la zone de dessin
+    // Affiche la fractale dans la zone de dessin
 
 void calcule(struct Donnee);
-Initialise les coordonnées en cplx
-Calcule la fractale et retourne les profondeurs.
+    // Calcule la fractale et retourne les profondeurs.
 
 CalculeCouleurs(struct Donnee);
 
