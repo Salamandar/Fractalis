@@ -11,7 +11,7 @@ Contributeurs :
 
 > Félix Piédallu
 
-## 1) Structure des données fonctionnelles
+## 1. Structure des données fonctionnelles
 
 ### Définition des données fonctionnelles dans ``u4-fonctions.h``
 ```c++
@@ -59,9 +59,9 @@ struct Donnees {
     std::complex<double> sd;    // Coordonnées du point haut droit
     struct Pixel Tab[HAUTEUR][LARGEUR]; // Matrice des pixels de l'image.
 };
+```
 
-
-## 2) Structure des données de l’interface graphique
+## 2. Structure des données de l’interface graphique
 
 ### Esquisse de l’interface :
 ### Définition des données de l’interface graphique dans ``u2-fonctions.h``
@@ -96,7 +96,7 @@ void BoutonZoomPlusCB   (Fl_Widget* w, void* data);
 void BoutonZoomMoinsCB  (Fl_Widget* w, void* data);
 ```
 
-## 3) Fonctions de calcul et d'affichage, définies dans ``u4-fonctions.cpp``
+## 3. Fonctions de calcul et d'affichage, définies dans ``u4-fonctions.cpp``
 ```c++
 void Initialiser ();
 Inialiser l'interface avec un premier affichage avec les paramètres par défaut
@@ -139,7 +139,7 @@ std::complex<double> position complexFromTableau(int x, int y);
 
 ```
 
-## Directions :
+##4. Directions :
 
 *Dans un premier temps*, il s'agira de déveloper un projet assez simple, permettant d'afficher les quatre types de fractale définies dans le sujet.
 Le travail sur la couleur sera effectué uniquement entre deux couleurs choisies par l'utilisateur.
