@@ -18,9 +18,8 @@ int testFonction(){
     double i=0;
     for (i = 0; i < HAUTEUR; ++i) {
         for (int j = 0; j < LARGEUR; ++j) {
-            /*cout <<*/convergence(std::complex<double>(j/100,i/100), fonction)/*<<"("<<i<<j<<";"*/;
+            gDonnees.Tab[i][j]=convergence(std::complex<double>(j/100,i/100), fonction);
         }
-        //cout<<"\n";
     }
     return i;
 }
@@ -63,15 +62,11 @@ std::complex<double> julia     (std::complex<double> position, std::complex<doub
 }
 std::complex<double> personna  (std::complex<double> position, std::complex<double> z){
     return (0,0);
+    /*  À voir. Ce sera la fonction personnalisable, mais implémentée seulement quand TOUT le reste fonctionnera.
+        J'aurai besoin de maîtriser le parsage de fonction mathématique, puis l'allocation dynamique de fonction.
+        Ça sera extrêmement moche, donc si Nils a une idée elle est la bienvenue.
+    */
 }
-/*  À voir. Ce sera la fonction personnalisable, mais implémentée seulement quand TOUT le reste fonctionnera.
-    J'aurai besoin de maîtriser le parsage de fonction mathématique, puis l'allocation dynamique de fonction.
-    Ça sera extrêmement moche, donc si Nils a une idée elle est la bienvenue.
-*/
-
-
-// Fonctions de test.
-
 
 
 
