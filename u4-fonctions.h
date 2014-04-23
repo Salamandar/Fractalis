@@ -43,7 +43,9 @@ struct Donnees {
 
 void InitialiserDonnees() ;
 
-//int couleurN(int N);    // Sort une couleur à partir d'un N. Géré par Nils ?
+//Prends en arg 2 long et ressort le dégradé sur N dans un tableau de taille[N][3]
+void degradeRGB(long * A, long * B,int N, int tab[][3]);
+
 int testFonction();
 
 int convergence(std::complex<double> position, pointeurFct); // Donne un rang de convergence pour un point du plan complexe

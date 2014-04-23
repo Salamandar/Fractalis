@@ -87,3 +87,33 @@ void Attente ( double Seconds ) {
     while (clock() < Endwait);
 }
 
+void degradeRGB(long * A, long * B,int N, int tab[][3]){
+
+    int i;
+    *A=(*A-*A%256)/256;
+    *B=(*B-*B%256)/256;
+    tab[0][2]=*A % 256;
+    *A=(*A-tab[0][2])/256;
+    tab[0][1]=*A % 256;
+    *A=(*A-tab[0][1])/256;
+    tab[0][0]=*A%256;
+    tab[N-1][2]=*B % 256;
+    *B=(*B-tab[N-1][2])/256;
+    tab[N-1][1]=*B % 256;
+    *B=(*B-tab[N-1][2])/256;
+    tab[N-1][0]=*B%256;
+
+    //codage du dégradé dans un tableau de triplets RGB de N case tab[N][3], et oui, vive les cast
+    double dr,dg,db;
+    dr=((double)(tab[N-1][0]-tab[0][0]))/N;
+    dg=((double)(tab[N-1][1]-tab[0][1]))/N;
+    db=((double)(tab[N-1][2]-tab[0][2]))/N;
+
+    for(i=0; i<N-1; i++)
+	{
+    tab[i][0]=tab[0][0]+i*dr;
+        tab[i][1]=tab[0][1]+i*dg;
+        tab[i][2]=tab[0][2]+i*db;
+       //cout << tab[i][0] << ";" << tab[i][1] << ";" << tab[i][2] << endl;
+    }
+}
