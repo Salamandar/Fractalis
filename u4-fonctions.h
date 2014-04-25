@@ -39,6 +39,10 @@ struct Donnees {
     std::complex<double> ig;    // Coordonnées du point inférieur gauche
     std::complex<double> sd;    // Coordonnées du point haut droit
     struct Pixel Tab[HAUTEUR][LARGEUR]; // Matrice des pixels de l'image.
+
+    // Données de détermination des couleurs
+    long    color1,     color2,     color3;
+    int rangColor1, rangColor2, rangColor3;
 };
 
 void InitialiserDonnees() ;
