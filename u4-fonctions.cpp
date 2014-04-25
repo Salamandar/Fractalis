@@ -21,30 +21,7 @@ void InitialiserDonnees() {
     gDonnees.sd= SD_INIT;
 }
 
-void testFonction(){
-    pointeurFct fonction = retourne_fonction();
-    for (int i = 0; i < H_ZONE; ++i) {
-        for (int j = 0; j < L_ZONE; ++j) {
-            gDonnees.Tab[i][j].n=convergence(complex<double>(((double)j)/100,((double)i)/100), fonction);
-        }
-    }
-}
-
-
-
-// Donne un rang de convergence pour un point du plan complexe, à utiliser pour déterminer couleur d'affichage
-int convergence(complex<double> position, pointeurFct fonction){
-    int rang=0;
-    complex<double> Zrang(0.,0.);
-    do {
-        Zrang=fonction(position,Zrang);
-        rang++;
-    } while (std::abs(Zrang) < gDonnees.moduleMax && rang<gDonnees.rangMax);
-    if (rang==gDonnees.rangMax)
-        return -1;
-    else
-        return rang;
-}
+// Donne une correspondance entre coordonnées du tableau et coordonnées du plan complexe
 
 
 // Pointe vers les fonctions suivantes en fonction de la fractale choisie
@@ -61,15 +38,12 @@ pointeurFct retourne_fonction() {
             break;
     }
 }
-
-
 std::complex<double> mandelbrot(std::complex<double> position, std::complex<double> z){
     return z*z + position;
 }
 std::complex<double> julia     (std::complex<double> position, std::complex<double> z){
     return position*position + z;
 }
-
 std::complex<double> personna  (std::complex<double> position, std::complex<double> z){
     return (0,0);
     /*  À voir. Ce sera la fonction personnalisable, mais implémentée seulement quand TOUT le reste fonctionnera.
@@ -77,6 +51,35 @@ std::complex<double> personna  (std::complex<double> position, std::complex<doub
         Ça sera extrêmement moche, donc si Nils a une idée elle est la bienvenue.
     */
 }
+
+// Donne un rang de convergence pour un point du plan complexe, à utiliser pour déterminer couleur d'affichage
+int convergence(complex<double> position, pointeurFct fonction){
+    int rang=0;
+    complex<double> Zrang(0.,0.);
+    do {
+        Zrang=fonction(position,Zrang);
+        rang++;
+    } while (std::abs(Zrang) < gDonnees.moduleMax && rang<gDonnees.rangMax);
+    if (rang==gDonnees.rangMax)
+        return -1;
+    else
+        return rang;
+}
+
+// Calcule et enregistre tous les rangs de convergence dans le tableau
+void convergencePlan(){
+    pointeurFct fonction = retourne_fonction();
+    for (int i = 0; i < H_ZONE; ++i)
+        for (int j = 0; j < L_ZONE; ++j) {
+            gDonnees.Tab[i][j].n=convergence(complex<double>(((double)j)/100,((double)i)/100), fonction);
+}
+
+
+
+
+
+
+
 
 
 
