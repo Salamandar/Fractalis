@@ -20,29 +20,16 @@
 #define H_ZONE  400
 
 struct Interface {
-    Fl_Double_Window*   Fenetre;
-    DrawingArea*        ZoneDessin;
-    Fl_Button*          BoutonQuitter;
-    Fl_Check_Button*    CaseRebond;
-
-    Fl_Button*          BoutonAction;
-    Fl_Output*          ChampTxt;
-    Fl_Value_Output*    ChampNum;
-    Fl_Input*           ChampSaisieTxt;
-    Fl_Value_Input*     ChampSaisieNum;
-    Fl_Value_Slider*    Curseur;
-    Fl_Check_Button*    CaseCocher;
-    Fl_Group*           GroupeBoutonsRadio;
-    Fl_Round_Button*    BoutonRadio1;
-    Fl_Round_Button*    BoutonRadio2;
-    Fl_Round_Button*    BoutonRadio3;
-    Fl_Choice*          MenuOptions;
-    Fl_Button*          BoutonMessage;
-    Fl_Button*          BoutonAvertissement;
-    Fl_Button*          BoutonQuestion;
-    Fl_Button*          BoutonChoixFichier;
-    Fl_Button*          BoutonSaisirChaine;
-    Fl_Button*          BoutonSaisirEntier;
+    Fl_Double_Window*   Fenetre;       // Fenêtre du projet
+    DrawingArea*        ZoneDessin;        // Zone de dessin
+    Fl_Button*          BoutonQuitter;       // Quitter le programme
+    Fl_Button*          BoutonEnregistrer;   // Enregistrer l'image
+    Fl_Button*          BoutonReset;         // Revenir aux paramères par défaut
+    Fl_Value_Input*     ChampModuleDeSortie;  // Module de sortie
+    Fl_Value_Input*     ChampProfondeur;      // Profondeur
+    Fl_Choice*          MenuFractale;        // Type de fractale
+    //Fl_Button*ZoomPlus;             // Zoomer
+    //Fl_Button*ZoomMoins;            // Dézoomer
 };
 
 extern struct Interface gInterface;

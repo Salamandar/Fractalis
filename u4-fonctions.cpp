@@ -81,11 +81,11 @@ void InitialiserDonnees() {
 }
 
 // Cette procedure permet une attente de x secondes, x peut etre en secondes mais aussi en flottant par exemple : 0.1 s
-void Attente ( double Seconds ) {
-    clock_t Endwait;
-    Endwait = (int) (clock () + Seconds * CLOCKS_PER_SEC);
-    while (clock() < Endwait);
-}
+//void Attente ( double Seconds ) {
+//   clock_t Endwait;
+//   Endwait = (int) (clock () + Seconds * CLOCKS_PER_SEC);
+//   while (clock() < Endwait);
+//}
 
 void degradeRGB(long * A, long * B,int N, int tab[][3]){
 
