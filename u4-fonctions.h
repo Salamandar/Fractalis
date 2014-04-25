@@ -42,22 +42,24 @@ struct Donnees {
     long    color1,     color2,     color3;
     int rangColor1, rangColor2, rangColor3;
 };
-
 extern Donnees gDonnees;
+
 void InitialiserDonnees() ;
 
-//Prends en arg 2 long et ressort le dégradé sur N dans un tableau de taille[N][3]
-void degradeRGB(long * A, long * B,int N, int tab[][3]);
-void couleurs(long A, long B, long C, int N1, int N2, int N3, long tab[]);
+pointeurFct retourne_fonction();    // Pointe vers les fonctions suivantes en fonction de la fractale choisie
+complex<double> mandelbrot(complex<double> position, complex<double> z);
+complex<double> julia     (complex<double> position, complex<double> z);
+complex<double> personna  (complex<double> position, complex<double> z);
+
 void testFonction();
 
 int convergence(complex<double> position, pointeurFct); // Donne un rang de convergence pour un point du plan complexe
 
-pointeurFct retourne_fonction();    // Pointe vers les fonctions suivantes en fonction de la fractale choisie
+//Prends en arg 2 long et ressort le dégradé sur N dans un tableau de taille[N][3]
+void degradeRGB(long * A, long * B,int N, int tab[][3]);
+void couleurs(long A, long B, long C, int N1, int N2, int N3, long tab[]);
 
-complex<double> mandelbrot(complex<double> position, complex<double> z);
-complex<double> julia     (complex<double> position, complex<double> z);
-complex<double> personna  (complex<double> position, complex<double> z);
+
 
 
 #endif

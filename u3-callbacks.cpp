@@ -38,12 +38,12 @@ void BoutonEnregistrerCB(Fl_Widget* w, void* data){
 
 void BoutonReset(Fl_Widget* w, void* data){
     // retour au paramètre initiales
-    Donnees.Fractale=FRACT_INIT;
-    Donnees.rangMax=RANGMAX_INIT;
-    Donnees.moduleMax=MODULEMAX_INIT;
-    Donnees.C=C_INIT;
-    Donnees.ig=IG_INIT;
-    Donnees.sd=SD_INIT;
+    gDonnees.Fractale=FRACT_INIT;
+    gDonnees.rangMax=RANGMAX_INIT;
+    gDonnees.moduleMax=MODULEMAX_INIT;
+    gDonnees.C=C_INIT;
+    gDonnees.ig=IG_INIT;
+    gDonnees.sd=SD_INIT;
 }
 
 
