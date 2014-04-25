@@ -1,6 +1,7 @@
 #ifndef _u4_fonctions_h
 #define _u4_fonctions_h
 #include <complex>
+using namespace std;
 
 // Max d'étapes à vérifier
 #define PROFONDEUR_MAX 10000
@@ -12,7 +13,7 @@
 #define IG_INIT (1,1)
 #define SD_INIT (2,2)
 
-typedef std::complex<double> (*pointeurFct)(std::complex<double>, std::complex<double>);
+typedef complex<double> (*pointeurFct)(complex<double>, complex<double>);
     // Type d'une fonction qui renvoie un pointeur vers le type de fractale
 
 enum fractype {
@@ -23,18 +24,18 @@ enum fractype {
 
 // Structure de Pixel
 struct Pixel {
-    std::complex<double> z; // Coordonnées dans le plan std::complexe
+    complex<double> z; // Coordonnées dans le plan std::complexe
     int n;  // rang de divergence
 };
 
 // Structure des paramètres utilisateur
 struct Donnees {
-    enum fractype Fractale;     // Type de fractales choisie (Type énuméré)
-    int     rangMax;            // Rang maximal de convergence
-    double  moduleMax;          // Module de convergence (détermination de la convergence on non de la fonction)
-    std::complex<double> C;     // Constante de calcul
-    std::complex<double> ig;    // Coordonnées du point inférieur gauche
-    std::complex<double> sd;    // Coordonnées du point haut droit
+    enum fractype Fractale;// Type de fractales choisie (Type énuméré)
+    int     rangMax;       // Rang maximal de convergence
+    double  moduleMax;     // Module de convergence (détermination de la convergence on non de la fonction)
+    complex<double> C;     // Constante de calcul
+    complex<double> ig;    // Coordonnées du point inférieur gauche
+    complex<double> sd;    // Coordonnées du point haut droit
     struct Pixel Tab[H_ZONE][L_ZONE]; // Matrice des pixels de l'image.
 
     // Données de détermination des couleurs
@@ -49,13 +50,13 @@ void degradeRGB(long * A, long * B,int N, int tab[][3]);
 
 int testFonction();
 
-int convergence(std::complex<double> position, pointeurFct); // Donne un rang de convergence pour un point du plan complexe
+int convergence(complex<double> position, pointeurFct); // Donne un rang de convergence pour un point du plan complexe
 
 pointeurFct retourne_fonction();    // Pointe vers les fonctions suivantes en fonction de la fractale choisie
 
-std::complex<double> mandelbrot(std::complex<double> position, std::complex<double> z);
-std::complex<double> julia     (std::complex<double> position, std::complex<double> z);
-std::complex<double> personna  (std::complex<double> position, std::complex<double> z);
+complex<double> mandelbrot(complex<double> position, complex<double> z);
+complex<double> julia     (complex<double> position, complex<double> z);
+complex<double> personna  (complex<double> position, complex<double> z);
 
 
 #endif

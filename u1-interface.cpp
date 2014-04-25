@@ -5,7 +5,6 @@
 #include "u2-dessin.h"
 #include "u3-callbacks.h"
 #include "u4-fonctions.h"
-using namespace std;
 
 // Definition des donnees de l'interface - structure globale de variables
 struct Interface gInterface;

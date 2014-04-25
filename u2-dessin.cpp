@@ -9,7 +9,6 @@
 #include "u2-dessin.h"
 
 #include "u4-fonctions.h"
-using namespace std;
 
 void ZoneDessinDessinerCB( Fl_Widget* widget, void* data )
 {

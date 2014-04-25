@@ -6,7 +6,6 @@
 #include <api/inc/fmod_errors.h>
 #include <complex>
 #include <iomanip>
-using namespace std;
 
 #include "u1-interface.h"
 #include "u4-fonctions.h"
@@ -18,15 +17,15 @@ int testFonction(){
     int i;
     for (i = 0; i < H_ZONE; ++i) {
         for (int j = 0; j < L_ZONE; ++j) {
-            gDonnees.Tab[i][j].n=convergence(std::complex<double>(((double)j)/100,((double)i)/100), fonction);
+            gDonnees.Tab[i][j].n=convergence(complex<double>(((double)j)/100,((double)i)/100), fonction);
         }
     }
     return i;
 }
 // Donne un rang de convergence pour un point du plan complexe, à utiliser pour déterminer couleur d'affichage
-int convergence(std::complex<double> position, pointeurFct fonction){
+int convergence(complex<double> position, pointeurFct fonction){
     int rang=0;
-    std::complex<double> Zrang(0.,0.);
+    complex<double> Zrang(0.,0.);
     do {
         Zrang=fonction(position,Zrang);
         rang++;
@@ -60,6 +59,7 @@ std::complex<double> mandelbrot(std::complex<double> position, std::complex<doub
 std::complex<double> julia     (std::complex<double> position, std::complex<double> z){
     return position*position + z;
 }
+
 std::complex<double> personna  (std::complex<double> position, std::complex<double> z){
     return (0,0);
     /*  À voir. Ce sera la fonction personnalisable, mais implémentée seulement quand TOUT le reste fonctionnera.

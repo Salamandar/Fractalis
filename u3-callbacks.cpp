@@ -8,7 +8,6 @@
 
 #include "u3-callbacks.h"
 #include "u4-fonctions.h"
-using namespace std;
 
 void TraiterCycleCB() {
     gInterface.ZoneDessin->redraw();
