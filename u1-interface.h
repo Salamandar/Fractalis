@@ -14,10 +14,10 @@
 #include <FL/Fl_Choice.H>
 #include <FL/Fl_Value_Input.H>
 
-#define X_ZONE  20
-#define Y_ZONE  40
-#define L_ZONE  400
-#define H_ZONE  400
+#define X_ZONE  25
+#define Y_ZONE  25
+#define L_ZONE  650
+#define H_ZONE  650
 
 struct Interface {
     Fl_Double_Window*   Fenetre;       // Fenêtre du projet
