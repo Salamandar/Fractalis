@@ -38,20 +38,23 @@ void BoutonEnregistrerCB(Fl_Widget* w, void* data){
 
 void BoutonReset(Fl_Widget* w, void* data){
     // retour au paramètre initiales
-
+    Donnees.Fractale=FRACT_INIT;
+    Donnees.rangMax=RANGMAX_INIT;
+    Donnees.moduleMax=MODULEMAX_INIT;
+    Donnees.C=C_INIT;
+    Donnees.ig=IG_INIT;
+    Donnees.sd=SD_INIT;
 }
 
 
 void ChampProfondeurCB(Fl_Widget* w, void* data){
-    int Profondeur;
-     Profondeur = (int)gInterface.ChampProfondeur->value();
-    printf("ChampProfondeurCB : %s\n", Profondeur);
+     Donnees.rangMax = (int)gInterface.ChampProfondeur->value();
+    printf("ChampProfondeurCB : %s\n", Donnees.rangMax);
 }
 
 void ChampModuleDeSortieCB(Fl_Widget* w, void* data){
-    int ModuleDeSortie;
-    ModuleDeSortie = (int)gInterface.ChampModuleDeSortie->value();
-    printf("ChampModuleDeSortieCB : %i\n", ModuleDeSortie);
+    Donnees.moduleMax = (int)gInterface.ChampModuleDeSortie->value();
+    printf("ChampModuleDeSortieCB : %i\n", Donnees.moduleMax);
 }
 
 
