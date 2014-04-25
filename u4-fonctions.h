@@ -47,7 +47,7 @@ extern Donnees gDonnees;
 void InitialiserDonnees() ;
 
 //Prends en arg 2 long et ressort le dégradé sur N dans un tableau de taille[N][3]
-void degradeRGB(long * A, long * B,int N, int tab[][3]);
+void degradeRGB(long A, long  B,int N, int tab[][3]);
 void couleurs(long A, long B, long C, int N1, int N2, int N3, long tab[]);
 void testFonction();
 
