@@ -25,32 +25,32 @@ void CreerInterface()
     gInterface.ZoneDessin->mouse_callback( ZoneDessinSourisCB, NULL );
 
     // Creation du menu de choix du type de fractale
-    gInterface.MenuFractale = new Fl_Choice( 1000 , 50  ,100, 20, "Type Fractale : " );
+    gInterface.MenuFractale = new Fl_Choice( X_ZONE+L_ZONE+100 , 50  ,100, 20, "Type Fractale : " );
     gInterface.MenuFractale->add( "Julia", "", MenuFractaleCB );
     gInterface.MenuFractale->add( "Mandelbrot", "", MenuFractaleCB );
     gInterface.MenuFractale->add( "Cosinus", "", MenuFractaleCB );
     gInterface.MenuFractale->add( "Sinus", "", MenuFractaleCB );
 
     // Creation du champ de saisie module de sortie
-    gInterface.ChampModuleDeSortie = new Fl_Value_Input(1000, 90 , 100, 20, "Module de sortie : ");
+    gInterface.ChampModuleDeSortie = new Fl_Value_Input(X_ZONE+L_ZONE+100, 90 , 100, 20, "Module de sortie : ");
 	gInterface.ChampModuleDeSortie->when( FL_WHEN_ENTER_KEY | FL_WHEN_RELEASE );
 	gInterface.ChampModuleDeSortie->callback(ChampModuleDeSortieCB, NULL );
 
     // Creation du champ de saisie profondeur
-    gInterface.ChampProfondeur = new Fl_Value_Input(1000, 130 , 100, 20, "Profondeur : ");
+    gInterface.ChampProfondeur = new Fl_Value_Input(X_ZONE+L_ZONE+100, 130 , 100, 20, "Profondeur : ");
 	gInterface.ChampProfondeur->when( FL_WHEN_ENTER_KEY | FL_WHEN_RELEASE );
 	gInterface.ChampProfondeur->callback(ChampProfondeurCB, NULL );
 
     // Creation du bouton Enregistrer
-    gInterface.BoutonEnregistrer = new Fl_Button(1000,500 , 100, 20, "Enregistrer");
+    gInterface.BoutonEnregistrer = new Fl_Button(X_ZONE,Y_ZONE-20 , 100, 20, "Enregistrer");
     gInterface.BoutonEnregistrer->callback( BoutonQuitterCB, NULL );
 
     // Creation du bouton Reset
-    gInterface.BoutonReset = new Fl_Button(1000,540, 100, 20, "Reset");
+    gInterface.BoutonReset = new Fl_Button(X_ZONE+100,Y_ZONE-20, 100, 20, "Reset");
     gInterface.BoutonReset->callback( BoutonQuitterCB, NULL );
 
     // Creation du bouton Quitter
-    gInterface.BoutonQuitter = new Fl_Button(1000, 580 , 100, 20, "Quitter");
+    gInterface.BoutonQuitter = new Fl_Button(X_ZONE+200, Y_ZONE-20 , 100, 20, "Quitter");
     gInterface.BoutonQuitter->callback( BoutonQuitterCB, NULL );
 
 
