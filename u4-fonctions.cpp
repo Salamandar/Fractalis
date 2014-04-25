@@ -22,7 +22,7 @@ void InitialiserDonnees() {
 }
 
 // Donne une correspondance entre coordonnées du tableau et coordonnées du plan complexe
-complex<double>
+//complex<double>
 
 // Pointe vers les fonctions suivantes en fonction de la fractale choisie
 pointeurFct retourne_fonction() {
@@ -95,21 +95,21 @@ void convergencePlan(){
 //   while (clock() < Endwait);
 //}
 
-void degradeRGB(long * A, long * B,int N, int tab[][3]){
+void degradeRGB(long  A, long  B,int N, int tab[][3]){
 
     int i;
-    *A=(*A-*A%256)/256;
-    *B=(*B-*B%256)/256;
-    tab[0][2]=*A % 256;
-    *A=(*A-tab[0][2])/256;
-    tab[0][1]=*A % 256;
-    *A=(*A-tab[0][1])/256;
-    tab[0][0]=*A%256;
-    tab[N-1][2]=*B % 256;
-    *B=(*B-tab[N-1][2])/256;
-    tab[N-1][1]=*B % 256;
-    *B=(*B-tab[N-1][2])/256;
-    tab[N-1][0]=*B%256;
+    A=(A-A%256)/256;
+    B=(B-B%256)/256;
+    tab[0][2]=A % 256;
+    A=(A-tab[0][2])/256;
+    tab[0][1]=A % 256;
+    A=(A-tab[0][1])/256;
+    tab[0][0]=A%256;
+    tab[N-1][2]=B % 256;
+    B=(B-tab[N-1][2])/256;
+    tab[N-1][1]=B % 256;
+    B=(B-tab[N-1][2])/256;
+    tab[N-1][0]=B%256;
 
     //codage du dégradé dans un tableau de triplets RGB de N case tab[N][3], et oui, vive les cast
     double dr,dg,db;
@@ -129,14 +129,15 @@ void degradeRGB(long * A, long * B,int N, int tab[][3]){
 void couleurs(long A, long B, long C, int N1, int N2, int N3, long tab[])
 {
     int i;
+    long I=Couleur_Init;
     int tab1[N1][3];
     int tab2[N2][3];
     int tab3[N3][3];
     int tab4[gDonnees.rangMax][3];
-    degradeRGB(Couleur_Init,A,N1,tab1);
+    degradeRGB(I,A,N1,tab1);
     degradeRGB(A,B,N2,tab2);
     degradeRGB(B,C,N3,tab3);
-    degradeRGB(B,C,N3,tab4);
+    degradeRGB(C,I,N3,tab4);
 
     for(i=0; i<N1; i++)
     {
