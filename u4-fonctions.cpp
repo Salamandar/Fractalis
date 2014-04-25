@@ -15,10 +15,10 @@ struct Donnees gDonnees;
 
 int testFonction(){
     pointeurFct fonction = retourne_fonction();
-    double i=0;
+    int i;
     for (i = 0; i < HAUTEUR; ++i) {
         for (int j = 0; j < LARGEUR; ++j) {
-            gDonnees.Tab[i][j]=convergence(std::complex<double>(j/100,i/100), fonction);
+            gDonnees.Tab[i][j].n=convergence(std::complex<double>(((double)j)/100,((double)i)/100), fonction);
         }
     }
     return i;
