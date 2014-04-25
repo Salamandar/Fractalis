@@ -63,9 +63,9 @@ struct Donnees {
 
 ## 2. Structure des données de l’interface graphique
 
+### Esquisse de l’interface :
 ![alt tag](https://raw.github.com/salamandar/Fractalis/master/interface.png)
 
-### Esquisse de l’interface :
 ### Définition des données de l’interface graphique dans ``u2-fonctions.h``
 
 ```c++
