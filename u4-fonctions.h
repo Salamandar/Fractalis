@@ -12,7 +12,7 @@ using namespace std;
 #define C_INIT  (1,1)
 #define IG_INIT (1,1)
 #define SD_INIT (2,2)
-
+#define Couleur_Init 0
 typedef complex<double> (*pointeurFct)(complex<double>, complex<double>);
     // Type d'une fonction qui renvoie un pointeur vers le type de fractale
 
