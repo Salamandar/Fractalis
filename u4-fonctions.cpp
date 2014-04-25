@@ -16,8 +16,8 @@ struct Donnees gDonnees;
 int testFonction(){
     pointeurFct fonction = retourne_fonction();
     int i;
-    for (i = 0; i < HAUTEUR; ++i) {
-        for (int j = 0; j < LARGEUR; ++j) {
+    for (i = 0; i < H_ZONE; ++i) {
+        for (int j = 0; j < L_ZONE; ++j) {
             gDonnees.Tab[i][j].n=convergence(std::complex<double>(((double)j)/100,((double)i)/100), fonction);
         }
     }

@@ -15,7 +15,7 @@ void CreerInterface()
 
 
     // Creation de la fenetre principale
-    gInterface.Fenetre = new Fl_Double_Window(1200,650);
+    gInterface.Fenetre = new Fl_Double_Window(X_ZONE+L_ZONE+400,Y_ZONE+H_ZONE);
     gInterface.Fenetre->label("Generateur de fractales");
     gInterface.Fenetre->begin();
 

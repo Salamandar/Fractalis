@@ -48,7 +48,7 @@ void CycleCB( void* )
 
 
 // Déclaré dans drawing.h
-//  Classe et methodes DrawingArea : a considerer comme une librairie fournie, NE PAS MODIFIER
+// Classe et methodes DrawingArea : a considerer comme une librairie fournie, NE PAS MODIFIER
 
 DrawingArea::DrawingArea(int X,int Y,int W,int H)
 : Fl_Widget(X,Y,W,H)
