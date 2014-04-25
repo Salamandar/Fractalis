@@ -12,15 +12,13 @@
 
 struct Donnees gDonnees;
 
-int testFonction(){
+void testFonction(){
     pointeurFct fonction = retourne_fonction();
-    int i;
-    for (i = 0; i < H_ZONE; ++i) {
+    for (int i = 0; i < H_ZONE; ++i) {
         for (int j = 0; j < L_ZONE; ++j) {
             gDonnees.Tab[i][j].n=convergence(complex<double>(((double)j)/100,((double)i)/100), fonction);
         }
     }
-    return i;
 }
 // Donne un rang de convergence pour un point du plan complexe, à utiliser pour déterminer couleur d'affichage
 int convergence(complex<double> position, pointeurFct fonction){

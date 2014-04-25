@@ -18,3 +18,13 @@ void ZoneDessinDessinerCB( Fl_Widget* widget, void* data )
 
 
 }
+
+void afficheFractale(){
+	for (int i = 0; i < H_ZONE; ++i)
+	{
+		for (int j = 0; j < L_ZONE; ++j)
+		{
+
+		}
+	}
+}

@@ -3,5 +3,6 @@
 #include <FL/Fl_Widget.H>
 
 void ZoneDessinDessinerCB( Fl_Widget* widget, void* data ) ;
+void afficheFractale();
 
 #endif
