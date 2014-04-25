@@ -22,7 +22,7 @@ void InitialiserDonnees() {
 }
 
 // Donne une correspondance entre coordonnées du tableau et coordonnées du plan complexe
-
+complex<double>
 
 // Pointe vers les fonctions suivantes en fonction de la fractale choisie
 pointeurFct retourne_fonction() {
@@ -38,13 +38,13 @@ pointeurFct retourne_fonction() {
             break;
     }
 }
-std::complex<double> mandelbrot(std::complex<double> position, std::complex<double> z){
+complex<double> mandelbrot(std::complex<double> position, complex<double> z){
     return z*z + position;
 }
-std::complex<double> julia     (std::complex<double> position, std::complex<double> z){
+complex<double> julia     (std::complex<double> position, complex<double> z){
     return position*position + z;
 }
-std::complex<double> personna  (std::complex<double> position, std::complex<double> z){
+complex<double> personna  (std::complex<double> position, complex<double> z){
     return (0,0);
     /*  À voir. Ce sera la fonction personnalisable, mais implémentée seulement quand TOUT le reste fonctionnera.
         J'aurai besoin de maîtriser le parsage de fonction mathématique, puis l'allocation dynamique de fonction.
@@ -69,9 +69,11 @@ int convergence(complex<double> position, pointeurFct fonction){
 // Calcule et enregistre tous les rangs de convergence dans le tableau
 void convergencePlan(){
     pointeurFct fonction = retourne_fonction();
-    for (int i = 0; i < H_ZONE; ++i)
+    for (int i = 0; i < H_ZONE; ++i) {
         for (int j = 0; j < L_ZONE; ++j) {
             gDonnees.Tab[i][j].n=convergence(complex<double>(((double)j)/100,((double)i)/100), fonction);
+        }
+    }
 }
 
 

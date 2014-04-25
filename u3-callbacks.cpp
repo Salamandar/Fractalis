@@ -48,13 +48,13 @@ void BoutonReset(Fl_Widget* w, void* data){
 
 
 void ChampProfondeurCB(Fl_Widget* w, void* data){
-     Donnees.rangMax = (int)gInterface.ChampProfondeur->value();
-    printf("ChampProfondeurCB : %s\n", Donnees.rangMax);
+     gDonnees.rangMax = (int)gInterface.ChampProfondeur->value();
+    printf("ChampProfondeurCB : %s\n", gDonnees.rangMax);
 }
 
 void ChampModuleDeSortieCB(Fl_Widget* w, void* data){
-    Donnees.moduleMax = (int)gInterface.ChampModuleDeSortie->value();
-    printf("ChampModuleDeSortieCB : %i\n", Donnees.moduleMax);
+    gDonnees.moduleMax = (int)gInterface.ChampModuleDeSortie->value();
+    printf("ChampModuleDeSortieCB : %i\n", gDonnees.moduleMax);
 }
 
 
