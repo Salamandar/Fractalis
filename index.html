@@ -34,7 +34,7 @@
           <h1>Fractalis</h1>
           <p></p>
           <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/Salamandar">Salamandar</a></span>
+          <span class="credits left">Project maintained by <a href="https://github.com/Salamandar">Félix Piédallu aka Salamandar</a></span>
           <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
         </div>
 
@@ -85,6 +85,8 @@
 <span class="k">enum</span> <span class="n">fractype</span> <span class="p">{</span>
     <span class="n">MANDELBROT</span><span class="p">,</span>
     <span class="n">JULIA</span><span class="p">,</span>
+    <span class="n">FRACOS</span><span class="p">,</span>
+    <span class="n">FRASIN</span><span class="p">,</span>
     <span class="n">PERSONNA</span>
 <span class="p">};</span>
 
@@ -126,9 +128,9 @@
     <span class="n">Fl_Button</span><span class="o">*</span> <span class="n">BoutonEnregistrer</span><span class="p">;</span>   <span class="c1">// Enregistrer l'image</span>
     <span class="n">Fl_Button</span><span class="o">*</span> <span class="n">BoutonSauvePosition</span><span class="p">;</span> <span class="c1">// Enregistrer les paramètres actuels</span>
     <span class="n">Fl_Button</span><span class="o">*</span> <span class="n">BoutonReset</span><span class="p">;</span>         <span class="c1">// Revenir aux paramères par défaut</span>
-    <span class="n">Fl_Value_Input</span><span class="o">*</span><span class="n">ModuleDeSortie</span><span class="p">;</span>  <span class="c1">// Module de sortie</span>
-    <span class="n">Fl_Value_Input</span><span class="o">*</span><span class="n">Profondeur</span><span class="p">;</span>      <span class="c1">// Profondeur</span>
-    <span class="n">Fl_Choice</span><span class="o">*</span> <span class="n">TypeFractale</span><span class="p">;</span>        <span class="c1">// Type de fractale</span>
+    <span class="n">Fl_Value_Input</span><span class="o">*</span><span class="n">ChampModuleDeSortie</span><span class="p">;</span>  <span class="c1">// Module de sortie</span>
+    <span class="n">Fl_Value_Input</span><span class="o">*</span><span class="n">ChampProfondeur</span><span class="p">;</span>      <span class="c1">// Profondeur</span>
+    <span class="n">Fl_Choice</span><span class="o">*</span> <span class="n">MenuFractale</span><span class="p">;</span>        <span class="c1">// Type de fractale</span>
     <span class="n">Fl_Button</span><span class="o">*</span><span class="n">ZoomPlus</span><span class="p">;</span>             <span class="c1">// Zoomer</span>
     <span class="n">Fl_Button</span><span class="o">*</span><span class="n">ZoomMoins</span><span class="p">;</span>            <span class="c1">// Dézoomer</span>
 <span class="p">};</span>
@@ -139,11 +141,11 @@
 </h3>
 
 <div class="highlight highlight-c++"><pre>    <span class="c1">// Prototypes des callbacks</span>
-<span class="kt">void</span> <span class="nf">ModuleDeSortieCB</span>   <span class="p">(</span><span class="n">Fl_Widget</span><span class="o">*</span> <span class="n">w</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">data</span><span class="p">);</span>
-<span class="kt">void</span> <span class="nf">ProfondeurCB</span>       <span class="p">(</span><span class="n">Fl_Widget</span><span class="o">*</span> <span class="n">w</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">data</span><span class="p">);</span>
-<span class="kt">void</span> <span class="nf">FractaleCB</span>         <span class="p">(</span><span class="n">Fl_Widget</span><span class="o">*</span> <span class="n">w</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">data</span><span class="p">);</span>
-<span class="kt">void</span> <span class="nf">BoutonQuitterCB</span>    <span class="p">(</span><span class="n">Fl_Widget</span><span class="o">*</span> <span class="n">w</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">data</span><span class="p">);</span>
-<span class="kt">void</span> <span class="nf">BoutonEnregistrerCB</span><span class="p">(</span><span class="n">Fl_Widget</span><span class="o">*</span> <span class="n">w</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">data</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">ChampModuleDeSortieCB</span><span class="p">(</span><span class="n">Fl_Widget</span><span class="o">*</span> <span class="n">w</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">data</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">ChampProfondeurCB</span>    <span class="p">(</span><span class="n">Fl_Widget</span><span class="o">*</span> <span class="n">w</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">data</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">MenuFractaleCB</span>       <span class="p">(</span><span class="n">Fl_Widget</span><span class="o">*</span> <span class="n">w</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">data</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">BoutonQuitterCB</span>      <span class="p">(</span><span class="n">Fl_Widget</span><span class="o">*</span> <span class="n">w</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">data</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">BoutonEnregistrerCB</span>  <span class="p">(</span><span class="n">Fl_Widget</span><span class="o">*</span> <span class="n">w</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">data</span><span class="p">);</span>
 
     <span class="c1">// On peut utiliser de préférence la souris, sinon :</span>
 <span class="kt">void</span> <span class="nf">BoutonZoomPlusCB</span>   <span class="p">(</span><span class="n">Fl_Widget</span><span class="o">*</span> <span class="n">w</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">data</span><span class="p">);</span>
@@ -224,6 +226,6 @@ L'interface devra être complète et attractive pour l'utilisateur .</p>
 
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
+
   </body>
 </html>
