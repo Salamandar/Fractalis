@@ -43,6 +43,7 @@ struct Donnees {
     int rangColor1, rangColor2, rangColor3;
 };
 
+extern Donnees gDonnees;
 void InitialiserDonnees() ;
 
 //Prends en arg 2 long et ressort le dégradé sur N dans un tableau de taille[N][3]
