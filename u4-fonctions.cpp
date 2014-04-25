@@ -12,6 +12,15 @@
 
 struct Donnees gDonnees;
 
+void InitialiserDonnees() {
+    gDonnees.Fractale = FRACT_INIT;
+    gDonnees.rangMax  = RANGMAX_INIT;
+    gDonnees.moduleMax= MODULEMAX_INIT;
+    gDonnees.C = C_INIT;
+    gDonnees.ig= IG_INIT;
+    gDonnees.sd= SD_INIT;
+}
+
 void testFonction(){
     pointeurFct fonction = retourne_fonction();
     for (int i = 0; i < H_ZONE; ++i) {
@@ -20,6 +29,9 @@ void testFonction(){
         }
     }
 }
+
+
+
 // Donne un rang de convergence pour un point du plan complexe, à utiliser pour déterminer couleur d'affichage
 int convergence(complex<double> position, pointeurFct fonction){
     int rang=0;
@@ -69,14 +81,7 @@ std::complex<double> personna  (std::complex<double> position, std::complex<doub
 
 
 
-void InitialiserDonnees() {
-    gDonnees.Fractale = FRACT_INIT;
-    gDonnees.rangMax  = RANGMAX_INIT;
-    gDonnees.moduleMax= MODULEMAX_INIT;
-    gDonnees.C = C_INIT;
-    gDonnees.ig= IG_INIT;
-    gDonnees.sd= SD_INIT;
-}
+
 
 // Cette procedure permet une attente de x secondes, x peut etre en secondes mais aussi en flottant par exemple : 0.1 s
 //void Attente ( double Seconds ) {

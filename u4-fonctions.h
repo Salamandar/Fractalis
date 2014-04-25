@@ -10,8 +10,8 @@ using namespace std;
 #define RANGMAX_INIT    250
 #define MODULEMAX_INIT  2
 #define C_INIT  (1,1)
-#define IG_INIT (1,1)
-#define SD_INIT (2,2)
+#define IG_INIT (-2,-2)
+#define SD_INIT ( 2, 2)
 #define Couleur_Init 0
 typedef complex<double> (*pointeurFct)(complex<double>, complex<double>);
     // Type d'une fonction qui renvoie un pointeur vers le type de fractale
@@ -48,7 +48,7 @@ void InitialiserDonnees() ;
 
 //Prends en arg 2 long et ressort le dégradé sur N dans un tableau de taille[N][3]
 void degradeRGB(long * A, long * B,int N, int tab[][3]);
-void couleurs(long A, long B, long C, int N1, int N2, int N3, int tab[]);
+void couleurs(long A, long B, long C, int N1, int N2, int N3, long tab[]);
 void testFonction();
 
 int convergence(complex<double> position, pointeurFct); // Donne un rang de convergence pour un point du plan complexe
