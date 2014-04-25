@@ -24,19 +24,19 @@ void CreerInterface()
     gInterface.ZoneDessin->mouse_callback( ZoneDessinSourisCB, NULL );
 
     // Creation du menu de choix du type de fractale
-    gInterface.MenuFractale = new Fl_Choice( X_ZONE+L_ZONE+100 , 50  ,100, 20, "Type Fractale : " );
+    gInterface.MenuFractale = new Fl_Choice( X_ZONE+L_ZONE+200 , 50  ,100, 20, "Type Fractale : " );
     gInterface.MenuFractale->add( "Julia", "", MenuFractaleCB );
     gInterface.MenuFractale->add( "Mandelbrot", "", MenuFractaleCB );
     gInterface.MenuFractale->add( "Cosinus", "", MenuFractaleCB );
     gInterface.MenuFractale->add( "Sinus", "", MenuFractaleCB );
 
     // Creation du champ de saisie module de sortie
-    gInterface.ChampModuleDeSortie = new Fl_Value_Input(X_ZONE+L_ZONE+100, 90 , 100, 20, "Module de sortie : ");
+    gInterface.ChampModuleDeSortie = new Fl_Value_Input(X_ZONE+L_ZONE+200, 90 , 100, 20, "Module de sortie : ");
 	gInterface.ChampModuleDeSortie->when( FL_WHEN_ENTER_KEY | FL_WHEN_RELEASE );
 	gInterface.ChampModuleDeSortie->callback(ChampModuleDeSortieCB, NULL );
 
     // Creation du champ de saisie profondeur
-    gInterface.ChampProfondeur = new Fl_Value_Input(X_ZONE+L_ZONE+100, 130 , 100, 20, "Profondeur : ");
+    gInterface.ChampProfondeur = new Fl_Value_Input(X_ZONE+L_ZONE+200, 130 , 100, 20, "Profondeur : ");
 	gInterface.ChampProfondeur->when( FL_WHEN_ENTER_KEY | FL_WHEN_RELEASE );
 	gInterface.ChampProfondeur->callback(ChampProfondeurCB, NULL );
 
