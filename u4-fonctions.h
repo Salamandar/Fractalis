@@ -47,8 +47,7 @@ void InitialiserDonnees() ;
 
 //Prends en arg 2 long et ressort le dégradé sur N dans un tableau de taille[N][3]
 void degradeRGB(long * A, long * B,int N, int tab[][3]);
-void couleurs(long A, long B, long C, int N1, int N2, int N3);
-
+void couleurs(long A, long B, long C, int N1, int N2, int N3, int tab[]);
 void testFonction();
 
 int convergence(complex<double> position, pointeurFct); // Donne un rang de convergence pour un point du plan complexe
