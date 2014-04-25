@@ -40,6 +40,8 @@ typedef std::complex<double> (*pointeurFct)(std::complex<double>, std::complex<d
 enum fractype {
     MANDELBROT,
     JULIA,
+    FRACOS,
+    FRASIN,
     PERSONNA
 };
 
@@ -77,9 +79,9 @@ struct Interface {
     Fl_Button* BoutonEnregistrer;   // Enregistrer l'image
     Fl_Button* BoutonSauvePosition; // Enregistrer les paramètres actuels
     Fl_Button* BoutonReset;         // Revenir aux paramères par défaut
-    Fl_Value_Input*ModuleDeSortie;  // Module de sortie
-    Fl_Value_Input*Profondeur;      // Profondeur
-    Fl_Choice* TypeFractale;        // Type de fractale
+    Fl_Value_Input*ChampModuleDeSortie;  // Module de sortie
+    Fl_Value_Input*ChampProfondeur;      // Profondeur
+    Fl_Choice* MenuFractale;        // Type de fractale
     Fl_Button*ZoomPlus;             // Zoomer
     Fl_Button*ZoomMoins;            // Dézoomer
 };
@@ -88,11 +90,11 @@ struct Interface {
 ### Définition des callbacks associées aux objets de l’interface dans ``u3-fonctions.h``
 ```c++
     // Prototypes des callbacks
-void ModuleDeSortieCB   (Fl_Widget* w, void* data);
-void ProfondeurCB       (Fl_Widget* w, void* data);
-void FractaleCB         (Fl_Widget* w, void* data);
-void BoutonQuitterCB    (Fl_Widget* w, void* data);
-void BoutonEnregistrerCB(Fl_Widget* w, void* data);
+void ChampModuleDeSortieCB(Fl_Widget* w, void* data);
+void ChampProfondeurCB    (Fl_Widget* w, void* data);
+void MenuFractaleCB       (Fl_Widget* w, void* data);
+void BoutonQuitterCB      (Fl_Widget* w, void* data);
+void BoutonEnregistrerCB  (Fl_Widget* w, void* data);
 
     // On peut utiliser de préférence la souris, sinon :
 void BoutonZoomPlusCB   (Fl_Widget* w, void* data);
