@@ -12,8 +12,10 @@ struct Interface gInterface;
 
 void CreerInterface()
 {
+
+
     // Creation de la fenetre principale
-    gInterface.Fenetre = new Fl_Double_Window(1000,700);
+    gInterface.Fenetre = new Fl_Double_Window(1200,650);
     gInterface.Fenetre->label("Generateur de fractales");
     gInterface.Fenetre->begin();
 
@@ -22,36 +24,38 @@ void CreerInterface()
     gInterface.ZoneDessin->draw_callback( ZoneDessinDessinerCB, NULL );
     gInterface.ZoneDessin->mouse_callback( ZoneDessinSourisCB, NULL );
 
-    // Creation du champ de saisie module de sortie
-    gInterface.ChampModuleDeSortie = new Fl_Value_Input(750, 110 , 200, 20, "Module de sortie : ");
-	gInterface.ChampModuleDeSortie->when( FL_WHEN_ENTER_KEY | FL_WHEN_RELEASE );
-	gInterface.ChampModuleDeSortie->callback(ChampModuleDeSortieCB, NULL );
-
-    // Creation du champ de saisie profondeur
-    gInterface.ChampProfondeur = new Fl_Value_Input(750,150 , 200, 20, "Profondeur : ");
-	gInterface.ChampProfondeur->when( FL_WHEN_ENTER_KEY | FL_WHEN_RELEASE );
-	gInterface.ChampProfondeur->callback(ChampProfondeurCB, NULL );
-
-    // Creation du bouton Enregistrer
-    gInterface.BoutonEnregistrer = new Fl_Button(800,550 , 100, 20, "Enregistrer");
-    gInterface.BoutonEnregistrer->callback( BoutonQuitterCB, NULL );
-
-    // Creation du bouton Reset
-    gInterface.BoutonReset = new Fl_Button(800,590, 100, 20, "Reset");
-    gInterface.BoutonReset->callback( BoutonQuitterCB, NULL );
-
-    // Creation du bouton Quitter
-    gInterface.BoutonQuitter = new Fl_Button(800, 630 , 100, 20, "Quitter");
-    gInterface.BoutonQuitter->callback( BoutonQuitterCB, NULL );
-
-
-
     // Creation du menu de choix du type de fractale
-    gInterface.MenuFractale = new Fl_Choice( 750 ,50 ,100, 20, "Type Fractale : " );
+    gInterface.MenuFractale = new Fl_Choice( 1000 , 50  ,100, 20, "Type Fractale : " );
     gInterface.MenuFractale->add( "Julia", "", MenuFractaleCB );
     gInterface.MenuFractale->add( "Mandelbrot", "", MenuFractaleCB );
     gInterface.MenuFractale->add( "Cosinus", "", MenuFractaleCB );
     gInterface.MenuFractale->add( "Sinus", "", MenuFractaleCB );
+
+    // Creation du champ de saisie module de sortie
+    gInterface.ChampModuleDeSortie = new Fl_Value_Input(1000, 90 , 100, 20, "Module de sortie : ");
+	gInterface.ChampModuleDeSortie->when( FL_WHEN_ENTER_KEY | FL_WHEN_RELEASE );
+	gInterface.ChampModuleDeSortie->callback(ChampModuleDeSortieCB, NULL );
+
+    // Creation du champ de saisie profondeur
+    gInterface.ChampProfondeur = new Fl_Value_Input(1000, 130 , 100, 20, "Profondeur : ");
+	gInterface.ChampProfondeur->when( FL_WHEN_ENTER_KEY | FL_WHEN_RELEASE );
+	gInterface.ChampProfondeur->callback(ChampProfondeurCB, NULL );
+
+    // Creation du bouton Enregistrer
+    gInterface.BoutonEnregistrer = new Fl_Button(1000,500 , 100, 20, "Enregistrer");
+    gInterface.BoutonEnregistrer->callback( BoutonQuitterCB, NULL );
+
+    // Creation du bouton Reset
+    gInterface.BoutonReset = new Fl_Button(1000,540, 100, 20, "Reset");
+    gInterface.BoutonReset->callback( BoutonQuitterCB, NULL );
+
+    // Creation du bouton Quitter
+    gInterface.BoutonQuitter = new Fl_Button(1000, 580 , 100, 20, "Quitter");
+    gInterface.BoutonQuitter->callback( BoutonQuitterCB, NULL );
+
+
+
+
 
 
     // Affichage de la fenetre
