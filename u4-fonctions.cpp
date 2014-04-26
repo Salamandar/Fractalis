@@ -22,7 +22,10 @@ void InitialiserDonnees() {
 }
 
 // Donne une correspondance entre coordonnées du tableau et coordonnées du plan complexe
-//complex<double>
+complex<double> complexFromTab(complex<double> *a, complex<double> *b){
+    *a=complex<double>( (real(gDonnees.sd)-real(gDonnees.ig))/L_ZONE , (imag(gDonnees.sd)-imag(gDonnees.ig))/H_ZONE );
+    //*b=complex<double>( (real(gDonnees.sd)-real(*a),);
+}
 
 // Pointe vers les fonctions suivantes en fonction de la fractale choisie
 pointeurFct retourne_fonction() {
