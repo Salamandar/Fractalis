@@ -16,6 +16,31 @@ void ZoneDessinDessinerCB( Fl_Widget* widget, void* data )
     fl_color(FL_BLACK);
     fl_rectf(X_ZONE, Y_ZONE, L_ZONE, H_ZONE);
     afficheFractale();
+    
+    
+    /*long tab[gDonnees.rangMax],c;
+long A=0xFF000000,B=0x00FF0000,C=0x0000FF00;
+couleurs(A,B,C,50,50,50,tab);
+    // fancy colours, quelques tests
+    for (int i = 0; i < gDonnees.rangMax; ++i)
+    {
+        //calcule la couleur a partir du tableau
+        c=tab[i];
+        fl_color(16555555);
+        fl_pie(X_ZONE+5*(i),Y_ZONE+100,5,10,0,360 );
+        //cout << c << endl;
+        fl_color(c);
+        fl_pie(X_ZONE+5*(i),Y_ZONE+120,5,30,0,360 );
+        fl_color(165810);
+        fl_pie(X_ZONE+5*(i),Y_ZONE+140,5,5,0,360 );
+        fl_color(331366);
+        fl_pie(X_ZONE+5*(i),Y_ZONE+160,5,5,0,360 );
+        fl_color(c);
+        fl_pie(X_ZONE+2*(i),Y_ZONE+180,4,20,0,360 );
+    }*/
+    
+    
+    
 }
 
 void afficheFractale(){
