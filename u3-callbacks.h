@@ -9,6 +9,9 @@ void ChampProfondeurCB       (Fl_Widget* w, void* data);
 void MenuFractaleCB         (Fl_Widget* w, void* data);
 void BoutonQuitterCB    (Fl_Widget* w, void* data);
 void BoutonEnregistrerCB(Fl_Widget* w, void* data);
+void ChampXMinCB(Fl_Widget* w, void* data);
+void ChampYMinCB(Fl_Widget* w, void* data);
+void ChampLargeurCB(Fl_Widget* w, void* data);
 
 
 #endif

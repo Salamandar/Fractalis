@@ -16,11 +16,27 @@ void TraiterCycleCB() {
 void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
     // ATTENTION : X et Y ne sont pas relatifs a la zone mais a la fenetre qui la contient !!!!
 
+    int x1;
+    int x2;
+    int y1;
+    int y2;
+
+    // prise des coordonnées initiales de la souris
     if ( Fl::event() == FL_PUSH ){
         printf("Mouse push = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
+        Fl::event_x()=x1;
+        Fl::event_y()=y1;
     }
 
-    if ( Fl::event() == FL_MOVE ){
+    // prise des coordonnées finale
+    if ( Fl::event() == FL_DRAG ){
+            if(Fl::event() == FL_MOVE){
+                if(Fl::event() == FL_RELEASE){
+                    printf("Mouse push = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
+                    Fl::event_x()=x2;
+                    Fl::event_y()=y2;
+                }
+            }
     }
 }
 
@@ -62,4 +78,19 @@ void ChampModuleDeSortieCB(Fl_Widget* w, void* data){
 void MenuFractaleCB(Fl_Widget* w, void* data){
 }
 
+void ChampXMinCB(Fl_Widget* w, void* data){
+    re(gDonnees.ig) = (int)gInterface.ChampXMin->value();
+    printf("ChampXMinCB : %i\n", gDonnees.moduleMax);
+}
+
+void ChampYMinCB(Fl_Widget* w, void* data){
+    re(gDonnees.ig) = (int)gInterface.ChampYMin->value();
+    printf("ChampYMinCB : %i\n", gDonnees.moduleMax);
+}
+
+void ChampLargeurCB(Fl_Widget* w, void* data){
+    re(gDonnees.ig) = (int)gInterface.ChampLargeur->value();
+    printf("ChampLargeurCB : %i\n", gDonnees.moduleMax);
+
+}
 
