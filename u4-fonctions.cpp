@@ -137,7 +137,7 @@ void couleurs(long A, long B, long C, int N1, int N2, int N3, long tab[])
     degradeRGB(I,A,N1,tab1);
     degradeRGB(A,B,N2,tab2);
     degradeRGB(B,C,N3,tab3);
-    degradeRGB(C,I,N3,tab4);
+    degradeRGB(C,I,gDonnees.rangMax-N1-N2-N3,tab4);
 
     for(i=0; i<N1; i++)
     {
@@ -147,7 +147,7 @@ void couleurs(long A, long B, long C, int N1, int N2, int N3, long tab[])
     {
         tab[i]=255+256*tab2[i-N1][2]+256*256*tab2[i-N1][1]+256*256*256*tab2[i-N1][0];
     }
-     for(i=N2+N2; i<N3+N1+N2
+     for(i=N1+N2; i<N3+N1+N2
      ; i++)
     {
         tab[i]=255+256*tab3[i-N2-N1][2]+256*256*tab3[i-N2-N1][1]+256*256*256*tab3[i-N2-N1][0];
@@ -156,4 +156,5 @@ void couleurs(long A, long B, long C, int N1, int N2, int N3, long tab[])
     {
         tab[i]=255+256*tab4[i-N3-N2-N1][2]+256*256*tab4[i-N3-N2-N1][1]+256*256*256*tab4[i-N3-N2-N1][0];
     }
+    cout<<gDonnees.rangMax;
 }
