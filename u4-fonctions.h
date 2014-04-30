@@ -46,6 +46,9 @@ extern Donnees gDonnees;
 
 void InitialiserDonnees() ;
 
+void complexFromTab(complex<double> *a, complex<double> *b);
+    // Donne une correspondance entre coordonnées du tableau et coordonnées du plan complexe
+void realFromTab(double *ai, double *aj, double *bi, double *bj);
 pointeurFct retourne_fonction();    // Pointe vers les fonctions suivantes en fonction de la fractale choisie
 complex<double> mandelbrot(complex<double> position, complex<double> z);
 complex<double> julia     (complex<double> position, complex<double> z);

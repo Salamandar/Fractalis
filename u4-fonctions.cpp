@@ -22,9 +22,15 @@ void InitialiserDonnees() {
 }
 
 // Donne une correspondance entre coordonnées du tableau et coordonnées du plan complexe
-complex<double> complexFromTab(complex<double> *a, complex<double> *b){
+void complexFromTab(complex<double> *a, complex<double> *b){
+    *b=gDonnees.ig;
     *a=complex<double>( (real(gDonnees.sd)-real(gDonnees.ig))/L_ZONE , (imag(gDonnees.sd)-imag(gDonnees.ig))/H_ZONE );
-    //*b=complex<double>( (real(gDonnees.sd)-real(*a),);
+}
+void realFromTab(double *ai, double *aj, double *bi, double *bj){
+    *bi=real(gDonnees.ig);
+    *bj=imag(gDonnees.ig);
+    *ai=(real(gDonnees.sd)-real(gDonnees.ig))/L_ZONE;
+    *aj=(imag(gDonnees.sd)-imag(gDonnees.ig))/H_ZONE;
 }
 
 // Pointe vers les fonctions suivantes en fonction de la fractale choisie
@@ -71,10 +77,17 @@ int convergence(complex<double> position, pointeurFct fonction){
 
 // Calcule et enregistre tous les rangs de convergence dans le tableau
 void convergencePlan(){
-    pointeurFct fonction = retourne_fonction();
+    pointeurFct fonction = retourne_fonction(); // Détermine la fonction
+    complex<double> a, b;
+    double ai, aj, bi, bj;
+    realFromTab(&ai, &aj, &bi, &bj);
+    complexFromTab(&a, &b);
+    cout<<ai<< "(ai)"<<aj<< "(ai)"<<bi<< "(ai)"<<bj<< "(ai)";
+
+
     for (int i = 0; i < H_ZONE; ++i) {
         for (int j = 0; j < L_ZONE; ++j) {
-            gDonnees.Tab[i][j].n=convergence(complex<double>(((double)j)/100,((double)i)/100), fonction);
+            gDonnees.Tab[i][j].n=convergence( complex<double>( ((double)j)*aj+bj, ((double)i)*ai+bi), fonction);
         }
     }
 }
