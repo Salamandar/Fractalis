@@ -17,20 +17,22 @@ void InitialiserDonnees() {
     gDonnees.rangMax  = RANGMAX_INIT;
     gDonnees.moduleMax= MODULEMAX_INIT;
     gDonnees.C = C_INIT;
-    gDonnees.ig= IG_INIT;
-    gDonnees.sd= SD_INIT;
+    gDonnees.ig=complex<double>IG_INIT;
+    gDonnees.sd=complex<double>SD_INIT;
 }
 
 // Donne une correspondance entre coordonnées du tableau et coordonnées du plan complexe
 void complexFromTab(complex<double> *a, complex<double> *b){
+    printf("complexFromTab \n");
     *b=gDonnees.ig;
     *a=complex<double>( (real(gDonnees.sd)-real(gDonnees.ig))/L_ZONE , (imag(gDonnees.sd)-imag(gDonnees.ig))/H_ZONE );
 }
 void realFromTab(double *ai, double *aj, double *bi, double *bj){
-    *bi=real(gDonnees.ig);
-    *bj=imag(gDonnees.ig);
+    printf("realFromTab\n");
     *ai=(real(gDonnees.sd)-real(gDonnees.ig))/L_ZONE;
     *aj=(imag(gDonnees.sd)-imag(gDonnees.ig))/H_ZONE;
+    *bi=real(gDonnees.ig);
+    *bj=imag(gDonnees.ig);
 }
 
 // Pointe vers les fonctions suivantes en fonction de la fractale choisie
@@ -82,8 +84,9 @@ void convergencePlan(){
     double ai, aj, bi, bj;
     realFromTab(&ai, &aj, &bi, &bj);
     complexFromTab(&a, &b);
-    cout<<ai<< "(ai)"<<aj<< "(ai)"<<bi<< "(ai)"<<bj<< "(ai)";
 
+    printf("%.10lf, %.10lf, %.10lf, %.10lf\n",ai, aj, bi, bj );
+    printf("Boucle de calcul\n");
 
     for (int i = 0; i < H_ZONE; ++i) {
         for (int j = 0; j < L_ZONE; ++j) {

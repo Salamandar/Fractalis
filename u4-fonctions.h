@@ -9,9 +9,9 @@ using namespace std;
 #define FRACT_INIT MANDELBROT
 #define RANGMAX_INIT    250
 #define MODULEMAX_INIT  2
-#define C_INIT  (1,1)
-#define IG_INIT (-2,-2)
-#define SD_INIT ( 2, 2)
+#define C_INIT  ( 1., 1.)
+#define IG_INIT (-2.,-2.)
+#define SD_INIT ( 2., 2.)
 #define Couleur_Init 0
 typedef complex<double> (*pointeurFct)(complex<double>, complex<double>);
     // Type d'une fonction qui renvoie un pointeur vers le type de fractale
@@ -49,6 +49,7 @@ void InitialiserDonnees() ;
 void complexFromTab(complex<double> *a, complex<double> *b);
     // Donne une correspondance entre coordonnées du tableau et coordonnées du plan complexe
 void realFromTab(double *ai, double *aj, double *bi, double *bj);
+
 pointeurFct retourne_fonction();    // Pointe vers les fonctions suivantes en fonction de la fractale choisie
 complex<double> mandelbrot(complex<double> position, complex<double> z);
 complex<double> julia     (complex<double> position, complex<double> z);
