@@ -28,6 +28,9 @@ struct Interface {
     Fl_Value_Input*     ChampModuleDeSortie;  // Module de sortie
     Fl_Value_Input*     ChampProfondeur;      // Profondeur
     Fl_Choice*          MenuFractale;        // Type de fractale
+    Fl_Value_Input*     ChampXMin;          //définition du coin inférieur gauche
+    Fl_Value_Input*     ChampYMin;
+    Fl_Value_Input*     ChampLargeur;       //largeur d'affichage
     //Fl_Button*ZoomPlus;             // Zoomer
     //Fl_Button*ZoomMoins;            // Dézoomer
 };

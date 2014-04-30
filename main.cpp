@@ -19,7 +19,7 @@ int main (int argc, char ** argv)
     // Initialisation du logiciel
     InitialiserDonnees(); // On initialise les donnees
 
-    convergencePlan();
+    //convergencePlan();
     ActualiserInterface(); // On affiche les donnees sur l'interface
     gInterface.ZoneDessin->redraw(); // On redessine la zone de dessin
     // Lancer la boucle de gestion des evenements

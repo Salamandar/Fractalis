@@ -120,12 +120,12 @@ void degradeRGB(long  A, long  B,int N, int tab[][3]){
     dg=((double)(tab[N-1][1]-tab[0][1]))/N;
     db=((double)(tab[N-1][2]-tab[0][2]))/N;
 
-    for(i=0; i<N-1; i++)
+    for(i=0; i<N; i++)
 	{
     tab[i][0]=tab[0][0]+i*dr;
         tab[i][1]=tab[0][1]+i*dg;
         tab[i][2]=tab[0][2]+i*db;
-       //cout << tab[i][0] << ";" << tab[i][1] << ";" << tab[i][2] << endl;
+       cout << tab[i][0] << ";" << tab[i][1] << ";" << tab[i][2] << endl;
     }
 }
 
@@ -136,27 +136,28 @@ void couleurs(long A, long B, long C, int N1, int N2, int N3, long tab[])
     int tab1[N1][3];
     int tab2[N2][3];
     int tab3[N3][3];
-    int tab4[gDonnees.rangMax][3];
+    int tab4[gDonnees.rangMax-N3][3];
     degradeRGB(I,A,N1,tab1);
     degradeRGB(A,B,N2,tab2);
     degradeRGB(B,C,N3,tab3);
-    degradeRGB(C,I,N3,tab4);
+    degradeRGB(C,I,gDonnees.rangMax-N1-N2-N3,tab4);
 
     for(i=0; i<N1; i++)
     {
         tab[i]=255+256*tab1[i][2]+256*256*tab1[i][1]+256*256*256*tab1[i][0];
     }
-     for(i=N1; i<N2; i++)
+     for(i=N1; i<N1+N2; i++)
     {
-        tab[i]=255+256*tab2[i][2]+256*256*tab2[i][1]+256*256*256*tab2[i][0];
+        tab[i]=255+256*tab2[i-N1][2]+256*256*tab2[i-N1][1]+256*256*256*tab2[i-N1][0];
     }
-     for(i=N2; i<N3
+     for(i=N1+N2; i<N3+N1+N2
      ; i++)
     {
-        tab[i]=255+256*tab3[i][2]+256*256*tab3[i][1]+256*256*256*tab3[i][0];
+        tab[i]=255+256*tab3[i-N2-N1][2]+256*256*tab3[i-N2-N1][1]+256*256*256*tab3[i-N2-N1][0];
     }
-    for(i=N3; i<gDonnees.rangMax; i++)
+    for(i=N3+N2+N1; i<gDonnees.rangMax; i++)
     {
-        tab[i]=255+256*tab4[i][2]+256*256*tab4[i][1]+256*256*256*tab4[i][0];
+        tab[i]=255+256*tab4[i-N3-N2-N1][2]+256*256*tab4[i-N3-N2-N1][1]+256*256*256*tab4[i-N3-N2-N1][0];
     }
+    cout<<gDonnees.rangMax;
 }

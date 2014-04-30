@@ -16,11 +16,27 @@ void TraiterCycleCB() {
 void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
     // ATTENTION : X et Y ne sont pas relatifs a la zone mais a la fenetre qui la contient !!!!
 
+    int x1;
+    int x2;
+    int y1;
+    int y2;
+
+    // prise des coordonnées initiales de la souris
     if ( Fl::event() == FL_PUSH ){
         printf("Mouse push = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
+        x1=Fl::event_x();
+        y1=Fl::event_y();
     }
 
-    if ( Fl::event() == FL_MOVE ){
+    // prise des coordonnées finale
+    if ( Fl::event() == FL_DRAG ){
+            if(Fl::event() == FL_MOVE){
+                if(Fl::event() == FL_RELEASE){
+                    printf("Mouse push = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
+                    x2=Fl::event_x();
+                    y2=Fl::event_y();
+                }
+            }
     }
 }
 
@@ -49,12 +65,12 @@ void BoutonReset(Fl_Widget* w, void* data){
 
 void ChampProfondeurCB(Fl_Widget* w, void* data){
      gDonnees.rangMax = (int)gInterface.ChampProfondeur->value();
-    printf("ChampProfondeurCB : %s\n", gDonnees.rangMax);
+    printf("ChampProfondeurCB : %d\n", gDonnees.rangMax);
 }
 
 void ChampModuleDeSortieCB(Fl_Widget* w, void* data){
     gDonnees.moduleMax = (int)gInterface.ChampModuleDeSortie->value();
-    printf("ChampModuleDeSortieCB : %i\n", gDonnees.moduleMax);
+    printf("ChampModuleDeSortieCB : %lf\n", gDonnees.moduleMax);
 }
 
 
@@ -62,4 +78,19 @@ void ChampModuleDeSortieCB(Fl_Widget* w, void* data){
 void MenuFractaleCB(Fl_Widget* w, void* data){
 }
 
+void ChampXMinCB(Fl_Widget* w, void* data){
+    real(gDonnees.ig) = (int)gInterface.ChampXMin->value();
+    printf("ChampXMinCB : %lf\n", gDonnees.moduleMax);
+}
+
+void ChampYMinCB(Fl_Widget* w, void* data){
+    real(gDonnees.ig) = (int)gInterface.ChampYMin->value();
+    printf("ChampYMinCB : %lf\n", gDonnees.moduleMax);
+}
+
+void ChampLargeurCB(Fl_Widget* w, void* data){
+    real(gDonnees.ig) = (int)gInterface.ChampLargeur->value();
+    printf("ChampLargeurCB : %lf\n", gDonnees.moduleMax);
+
+}
 
