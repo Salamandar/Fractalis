@@ -1,11 +1,8 @@
 #include <iostream>
-#include <stdlib.h>
-#include <stdio.h>
 #include <string.h>
 #include <api/inc/fmod.h>
 #include <api/inc/fmod_errors.h>
 #include <complex>
-#include <iomanip>
 
 #include "u1-interface.h"
 #include "u4-fonctions.h"
@@ -18,19 +15,11 @@ void InitialiserDonnees() {
     gDonnees.moduleMax= MODULEMAX_INIT;
     gDonnees.C = C_INIT;
     gDonnees.ig=complex<double>IG_INIT;
-    gDonnees.sd=complex<double>SD_INIT;
+    gDonnees.pasxy= PASXY;
 }
 
 // Donne une correspondance entre coordonnées du tableau et coordonnées du plan complexe
-void complexFromTab(complex<double> *a, complex<double> *b){
-    printf("complexFromTab \n");
-    *b=gDonnees.ig;
-    *a=complex<double>( (real(gDonnees.sd)-real(gDonnees.ig))/L_ZONE , (imag(gDonnees.sd)-imag(gDonnees.ig))/H_ZONE );
-}
-void realFromTab(double *ai, double *aj, double *bi, double *bj){
-    printf("realFromTab\n");
-    *ai=(real(gDonnees.sd)-real(gDonnees.ig))/L_ZONE;
-    *aj=(imag(gDonnees.sd)-imag(gDonnees.ig))/H_ZONE;
+void realFromTab(double *bi, double *bj){
     *bi=real(gDonnees.ig);
     *bj=imag(gDonnees.ig);
 }
@@ -80,18 +69,18 @@ int convergence(complex<double> position, pointeurFct fonction){
 // Calcule et enregistre tous les rangs de convergence dans le tableau
 void convergencePlan(){
     pointeurFct fonction = retourne_fonction(); // Détermine la fonction
-    complex<double> a, b;
-    double ai, aj, bi, bj;
-    realFromTab(&ai, &aj, &bi, &bj);
-    complexFromTab(&a, &b);
-
-    printf("%.10lf, %.10lf, %.10lf, %.10lf\n",ai, aj, bi, bj );
-    printf("Boucle de calcul\n");
+    double bi, bj;
+    realFromTab(&bi, &bj);
+    double pas=gDonnees.pasxy;
+    double y=bi;
+    complex<double>coordonnees(bj,bi);
 
     for (int i = 0; i < H_ZONE; ++i) {
         for (int j = 0; j < L_ZONE; ++j) {
-            gDonnees.Tab[i][j].n=convergence( complex<double>( ((double)j)*aj+bj, ((double)i)*ai+bi), fonction);
+            gDonnees.Tab[i][j].n=convergence(coordonnees, fonction);
+            coordonnees+=pas;
         }
+        coordonnees=complex<double>(bj,i*pas+bi);
     }
 }
 

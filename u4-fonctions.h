@@ -4,13 +4,14 @@
 using namespace std;
 
 // Max d'étapes à vérifier
-#define PROFONDEUR_MAX 10000
+#define PROFONDEUR_MAX 1000
 // Données utilisateurs initiales :
 #define FRACT_INIT MANDELBROT
 #define RANGMAX_INIT    250
 #define MODULEMAX_INIT  2
 #define C_INIT  ( 1., 1.)
 #define IG_INIT (-2.,-2.)
+#define PASXY   0.005
 #define SD_INIT ( 2., 2.)
 #define Couleur_Init 0
 typedef complex<double> (*pointeurFct)(complex<double>, complex<double>);
@@ -35,7 +36,7 @@ struct Donnees {
     double  moduleMax;     // Module de convergence (détermination de la convergence on non de la fonction)
     complex<double> C;     // Constante de calcul
     complex<double> ig;    // Coordonnées du point inférieur gauche
-    complex<double> sd;    // Coordonnées du point haut droit
+    double pasxy;    // Coordonnées du point haut droit
     struct Pixel Tab[H_ZONE][L_ZONE]; // Matrice des pixels de l'image.
 
     // Données de détermination des couleurs
@@ -46,9 +47,8 @@ extern Donnees gDonnees;
 
 void InitialiserDonnees() ;
 
-void complexFromTab(complex<double> *a, complex<double> *b);
     // Donne une correspondance entre coordonnées du tableau et coordonnées du plan complexe
-void realFromTab(double *ai, double *aj, double *bi, double *bj);
+void realFromTab(double *bi, double *bj);
 
 pointeurFct retourne_fonction();    // Pointe vers les fonctions suivantes en fonction de la fractale choisie
 complex<double> mandelbrot(complex<double> position, complex<double> z);

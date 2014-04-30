@@ -52,7 +52,7 @@ void afficheFractale(){
 			if (gDonnees.Tab[i][j].n==-1 )
 				{}
 			else
-				fl_point(i,j);
+				fl_point(j+X_ZONE,i+Y_ZONE);
 		}
 	}
 }

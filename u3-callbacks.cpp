@@ -59,7 +59,7 @@ void BoutonReset(Fl_Widget* w, void* data){
     gDonnees.moduleMax=MODULEMAX_INIT;
     gDonnees.C=C_INIT;
     gDonnees.ig=IG_INIT;
-    gDonnees.sd=SD_INIT;
+    gDonnees.pasxy=PASXY;
 }
 
 
