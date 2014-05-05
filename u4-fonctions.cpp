@@ -18,7 +18,7 @@ void InitialiserDonnees() {
     gDonnees.pasxy= PASXY;
 	gDonnees.color1=0xFF000000;
 	gDonnees.color2=0x00FF0000;
-	gDonnees.color1=0x0000FF00;
+	gDonnees.color3=0x0000FF00;
 	gDonnees.rangColor1=50;
 	gDonnees.rangColor2=50;
 	gDonnees.rangColor3=50;
@@ -93,15 +93,6 @@ void convergencePlan(){
 
 
 
-
-
-
-
-
-
-
-
-
 // Cette procedure permet une attente de x secondes, x peut etre en secondes mais aussi en flottant par exemple : 0.1 s
 //void Attente ( double Seconds ) {
  //   clock_t Endwait;
@@ -153,7 +144,8 @@ void couleurs(long A, long B, long C, int N1, int N2, int N3, long tab[])
     degradeRGB(B,C,N3,tab3);
     degradeRGB(C,I,gDonnees.rangMax-N1-N2-N3,tab4);
 
-    for(i=0; i<N1; i++)
+    tab[0]=0;
+    for(i=1; i<N1; i++)
     {
         tab[i]=255+256*tab1[i][2]+256*256*tab1[i][1]+256*256*256*tab1[i][0];
     }
@@ -165,10 +157,11 @@ void couleurs(long A, long B, long C, int N1, int N2, int N3, long tab[])
      ; i++)
     {
         tab[i]=255+256*tab3[i-N2-N1][2]+256*256*tab3[i-N2-N1][1]+256*256*256*tab3[i-N2-N1][0];
+        //cout<<tab[i]<<";"<<i<<endl;
     }
     for(i=N3+N2+N1; i<gDonnees.rangMax; i++)
     {
         tab[i]=255+256*tab4[i-N3-N2-N1][2]+256*256*tab4[i-N3-N2-N1][1]+256*256*256*tab4[i-N3-N2-N1][0];
     }
-    cout<<gDonnees.rangMax;
+    //cout<<gDonnees.rangMax;
 }
