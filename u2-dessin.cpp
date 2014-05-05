@@ -55,7 +55,7 @@ void afficheFractale(){
 			if (gDonnees.Tab[i][j].n==-1 )
 				{}
 			else
-				fl_calor(tab[gDonnees.Tab[i][j].n];
+				fl_color(tab[gDonnees.Tab[i][j].n];
 				fl_point(j+X_ZONE,i+Y_ZONE);
 		}
 	}
