@@ -47,7 +47,7 @@ void afficheFractale(){
 	fl_color(FL_WHITE);
 	//a mettre ailleurs pour ne pas le recalculer a chaque fois?
 	long tab[gDonnees.rangMax];
-	couleurs(gDonnees.couleur1,gDonnees.couleur2,gDonnees.couleur3,gDonnees.rangCouleur1,gDonnees.rangCouleur2,gDonnees.rangCouleur3,tab);
+	couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tab);
 	for (int i = 0; i < H_ZONE; ++i)
 	{
 		for (int j = 0; j < L_ZONE; ++j)
@@ -55,7 +55,7 @@ void afficheFractale(){
 			if (gDonnees.Tab[i][j].n==-1 )
 				{}
 			else
-				fl_color(tab[gDonnees.Tab[i][j].n];
+				fl_color(tab[gDonnees.Tab[i][j].n]);
 				fl_point(j+X_ZONE,i+Y_ZONE);
 		}
 	}
