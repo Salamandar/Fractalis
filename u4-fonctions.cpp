@@ -16,6 +16,12 @@ void InitialiserDonnees() {
     gDonnees.C = C_INIT;
     gDonnees.ig=complex<double>IG_INIT;
     gDonnees.pasxy= PASXY;
+	gDonnees.color1=0xFF000000;
+	gDonnees.color2=0x00FF0000;
+	gDonnees.color1=0x0000FF00;
+	gDonnees.rangColor1=50;
+	gDonnees.rangColor2=50;
+	gDonnees.rangColor3=50;
 }
 
 // Donne une correspondance entre coordonnées du tableau et coordonnées du plan complexe
