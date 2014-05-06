@@ -63,8 +63,8 @@ complex<double> julia     (complex<double> position, complex<double> z);
 complex<double> personna  (complex<double> position, complex<double> z);
 
 int convergence(complex<double> position, pointeurFct); // Donne un rang de convergence pour un point du plan complexe
-void convergencePlan();
-void convergenceLigne(complex<double>coordonnees, complex<double> pas_complexe, double pas, pointeurFct fonction, int j);
+void convergencePlan(int hauteur);
+void convergenceLigne(complex<double>coordonnees, complex<double> pas_complexe, double pas, pointeurFct fonction, int j,int largeur);
 
 
 
@@ -74,7 +74,8 @@ void convergenceLigne(complex<double>coordonnees, complex<double> pas_complexe, 
 void degradeRGB(long A, long  B,int N, int tab[][3]);
 void couleurs(long A, long B, long C, int N1, int N2, int N3, long tab[]);
 
-
+//Enregistre une image de largeur Largeur au format PPM, dans un fichier Fichier en recalculant tout
+void enregistrerPPM(int Largeur, char Fichier[32]);
 
 
 #endif

@@ -68,11 +68,12 @@ void afficheFractaleLigne(){
     complex<double>coord_init=gDonnees.ig;
     complex<double>pas_complx=(0,gDonnees.pasxy);
     complex<double>coordonnees=coord_init;
+    int hauteur=H_ZONE;
     fl_color(FL_BLACK);
     long tab[gDonnees.rangMax];
     couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tab);
-    for (int j = 0; j < H_ZONE; ++j) {
-        convergenceLigne(coordonnees, pas_complx, pas, fonction, j);
+    for (int j = 0; j < hauteur; ++j) {
+        convergenceLigne(coordonnees, pas_complx, pas, fonction, j,hauteur*L_ZONE/H_ZONE);
         coordonnees=complex<double>(x_ini,y_ini+j*pas);
         //coordonnees=coord_init+(double)j*pas_complx;
         for (int i = 0; i < L_ZONE; ++i) {

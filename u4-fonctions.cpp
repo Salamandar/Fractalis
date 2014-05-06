@@ -3,7 +3,7 @@
 #include <api/inc/fmod.h>
 #include <api/inc/fmod_errors.h>
 #include <complex>
-
+#include <stdio.h>
 #include "u1-interface.h"
 #include "u4-fonctions.h"
 
@@ -67,7 +67,7 @@ int convergence(complex<double> position, pointeurFct fonction){
 }
 
 // Calcule et enregistre tous les rangs de convergence dans le tableau
-void convergencePlan(){
+void convergencePlan(int hauteur){
     pointeurFct fonction = retourne_fonction(); // Détermine la fonction
     double pas=gDonnees.pasxy;
     double x_ini=real(gDonnees.ig);
@@ -75,13 +75,13 @@ void convergencePlan(){
     complex<double>coord_init=gDonnees.ig;
     complex<double>pas_complx=(0,gDonnees.pasxy);
     complex<double>coordonnees=coord_init;
-    for (int j = 0; j < H_ZONE; ++j) {
-        convergenceLigne(coordonnees, pas_complx, pas, fonction, j);
+    for (int j = 0; j < hauteur; ++j) {
+        convergenceLigne(coordonnees, pas_complx, pas, fonction, j,hauteur*800/600);
         coordonnees=complex<double>(x_ini,y_ini+j*pas);
         //coordonnees=coord_init+(double)j*pas_complx;
     }
 }
-void convergenceLigne(complex<double>coordonnees, complex<double> pas_complexe, double pas, pointeurFct fonction, int j){
+void convergenceLigne(complex<double>coordonnees, complex<double> pas_complexe, double pas, pointeurFct fonction, int j,int largeur){
     for (int i = 0; i < L_ZONE; ++i) {      // Boucle ligne par ligne
         gDonnees.Tab[i][j].n=convergence(coordonnees, fonction);
         coordonnees+=pas;
@@ -125,7 +125,7 @@ void degradeRGB(long  A, long  B,int N, int tab[][3]){
     tab[i][0]=tab[0][0]+i*dr;
         tab[i][1]=tab[0][1]+i*dg;
         tab[i][2]=tab[0][2]+i*db;
-       cout << tab[i][0] << ";" << tab[i][1] << ";" << tab[i][2] << endl;
+       //cout << tab[i][0] << ";" << tab[i][1] << ";" << tab[i][2] << endl;
     }
 }
 
@@ -162,4 +162,12 @@ void couleurs(long A, long B, long C, int N1, int N2, int N3, long tab[])
         tab[i]=255+256*tab4[i-N3-N2-N1][2]+256*256*tab4[i-N3-N2-N1][1]+256*256*256*tab4[i-N3-N2-N1][0];
     }
     //cout<<gDonnees.rangMax;
+}
+
+void enregistrerPPM(int Largeur, char Fichier[32]){
+    FILE* ptrFichier;
+    ptrFichier=fopen(Fichier,"w");
+    if(ptrFichier=NULL){cout<<"impossible d'acceder au fichier";}
+
+
 }
