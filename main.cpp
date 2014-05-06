@@ -14,12 +14,11 @@ void CycleCB( void* );
 
 int main (int argc, char ** argv)
 {
-    CreerInterface();
-
     // Initialisation du logiciel
-    InitialiserDonnees(); // On initialise les donnees
+    CreerInterface();
+    InitialiserDonnees();
 
-    convergencePlan();
+    //convergencePlan();
     ActualiserInterface(); // On affiche les donnees sur l'interface
     gInterface.ZoneDessin->redraw(); // On redessine la zone de dessin
     // Lancer la boucle de gestion des evenements

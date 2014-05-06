@@ -21,22 +21,22 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
     int y1;
     int y2;
 
-    // prise des coordonnées initiales de la souris
+    // prise des coordonn?s initiales de la souris
     if ( Fl::event() == FL_PUSH ){
         printf("Mouse push = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
         x1=Fl::event_x();
         y1=Fl::event_y();
     }
 
-    // prise des coordonnées finale
+    // prise des coordonn?s finale
     if ( Fl::event() == FL_DRAG ){
-            if(Fl::event() == FL_MOVE){
-                if(Fl::event() == FL_RELEASE){
-                    printf("Mouse push = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
-                    x2=Fl::event_x();
-                    y2=Fl::event_y();
-                }
+        if(Fl::event() == FL_MOVE){
+            if(Fl::event() == FL_RELEASE){
+                printf("Mouse push = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
+                x2=Fl::event_x();
+                y2=Fl::event_y();
             }
+        }
     }
 }
 
@@ -53,7 +53,7 @@ void BoutonEnregistrerCB(Fl_Widget* w, void* data){
 }
 
 void BoutonReset(Fl_Widget* w, void* data){
-    // retour au paramètre initiales
+    // retour au param?re initiales
     gDonnees.Fractale=FRACT_INIT;
     gDonnees.rangMax=RANGMAX_INIT;
     gDonnees.moduleMax=MODULEMAX_INIT;

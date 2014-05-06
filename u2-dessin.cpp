@@ -10,20 +10,19 @@
 
 #include "u4-fonctions.h"
 
-void ZoneDessinDessinerCB( Fl_Widget* widget, void* data )
-{
+void ZoneDessinDessinerCB( Fl_Widget* widget, void* data ) {
     // On efface toute la zone ( en dessinant dessus un rectangle plein, noir )
     fl_color(FL_BLACK);
     fl_rectf(X_ZONE, Y_ZONE, L_ZONE, H_ZONE);
     afficheFractale();
-    
-   /* long tabb[gDonnees.rangMax],c;
-	couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,
-		gDonnees.rangColor2,gDonnees.rangColor3,tabb);
-//long tabb[gDonnees.rangMax],c;
-//long A=0xFF000000,B=0x00FF0000,C=0x0000FF00;
-//couleurs(A,B,C,10,10,10,tabb);
-    // fancy colours, quelques tests
+
+    /*
+    long tabb[gDonnees.rangMax],c;
+    couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1, gDonnees.rangColor2,gDonnees.rangColor3,tabb);
+    long tabb[gDonnees.rangMax],c;
+    long A=0xFF000000,B=0x00FF0000,C=0x0000FF00;
+    couleurs(A,B,C,10,10,10,tabb);
+    fancy colours, quelques tests
     for (int i = 0; i < gDonnees.rangMax; ++i)
     {
         //calcule la couleur a partir du tableau
@@ -41,25 +40,21 @@ void ZoneDessinDessinerCB( Fl_Widget* widget, void* data )
         fl_pie(X_ZONE+2*(i),Y_ZONE+180,4,20,0,360 );
     }
     */
-    
-    
 }
 
-void afficheFractale(){
-	fl_color(FL_BLACK);
-	//a mettre ailleurs pour ne pas le recalculer a chaque fois?
-	long tab[gDonnees.rangMax];
-	couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tab);
-	for (int i = 0; i < H_ZONE; ++i)
-	{
-		for (int j = 0; j < L_ZONE; ++j)
-		{
-			if (gDonnees.Tab[i][j].n==-1 )
-				{}
-			else
-				fl_color(tab[gDonnees.Tab[i][j].n]);
-				fl_point(j+X_ZONE,i+Y_ZONE);
-				fl_color(FL_BLACK);
-		}
-	}
+void afficheFractale() {
+    fl_color(FL_BLACK);
+    //a mettre ailleurs pour ne pas le recalculer a chaque fois?
+    long tab[gDonnees.rangMax];
+    couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tab);
+    for (int j = 0; j < H_ZONE; ++j) {
+        for (int i = 0; i < L_ZONE; ++i) {
+            if (gDonnees.Tab[i][j].n==-1 )
+                {}
+            else
+                fl_color(tab[gDonnees.Tab[i][j].n]);
+                fl_point(i+X_ZONE,j+Y_ZONE);
+                fl_color(FL_BLACK);
+        }
+    }
 }

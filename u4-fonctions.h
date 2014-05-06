@@ -10,9 +10,8 @@ using namespace std;
 #define RANGMAX_INIT    250
 #define MODULEMAX_INIT  2
 #define C_INIT  ( 1., 1.)
-#define IG_INIT (-2.,-2.)
+#define IG_INIT (-2.2,-1.5)
 #define PASXY   0.005
-#define SD_INIT ( 2., 2.)
 #define Couleur_Init 0
 typedef complex<double> (*pointeurFct)(complex<double>, complex<double>);
     // Type d'une fonction qui renvoie un pointeur vers le type de fractale
@@ -31,13 +30,21 @@ struct Pixel {
 
 // Structure des paramètres utilisateur
 struct Donnees {
-    enum fractype Fractale;// Type de fractales choisie (Type énuméré)
-    int     rangMax;       // Rang maximal de convergence
-    double  moduleMax;     // Module de convergence (détermination de la convergence on non de la fonction)
-    complex<double> C;     // Constante de calcul
-    complex<double> ig;    // Coordonnées du point inférieur gauche
-    double pasxy;    // Coordonnées du point haut droit
-    struct Pixel Tab[H_ZONE][L_ZONE]; // Matrice des pixels de l'image.
+    enum fractype Fractale; // Type de fractales choisie (Type énuméré)
+    int     rangMax;        // Rang maximal de convergence
+    double  moduleMax;      // Module de convergence (détermination de la convergence on non de la fonction)
+    complex<double> C;      // Constante de calcul
+    complex<double> ig;     // Coordonnées du point inférieur gauche
+    double pasxy;           // Pas de la matrice (incrémentation, en fait, et égale dans les 2 dimensions, car pixels carrés)
+                            // À changer pendant le zoom :)
+    struct Pixel Tab[L_ZONE][H_ZONE]; // Matrice des pixels de l'image.
+    /*
+    H
+    |———————|
+    y       |
+    |       |
+    |______x|L_ZONE
+    */
 
     // Données de détermination des couleurs
     long    color1,     color2,     color3;
@@ -57,6 +64,7 @@ complex<double> personna  (complex<double> position, complex<double> z);
 
 int convergence(complex<double> position, pointeurFct); // Donne un rang de convergence pour un point du plan complexe
 void convergencePlan();
+void convergenceLigne(complex<double>coordonnees, complex<double> pas_complexe, double pas, pointeurFct fonction, int j);
 
 
 
