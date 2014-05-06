@@ -39,6 +39,5 @@ extern struct Interface gInterface;
 
 
 void CreerInterface();
-void ActualiserInterface();
 
 #endif

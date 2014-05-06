@@ -4,5 +4,6 @@
 
 void ZoneDessinDessinerCB( Fl_Widget* widget, void* data ) ;
 void afficheFractale();
+void afficheFractaleLigne();
 
 #endif

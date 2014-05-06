@@ -14,7 +14,8 @@ void ZoneDessinDessinerCB( Fl_Widget* widget, void* data ) {
     // On efface toute la zone ( en dessinant dessus un rectangle plein, noir )
     fl_color(FL_BLACK);
     fl_rectf(X_ZONE, Y_ZONE, L_ZONE, H_ZONE);
-    afficheFractale();
+    //convergencePlan();
+    afficheFractaleLigne();
 
     /*
     long tabb[gDonnees.rangMax],c;
@@ -56,5 +57,32 @@ void afficheFractale() {
                 fl_point(i+X_ZONE,j+Y_ZONE);
                 fl_color(FL_BLACK);
         }
+    }
+}
+
+void afficheFractaleLigne(){
+    pointeurFct fonction = retourne_fonction(); // Détermine la fonction
+    double pas=gDonnees.pasxy;
+    double x_ini=real(gDonnees.ig);
+    double y_ini=imag(gDonnees.ig);
+    complex<double>coord_init=gDonnees.ig;
+    complex<double>pas_complx=(0,gDonnees.pasxy);
+    complex<double>coordonnees=coord_init;
+    fl_color(FL_BLACK);
+    long tab[gDonnees.rangMax];
+    couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tab);
+    for (int j = 0; j < H_ZONE; ++j) {
+        convergenceLigne(coordonnees, pas_complx, pas, fonction, j);
+        coordonnees=complex<double>(x_ini,y_ini+j*pas);
+        //coordonnees=coord_init+(double)j*pas_complx;
+        for (int i = 0; i < L_ZONE; ++i) {
+            if (gDonnees.Tab[i][j].n==-1 )
+                {}
+            else
+                fl_color(tab[gDonnees.Tab[i][j].n]);
+                fl_point(i+X_ZONE,j+Y_ZONE);
+                fl_color(FL_BLACK);
+        }
+        gInterface.ZoneDessin->redraw();
     }
 }

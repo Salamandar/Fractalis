@@ -10,32 +10,16 @@
 #include "u4-fonctions.h"
 using namespace std;
 
-void CycleCB( void* );
-
 int main (int argc, char ** argv)
 {
     // Initialisation du logiciel
     CreerInterface();
     InitialiserDonnees();
+    // TraiterCycleCB();
 
-    //convergencePlan();
-    ActualiserInterface(); // On affiche les donnees sur l'interface
-    gInterface.ZoneDessin->redraw(); // On redessine la zone de dessin
     // Lancer la boucle de gestion des evenements
     return Fl::run();
 }
-
-// Fonction cyclique
-void CycleCB( void* )
-{
-    // Appel de la fonction TraiterCycleCB ( u3-callbacks )
-    TraiterCycleCB();
-
-}
-
-
-
-
 
 
 
