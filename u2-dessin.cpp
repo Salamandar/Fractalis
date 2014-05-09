@@ -85,7 +85,6 @@ void afficheFractaleLigne(){
                 fl_point(i+X_ZONE,j+Y_ZONE);
                 fl_color(FL_BLACK);
         }
-    printf("call_redraw Boucle\n");
         gInterface.ZoneDessin->redraw();
     }
 }
