@@ -15,6 +15,7 @@ int main (int argc, char ** argv)
     // Initialisation du logiciel
     CreerInterface();
     InitialiserDonnees();
+    cycleAffichage();
 
     // Lancer la boucle de gestion des evenements
     return Fl::run();

@@ -11,6 +11,11 @@
 
 #include "u4-fonctions.h"
 
+void ZoneDessinInitialisation(Fl_Widget* widget, void* data) {
+    fl_color(FL_BLACK);
+    fl_rectf(X_ZONE, Y_ZONE, L_ZONE, H_ZONE);
+}
+
 void ZoneDessinDessinerCB( Fl_Widget* widget, void* data ) {
     // On efface toute la zone ( en dessinant dessus un rectangle plein, noir )
     fl_color(FL_BLACK);
@@ -45,7 +50,6 @@ void afficheFractaleLigne(){
     complex<double>coord_init=gDonnees.ig;
     complex<double>pas_complx=(0,gDonnees.pasxy);
     complex<double>coordonnees=coord_init;
-    fl_color(FL_BLACK);
     long tab[gDonnees.rangMax];
     couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tab);
     for (int j = 0; j < gDonnees.hauteur; ++j) {
@@ -53,13 +57,17 @@ void afficheFractaleLigne(){
         coordonnees=complex<double>(x_ini,y_ini+j*pas);
         //coordonnees=coord_init+(double)j*pas_complx;
         for (int i = 0; i < L_ZONE; ++i) {
+            printf("TEST1\n");
             if (gDonnees.Tab[i][j].n==-1 )
-                {}
-            else
-                fl_color(tab[gDonnees.Tab[i][j].n]);
-                fl_point(i+X_ZONE,j+Y_ZONE);
                 fl_color(FL_BLACK);
+            else {
+                fl_color(tab[gDonnees.Tab[i][j].n]);
+            }
+                printf("TEST\n");
+
+            fl_point(i+X_ZONE,j+Y_ZONE);
         }
+        printf("Attention Redraw !\n");
         gInterface.ZoneDessin->redraw();
     }
 }

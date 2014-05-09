@@ -32,7 +32,7 @@ void CreerInterface() {
 
     // Creation de la zone de dessin
     gInterface.ZoneDessin=new DrawingArea(X_ZONE,Y_ZONE,L_ZONE,H_ZONE);
-    gInterface.ZoneDessin->draw_callback(ZoneDessinDessinerCB, NULL);
+    gInterface.ZoneDessin->draw_callback(ZoneDessinInitialisation, NULL);
     gInterface.ZoneDessin->mouse_callback(ZoneDessinSourisCB, NULL);
 
 

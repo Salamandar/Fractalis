@@ -12,8 +12,6 @@
 
 void cycleAffichage() {
     afficheFractaleLigne();
-    gInterface.ZoneDessin->redraw();
-
 }
 
 

@@ -101,7 +101,7 @@ void convergenceLigne(complex<double>coordonnees, pointeurFct fonction, int j){
 //   while (clock() < Endwait);
 //}
 
-void degradeRGB(long  A, long  B,int N, int tab[][3]){
+void degradeRGB(long A, long  B,int N, int tab[][3]){
 
     int i;
     A=(A-A%256)/256;
