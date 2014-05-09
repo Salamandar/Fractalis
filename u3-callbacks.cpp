@@ -40,6 +40,10 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
             }
         }
     }
+    // calcul du décalage à effectuer
+    real(gDonnees.ig)=real(gDonnees.ig)+(x2-x1);
+    imag(gDonnees.ig)=imag(gDonnees.ig)+(y2-y1);
+
 }
 
 
@@ -82,17 +86,21 @@ void MenuFractaleCB(Fl_Widget* w, void* data){
 
 void ChampXMinCB(Fl_Widget* w, void* data){
     real(gDonnees.ig) = (int)gInterface.ChampXMin->value();
-    printf("ChampXMinCB : %lf\n", gDonnees.moduleMax);
+    printf("ChampXMinCB : %lf\n", real(gDonnees.ig));
 }
 
 void ChampYMinCB(Fl_Widget* w, void* data){
-    real(gDonnees.ig) = (int)gInterface.ChampYMin->value();
-    printf("ChampYMinCB : %lf\n", gDonnees.moduleMax);
+    imag(gDonnees.ig) = (int)gInterface.ChampYMin->value();
+    printf("ChampYMinCB : %lf\n", imag(gDonnees.ig));
 }
 
 void ChampLargeurCB(Fl_Widget* w, void* data){
-    real(gDonnees.ig) = (int)gInterface.ChampLargeur->value();
-    printf("ChampLargeurCB : %lf\n", gDonnees.moduleMax);
+    gDonnees.pasxy = ((double)gInterface.ChampLargeur->value())/L_ZONE;
+    printf("ChampLargeurCB : %lf\n", gDonnees.pasxy*L_ZONE);
+
+}
+
+void CarreChoixCouleurCB(Fl_Widget* w, void* data){
 
 }
 

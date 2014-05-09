@@ -22,6 +22,7 @@ void InitialiserDonnees() {
     gDonnees.rangColor1=50;
     gDonnees.rangColor2=50;
     gDonnees.rangColor3=50;
+    gDonnees.hauteur=H_ZONE;
 }
 
 // Pointe vers les fonctions suivantes en fonction de la fractale choisie
@@ -67,7 +68,7 @@ int convergence(complex<double> position, pointeurFct fonction){
 }
 
 // Calcule et enregistre tous les rangs de convergence dans le tableau
-void convergencePlan(int hauteur){
+void convergencePlan(){
     pointeurFct fonction = retourne_fonction(); // Détermine la fonction
     double pas=gDonnees.pasxy;
     double x_ini=real(gDonnees.ig);
@@ -75,8 +76,8 @@ void convergencePlan(int hauteur){
     complex<double>coord_init=gDonnees.ig;
     complex<double>pas_complx=(0,gDonnees.pasxy);
     complex<double>coordonnees=coord_init;
-    for (int j = 0; j < hauteur; ++j) {
-        convergenceLigne(coordonnees, pas_complx, pas, fonction, j,hauteur*800/600);
+    for (int j = 0; j < gDonnees.hauteur; ++j) {
+        convergenceLigne(coordonnees, pas_complx, pas, fonction, j,gDonnees.hauteur*800/600);
         coordonnees=complex<double>(x_ini,y_ini+j*pas);
         //coordonnees=coord_init+(double)j*pas_complx;
     }
@@ -168,6 +169,7 @@ void enregistrerPPM(int Largeur, char Fichier[32]){
     FILE* ptrFichier;
     ptrFichier=fopen(Fichier,"w");
     if(ptrFichier=NULL){cout<<"impossible d'acceder au fichier";}
+    fprintf(ptrFichier,"P3\n%d %d\n256\n",gDonnees.hauteurImage*L_ZONE/H_ZONE,gDonnees.hauteurImage);
 
 
 }
