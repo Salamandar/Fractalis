@@ -41,8 +41,8 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
         }
     }
     // calcul du décalage à effectuer
-    real(gDonnees.ig)=re(gDonnees.ig)+(x2-x1);
-    imag(gDonnees.ig)=im(gDonnees.ig)+(y2-y1);
+    real(gDonnees.ig)=real(gDonnees.ig)+(x2-x1);
+    imag(gDonnees.ig)=imag(gDonnees.ig)+(y2-y1);
 
 }
 

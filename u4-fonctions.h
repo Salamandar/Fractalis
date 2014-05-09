@@ -50,7 +50,7 @@ struct Donnees {
     long    color1,     color2,     color3;
     int rangColor1, rangColor2, rangColor3;
     int hauteur;
-    int hauteur.image;
+    int hauteurImage;
 };
 extern Donnees gDonnees;
 

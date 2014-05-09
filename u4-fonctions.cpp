@@ -23,7 +23,6 @@ void InitialiserDonnees() {
     gDonnees.rangColor2=50;
     gDonnees.rangColor3=50;
     gDonnees.hauteur=H_ZONE;
-    gDonnees.hauteurImage=H_ZONE;
 }
 
 // Pointe vers les fonctions suivantes en fonction de la fractale choisie
@@ -170,6 +169,7 @@ void enregistrerPPM(int Largeur, char Fichier[32]){
     FILE* ptrFichier;
     ptrFichier=fopen(Fichier,"w");
     if(ptrFichier=NULL){cout<<"impossible d'acceder au fichier";}
+    fprintf(ptrFichier,"P3\n%d %d\n256\n",gDonnees.hauteurImage*L_ZONE/H_ZONE,gDonnees.hauteurImage);
 
 
 }
