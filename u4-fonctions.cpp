@@ -82,6 +82,7 @@ void convergencePlan(){
         //coordonnees=coord_init+(double)j*pas_complx;
     }
 }
+
 void convergenceLigne(complex<double>coordonnees, pointeurFct fonction, int j){
     double pas=gDonnees.pasxy;
 
@@ -175,4 +176,28 @@ void enregistrerPPM(int Largeur, char Fichier[32]){
     fprintf(ptrFichier,"P3\n%d %d\n256\n",Largeur,Largeur*H_ZONE/L_ZONE);
 
 
+
+    pointeurFct fonction = retourne_fonction(); // Détermine la fonction
+    double pas=gDonnees.pasxy*Largeur/gDonnees.hauteur*L_ZONE/H_ZONE;
+    double x_ini=real(gDonnees.ig);
+    double y_ini=imag(gDonnees.ig);
+    complex<double>coord_init=gDonnees.ig;
+    complex<double>pas_complx=(0,gDonnees.pasxy);
+    complex<double>coordonnees=coord_init;
+
+    int tempHauteur=gDonnees.hauteur;
+    gDonnees.hauteur=Largeur*H_ZONE/L_ZONE;
+    long tab[gDonnees.rangMax];
+    couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tab);
+    	for (int j = 0; j < gDonnees.hauteur; ++j) {
+        convergenceLigne(coordonnees,fonction,j);
+        coordonnees=complex<double>(x_ini,y_ini+j*pas);
+        //coordonnees=coord_init+(double)j*pas_complx;
+        	for (int i = 0; i < L_ZONE; ++i) {
+            if (gDonnees.Tab[i][j].n==-1 )
+                {fprintf(ptrFichier, "0 0 0 ");}
+            else{}
+        	}
+    	}
 }
+
