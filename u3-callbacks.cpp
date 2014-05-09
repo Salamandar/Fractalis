@@ -18,10 +18,10 @@ void TraiterCycleCB() {
 void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
     // ATTENTION : X et Y ne sont pas relatifs a la zone mais a la fenetre qui la contient !!!!
 
-    int x1;
-    int x2;
-    int y1;
-    int y2;
+    int x1=0;
+    int x2=0;
+    int y1=0;
+    int y2=0;
 
     // prise des coordonn?s initiales de la souris
     if ( Fl::event() == FL_PUSH ){

@@ -63,7 +63,7 @@ void CreerInterface() {
     gInterface.ChampYMin->callback(ChampYMinCB, NULL);
 
     //Choix de la largeur de l'affichage
-    gInterface.ChampLargeur = new Fl_Value_Input(X_ZONE+L_ZONE+200, 210 , 50, 20);
+    gInterface.ChampLargeur = new Fl_Value_Input(X_ZONE+L_ZONE+200, 210 , 50, 20, "Largeur");
     gInterface.ChampLargeur->when(FL_WHEN_ENTER_KEY | FL_WHEN_RELEASE);
     gInterface.ChampLargeur->callback(ChampLargeurCB, NULL);
 
