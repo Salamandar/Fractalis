@@ -19,7 +19,7 @@ void cycleAffichage() {
 
 void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
     // ATTENTION : X et Y ne sont pas relatifs a la zone mais a la fenetre qui la contient !!!!
-
+    // Mode déplacement
     int x1=0;
     int x2=0;
     int y1=0;
@@ -48,6 +48,15 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
 
 
     //printf("partie reelle finale : %lf\n" ,real(gDonnees.ig));
+
+    //Mode zoom
+    int zoom=0;
+    if (Fl::event() == FL_MOUSEWHEEL ){
+        zoom=Fl::event_dx();
+        printf("zoom : %d", zoom);
+    }
+    gDonnees.pasxy+= 0.001*zoom;
+
 
 }
 
