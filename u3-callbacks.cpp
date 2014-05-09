@@ -31,15 +31,12 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
     }
 
     // prise des coordonn?s finale
-    if ( Fl::event() == FL_DRAG ){
-        if(Fl::event() == FL_MOVE){
-            if(Fl::event() == FL_RELEASE){
-                printf("Mouse push = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
-                x2=Fl::event_x();
-                y2=Fl::event_y();
-            }
-        }
+    if(Fl::event() == FL_RELEASE){
+        printf("Mouse release = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
+        x2=Fl::event_x();
+        y2=Fl::event_y();
     }
+
     // calcul du décalage à effectuer
     real(gDonnees.ig)=real(gDonnees.ig)+(x2-x1);
     imag(gDonnees.ig)=imag(gDonnees.ig)+(y2-y1);

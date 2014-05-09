@@ -68,7 +68,7 @@ void CreerInterface() {
     gInterface.ChampLargeur->callback(ChampLargeurCB, NULL);
 
     //Carré couleur
-    gInterface.CarreChoixCouleur = new Fl_Color_Chooser(X_ZONE+L_ZONE+125,250, 150, 150);
+    gInterface.CarreChoixCouleur = new Fl_Color_Chooser(X_ZONE+L_ZONE+125,250, 200, 150);
     gInterface.CarreChoixCouleur->callback(CarreChoixCouleurCB, NULL);
 
     // Affichage de la fenetre
