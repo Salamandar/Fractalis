@@ -11,7 +11,7 @@ using namespace std;
 #define MODULEMAX_INIT  2
 #define C_INIT  ( 1., 1.)
 #define IG_INIT (-2.2,-1.5)
-#define PASXY   0.005
+#define PASXY   0.002
 #define Couleur_Init 0
 typedef complex<double> (*pointeurFct)(complex<double>, complex<double>);
     // Type d'une fonction qui renvoie un pointeur vers le type de fractale
@@ -23,7 +23,7 @@ enum fractype {
 };
 
 // Structure de Pixel
-struct Pixel {
+struct Pixel_t {
     complex<double> z; // Coordonnées dans le plan std::complexe
     int n;  // rang de divergence
 };

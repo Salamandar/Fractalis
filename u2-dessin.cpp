@@ -7,6 +7,7 @@
 #include "main.h"
 #include "u1-interface.h"
 #include "u2-dessin.h"
+#include <stdio.h>
 
 #include "u4-fonctions.h"
 
@@ -16,6 +17,7 @@ void ZoneDessinDessinerCB( Fl_Widget* widget, void* data ) {
     fl_rectf(X_ZONE, Y_ZONE, L_ZONE, H_ZONE);
     //convergencePlan();
     afficheFractaleLigne();
+    printf("test Boucle\n");
 
     /*
     long tabb[gDonnees.rangMax],c;
@@ -84,6 +86,7 @@ void afficheFractaleLigne(){
                 fl_point(i+X_ZONE,j+Y_ZONE);
                 fl_color(FL_BLACK);
         }
+    printf("call_redraw Boucle\n");
         gInterface.ZoneDessin->redraw();
     }
 }
