@@ -49,6 +49,8 @@ struct Donnees {
     // Données de détermination des couleurs
     long    color1,     color2,     color3;
     int rangColor1, rangColor2, rangColor3;
+    int hauteur;
+    int hauteur.image;
 };
 extern Donnees gDonnees;
 
@@ -63,7 +65,7 @@ complex<double> julia     (complex<double> position, complex<double> z);
 complex<double> personna  (complex<double> position, complex<double> z);
 
 int convergence(complex<double> position, pointeurFct); // Donne un rang de convergence pour un point du plan complexe
-void convergencePlan(int hauteur);
+void convergencePlan();
 void convergenceLigne(complex<double>coordonnees, complex<double> pas_complexe, double pas, pointeurFct fonction, int j,int largeur);
 
 
