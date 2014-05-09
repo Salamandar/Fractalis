@@ -100,3 +100,7 @@ void ChampLargeurCB(Fl_Widget* w, void* data){
 
 }
 
+void CarreChoixCouleurCB(Fl_Widget* w, void* data){
+
+}
+

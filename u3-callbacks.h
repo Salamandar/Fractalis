@@ -12,6 +12,6 @@ void BoutonEnregistrerCB(Fl_Widget* w, void* data);
 void ChampXMinCB(Fl_Widget* w, void* data);
 void ChampYMinCB(Fl_Widget* w, void* data);
 void ChampLargeurCB(Fl_Widget* w, void* data);
-
+void CarreChoixCouleurCB(Fl_Widget* w, void* data);
 
 #endif
