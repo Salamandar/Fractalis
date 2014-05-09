@@ -23,7 +23,7 @@ enum fractype {
 };
 
 // Structure de Pixel
-struct Pixel_t {
+struct Pixel {
     complex<double> z; // Coordonnées dans le plan std::complexe
     int n;  // rang de divergence
 };
