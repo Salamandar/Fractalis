@@ -17,32 +17,7 @@ void ZoneDessinDessinerCB( Fl_Widget* widget, void* data ) {
     fl_rectf(X_ZONE, Y_ZONE, L_ZONE, H_ZONE);
     //convergencePlan();
     afficheFractaleLigne();
-    printf("test Boucle\n");
 
-    /*
-    long tabb[gDonnees.rangMax],c;
-    couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1, gDonnees.rangColor2,gDonnees.rangColor3,tabb);
-    long tabb[gDonnees.rangMax],c;
-    long A=0xFF000000,B=0x00FF0000,C=0x0000FF00;
-    couleurs(A,B,C,10,10,10,tabb);
-    fancy colours, quelques tests
-    for (int i = 0; i < gDonnees.rangMax; ++i)
-    {
-        //calcule la couleur a partir du tableau
-        c=tabb[i];
-        fl_color(0xFFFF);
-        fl_pie(X_ZONE+5*(i),Y_ZONE+100,5,10,0,360 );
-        //cout << c << endl;
-        fl_color(c);
-        fl_pie(X_ZONE+5*(i),Y_ZONE+120,5,30,0,360 );
-        fl_color(165810);
-        fl_pie(X_ZONE+5*(i),Y_ZONE+140,5,5,0,360 );
-        fl_color(331366);
-        fl_pie(X_ZONE+5*(i),Y_ZONE+160,5,5,0,360 );
-        fl_color(c);
-        fl_pie(X_ZONE+2*(i),Y_ZONE+180,4,20,0,360 );
-    }
-    */
 }
 
 void afficheFractale() {
@@ -74,7 +49,7 @@ void afficheFractaleLigne(){
     long tab[gDonnees.rangMax];
     couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tab);
     for (int j = 0; j < gDonnees.hauteur; ++j) {
-        convergenceLigne(coordonnees, pas_complx, pas, fonction, j,gDonnees.hauteur*L_ZONE/H_ZONE);
+        convergenceLigne(coordonnees, fonction, j);
         coordonnees=complex<double>(x_ini,y_ini+j*pas);
         //coordonnees=coord_init+(double)j*pas_complx;
         for (int i = 0; i < L_ZONE; ++i) {
@@ -88,3 +63,28 @@ void afficheFractaleLigne(){
         gInterface.ZoneDessin->redraw();
     }
 }
+
+    /*
+    long tabb[gDonnees.rangMax],c;
+    couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1, gDonnees.rangColor2,gDonnees.rangColor3,tabb);
+    long tabb[gDonnees.rangMax],c;
+    long A=0xFF000000,B=0x00FF0000,C=0x0000FF00;
+    couleurs(A,B,C,10,10,10,tabb);
+    fancy colours, quelques tests
+    for (int i = 0; i < gDonnees.rangMax; ++i)
+    {
+        //calcule la couleur a partir du tableau
+        c=tabb[i];
+        fl_color(0xFFFF);
+        fl_pie(X_ZONE+5*(i),Y_ZONE+100,5,10,0,360 );
+        //cout << c << endl;
+        fl_color(c);
+        fl_pie(X_ZONE+5*(i),Y_ZONE+120,5,30,0,360 );
+        fl_color(165810);
+        fl_pie(X_ZONE+5*(i),Y_ZONE+140,5,5,0,360 );
+        fl_color(331366);
+        fl_pie(X_ZONE+5*(i),Y_ZONE+160,5,5,0,360 );
+        fl_color(c);
+        fl_pie(X_ZONE+2*(i),Y_ZONE+180,4,20,0,360 );
+    }
+    */

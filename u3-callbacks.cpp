@@ -9,11 +9,13 @@
 #include "u3-callbacks.h"
 #include "u4-fonctions.h"
 
-void TraiterCycleCB() {
-    //afficheFractaleLigne();
 
+void cycleAffichage() {
+    afficheFractaleLigne();
     gInterface.ZoneDessin->redraw();
+
 }
+
 
 void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
     // ATTENTION : X et Y ne sont pas relatifs a la zone mais a la fenetre qui la contient !!!!

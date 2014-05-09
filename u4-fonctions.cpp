@@ -77,12 +77,14 @@ void convergencePlan(){
     complex<double>pas_complx=(0,gDonnees.pasxy);
     complex<double>coordonnees=coord_init;
     for (int j = 0; j < gDonnees.hauteur; ++j) {
-        convergenceLigne(coordonnees, pas_complx, pas, fonction, j,gDonnees.hauteur*800/600);
+        convergenceLigne(coordonnees, fonction, j);
         coordonnees=complex<double>(x_ini,y_ini+j*pas);
         //coordonnees=coord_init+(double)j*pas_complx;
     }
 }
-void convergenceLigne(complex<double>coordonnees, complex<double> pas_complexe, double pas, pointeurFct fonction, int j,int largeur){
+void convergenceLigne(complex<double>coordonnees, pointeurFct fonction, int j){
+    double pas=gDonnees.pasxy;
+
     for (int i = 0; i < L_ZONE; ++i) {      // Boucle ligne par ligne
         gDonnees.Tab[i][j].n=convergence(coordonnees, fonction);
         coordonnees+=pas;
