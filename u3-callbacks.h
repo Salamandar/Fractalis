@@ -2,7 +2,6 @@
 #define _u3_callbacks_h
 #include <FL/Fl_Widget.H>
 
-void TraiterCycleCB() ;
 void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) ;
 void ChampModuleDeSortieCB   (Fl_Widget* w, void* data);
 void ChampProfondeurCB       (Fl_Widget* w, void* data);
