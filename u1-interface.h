@@ -31,6 +31,7 @@ struct Interface {
     Fl_Value_Input*     ChampXMin;          //d?inition du coin inf?ieur gauche
     Fl_Value_Input*     ChampYMin;
     Fl_Value_Input*     ChampLargeur;       //largeur d'affichage
+
     //Fl_Button*ZoomPlus;             // Zoomer
     //Fl_Button*ZoomMoins;            // D?oomer
 };
