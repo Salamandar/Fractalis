@@ -39,9 +39,14 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
         y2=Fl::event_y();
     }
 
+    printf("partie réelle init : %d" ,real(gDonnees.ig));
+
+
     // calcul du décalage à effectuer
     real(gDonnees.ig)=real(gDonnees.ig)+(x2-x1);
     imag(gDonnees.ig)=imag(gDonnees.ig)+(y2-y1);
+
+    printf("partie réelle finale : %d" ,real(gDonnees.ig));
 
 }
 
