@@ -53,7 +53,7 @@ void afficheFractaleLigne(){
     long tab[gDonnees.rangMax];
     couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tab);
     for (int j = 0; j < gDonnees.hauteur; ++j) {
-        convergenceLigne(coordonnees, fonction, j);
+        convergenceLigne(fonction, j);
         coordonnees=complex<double>(x_ini,y_ini+j*pas);
         //coordonnees=coord_init+(double)j*pas_complx;
         for (int i = 0; i < L_ZONE; ++i) {
@@ -61,7 +61,9 @@ void afficheFractaleLigne(){
             if (gDonnees.Tab[i][j].n==-1 )
                 fl_color(FL_BLACK);
             else {
+                printf("test2\n");
                 fl_color(tab[gDonnees.Tab[i][j].n]);
+                printf("test3\n");
             }
                 printf("TEST\n");
 
@@ -72,6 +74,27 @@ void afficheFractaleLigne(){
     }
 }
 
+void afficheLigne(int j){
+    long tab[gDonnees.rangMax];
+    couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tab);
+    for (int i = 0; i < L_ZONE; ++i) {
+        printf("TEST1\n");
+        if (gDonnees.Tab[i][j].n==-1 ){
+            fl_color(FL_BLACK);
+            printf("Black\n");
+        }
+        else {
+            printf("autre couleur, %d, %d, %d\n",gDonnees.Tab[i][j].n, i, j );
+            printf("%hx\n", tab[gDonnees.Tab[i][j].n]);
+            fl_color(tab[gDonnees.Tab[i][j].n]);
+
+        }
+        printf("test3\n");
+        fl_point(i+X_ZONE,j+Y_ZONE);
+    }
+    printf("Attention Redraw !\n");
+    gInterface.ZoneDessin->redraw();
+}
     /*
     long tabb[gDonnees.rangMax],c;
     couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1, gDonnees.rangColor2,gDonnees.rangColor3,tabb);

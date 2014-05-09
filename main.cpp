@@ -15,8 +15,9 @@ int main (int argc, char ** argv)
     // Initialisation du logiciel
     CreerInterface();
     InitialiserDonnees();
-    cycleAffichage();
-
+    gInterface.ZoneDessin->redraw();
+    while (cycleAffichage()<H_ZONE){}
+        cout << "Fin de la boucle de calcul\n"<< endl;
     // Lancer la boucle de gestion des evenements
     return Fl::run();
 }

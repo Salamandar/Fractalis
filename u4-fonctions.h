@@ -65,7 +65,7 @@ complex<double> personna  (complex<double> position, complex<double> z);
 
 int convergence(complex<double> position, pointeurFct); // Donne un rang de convergence pour un point du plan complexe
 void convergencePlan();
-void convergenceLigne(complex<double>coordonnees, pointeurFct fonction, int j);
+void convergenceLigne(pointeurFct fonction, int j);
 
 
 
