@@ -22,5 +22,4 @@ private :
     void (*_keyboard_callback_function) ( Fl_Widget* w, void* data);
     void* _keyboard_callback_data;
 };
-
-#endif 
+#endif
