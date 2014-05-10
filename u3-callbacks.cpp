@@ -10,10 +10,14 @@
 #include "u4-fonctions.h"
 
 
-void cycleAffichage() {
-    afficheFractaleLigne();
-    gInterface.ZoneDessin->redraw();
+int cycleAffichage() {
+    static int ligne=0;     // Indice de la ligne en cours de calcul + affichage (static pour la conserver cross-boucles :) )
 
+    pointeurFct fonction = retourne_fonction();
+    convergenceLigne(fonction, ligne);
+    //afficheLigne(ligne);
+    ligne++;
+    return ligne;
 }
 
 

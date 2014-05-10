@@ -4,44 +4,37 @@
 #include "u1-interface.h"
 #include "u2-dessin.h"
 #include "u3-callbacks.h"
-#include "u4-fonctions.h"
 
 // Definition des donnees de l'interface - structure globale de variables
 struct Interface gInterface;
 
 void CreerInterface() {
-
-
     // Creation de la fenetre principale
     gInterface.Fenetre=new Fl_Double_Window(X_ZONE+L_ZONE+400,Y_ZONE+H_ZONE);
     gInterface.Fenetre->label("Générateur de fractales");
     gInterface.Fenetre->begin();
 
-    // Creation du bouton Enregistrer
-    gInterface.BoutonEnregistrer = new Fl_Button(X_ZONE, 0, 100, Y_ZONE, "Enregistrer");
+    // Creation des boutons supérieurs
+    gInterface.BoutonEnregistrer= new Fl_Button(X_ZONE,    0, 100, Y_ZONE, "Enregistrer");
     gInterface.BoutonEnregistrer->callback(BoutonQuitterCB, NULL);
-
-    // Creation du bouton Reset
-    gInterface.BoutonReset = new Fl_Button(X_ZONE+100, 0, 100, Y_ZONE, "Reset");
-    gInterface.BoutonReset->callback(BoutonQuitterCB, NULL);
-
-    // Creation du bouton Quitter
-    gInterface.BoutonQuitter = new Fl_Button(X_ZONE+200, 0, 100, Y_ZONE, "Quitter");
-    gInterface.BoutonQuitter->callback(BoutonQuitterCB, NULL);
-
+    gInterface.BoutonReset      = new Fl_Button(X_ZONE+100, 0, 100, Y_ZONE, "Reset");
+    gInterface.BoutonReset      ->callback(BoutonQuitterCB, NULL);
+    gInterface.BoutonQuitter    = new Fl_Button(X_ZONE+200, 0, 100, Y_ZONE, "Quitter");
+    gInterface.BoutonQuitter    ->callback(BoutonQuitterCB, NULL);
 
     // Creation de la zone de dessin
     gInterface.ZoneDessin=new DrawingArea(X_ZONE,Y_ZONE,L_ZONE,H_ZONE);
-    gInterface.ZoneDessin->draw_callback(ZoneDessinDessinerCB, NULL);
+    gInterface.ZoneDessin->draw_callback(ZoneDessinInitialisation, NULL);
     gInterface.ZoneDessin->mouse_callback(ZoneDessinSourisCB, NULL);
 
 
     // Creation du menu de choix du type de fractale
     gInterface.MenuFractale=new Fl_Choice(X_ZONE+L_ZONE+200 , 50,100, 20, "Type de Fractale : ");
-    gInterface.MenuFractale->add("Julia", "", MenuFractaleCB);
     gInterface.MenuFractale->add("Mandelbrot", "", MenuFractaleCB);
+    gInterface.MenuFractale->add("Julia", "", MenuFractaleCB);
     gInterface.MenuFractale->add("Cosinus", "", MenuFractaleCB);
     gInterface.MenuFractale->add("Sinus", "", MenuFractaleCB);
+    gInterface.MenuFractale->value(0);
 
     // Creation du champ de saisie module de sortie
     gInterface.ChampModuleDeSortie = new Fl_Value_Input(X_ZONE+L_ZONE+200, 90 , 100, 20, "Module de sortie : ");

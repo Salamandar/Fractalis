@@ -21,10 +21,10 @@
 #define H_ZONE  600
 
 struct Interface {
-    Fl_Double_Window*   Fenetre;       // Fen?re du projet
-    DrawingArea*        ZoneDessin;        // Zone de dessin
-    Fl_Button*          BoutonQuitter;       // Quitter le programme
-    Fl_Button*          BoutonEnregistrer;   // Enregistrer l'image
+    Fl_Double_Window*   Fenetre;            // Fen?re du projet
+    DrawingArea*        ZoneDessin;         // Zone de dessin
+    Fl_Button*          BoutonQuitter;      // Quitter le programme
+    Fl_Button*          BoutonEnregistrer;  // Enregistrer l'image
     Fl_Button*          BoutonReset;         // Revenir aux param?es par d?aut
     Fl_Value_Input*     ChampModuleDeSortie;  // Module de sortie
     Fl_Value_Input*     ChampProfondeur;      // Profondeur

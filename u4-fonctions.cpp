@@ -70,25 +70,16 @@ int convergence(complex<double> position, pointeurFct fonction){
 // Calcule et enregistre tous les rangs de convergence dans le tableau
 void convergencePlan(){
     pointeurFct fonction = retourne_fonction(); // Détermine la fonction
-    double pas=gDonnees.pasxy;
-    double x_ini=real(gDonnees.ig);
-    double y_ini=imag(gDonnees.ig);
-    complex<double>coord_init=gDonnees.ig;
-    complex<double>pas_complx=(0,gDonnees.pasxy);
-    complex<double>coordonnees=coord_init;
-    for (int j = 0; j < gDonnees.hauteur; ++j) {
-        convergenceLigne(coordonnees, fonction, j);
-        coordonnees=complex<double>(x_ini,y_ini+j*pas);
-        //coordonnees=coord_init+(double)j*pas_complx;
-    }
+    for (int j = 0; j < gDonnees.hauteur; ++j)
+        convergenceLigne(fonction, j);
 }
 
-void convergenceLigne(complex<double>coordonnees, pointeurFct fonction, int j){
+void convergenceLigne(pointeurFct fonction, int j){
     double pas=gDonnees.pasxy;
-
+    complex<double> position= gDonnees.ig + complex<double>(0,(double)j*pas);
     for (int i = 0; i < L_ZONE; ++i) {      // Boucle ligne par ligne
-        gDonnees.Tab[i][j].n=convergence(coordonnees, fonction);
-        coordonnees+=pas;
+        gDonnees.Tab[i][j].n=convergence(position, fonction);
+        position+=pas;
     }
 }
 
@@ -102,8 +93,7 @@ void convergenceLigne(complex<double>coordonnees, pointeurFct fonction, int j){
 //   while (clock() < Endwait);
 //}
 
-void degradeRGB(long  A, long  B,int N, int tab[][3]){
-
+void degradeRGB(long A, long B, int N, int tab[][3]) {
     int i;
     A=(A-A%256)/256;
     B=(B-B%256)/256;
@@ -124,17 +114,15 @@ void degradeRGB(long  A, long  B,int N, int tab[][3]){
     dg=((double)(tab[N-1][1]-tab[0][1]))/N;
     db=((double)(tab[N-1][2]-tab[0][2]))/N;
 
-    for(i=0; i<N; i++)
-    {
-    tab[i][0]=tab[0][0]+i*dr;
+    for(i=0; i<N; i++) {
+        tab[i][0]=tab[0][0]+i*dr;
         tab[i][1]=tab[0][1]+i*dg;
         tab[i][2]=tab[0][2]+i*db;
        //cout << tab[i][0] << ";" << tab[i][1] << ";" << tab[i][2] << endl;
     }
 }
 
-void couleurs(long A, long B, long C, int N1, int N2, int N3, long tab[])
-{
+void couleurs(long A, long B, long C, int N1, int N2, int N3, long tab[]) {
     int i;
     long I=Couleur_Init;
     int tab1[N1][3];
@@ -147,22 +135,17 @@ void couleurs(long A, long B, long C, int N1, int N2, int N3, long tab[])
     degradeRGB(C,I,gDonnees.rangMax-N1-N2-N3,tab4);
 
     tab[0]=0;
-    for(i=1; i<N1; i++)
-    {
+    for(i=1; i<N1; i++) {
         tab[i]=255+256*tab1[i][2]+256*256*tab1[i][1]+256*256*256*tab1[i][0];
     }
-     for(i=N1; i<N1+N2; i++)
-    {
+     for(i=N1; i<N1+N2; i++) {
         tab[i]=255+256*tab2[i-N1][2]+256*256*tab2[i-N1][1]+256*256*256*tab2[i-N1][0];
     }
-     for(i=N1+N2; i<N3+N1+N2
-     ; i++)
-    {
+     for(i=N1+N2; i<N3+N1+N2 ; i++) {
         tab[i]=255+256*tab3[i-N2-N1][2]+256*256*tab3[i-N2-N1][1]+256*256*256*tab3[i-N2-N1][0];
         //cout<<tab[i]<<";"<<i<<endl;
     }
-    for(i=N3+N2+N1; i<gDonnees.rangMax; i++)
-    {
+    for(i=N3+N2+N1; i<gDonnees.rangMax; i++) {
         tab[i]=255+256*tab4[i-N3-N2-N1][2]+256*256*tab4[i-N3-N2-N1][1]+256*256*256*tab4[i-N3-N2-N1][0];
     }
     //cout<<gDonnees.rangMax;
@@ -190,7 +173,7 @@ void enregistrerPPM(int Largeur, char Fichier[32]){
     long tab[gDonnees.rangMax];
     couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tab);
     	for (int j = 0; j < gDonnees.hauteur; ++j) {
-        convergenceLigne(coordonnees,fonction,j);
+        convergenceLigne(fonction,j);
         coordonnees=complex<double>(x_ini,y_ini+j*pas);
         //coordonnees=coord_init+(double)j*pas_complx;
         	for (int i = 0; i < L_ZONE; ++i) {

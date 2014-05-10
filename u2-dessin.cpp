@@ -1,5 +1,6 @@
 #include <iostream>
 #include <complex>
+#include <stdio.h>
 #include <stdlib.h>
 #include <FL/Fl.H>
 #include <FL/fl_draw.H>
@@ -7,17 +8,24 @@
 #include "main.h"
 #include "u1-interface.h"
 #include "u2-dessin.h"
-#include <stdio.h>
-
+#include "u3-callbacks.h"
 #include "u4-fonctions.h"
 
-void ZoneDessinDessinerCB( Fl_Widget* widget, void* data ) {
-    // On efface toute la zone ( en dessinant dessus un rectangle plein, noir )
+void ZoneDessinInitialisation(Fl_Widget* widget, void* data) {
     fl_color(FL_BLACK);
     fl_rectf(X_ZONE, Y_ZONE, L_ZONE, H_ZONE);
-    //convergencePlan();
-    afficheFractaleLigne();
+    // On initialise la gestion de l'affichage de la fractale seulement quand la fenêtre est correctement créée
+    Fl::add_timeout(0, gestionAffichage, NULL );
+}
 
+void gestionAffichage(void*) {
+    static int ligne=0;     // Indice de la ligne en cours de calcul + affichage (static pour la conserver cross-boucles :) )
+    pointeurFct fonction = retourne_fonction();
+    while (ligne<H_ZONE){
+    convergenceLigne(fonction, ligne);
+    afficheLigne(ligne);
+    ligne++;
+    }
 }
 
 void afficheFractale() {
@@ -37,31 +45,19 @@ void afficheFractale() {
     }
 }
 
-void afficheFractaleLigne(){
-    pointeurFct fonction = retourne_fonction(); // Détermine la fonction
-    double pas=gDonnees.pasxy;
-    double x_ini=real(gDonnees.ig);
-    double y_ini=imag(gDonnees.ig);
-    complex<double>coord_init=gDonnees.ig;
-    complex<double>pas_complx=(0,gDonnees.pasxy);
-    complex<double>coordonnees=coord_init;
-    fl_color(FL_BLACK);
+void afficheLigne(int j){
     long tab[gDonnees.rangMax];
     couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tab);
-    for (int j = 0; j < gDonnees.hauteur; ++j) {
-        convergenceLigne(coordonnees, fonction, j);
-        coordonnees=complex<double>(x_ini,y_ini+j*pas);
-        //coordonnees=coord_init+(double)j*pas_complx;
-        for (int i = 0; i < L_ZONE; ++i) {
-            if (gDonnees.Tab[i][j].n==-1 )
-                {}
-            else
-                fl_color(tab[gDonnees.Tab[i][j].n]);
-                fl_point(i+X_ZONE,j+Y_ZONE);
-                fl_color(FL_BLACK);
+    for (int i = 0; i < L_ZONE; ++i) {
+        if (gDonnees.Tab[i][j].n==-1 ){
+            fl_color(FL_BLACK);
         }
-        gInterface.ZoneDessin->redraw();
+        else {
+            fl_color(tab[gDonnees.Tab[i][j].n]);
+        }
+        fl_point(i+X_ZONE,j+Y_ZONE);
     }
+    //gInterface.ZoneDessin->redraw();
 }
 
     /*

@@ -12,12 +12,12 @@ using namespace std;
 
 int main (int argc, char ** argv)
 {
+    int ligne_actuelle=0;
     // Initialisation du logiciel
     CreerInterface();
     InitialiserDonnees();
-
-    // Lancer la boucle de gestion des evenements
-    return Fl::run();
+    gInterface.ZoneDessin->redraw();
+    Fl::run();
 }
 
 
