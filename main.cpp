@@ -17,7 +17,6 @@ int main (int argc, char ** argv)
     CreerInterface();
     InitialiserDonnees();
     gInterface.ZoneDessin->redraw();
-    Fl::add_timeout(1, ZoneDessinDessinerCB, NULL );
     Fl::run();
 }
 

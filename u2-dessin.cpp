@@ -14,13 +14,15 @@
 void ZoneDessinInitialisation(Fl_Widget* widget, void* data) {
     fl_color(FL_BLACK);
     fl_rectf(X_ZONE, Y_ZONE, L_ZONE, H_ZONE);
+    // On initialise la gestion de l'affichage de la fractale seulement quand la fenêtre est correctement créée
+    Fl::add_timeout(0, gestionAffichage, NULL );
 }
 
 void affiche(Fl_Widget* widget, void* data){
         while (cycleAffichage()<H_ZONE){}
 }
 
-void ZoneDessinDessinerCB(void* data) {
+void gestionAffichage(void*) {
     static int ligne=0;     // Indice de la ligne en cours de calcul + affichage (static pour la conserver cross-boucles :) )
     pointeurFct fonction = retourne_fonction();
     while (ligne<H_ZONE){

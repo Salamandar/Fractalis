@@ -9,25 +9,18 @@
 struct Interface gInterface;
 
 void CreerInterface() {
-
-
     // Creation de la fenetre principale
     gInterface.Fenetre=new Fl_Double_Window(X_ZONE+L_ZONE+400,Y_ZONE+H_ZONE);
     gInterface.Fenetre->label("Générateur de fractales");
     gInterface.Fenetre->begin();
 
-    // Creation du bouton Enregistrer
-    gInterface.BoutonEnregistrer = new Fl_Button(X_ZONE, 0, 100, Y_ZONE, "Enregistrer");
+    // Creation des boutons supérieurs
+    gInterface.BoutonEnregistrer = new Fl_Button(X_ZONE,    0, 100, Y_ZONE, "Enregistrer");
     gInterface.BoutonEnregistrer->callback(BoutonQuitterCB, NULL);
-
-    // Creation du bouton Reset
-    gInterface.BoutonReset = new Fl_Button(X_ZONE+100, 0, 100, Y_ZONE, "Reset");
-    gInterface.BoutonReset->callback(BoutonQuitterCB, NULL);
-
-    // Creation du bouton Quitter
-    gInterface.BoutonQuitter = new Fl_Button(X_ZONE+200, 0, 100, Y_ZONE, "Quitter");
-    gInterface.BoutonQuitter->callback(BoutonQuitterCB, NULL);
-
+    gInterface.BoutonReset      = new Fl_Button(X_ZONE+100, 0, 100, Y_ZONE, "Reset");
+    gInterface.BoutonReset      ->callback(BoutonQuitterCB, NULL);
+    gInterface.BoutonQuitter    = new Fl_Button(X_ZONE+200, 0, 100, Y_ZONE, "Quitter");
+    gInterface.BoutonQuitter    ->callback(BoutonQuitterCB, NULL);
 
     // Creation de la zone de dessin
     gInterface.ZoneDessin=new DrawingArea(X_ZONE,Y_ZONE,L_ZONE,H_ZONE);
