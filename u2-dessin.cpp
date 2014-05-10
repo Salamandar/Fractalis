@@ -18,10 +18,6 @@ void ZoneDessinInitialisation(Fl_Widget* widget, void* data) {
     Fl::add_timeout(0, gestionAffichage, NULL );
 }
 
-void affiche(Fl_Widget* widget, void* data){
-        while (cycleAffichage()<H_ZONE){}
-}
-
 void gestionAffichage(void*) {
     static int ligne=0;     // Indice de la ligne en cours de calcul + affichage (static pour la conserver cross-boucles :) )
     pointeurFct fonction = retourne_fonction();

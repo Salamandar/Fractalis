@@ -15,7 +15,7 @@ void CreerInterface() {
     gInterface.Fenetre->begin();
 
     // Creation des boutons supérieurs
-    gInterface.BoutonEnregistrer = new Fl_Button(X_ZONE,    0, 100, Y_ZONE, "Enregistrer");
+    gInterface.BoutonEnregistrer= new Fl_Button(X_ZONE,    0, 100, Y_ZONE, "Enregistrer");
     gInterface.BoutonEnregistrer->callback(BoutonQuitterCB, NULL);
     gInterface.BoutonReset      = new Fl_Button(X_ZONE+100, 0, 100, Y_ZONE, "Reset");
     gInterface.BoutonReset      ->callback(BoutonQuitterCB, NULL);
@@ -30,10 +30,11 @@ void CreerInterface() {
 
     // Creation du menu de choix du type de fractale
     gInterface.MenuFractale=new Fl_Choice(X_ZONE+L_ZONE+200 , 50,100, 20, "Type de Fractale : ");
-    gInterface.MenuFractale->add("Julia", "", MenuFractaleCB);
     gInterface.MenuFractale->add("Mandelbrot", "", MenuFractaleCB);
+    gInterface.MenuFractale->add("Julia", "", MenuFractaleCB);
     gInterface.MenuFractale->add("Cosinus", "", MenuFractaleCB);
     gInterface.MenuFractale->add("Sinus", "", MenuFractaleCB);
+    gInterface.MenuFractale->value(0);
 
     // Creation du champ de saisie module de sortie
     gInterface.ChampModuleDeSortie = new Fl_Value_Input(X_ZONE+L_ZONE+200, 90 , 100, 20, "Module de sortie : ");

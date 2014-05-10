@@ -7,6 +7,5 @@ void gestionAffichage( void* data ) ;
 void afficheFractale();
 void afficheFractaleLigne();
 void afficheLigne(int j);
-void affiche(Fl_Widget* widget, void* data);
 
 #endif
