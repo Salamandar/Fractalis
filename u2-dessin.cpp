@@ -1,5 +1,6 @@
 #include <iostream>
 #include <complex>
+#include <stdio.h>
 #include <stdlib.h>
 #include <FL/Fl.H>
 #include <FL/fl_draw.H>
@@ -7,8 +8,7 @@
 #include "main.h"
 #include "u1-interface.h"
 #include "u2-dessin.h"
-#include <stdio.h>
-
+#include "u3-callbacks.h"
 #include "u4-fonctions.h"
 
 void ZoneDessinInitialisation(Fl_Widget* widget, void* data) {
@@ -16,13 +16,18 @@ void ZoneDessinInitialisation(Fl_Widget* widget, void* data) {
     fl_rectf(X_ZONE, Y_ZONE, L_ZONE, H_ZONE);
 }
 
-void ZoneDessinDessinerCB( Fl_Widget* widget, void* data ) {
-    // On efface toute la zone ( en dessinant dessus un rectangle plein, noir )
-    fl_color(FL_BLACK);
-    fl_rectf(X_ZONE, Y_ZONE, L_ZONE, H_ZONE);
-    //convergencePlan();
-    afficheFractaleLigne();
+void affiche(Fl_Widget* widget, void* data){
+        while (cycleAffichage()<H_ZONE){}
+}
 
+void ZoneDessinDessinerCB(void* data) {
+    static int ligne=0;     // Indice de la ligne en cours de calcul + affichage (static pour la conserver cross-boucles :) )
+    pointeurFct fonction = retourne_fonction();
+    while (ligne<H_ZONE){
+    convergenceLigne(fonction, ligne);
+    afficheLigne(ligne);
+    ligne++;
+    }
 }
 
 void afficheFractale() {
@@ -42,59 +47,21 @@ void afficheFractale() {
     }
 }
 
-void afficheFractaleLigne(){
-    pointeurFct fonction = retourne_fonction(); // Détermine la fonction
-    double pas=gDonnees.pasxy;
-    double x_ini=real(gDonnees.ig);
-    double y_ini=imag(gDonnees.ig);
-    complex<double>coord_init=gDonnees.ig;
-    complex<double>pas_complx=(0,gDonnees.pasxy);
-    complex<double>coordonnees=coord_init;
-    long tab[gDonnees.rangMax];
-    couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tab);
-    for (int j = 0; j < gDonnees.hauteur; ++j) {
-        convergenceLigne(fonction, j);
-        coordonnees=complex<double>(x_ini,y_ini+j*pas);
-        //coordonnees=coord_init+(double)j*pas_complx;
-        for (int i = 0; i < L_ZONE; ++i) {
-            printf("TEST1\n");
-            if (gDonnees.Tab[i][j].n==-1 )
-                fl_color(FL_BLACK);
-            else {
-                printf("test2\n");
-                fl_color(tab[gDonnees.Tab[i][j].n]);
-                printf("test3\n");
-            }
-                printf("TEST\n");
-
-            fl_point(i+X_ZONE,j+Y_ZONE);
-        }
-        printf("Attention Redraw !\n");
-        gInterface.ZoneDessin->redraw();
-    }
-}
-
 void afficheLigne(int j){
     long tab[gDonnees.rangMax];
     couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tab);
     for (int i = 0; i < L_ZONE; ++i) {
-        printf("TEST1\n");
         if (gDonnees.Tab[i][j].n==-1 ){
             fl_color(FL_BLACK);
-            printf("Black\n");
         }
         else {
-            printf("autre couleur, %d, %d, %d\n",gDonnees.Tab[i][j].n, i, j );
-            printf("%hx\n", tab[gDonnees.Tab[i][j].n]);
             fl_color(tab[gDonnees.Tab[i][j].n]);
-
         }
-        printf("test3\n");
         fl_point(i+X_ZONE,j+Y_ZONE);
     }
-    printf("Attention Redraw !\n");
-    gInterface.ZoneDessin->redraw();
+    //gInterface.ZoneDessin->redraw();
 }
+
     /*
     long tabb[gDonnees.rangMax],c;
     couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1, gDonnees.rangColor2,gDonnees.rangColor3,tabb);

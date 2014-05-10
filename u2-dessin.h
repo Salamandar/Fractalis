@@ -3,9 +3,10 @@
 #include <FL/Fl_Widget.H>
 
 void ZoneDessinInitialisation(Fl_Widget* widget, void* data);
-void ZoneDessinDessinerCB( Fl_Widget* widget, void* data ) ;
+void ZoneDessinDessinerCB( void* data ) ;
 void afficheFractale();
 void afficheFractaleLigne();
 void afficheLigne(int j);
+void affiche(Fl_Widget* widget, void* data);
 
 #endif
