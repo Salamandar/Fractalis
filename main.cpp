@@ -10,9 +10,8 @@
 #include "u4-fonctions.h"
 using namespace std;
 
-int main (int argc, char ** argv)
-{
-    int ligne_actuelle=0;
+int main (int argc, char ** argv) {
+    // int ligne_actuelle=0;
     // Initialisation du logiciel
     CreerInterface();
     InitialiserDonnees();
@@ -21,20 +20,9 @@ int main (int argc, char ** argv)
 }
 
 
-
-
-
-
-
-
-
-
 // Déclaré dans drawing.h
-// Classe et methodes DrawingArea : a considerer comme une librairie fournie, NE PAS MODIFIER
-
-DrawingArea::DrawingArea(int X,int Y,int W,int H)
-: Fl_Widget(X,Y,W,H)
-{
+// Classe et methodes DrawingArea : À considerer comme une librairie fournie, NE PAS MODIFIER
+DrawingArea::DrawingArea(int X,int Y,int W,int H) : Fl_Widget(X,Y,W,H) {
     _draw_callback_function = NULL;
     _draw_callback_data = NULL;
 
@@ -68,8 +56,7 @@ void DrawingArea::draw(){
 }
 
 int DrawingArea::handle(int event){
-    switch(event)
-    {
+    switch(event) {
         case FL_PUSH:
         case FL_RELEASE:
         case FL_DRAG:
@@ -77,8 +64,7 @@ int DrawingArea::handle(int event){
                 (* _mouse_callback_function ) ( this, _mouse_callback_data );
             return 1;
             break;
-        case FL_ENTER:
-            return 1;
+        case FL_ENTER: return 1;
             break;
         case FL_MOVE:
              if ( _mouse_callback_function != NULL )
@@ -92,12 +78,10 @@ int DrawingArea::handle(int event){
             return 1;
             break;
 
-        case FL_FOCUS:
-            return 1;
+        case FL_FOCUS: return 1;
             break;
 
-        default:
-            return Fl_Widget::handle(event);
+        default: return Fl_Widget::handle(event);
     }
 }
 

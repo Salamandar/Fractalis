@@ -1,6 +1,4 @@
 #include <iostream>
-#include <complex>
-#include <stdlib.h>
 #include "u1-interface.h"
 #include "u2-dessin.h"
 #include "u3-callbacks.h"
@@ -15,7 +13,7 @@ void CreerInterface() {
     gInterface.Fenetre->begin();
 
     // Creation des boutons supérieurs
-    gInterface.BoutonEnregistrer= new Fl_Button(X_ZONE,    0, 100, Y_ZONE, "Enregistrer");
+    gInterface.BoutonEnregistrer= new Fl_Button(X_ZONE,     0, 100, Y_ZONE, "Enregistrer");
     gInterface.BoutonEnregistrer->callback(BoutonQuitterCB, NULL);
     gInterface.BoutonReset      = new Fl_Button(X_ZONE+100, 0, 100, Y_ZONE, "Reset");
     gInterface.BoutonReset      ->callback(BoutonQuitterCB, NULL);

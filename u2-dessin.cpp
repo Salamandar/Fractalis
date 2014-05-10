@@ -1,10 +1,6 @@
 #include <iostream>
-#include <complex>
-#include <stdio.h>
-#include <stdlib.h>
 #include <FL/Fl.H>
 #include <FL/fl_draw.H>
-#include <complex>
 #include "main.h"
 #include "u1-interface.h"
 #include "u2-dessin.h"
@@ -28,36 +24,18 @@ void gestionAffichage(void*) {
     }
 }
 
-void afficheFractale() {
-    fl_color(FL_BLACK);
-    //a mettre ailleurs pour ne pas le recalculer a chaque fois?
-    long tab[gDonnees.rangMax];
-    couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tab);
-    for (int j = 0; j < H_ZONE; ++j) {
-        for (int i = 0; i < L_ZONE; ++i) {
-            if (gDonnees.Tab[i][j].n==-1 )
-                {}
-            else
-                fl_color(tab[gDonnees.Tab[i][j].n]);
-                fl_point(i+X_ZONE,j+Y_ZONE);
-                fl_color(FL_BLACK);
-        }
-    }
-}
-
 void afficheLigne(int j){
+    // À mettre autre part, là on recalcule à chaque ligne, complètement inutile
     long tab[gDonnees.rangMax];
     couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tab);
+
     for (int i = 0; i < L_ZONE; ++i) {
-        if (gDonnees.Tab[i][j].n==-1 ){
+        if (gDonnees.Tab[i][j].n==-1 )
             fl_color(FL_BLACK);
-        }
-        else {
+        else
             fl_color(tab[gDonnees.Tab[i][j].n]);
-        }
         fl_point(i+X_ZONE,j+Y_ZONE);
     }
-    //gInterface.ZoneDessin->redraw();
 }
 
     /*
