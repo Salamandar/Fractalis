@@ -4,10 +4,10 @@
 using namespace std;
 
 // Max d'étapes à vérifier
-#define PROFONDEUR_MAX 1000
+#define PROFONDEUR_MAX 100
 // Données utilisateurs initiales :
 #define FRACT_INIT MANDELBROT
-#define RANGMAX_INIT    250
+#define RANGMAX_INIT    50
 #define MODULEMAX_INIT  2
 #define C_INIT  ( 1., 1.)
 #define IG_INIT (-2.2,-1.5)

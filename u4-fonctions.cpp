@@ -19,9 +19,9 @@ void InitialiserDonnees() {
     gDonnees.color1=0xFF000000;
     gDonnees.color2=0x00FF0000;
     gDonnees.color3=0x0000FF00;
-    gDonnees.rangColor1=50;
-    gDonnees.rangColor2=50;
-    gDonnees.rangColor3=50;
+    gDonnees.rangColor1=10;
+    gDonnees.rangColor2=10;
+    gDonnees.rangColor3=10;
     gDonnees.hauteur=H_ZONE;
 }
 
