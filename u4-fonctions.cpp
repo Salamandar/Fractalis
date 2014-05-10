@@ -93,7 +93,7 @@ void convergenceLigne(pointeurFct fonction, int j){
 //   while (clock() < Endwait);
 //}
 
-void degradeRGB(long A, long B, int N, int tab[][3]) {
+void degradeRGB(unsigned long int A, unsigned long int B, int N, int tab[][3]) {
     int i;
     A=(A-A%256)/256;
     B=(B-B%256)/256;
@@ -105,7 +105,7 @@ void degradeRGB(long A, long B, int N, int tab[][3]) {
     tab[N-1][2]=B % 256;
     B=(B-tab[N-1][2])/256;
     tab[N-1][1]=B % 256;
-    B=(B-tab[N-1][2])/256;
+    B=(B-tab[N-1][1])/256;
     tab[N-1][0]=B%256;
 
     //codage du dégradé dans un tableau de triplets RGB de N case tab[N][3], et oui, vive les cast
@@ -122,9 +122,9 @@ void degradeRGB(long A, long B, int N, int tab[][3]) {
     }
 }
 
-void couleurs(long A, long B, long C, int N1, int N2, int N3, long tab[]) {
+void couleurs(unsigned long int A, unsigned long int B, unsigned long int C, int N1, int N2, int N3, unsigned long int tab[]) {
     int i;
-    long I=Couleur_Init;
+    unsigned long int I=Couleur_Init;
     int tab1[N1][3];
     int tab2[N2][3];
     int tab3[N3][3];
@@ -170,7 +170,7 @@ void enregistrerPPM(int Largeur, char Fichier[32]){
 
     int tempHauteur=gDonnees.hauteur;
     gDonnees.hauteur=Largeur*H_ZONE/L_ZONE;
-    long tab[gDonnees.rangMax];
+    unsigned long int tab[gDonnees.rangMax];
     couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tab);
     	for (int j = 0; j < gDonnees.hauteur; ++j) {
         convergenceLigne(fonction,j);

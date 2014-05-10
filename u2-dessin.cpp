@@ -26,7 +26,7 @@ void gestionAffichage(void*) {
 
 void afficheLigne(int j){
     // À mettre autre part, là on recalcule à chaque ligne, complètement inutile
-    long tab[gDonnees.rangMax];
+    unsigned long tab[gDonnees.rangMax];
     couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tab);
 
     for (int i = 0; i < L_ZONE; ++i) {
@@ -39,10 +39,10 @@ void afficheLigne(int j){
 }
 
     /*
-    long tabb[gDonnees.rangMax],c;
+    unsigned long int tabb[gDonnees.rangMax],c;
     couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1, gDonnees.rangColor2,gDonnees.rangColor3,tabb);
-    long tabb[gDonnees.rangMax],c;
-    long A=0xFF000000,B=0x00FF0000,C=0x0000FF00;
+    unsigned long int tabb[gDonnees.rangMax],c;
+    unsigned long int A=0xFF000000,B=0x00FF0000,C=0x0000FF00;
     couleurs(A,B,C,10,10,10,tabb);
     fancy colours, quelques tests
     for (int i = 0; i < gDonnees.rangMax; ++i)

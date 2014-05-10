@@ -47,7 +47,7 @@ struct Donnees {
     */
 
     // Données de détermination des couleurs
-    long    color1,     color2,     color3;
+    unsigned long int    color1,     color2,     color3;
     int rangColor1, rangColor2, rangColor3;
     int hauteur;
 };
@@ -71,9 +71,9 @@ void convergenceLigne(pointeurFct fonction, int j);
 
 
 
-//Prends en arg 2 long et ressort le dégradé sur N dans un tableau de taille[N][3]
-void degradeRGB(long A, long  B,int N, int tab[][3]);
-void couleurs(long A, long B, long C, int N1, int N2, int N3, long tab[]);
+//Prends en arg 2 unsigned long int et ressort le dégradé sur N dans un tableau de taille[N][3]
+void degradeRGB(unsigned long int A, unsigned long int  B,int N, int tab[][3]);
+void couleurs(unsigned long int A, unsigned long int B, unsigned long int C, int N1, int N2, int N3, unsigned long int tab[]);
 
 //Enregistre une image de largeur Largeur au format PPM, dans un fichier Fichier en recalculant tout
 void enregistrerPPM(int Largeur, char Fichier[32]);
