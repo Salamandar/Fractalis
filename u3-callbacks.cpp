@@ -19,13 +19,13 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
     int y2=0;
 
     // prise des coordonnees initiales de la souris
-    if ( Fl::event() == FL_PUSH ){
+    if(Fl::event() == FL_PUSH){
         printf("Mouse push = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
         x1=Fl::event_x();
         y1=Fl::event_y();
     }
 
-    // prise des coordonnees finale
+    // prise des coordonnees finales
     if(Fl::event() == FL_RELEASE){
         printf("Mouse release = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
         x2=Fl::event_x();
@@ -44,14 +44,12 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
 
     //Mode zoom
     int zoom=0;
-    if (Fl::event() == FL_MOUSEWHEEL ){
+    if(Fl::event() == FL_MOUSEWHEEL){
         zoom=Fl::event_dy();
         cout<<"zoom : "<<zoom<<endl;
-    gDonnees.pasxy = gDonnees.pasxy*(1.+0.2*((double)(zoom)));
-    cout<<"pasxy : "<<gDonnees.pasxy<<endl;
+        gDonnees.pasxy = gDonnees.pasxy*(1.+0.2*((double)(zoom)));
+        cout<<"pasxy : "<<gDonnees.pasxy<<endl;
     }
-
-
 }
 
 
@@ -66,7 +64,7 @@ void BoutonEnregistrerCB(Fl_Widget* w, void* data){
 
 }
 
-void BoutonReset(Fl_Widget* w, void* data){
+void BoutonResetCB(Fl_Widget* w, void* data){
     // retour au parametre initiales
     gDonnees.Fractale=FRACT_INIT;
     gDonnees.rangMax=RANGMAX_INIT;

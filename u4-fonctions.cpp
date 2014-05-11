@@ -21,8 +21,8 @@ void InitialiserDonnees() {
     gDonnees.color2=0x00FF0000;
     gDonnees.color3=0x0000FF00;
     gDonnees.rangColor1=10;
-    gDonnees.rangColor2=10;
-    gDonnees.rangColor3=10;
+    gDonnees.rangColor2=20;
+    gDonnees.rangColor3=30;
     gDonnees.hauteur=H_ZONE;
 }
 
@@ -82,7 +82,6 @@ void convergencePlan(){
 }
 
 void degradeRGB(unsigned long int A, unsigned long int B, int N, int tab[][3]) {
-    int i;
     A=(A-A%256)/256;
     B=(B-B%256)/256;
     tab[0][2]=A % 256;
@@ -97,12 +96,13 @@ void degradeRGB(unsigned long int A, unsigned long int B, int N, int tab[][3]) {
     tab[N-1][0]=B%256;
 
     //codage du dégradé dans un tableau de triplets RGB de N case tab[N][3], et oui, vive les cast
+    // C'est ça qui sera donc à changer pour avoir une interpolation de couleurs plus "belle"
     double dr,dg,db;
     dr=((double)(tab[N-1][0]-tab[0][0]))/N;
     dg=((double)(tab[N-1][1]-tab[0][1]))/N;
     db=((double)(tab[N-1][2]-tab[0][2]))/N;
 
-    for(i=0; i<N; i++) {
+    for(int i=0; i<N; i++) {
         tab[i][0]=tab[0][0]+i*dr;
         tab[i][1]=tab[0][1]+i*dg;
         tab[i][2]=tab[0][2]+i*db;
@@ -111,30 +111,29 @@ void degradeRGB(unsigned long int A, unsigned long int B, int N, int tab[][3]) {
 }
 
 void couleurs(unsigned long int A, unsigned long int B, unsigned long int C, int N1, int N2, int N3, unsigned long int tab[]) {
-    int i;
     unsigned long int I=Couleur_Init;
     int tab1[N1][3];
     int tab2[N2][3];
     int tab3[N3][3];
     int tab4[gDonnees.rangMax-N3][3];
     degradeRGB(I,A,N1,tab1);
-    degradeRGB(A,B,N2,tab2);
-    degradeRGB(B,C,N3,tab3);
-    degradeRGB(C,I,gDonnees.rangMax-N1-N2-N3,tab4);
+    degradeRGB(A,B,N2-N1,tab2);
+    degradeRGB(B,C,N3-N2,tab3);
+    degradeRGB(C,I,gDonnees.rangMax-N3,tab4);
 
     tab[0]=0;
-    for(i=1; i<N1; i++) {
-        tab[i]=255+256*tab1[i][2]+256*256*tab1[i][1]+256*256*256*tab1[i][0];
+    for(int i=1; i<N1; i++) {
+        tab[i]=255+256*tab1[i   ][2]+256*256*tab1[i   ][1]+256*256*256*tab1[i   ][0];
     }
-     for(i=N1; i<N1+N2; i++) {
+    for(int i=N1; i<N2; i++) {
         tab[i]=255+256*tab2[i-N1][2]+256*256*tab2[i-N1][1]+256*256*256*tab2[i-N1][0];
     }
-     for(i=N1+N2; i<N3+N1+N2 ; i++) {
-        tab[i]=255+256*tab3[i-N2-N1][2]+256*256*tab3[i-N2-N1][1]+256*256*256*tab3[i-N2-N1][0];
+    for(int i=N2; i<N3 ; i++) {
+        tab[i]=255+256*tab3[i-N2][2]+256*256*tab3[i-N2][1]+256*256*256*tab3[i-N2][0];
         //cout<<tab[i]<<";"<<i<<endl;
     }
-    for(i=N3+N2+N1; i<gDonnees.rangMax; i++) {
-        tab[i]=255+256*tab4[i-N3-N2-N1][2]+256*256*tab4[i-N3-N2-N1][1]+256*256*256*tab4[i-N3-N2-N1][0];
+    for(int i=N3; i<gDonnees.rangMax; i++) {
+        tab[i]=255+256*tab4[i-N3][2]+256*256*tab4[i-N3][1]+256*256*256*tab4[i-N3][0];
     }
     //cout<<gDonnees.rangMax;
 }
@@ -165,9 +164,9 @@ void enregistrerPPM(int Largeur, char Fichier[32]){
         coordonnees=complex<double>(x_ini,y_ini+j*pas);
         //coordonnees=coord_init+(double)j*pas_complx;
         	for (int i = 0; i < L_ZONE; ++i) {
-            if (gDonnees.Tab[i][j].n==-1 )
-                {fprintf(ptrFichier, "0 0 0 ");}
-            else{}
+                if (gDonnees.Tab[i][j].n==-1 )
+                    fprintf(ptrFichier, "0 0 0 ");
+                else{}
         	}
     	}
 }
