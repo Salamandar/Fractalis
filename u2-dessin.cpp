@@ -17,18 +17,18 @@ void ZoneDessinInitialisation(Fl_Widget* widget, void* data) {
 void gestionAffichage(void*) {
     static int ligne=0;     // Indice de la ligne en cours de calcul + affichage (static pour la conserver cross-boucles :) )
     pointeurFct fonction = retourne_fonction();
+    unsigned long tab[gDonnees.rangMax];
     while (ligne<H_ZONE){
     convergenceLigne(fonction, ligne);
-    afficheLigne(ligne);
+    afficheLigne(ligne, *tab);
     ligne++;
     }
 }
 
-void afficheLigne(int j){
+void afficheLigne(int j, unsigned long tableau){
     // À mettre autre part, là on recalcule à chaque ligne, complètement inutile
     unsigned long tab[gDonnees.rangMax];
     couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tab);
-
     for (int i = 0; i < L_ZONE; ++i) {
         if (gDonnees.Tab[i][j].n==-1 )
             fl_color(FL_BLACK);

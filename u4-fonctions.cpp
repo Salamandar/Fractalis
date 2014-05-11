@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string.h>
 #include <api/inc/fmod.h>
 #include <api/inc/fmod_errors.h>
 #include <complex>
@@ -28,14 +27,11 @@ void InitialiserDonnees() {
 // Pointe vers les fonctions suivantes en fonction de la fractale choisie
 pointeurFct retourne_fonction() {
     switch(gDonnees.Fractale){
-        case MANDELBROT:
-            return mandelbrot;
+        case MANDELBROT: return mandelbrot;
             break;
-        case JULIA:
-            return julia;
+        case JULIA: return julia;
             break;
-        case PERSONNA:
-            return personna;
+        case PERSONNA: return personna;
             break;
     }
 }

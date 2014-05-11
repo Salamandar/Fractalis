@@ -9,18 +9,6 @@
 #include "u3-callbacks.h"
 #include "u4-fonctions.h"
 
-
-int cycleAffichage() {
-    static int ligne=0;     // Indice de la ligne en cours de calcul + affichage (static pour la conserver cross-boucles :) )
-
-    pointeurFct fonction = retourne_fonction();
-    convergenceLigne(fonction, ligne);
-    //afficheLigne(ligne);
-    ligne++;
-    return ligne;
-}
-
-
 void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
     // ATTENTION : X et Y ne sont pas relatifs a la zone mais a la fenetre qui la contient !!!!
     // Mode déplacement
@@ -29,14 +17,14 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
     int y1=0;
     int y2=0;
 
-    // prise des coordonn?s initiales de la souris
+    // prise des coordonnees initiales de la souris
     if ( Fl::event() == FL_PUSH ){
         printf("Mouse push = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
         x1=Fl::event_x();
         y1=Fl::event_y();
     }
 
-    // prise des coordonn?s finale
+    // prise des coordonnees finale
     if(Fl::event() == FL_RELEASE){
         printf("Mouse release = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
         x2=Fl::event_x();
@@ -77,7 +65,7 @@ void BoutonEnregistrerCB(Fl_Widget* w, void* data){
 }
 
 void BoutonReset(Fl_Widget* w, void* data){
-    // retour au param?re initiales
+    // retour au parametre initiales
     gDonnees.Fractale=FRACT_INIT;
     gDonnees.rangMax=RANGMAX_INIT;
     gDonnees.moduleMax=MODULEMAX_INIT;
