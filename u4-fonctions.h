@@ -1,7 +1,5 @@
 #ifndef _u4_fonctions_h
 #define _u4_fonctions_h
-#include <complex>
-using namespace std;
 
 // Max d'étapes à vérifier
 #define PROFONDEUR_MAX 100

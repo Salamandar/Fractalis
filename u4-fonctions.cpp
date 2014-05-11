@@ -1,10 +1,12 @@
 #include <iostream>
-#include <api/inc/fmod.h>
-#include <api/inc/fmod_errors.h>
 #include <complex>
 #include <stdio.h>
+#include <api/inc/fmod.h>
+#include <api/inc/fmod_errors.h>
+using namespace std;
 #include "u1-interface.h"
 #include "u4-fonctions.h"
+
 
 struct Donnees gDonnees;
 
@@ -78,16 +80,6 @@ void convergenceLigne(pointeurFct fonction, int j){
         position+=pas;
     }
 }
-
-
-
-
-// Cette procedure permet une attente de x secondes, x peut etre en secondes mais aussi en flottant par exemple : 0.1 s
-//void Attente ( double Seconds ) {
- //   clock_t Endwait;
- //   Endwait = (int) (clock () + Seconds * CLOCKS_PER_SEC);
-//   while (clock() < Endwait);
-//}
 
 void degradeRGB(unsigned long int A, unsigned long int B, int N, int tab[][3]) {
     int i;

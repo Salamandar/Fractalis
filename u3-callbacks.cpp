@@ -4,6 +4,7 @@
 #include <FL/Fl.H>
 #include <FL/fl_ask.H>
 #include <FL/Fl_File_Chooser.H>
+using namespace std;
 #include "u1-interface.h"
 #include "u2-dessin.h"
 #include "u3-callbacks.h"

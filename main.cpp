@@ -3,12 +3,13 @@
 #include <stdlib.h>
 #include <FL/Fl.H>
 #include <FL/fl_draw.H>
+using namespace std;
 #include "main.h"
 #include "u1-interface.h"
 #include "u2-dessin.h"
 #include "u3-callbacks.h"
 #include "u4-fonctions.h"
-using namespace std;
+
 
 int main (int argc, char ** argv) {
     // int ligne_actuelle=0;
