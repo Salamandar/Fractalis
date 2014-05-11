@@ -73,6 +73,12 @@ int DrawingArea::handle(int event){
             return 1;
             break;
 
+         case FL_MOUSEWHEEL:
+             if ( _mouse_callback_function != NULL )
+                (* _mouse_callback_function ) ( this, _mouse_callback_data ) ;
+            return 1 ;
+            break ;
+
         case FL_KEYBOARD:
              if ( _keyboard_callback_function != NULL )
                 (* _keyboard_callback_function ) ( this, _keyboard_callback_data );

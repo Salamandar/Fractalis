@@ -45,10 +45,11 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
     //Mode zoom
     int zoom=0;
     if (Fl::event() == FL_MOUSEWHEEL ){
-        zoom=Fl::event_dx();
-        printf("zoom : %d", zoom);
+        zoom=Fl::event_dy();
+        cout<<"zoom : "<<zoom<<endl;
+    gDonnees.pasxy = gDonnees.pasxy*(1.+0.2*((double)(zoom)));
+    cout<<"pasxy : "<<gDonnees.pasxy<<endl;
     }
-    gDonnees.pasxy+= 0.001*zoom;
 
 
 }
