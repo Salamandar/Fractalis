@@ -59,10 +59,19 @@ int convergence(complex<double> position, pointeurFct fonction){
         Zrang=fonction(position,Zrang);
         rang++;
     } while (std::abs(Zrang) < gDonnees.moduleMax && rang<gDonnees.rangMax);
-    if (rang==gDonnees.rangMax)
-        return -1;
-    else
-        return rang;
+    return rang==gDonnees.rangMax ? -1 : rang;      // Opération ternaire
+
+}
+
+// Calcul d'indices de convergence pour une ligne. L_ZONE à virer.
+void convergenceLigne(pointeurFct fonction, int j){
+    double pas=gDonnees.pasxy;
+    complex<double> position= gDonnees.ig;
+    imag(position)+=j*pas;
+    for (int i = 0; i < L_ZONE; ++i) {      // Boucle ligne par ligne
+        gDonnees.Tab[i][j].n=convergence(position, fonction);
+        position+=pas;
+    }
 }
 
 // Calcule et enregistre tous les rangs de convergence dans le tableau
@@ -70,15 +79,6 @@ void convergencePlan(){
     pointeurFct fonction = retourne_fonction(); // Détermine la fonction
     for (int j = 0; j < gDonnees.hauteur; ++j)
         convergenceLigne(fonction, j);
-}
-
-void convergenceLigne(pointeurFct fonction, int j){
-    double pas=gDonnees.pasxy;
-    complex<double> position= gDonnees.ig + complex<double>(0,(double)j*pas);
-    for (int i = 0; i < L_ZONE; ++i) {      // Boucle ligne par ligne
-        gDonnees.Tab[i][j].n=convergence(position, fonction);
-        position+=pas;
-    }
 }
 
 void degradeRGB(unsigned long int A, unsigned long int B, int N, int tab[][3]) {

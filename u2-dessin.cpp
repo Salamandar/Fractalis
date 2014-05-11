@@ -21,11 +21,13 @@ void gestionAffichage(void*) {
     pointeurFct fonction = retourne_fonction();
     unsigned long tab[gDonnees.rangMax];
     couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tab);
-    while (ligne<H_ZONE){
+    if (ligne<H_ZONE){
         convergenceLigne(fonction, ligne);
         afficheLigne(ligne, tab);
         ligne++;
+        Fl::add_timeout(0, gestionAffichage, NULL );
     }
+
 }
 
 void afficheLigne(int j, unsigned long tableau[]){
