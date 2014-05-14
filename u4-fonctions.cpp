@@ -60,7 +60,6 @@ int convergence(complex<double> position, pointeurFct fonction){
         rang++;
     } while (std::abs(Zrang) < gDonnees.moduleMax && rang<gDonnees.rangMax);
     return rang==gDonnees.rangMax ? -1 : rang;      // Opération ternaire
-
 }
 
 // Calcul d'indices de convergence pour une ligne. L_ZONE à virer.
