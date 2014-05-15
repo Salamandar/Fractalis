@@ -132,12 +132,47 @@ void ChampLargeurCB(Fl_Widget* w, void* data){
 void CarreChoixCouleurCB(Fl_Widget* w, void* data){
 }
 
-void Slider1(Fl_Widget* w, void* data){
+void Slider1CB(Fl_Widget* w, void* data){
+    gTests.slider=1;
+    gDonnees.rangColor1=(int)gInterface.Slider1->value();
+    if(gDonnees.rangColor1>gDonnees.rangColor2){
+        gDonnees.rangColor2=gDonnees.rangColor1;
+        gInterface.Slider2->value(gDonnees.rangColor2);
+        }
+    if(gDonnees.rangColor1>gDonnees.rangColor3){
+        gDonnees.rangColor3=gDonnees.rangColor1;
+        gInterface.Slider3->value(gDonnees.rangColor3);
+        }
+   // gInterface.ZoneDessin->redraw();
 
 }
 
-void Slider2(Fl_Widget* w, void* data){
+void Slider2CB(Fl_Widget* w, void* data){
+        gTests.slider=2;
+    gDonnees.rangColor2=(int)gInterface.Slider2->value();
+    if(gDonnees.rangColor1>gDonnees.rangColor2){
+        gDonnees.rangColor1=gDonnees.rangColor2;
+        gInterface.Slider1->value(gDonnees.rangColor1);
+        }
+    if(gDonnees.rangColor2>gDonnees.rangColor3){
+        gDonnees.rangColor3=gDonnees.rangColor2;
+        gInterface.Slider3->value(gDonnees.rangColor3);
+        }
+    //gInterface.ZoneDessin->redraw();
+
 }
 
-void Slider3(Fl_Widget* w, void* data){
+
+void Slider3CB(Fl_Widget* w, void* data){
+         gTests.slider=3;
+    gDonnees.rangColor3=(int)gInterface.Slider3->value();
+    if(gDonnees.rangColor1>gDonnees.rangColor3){
+        gDonnees.rangColor1=gDonnees.rangColor3;
+        gInterface.Slider1->value(gDonnees.rangColor1);
+        }
+    if(gDonnees.rangColor2>gDonnees.rangColor3){
+        gDonnees.rangColor2=gDonnees.rangColor3;
+        gInterface.Slider2->value(gDonnees.rangColor2);
+        }
+   // gInterface.ZoneDessin->redraw();
 }

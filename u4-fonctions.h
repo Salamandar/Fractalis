@@ -54,6 +54,7 @@ struct Donnees {
 struct Tests {
 bool dessin;
 bool CB;
+int slider;
 };
 extern Donnees gDonnees;
 extern Tests gTests;
