@@ -49,8 +49,13 @@ struct Donnees {
     int rangColor1, rangColor2, rangColor3;
     int hauteur;
 };
-extern Donnees gDonnees;
 
+struct Tests {
+bool dessin;
+bool CB;
+};
+extern Donnees gDonnees;
+extern Tests gTest;
 void InitialiserDonnees() ;
 
     // Donne une correspondance entre coordonnées du tableau et coordonnées du plan complexe

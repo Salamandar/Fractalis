@@ -30,14 +30,18 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
         printf("Mouse release = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
         x2=Fl::event_x();
         y2=Fl::event_y();
+
+          // calcul du décalage à effectuer
+    real(gDonnees.ig)=real(gDonnees.ig)+(x2-x1);
+    imag(gDonnees.ig)=imag(gDonnees.ig)+(y2-y1);
+
+        gInterface.ZoneDessin->redraw();
     }
 
     //printf("partie reelle init : %lf" ,real(gDonnees.ig));
 
 
-    // calcul du décalage à effectuer
-    real(gDonnees.ig)=real(gDonnees.ig)+(x2-x1);
-    imag(gDonnees.ig)=imag(gDonnees.ig)+(y2-y1);
+
 
 
     //printf("partie reelle finale : %lf\n" ,real(gDonnees.ig));
@@ -49,6 +53,7 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
         cout<<"zoom : "<<zoom<<endl;
         gDonnees.pasxy = gDonnees.pasxy*(1.+0.2*((double)(zoom)));
         cout<<"pasxy : "<<gDonnees.pasxy<<endl;
+        gInterface.ZoneDessin->redraw();
     }
 }
 
