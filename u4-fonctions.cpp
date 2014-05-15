@@ -9,6 +9,7 @@ using namespace std;
 
 
 struct Donnees gDonnees;
+struct Tests gTests;
 
 void InitialiserDonnees() {
     gDonnees.Fractale = FRACT_INIT;

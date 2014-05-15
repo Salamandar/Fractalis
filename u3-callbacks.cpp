@@ -13,10 +13,10 @@ using namespace std;
 void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
     // ATTENTION : X et Y ne sont pas relatifs a la zone mais a la fenetre qui la contient !!!!
     // Mode déplacement
-    int x1=0;
-    int x2=0;
-    int y1=0;
-    int y2=0;
+    static int x1;
+    static int x2;
+    static int y1;
+    static int y2;
 
     // prise des coordonnees initiales de la souris
     if(Fl::event() == FL_PUSH){
@@ -30,10 +30,16 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
         printf("Mouse release = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
         x2=Fl::event_x();
         y2=Fl::event_y();
+        cout<<"x1 x2 y1 y2 \n"<<x1<<endl<<x2<<endl<<y1<<endl<<y2<<endl;
 
           // calcul du décalage à effectuer
-    real(gDonnees.ig)=real(gDonnees.ig)+(x2-x1);
-    imag(gDonnees.ig)=imag(gDonnees.ig)+(y2-y1);
+        if(x1<x2){real(gDonnees.ig)=real(gDonnees.ig)+(x1-X_ZONE)*gDonnees.pasxy;}
+        else {real(gDonnees.ig)=real(gDonnees.ig)+(x2-X_ZONE)*gDonnees.pasxy;}
+        if (y1>y2){imag(gDonnees.ig)=imag(gDonnees.ig)+(y1-Y_ZONE-H_ZONE)*gDonnees.pasxy;}
+        else {imag(gDonnees.ig)=imag(gDonnees.ig)+(y2-Y_ZONE-H_ZONE)*gDonnees.pasxy;}
+
+        cout<<"ig "<<gDonnees.ig;
+
 
         gInterface.ZoneDessin->redraw();
     }

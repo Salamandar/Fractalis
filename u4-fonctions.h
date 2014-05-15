@@ -55,7 +55,7 @@ bool dessin;
 bool CB;
 };
 extern Donnees gDonnees;
-extern Tests gTest;
+extern Tests gTests;
 void InitialiserDonnees() ;
 
     // Donne une correspondance entre coordonnées du tableau et coordonnées du plan complexe
