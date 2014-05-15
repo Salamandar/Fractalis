@@ -14,5 +14,8 @@ void ChampXMinCB        (Fl_Widget* w, void* data);
 void ChampYMinCB        (Fl_Widget* w, void* data);
 void ChampLargeurCB     (Fl_Widget* w, void* data);
 void CarreChoixCouleurCB(Fl_Widget* w, void* data);
+void Slider1            (Fl_Widget* w, void* data);
+void Slider2            (Fl_Widget* w, void* data);
+void Slider3            (Fl_Widget* w, void* data);
 
 #endif

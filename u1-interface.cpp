@@ -2,6 +2,7 @@
 #include "u1-interface.h"
 #include "u2-dessin.h"
 #include "u3-callbacks.h"
+//#include "u4-fonctions.h"
 
 // Definition des donnees de l'interface - structure globale de variables
 struct Interface gInterface;
@@ -36,11 +37,13 @@ void CreerInterface() {
 
     // Creation du champ de saisie module de sortie
     gInterface.ChampModuleDeSortie = new Fl_Value_Input(X_ZONE+L_ZONE+200, 90 , 100, 20, "Module de sortie :");
+    //gInterface.ChampModuleDeSortie->value(gDonnees.moduleMax);
     gInterface.ChampModuleDeSortie->when(FL_WHEN_ENTER_KEY | FL_WHEN_RELEASE);
     gInterface.ChampModuleDeSortie->callback(ChampModuleDeSortieCB, NULL);
 
     // Creation du champ de saisie profondeur
     gInterface.ChampProfondeur = new Fl_Value_Input(X_ZONE+L_ZONE+200, 130 , 100, 20, "Profondeur :");
+    //gInterface.ChampProfondeur->value(gDonnees.rangMax);
     gInterface.ChampProfondeur->when(FL_WHEN_ENTER_KEY | FL_WHEN_RELEASE);
     gInterface.ChampProfondeur->callback(ChampProfondeurCB, NULL);
 
@@ -60,7 +63,16 @@ void CreerInterface() {
 
     //Carré couleur
     gInterface.CarreChoixCouleur = new Fl_Color_Chooser(X_ZONE+L_ZONE+125,250, 200, 150);
+    gInterface.CarreChoixCouleur->rgb(1,0,0);
     gInterface.CarreChoixCouleur->callback(CarreChoixCouleurCB, NULL);
+
+    //Sliders
+    gInterface.Slider1 = new Fl_Value_Slider(X_ZONE+L_ZONE+125,410,200,20,"Couleur 1");
+    gInterface.Slider1->type(FL_HOR_NICE_SLIDER);
+    gInterface.Slider2 = new Fl_Value_Slider(X_ZONE+L_ZONE+125,450,200,20,"Couleur 2");
+    gInterface.Slider2->type(FL_HOR_NICE_SLIDER);
+    gInterface.Slider3 = new Fl_Value_Slider(X_ZONE+L_ZONE+125,490,200,20,"Couleur 3");
+    gInterface.Slider3->type(FL_HOR_NICE_SLIDER);
 
     // Affichage de la fenetre
     gInterface.Fenetre->end();

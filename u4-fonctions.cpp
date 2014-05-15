@@ -25,7 +25,17 @@ void InitialiserDonnees() {
     gDonnees.rangColor2=20;
     gDonnees.rangColor3=30;
     gDonnees.hauteur=H_ZONE;
-}
+
+    //interface, je met la car ça bug quand j'include u4 fct dans u1 interface
+    gInterface.ChampModuleDeSortie->value(gDonnees.moduleMax);
+    gInterface.ChampProfondeur->value(gDonnees.rangMax);
+    gInterface.Slider1->scrollvalue(gDonnees.rangColor1,0,0,gDonnees.rangMax);
+    gInterface.Slider1->color(gDonnees.color1,gDonnees.color1);
+    gInterface.Slider2->scrollvalue(gDonnees.rangColor2,0,0,gDonnees.rangMax);
+    gInterface.Slider2->color(gDonnees.color2,gDonnees.color2);
+    gInterface.Slider3->scrollvalue(gDonnees.rangColor3,0,0,gDonnees.rangMax);
+    gInterface.Slider3->color(gDonnees.color3,gDonnees.color3);
+    }
 
 // Pointe vers les fonctions suivantes en fonction de la fractale choisie
 pointeurFct retourne_fonction() {
