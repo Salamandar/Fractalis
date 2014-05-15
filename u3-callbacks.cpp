@@ -180,7 +180,6 @@ void CarreChoixCouleurCB(Fl_Widget* w, void* data){
     float r=255*gInterface.CarreChoixCouleur->r();
     float g=255*gInterface.CarreChoixCouleur->g();
     float b=255*gInterface.CarreChoixCouleur->b();
-    cout<<gTests.slider<<endl;
     if(gTests.slider==1){
         gDonnees.color1=255+256*(int)b+256*256*(int)g+256*256*256*(int)r;
         gInterface.Slider1->color(gDonnees.color1,gDonnees.color1);
@@ -197,4 +196,5 @@ void CarreChoixCouleurCB(Fl_Widget* w, void* data){
         gInterface.Slider3->color(gDonnees.color3,gDonnees.color3);
         gInterface.Slider3->redraw();
     }
+    gInterface.ZoneDessin->redraw();
 }
