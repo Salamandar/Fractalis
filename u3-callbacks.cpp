@@ -129,8 +129,7 @@ void ChampLargeurCB(Fl_Widget* w, void* data){
 
 }
 
-void CarreChoixCouleurCB(Fl_Widget* w, void* data){
-}
+
 
 void Slider1CB(Fl_Widget* w, void* data){
     gTests.slider=1;
@@ -143,7 +142,7 @@ void Slider1CB(Fl_Widget* w, void* data){
         gDonnees.rangColor3=gDonnees.rangColor1;
         gInterface.Slider3->value(gDonnees.rangColor3);
         }
-   // gInterface.ZoneDessin->redraw();
+    gInterface.ZoneDessin->redraw();
 
 }
 
@@ -158,7 +157,7 @@ void Slider2CB(Fl_Widget* w, void* data){
         gDonnees.rangColor3=gDonnees.rangColor2;
         gInterface.Slider3->value(gDonnees.rangColor3);
         }
-    //gInterface.ZoneDessin->redraw();
+    gInterface.ZoneDessin->redraw();
 
 }
 
@@ -174,5 +173,28 @@ void Slider3CB(Fl_Widget* w, void* data){
         gDonnees.rangColor2=gDonnees.rangColor3;
         gInterface.Slider2->value(gDonnees.rangColor2);
         }
-   // gInterface.ZoneDessin->redraw();
+    gInterface.ZoneDessin->redraw();
+}
+
+void CarreChoixCouleurCB(Fl_Widget* w, void* data){
+    float r=255*gInterface.CarreChoixCouleur->r();
+    float g=255*gInterface.CarreChoixCouleur->g();
+    float b=255*gInterface.CarreChoixCouleur->b();
+    cout<<gTests.slider<<endl;
+    if(gTests.slider==1){
+        gDonnees.color1=255+256*(int)b+256*256*(int)g+256*256*256*(int)r;
+        gInterface.Slider1->color(gDonnees.color1,gDonnees.color1);
+        gInterface.Slider1->redraw();
+
+    }
+    if(gTests.slider==2){
+        gDonnees.color2=255+256*(int)b+256*256*(int)g+256*256*256*(int)r;
+        gInterface.Slider2->color(gDonnees.color2,gDonnees.color2);
+        gInterface.Slider2->redraw();
+    }
+    if(gTests.slider==3){
+        gDonnees.color3=255+256*(int)b+256*256*(int)g+256*256*256*(int)r;
+        gInterface.Slider3->color(gDonnees.color3,gDonnees.color3);
+        gInterface.Slider3->redraw();
+    }
 }

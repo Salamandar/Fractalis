@@ -26,6 +26,9 @@ void InitialiserDonnees() {
     gDonnees.rangColor3=30;
     gDonnees.hauteur=H_ZONE;
 
+    //Init des tests
+    gTests.slider=1;
+
     //interface, je met la car ça bug quand j'include u4 fct dans u1 interface
     gInterface.ChampModuleDeSortie->value(gDonnees.moduleMax);
     gInterface.ChampProfondeur->value(gDonnees.rangMax);
