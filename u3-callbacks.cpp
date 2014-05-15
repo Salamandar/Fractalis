@@ -132,6 +132,7 @@ void ChampLargeurCB(Fl_Widget* w, void* data){
 
 
 void Slider1CB(Fl_Widget* w, void* data){
+    gTests.dessin=1;
     gTests.slider=1;
     gDonnees.rangColor1=(int)gInterface.Slider1->value();
     if(gDonnees.rangColor1>gDonnees.rangColor2){
@@ -147,6 +148,7 @@ void Slider1CB(Fl_Widget* w, void* data){
 }
 
 void Slider2CB(Fl_Widget* w, void* data){
+        gTests.dessin=1;
         gTests.slider=2;
     gDonnees.rangColor2=(int)gInterface.Slider2->value();
     if(gDonnees.rangColor1>gDonnees.rangColor2){
@@ -163,6 +165,7 @@ void Slider2CB(Fl_Widget* w, void* data){
 
 
 void Slider3CB(Fl_Widget* w, void* data){
+         gTests.dessin=1;
          gTests.slider=3;
     gDonnees.rangColor3=(int)gInterface.Slider3->value();
     if(gDonnees.rangColor1>gDonnees.rangColor3){
@@ -177,6 +180,7 @@ void Slider3CB(Fl_Widget* w, void* data){
 }
 
 void CarreChoixCouleurCB(Fl_Widget* w, void* data){
+    gTests.dessin=1;
     float r=255*gInterface.CarreChoixCouleur->r();
     float g=255*gInterface.CarreChoixCouleur->g();
     float b=255*gInterface.CarreChoixCouleur->b();
