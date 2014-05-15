@@ -8,7 +8,7 @@
 #define RANGMAX_INIT    50
 #define MODULEMAX_INIT  2
 #define C_INIT  ( 1., 1.)
-#define IG_INIT (-2.2,-1.5)
+#define IG_INIT (-2,-2)
 #define PASXY   0.005
 #define Couleur_Init 0
 typedef complex<double> (*pointeurFct)(complex<double>, complex<double>);
