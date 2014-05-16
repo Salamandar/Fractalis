@@ -4,7 +4,7 @@
 // Max d'étapes à vérifier
 #define PROFONDEUR_MAX 100
 // Données utilisateurs initiales :
-#define FRACT_INIT JULIA
+#define FRACT_INIT MANDELBROT
 #define RANGMAX_INIT    50
 #define MODULEMAX_INIT  2
 #define C_INIT  (-0, -0.600)

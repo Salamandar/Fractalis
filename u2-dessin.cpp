@@ -18,13 +18,13 @@ void ZoneDessinInitialisation(Fl_Widget* widget, void* data) {
 }
 
 void gestionAffichage(void*) {
-    //cout<<gDonnees.ig<<endl;
-    //cout<<gDonnees.pasxy<<endl;
+    cout<<gDonnees.ig<<endl;
+    cout<<gDonnees.pasxy<<endl;
     //cout<<gTests.dessin<<endl;
     static int ligne=0;     // Indice de la ligne en cours de calcul + affichage (static pour la conserver cross-lignes :) )
     pointeurFct fonction = retourne_fonction();
     unsigned long tabDegrade[gDonnees.rangMax];
-    if(gTests.calccouleurs==1){couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tabDegrade);
+    if(1==1){couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tabDegrade);
         gTests.calccouleurs=0;}
     if (ligne<H_ZONE){
        if(gTests.dessin==0){ convergenceLigne(fonction, ligne);}
