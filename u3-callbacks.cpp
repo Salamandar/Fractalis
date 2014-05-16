@@ -13,8 +13,7 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
     // ATTENTION : X et Y ne sont pas relatifs a la zone mais a la fenetre qui la contient !!!!
 
 
-
-    // Gestion du zoom cadre
+    // Gestion du zoom cadre (clic droit)
      static int x1;
      static int x2;
      static int y1;
@@ -26,36 +25,34 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
         printf("Mouse push = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
         x1=Fl::event_x();
         y1=Fl::event_y();
-        //cout<<"aze"<<endl;
     }
     // prise des coordonnees finales
     if(Fl::event() == FL_RELEASE && bouton == 3){
         printf("Mouse release = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
         x2=Fl::event_x();
         y2=Fl::event_y();
-        //cout<<"plop"<<endl;
-
           //recadrage de l'image
         if(x1<x2){
-            cout << "Xinit" << real(gDonnees.ig)<<endl ;
-            real(gDonnees.ig)=real(gDonnees.ig)+(x1-X_ZONE)*gDonnees.pasxy;
-            cout << "Xfin"<< real(gDonnees.ig)<<endl ;
+            real(gDonnees.ig)=real(gDonnees.ig)+(x1)*gDonnees.pasxy;
             }
         else {
-            cout << "Xinit" << real(gDonnees.ig)<<endl ;
-            real(gDonnees.ig)=real(gDonnees.ig)+(x2-X_ZONE)*gDonnees.pasxy;
-            cout << "Xfin" << real(gDonnees.ig)<<endl ;
+            real(gDonnees.ig)=real(gDonnees.ig)+(x2)*gDonnees.pasxy;
             }
         if (y1>y2){
-            cout << "Yinit" << imag(gDonnees.ig)<<endl ;
-            imag(gDonnees.ig)=imag(gDonnees.ig)+(y1-Y_ZONE-H_ZONE)*gDonnees.pasxy;
-            cout << "Yfin" << imag(gDonnees.ig)<<endl ;
+            imag(gDonnees.ig)=imag(gDonnees.ig)+(H_ZONE-y1)*gDonnees.pasxy;
             }
         else {
-            cout << "Yfin" << imag(gDonnees.ig)<<endl ;
-            imag(gDonnees.ig)=imag(gDonnees.ig)+(y2-Y_ZONE-H_ZONE)*gDonnees.pasxy;
-            cout << "Yfin" << imag(gDonnees.ig)<<endl ;
+            imag(gDonnees.ig)=imag(gDonnees.ig)+(H_ZONE-y2)*gDonnees.pasxy;
             }
+
+            //modification du pas
+        if(x1<x2){
+          gDonnees.pasxy=gDonnees.pasxy*(x2-x1)/L_ZONE;
+        }
+        else{
+            gDonnees.pasxy=gDonnees.pasxy*(x1-x2)/L_ZONE;
+        }
+
 
 
         //if(x1<x2){
@@ -65,27 +62,60 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
         //else{
         //    gDonnees.pasxy=gDonnees.pasxy*(x1-x2)/L_ZONE;
         //}
+            //Definit C pour Julia
 
 
         gInterface.ZoneDessin->redraw();
     }
 
-    //printf("partie reelle init : %lf" ,real(gDonnees.ig));
 
-
-
-
-    //printf("partie reelle finale : %lf\n" ,real(gDonnees.ig));
-
-    //Mode zoom
+    //Gestion du zoom roulette
     int zoom=0;
     if(Fl::event() == FL_MOUSEWHEEL){
         zoom=Fl::event_dy();
-        //cout<<"zoom : "<<zoom<<endl;
         gDonnees.pasxy = gDonnees.pasxy*(1.+0.2*((double)(zoom)));
-        //cout<<"zoom -> pasxy = "<<gDonnees.pasxy<<endl;
         gInterface.ZoneDessin->redraw();
     }
+
+
+
+
+    //Gestion du déplacement (clic gauche)
+
+     static int u1;
+     static int u2;
+     static int v1;
+     static int v2;
+    // prise des coordonnees initiales de la souris
+    if(Fl::event() == FL_PUSH && bouton ==1){
+        printf("Mouse push = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
+        u1=Fl::event_x();
+        v1=Fl::event_y();
+    }
+    // prise des coordonnees finales
+    if(Fl::event() == FL_RELEASE && bouton == 1){
+        printf("Mouse release = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
+        u2=Fl::event_x();
+        v2=Fl::event_y();
+        //déplacement de l'image
+        real(gDonnees.ig)=real(gDonnees.ig)+(u1-u2)*gDonnees.pasxy;
+        imag(gDonnees.ig)=imag(gDonnees.ig)+(v2-v1)*gDonnees.pasxy;
+        gInterface.ZoneDessin->redraw();
+    }
+
+
+
+    //Definit C pour Julia
+    if(Fl::event_button()==2 && Fl::event()==FL_PUSH){
+        double x,y;
+        x=Fl::event_x();
+        y=Fl::event_y();
+        real(gDonnees.C)=real(gDonnees.ig)+x*gDonnees.pasxy;
+        imag(gDonnees.C)=imag(gDonnees.ig)+y*gDonnees.pasxy;
+        cout<<"C= : ("<<real(gDonnees.C)<<","<<imag(gDonnees.C)<<")"<<endl;
+        gInterface.ZoneDessin->redraw();
+    }     
+
 }
 
 

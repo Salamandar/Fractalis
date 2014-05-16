@@ -42,6 +42,7 @@ void InitialiserDonnees() {
     gInterface.Slider2->color(gDonnees.color2,gDonnees.color2);
     gInterface.Slider3->scrollvalue(gDonnees.rangColor3,0,0,gDonnees.rangMax);
     gInterface.Slider3->color(gDonnees.color3,gDonnees.color3);
+    
 
     }
 
