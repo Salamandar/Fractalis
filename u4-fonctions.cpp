@@ -15,7 +15,7 @@ void InitialiserDonnees() {
     gDonnees.Fractale = FRACT_INIT;
     gDonnees.rangMax  = RANGMAX_INIT;
     gDonnees.moduleMax= MODULEMAX_INIT;
-    gDonnees.C = C_INIT;
+    gDonnees.C =complex<double>C_INIT;
     gDonnees.ig=complex<double>IG_INIT;
     gDonnees.pasxy= PASXY;
     gDonnees.color1=0xFF000000;
@@ -65,7 +65,7 @@ int mandelbrot(std::complex<double> position){
     } while (std::abs(Zrang) < gDonnees.moduleMax && rang<gDonnees.rangMax);
     return rang==gDonnees.rangMax ? -1 : rang;      // Opération ternaire
 }
-int julia     (complex<double> position) {
+int julia(complex<double> position) {
     int rang=1;
     complex<double> Zrang=position;
     do {
@@ -74,7 +74,7 @@ int julia     (complex<double> position) {
     } while (std::abs(Zrang) < gDonnees.moduleMax && rang<gDonnees.rangMax);
     return rang==gDonnees.rangMax ? -1 : rang;      // Opération ternaire
 }
-int personna  (complex<double> position) {
+int personna(complex<double> position) {
     return 0;//(0,0);
     /*  À voir. Ce sera la fonction personnalisable, mais implémentée seulement quand TOUT le reste fonctionnera.
         J'aurai besoin de maîtriser le parsage de fonction mathématique, puis l'allocation dynamique de fonction.
@@ -89,7 +89,6 @@ void convergenceLigne(pointeurFct fonction, int j){
     imag(position)+=j*pas;
     for (int i = 0; i < L_ZONE; ++i) {      // Boucle ligne par ligne
         gDonnees.Tab[i][j].n=fonction(position);
- //        gDonnees.Tab[i][j].n=convergence(position, fonction);
         position+=pas;
     }
 }
