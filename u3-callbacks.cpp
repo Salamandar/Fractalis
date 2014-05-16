@@ -155,6 +155,8 @@ void ChampYMinCB(Fl_Widget* w, void* data){
 void ChampLargeurCB(Fl_Widget* w, void* data){
     gDonnees.pasxy = ((double)gInterface.ChampLargeur->value())/L_ZONE;
     printf("ChampLargeurCB : %lf\n", gDonnees.pasxy*L_ZONE);
+    gInterface.ZoneDessin->redraw();
+
 
 }
 
