@@ -1,5 +1,4 @@
 #include <iostream>
-#include <complex>
 #include <stdio.h>
 #include <api/inc/fmod.h>
 #include <api/inc/fmod_errors.h>
@@ -94,12 +93,6 @@ void convergenceLigne(pointeurFct fonction, int j){
     }
 }
 
-// Calcule et enregistre tous les rangs de convergence dans le tableau. Fonction inutilisée.
-void convergencePlan(){
-    pointeurFct fonction = retourne_fonction(); // Détermine la fonction
-    for (int j = 0; j < gDonnees.hauteur; ++j)
-        convergenceLigne(fonction, j);
-}
 
 void degradeRGB(unsigned long int A, unsigned long int B, int N, int tab[][3]) {
     A=(A-A%256)/256;
