@@ -27,7 +27,8 @@ void InitialiserDonnees() {
 
     //Init des tests
     gTests.slider=1;
-    gTests.dessin=0;
+    gTests.dessin=1;
+    gTests.calcul=1;
     gTests.calccouleurs=1;
 
     //interface, je met la car ça bug quand j'include u4 fct dans u1 interface
@@ -42,9 +43,7 @@ void InitialiserDonnees() {
     gInterface.Slider2->color(gDonnees.color2,gDonnees.color2);
     gInterface.Slider3->scrollvalue(gDonnees.rangColor3,0,0,gDonnees.rangMax);
     gInterface.Slider3->color(gDonnees.color3,gDonnees.color3);
-    
-
-    }
+}
 
 // Pointe vers les fonctions suivantes en fonction de la fractale choisie
 pointeurFct retourne_fonction() {
@@ -106,7 +105,7 @@ int personna(complex<double> position) {
 }
 
 // Calcul d'indices de convergence pour une ligne. L_ZONE à virer.
-void convergenceLigne(pointeurFct fonction, int j){
+void convergenceLigne(int j, pointeurFct fonction){
     double pas=gDonnees.pasxy;
     complex<double> position= gDonnees.ig;
     imag(position)+=(H_ZONE-j)*pas;
@@ -197,7 +196,7 @@ void enregistrerPPM(int Largeur, char Fichier[32]){
     unsigned long int tab[gDonnees.rangMax];
     couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tab);
     	for (int j = 0; j < gDonnees.hauteur; ++j) {
-        convergenceLigne(fonction,j);
+        convergenceLigne(j, fonction);
         coordonnees=complex<double>(x_ini,y_ini+j*pas);
         //coordonnees=coord_init+(double)j*pas_complx;
         	for (int i = 0; i < L_ZONE; ++i) {

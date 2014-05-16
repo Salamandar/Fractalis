@@ -17,31 +17,31 @@ void ZoneDessinInitialisation(Fl_Widget* widget, void* data) {
 }
 
 void gestionAffichage(void*) {
-    //cout<<gDonnees.ig<<endl;
-    //cout<<gDonnees.pasxy<<endl;
-    //cout<<gTests.dessin<<endl;
-
     static int ligne=0;     // Indice de la ligne en cours de calcul + affichage (static pour la conserver cross-lignes :) )
     pointeurFct fonction = retourne_fonction();
     unsigned long tabDegrade[gDonnees.rangMax];     // On pourrait faire une struct de vars actuelles
-    if(1==1){
+    //if(1){
+    if(gTests.calccouleurs){
+        printf("Calcul de couleur\n");
         couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tabDegrade);
         gTests.calccouleurs=0;
     }
     if (ligne<H_ZONE){
-        if(!gTests.dessin)
-            convergenceLigne(fonction, ligne);
-        afficheLigne(ligne, tabDegrade);
+        if (gTests.calcul)
+            convergenceLigne(ligne, fonction);
+        if(gTests.dessin)   // Inutile comme test,non ?
+            afficheLigne(ligne, tabDegrade);
         ligne+=2;
-        Fl::add_timeout(0.001, gestionAffichage, NULL);
+        Fl::add_timeout(0.00, gestionAffichage, NULL);
     }
-    else{
-        if(ligne&1){
+    else{   // On arrive à la fin
+        if(ligne&1) {   // On a tout affiché
             ligne=0;
-            gTests.dessin=0;
-            gTests.calccouleurs=1;
-          }
-        else{
+            gTests.calcul=0;    // On n'a plus besoin de calculer jusqu'à modif des params de calcul
+            gTests.dessin=0;    // On n'a plus besoin d'afficher jusqu'à modif des params de calcul ou d'affichage
+            gTests.calccouleurs=1;  // On n'a pas à calculer le dégradé de couleurs jusqu'à modif des params de couleur. À virer…
+        }
+        else {          // On n'a affiché que les lignes paires
             ligne=1;
             Fl::add_timeout(0.0, gestionAffichage, NULL);
         }

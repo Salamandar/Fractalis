@@ -34,8 +34,11 @@ void CreerInterface() {
     gInterface.MenuFractale=new Fl_Choice(X_ZONE+L_ZONE+200, 50, 100, 20, "Type de Fractale :");
     gInterface.MenuFractale->add("Mandelbrot", "", MenuFractaleCB);
     gInterface.MenuFractale->add("Julia", "", MenuFractaleCB);
+    gInterface.MenuFractale->add("Cos+C", "", MenuFractaleCB);
+    gInterface.MenuFractale->add("Sin+z0", "", MenuFractaleCB);
     gInterface.MenuFractale->add("Personna", "", MenuFractaleCB);
     gInterface.MenuFractale->value(0);
+    gInterface.MenuFractale->callback(MenuFractaleCB);
 
     // Creation du champ de saisie module de sortie
     gInterface.ChampModuleDeSortie = new Fl_Value_Input(X_ZONE+L_ZONE+200, 90 , 100, 20, "Module de sortie :");
@@ -44,13 +47,13 @@ void CreerInterface() {
     gInterface.ChampModuleDeSortie->callback(ChampModuleDeSortieCB, NULL);
 
     // Creation du champ de saisie profondeur
-    gInterface.ChampProfondeur = new Fl_Value_Input(X_ZONE+L_ZONE+200, 130 , 100, 20, "Profondeur :");
+    gInterface.ChampProfondeur = new Fl_Value_Input(X_ZONE+L_ZONE+200, 130 , 100, 20, "Rang maximum de calcul :");
     //gInterface.ChampProfondeur->value(gDonnees.rangMax);
     gInterface.ChampProfondeur->when(FL_WHEN_ENTER_KEY | FL_WHEN_RELEASE);
     gInterface.ChampProfondeur->callback(ChampProfondeurCB, NULL);
 
     //Choix du coin inférieur gauche
-    gInterface.ChampXMin = new Fl_Value_Input(X_ZONE+L_ZONE+200, 170, 50, 20, "Coordonnees du Min :");
+    gInterface.ChampXMin = new Fl_Value_Input(X_ZONE+L_ZONE+200, 170, 50, 20, "Coordonnées du Min :");
     gInterface.ChampXMin->when(FL_WHEN_ENTER_KEY | FL_WHEN_RELEASE);
     gInterface.ChampXMin->callback(ChampXMinCB, NULL);
 
@@ -59,7 +62,7 @@ void CreerInterface() {
     gInterface.ChampYMin->callback(ChampYMinCB, NULL);
 
     //Choix de la largeur de l'affichage
-    gInterface.ChampLargeur = new Fl_Value_Input(X_ZONE+L_ZONE+200, 210 , 50, 20, "Largeur");
+    gInterface.ChampLargeur = new Fl_Value_Input(X_ZONE+L_ZONE+200, 210 , 50, 20, "Largeur de l'affichage :");
     gInterface.ChampLargeur->when(FL_WHEN_ENTER_KEY | FL_WHEN_RELEASE);
     gInterface.ChampLargeur->callback(ChampLargeurCB, NULL);
 

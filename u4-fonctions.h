@@ -5,7 +5,7 @@
 // Max d'étapes à vérifier
 #define PROFONDEUR_MAX 100
 // Données utilisateurs initiales :
-#define FRACT_INIT SINZO
+#define FRACT_INIT MANDELBROT
 #define RANGMAX_INIT    50
 #define MODULEMAX_INIT  2
 #define C_INIT  (0.3, 0.5)
@@ -48,6 +48,7 @@ struct Donnees {
 
 struct Tests {
     bool dessin;
+    bool calcul;
     bool calccouleurs;
     bool CB;
     int slider;
@@ -67,13 +68,9 @@ int sinzo     (complex<double> position);
 int cosc      (complex<double> position);
 int personna  (complex<double> position);
 
-void convergenceLigne(pointeurFct fonction, int j);
+void convergenceLigne(int j, pointeurFct fonction);
 
-
-
-
-
-//Prends en arg 2 unsigned long int et ressort le dégradé sur N dans un tableau de taille[N][3]
+//Prend en arg 2 unsigned long int et ressort le dégradé sur N dans un tableau de taille[N][3]
 void degradeRGB(unsigned long int A, unsigned long int  B,int N, int tab[][3]);
 void couleurs(unsigned long int A, unsigned long int B, unsigned long int C, int N1, int N2, int N3, unsigned long int tab[]);
 
