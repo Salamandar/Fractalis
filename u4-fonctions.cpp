@@ -15,7 +15,7 @@ void InitialiserDonnees() {
     gDonnees.Fractale = FRACT_INIT;
     gDonnees.rangMax  = RANGMAX_INIT;
     gDonnees.moduleMax= MODULEMAX_INIT;
-    gDonnees.C = C_INIT;
+    gDonnees.C =complex<double>C_INIT;
     gDonnees.ig=complex<double>IG_INIT;
     gDonnees.pasxy= PASXY;
     gDonnees.color1=0xFF000000;
@@ -57,29 +57,30 @@ pointeurFct retourne_fonction() {
             break;
     }
 }
-complex<double> mandelbrot(std::complex<double> position, complex<double> z){
-    return z*z + position;
+int mandelbrot(std::complex<double> position){
+    int rang=1;
+    complex<double> Zrang=position;
+    do {
+        Zrang=Zrang*Zrang + position;
+        rang++;
+    } while (std::abs(Zrang) < gDonnees.moduleMax && rang<gDonnees.rangMax);
+    return rang==gDonnees.rangMax ? -1 : rang;      // Opération ternaire
 }
-complex<double> julia     (std::complex<double> position, complex<double> z){
-    return position*position + z;
+int julia(complex<double> position) {
+    int rang=1;
+    complex<double> Zrang=position;
+    do {
+        Zrang=Zrang*Zrang + gDonnees.C;
+        rang++;
+    } while (std::abs(Zrang) < gDonnees.moduleMax && rang<gDonnees.rangMax);
+    return rang==gDonnees.rangMax ? -1 : rang;      // Opération ternaire
 }
-complex<double> personna  (std::complex<double> position, complex<double> z){
-    return (0,0);
+int personna(complex<double> position) {
+    return 0;//(0,0);
     /*  À voir. Ce sera la fonction personnalisable, mais implémentée seulement quand TOUT le reste fonctionnera.
         J'aurai besoin de maîtriser le parsage de fonction mathématique, puis l'allocation dynamique de fonction.
         Ça sera extrêmement moche, donc si Nils a une idée elle est la bienvenue.
     */
-}
-
-// Donne un rang de convergence pour un point du plan complexe, à utiliser pour déterminer couleur d'affichage
-int convergence(complex<double> position, pointeurFct fonction){
-    int rang=0;
-    complex<double> Zrang(0.,0.);
-    do {
-        Zrang=fonction(position,Zrang);
-        rang++;
-    } while (std::abs(Zrang) < gDonnees.moduleMax && rang<gDonnees.rangMax);
-    return rang==gDonnees.rangMax ? -1 : rang;      // Opération ternaire
 }
 
 // Calcul d'indices de convergence pour une ligne. L_ZONE à virer.
@@ -88,7 +89,7 @@ void convergenceLigne(pointeurFct fonction, int j){
     complex<double> position= gDonnees.ig;
     imag(position)+=j*pas;
     for (int i = 0; i < L_ZONE; ++i) {      // Boucle ligne par ligne
-        gDonnees.Tab[i][j].n=convergence(position, fonction);
+        gDonnees.Tab[i][j].n=fonction(position);
         position+=pas;
     }
 }

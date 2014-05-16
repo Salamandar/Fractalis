@@ -76,7 +76,6 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
 
 
 
-
     //printf("partie reelle finale : %lf\n" ,real(gDonnees.ig));
 
     //Mode zoom

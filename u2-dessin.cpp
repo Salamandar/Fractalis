@@ -30,7 +30,7 @@ void gestionAffichage(void*) {
        if(gTests.dessin==0){ convergenceLigne(fonction, ligne);}
         afficheLigne(ligne, tabDegrade);
         ligne+=2;
-        Fl::add_timeout(0.0, gestionAffichage, NULL);
+        Fl::add_timeout(0.001, gestionAffichage, NULL);
     }
     else{
         if(ligne&1){

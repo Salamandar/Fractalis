@@ -4,15 +4,15 @@
 // Max d'étapes à vérifier
 #define PROFONDEUR_MAX 100
 // Données utilisateurs initiales :
-#define FRACT_INIT MANDELBROT
+#define FRACT_INIT JULIA
 #define RANGMAX_INIT    50
 #define MODULEMAX_INIT  2
-#define C_INIT  ( 1., 1.)
-#define IG_INIT (-2.2,-1.5)
+#define C_INIT  (-0, -0.600)
+#define IG_INIT (-2,-2)
 #define PASXY   0.005
 #define Couleur_Init 0
 
-typedef complex<double> (*pointeurFct)(complex<double>, complex<double>);
+typedef int (*pointeurFct)(complex<double>);
     // Type d'une fonction qui renvoie un pointeur vers le type de fractale
 
 enum fractype {
@@ -65,9 +65,9 @@ void InitialiserDonnees() ;
 void realFromTab(double *bi, double *bj);
 
 pointeurFct retourne_fonction();    // Pointe vers les fonctions suivantes en fonction de la fractale choisie
-complex<double> mandelbrot(complex<double> position, complex<double> z);
-complex<double> julia     (complex<double> position, complex<double> z);
-complex<double> personna  (complex<double> position, complex<double> z);
+int mandelbrot(complex<double> position);
+int julia     (complex<double> position);
+int personna  (complex<double> position);
 
 int convergence(complex<double> position, pointeurFct); // Donne un rang de convergence pour un point du plan complexe
 void convergencePlan();
