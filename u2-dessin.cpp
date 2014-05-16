@@ -20,7 +20,6 @@ void gestionAffichage(void*) {
     static int ligne=0;     // Indice de la ligne en cours de calcul + affichage (static pour la conserver cross-lignes :) )
     pointeurFct fonction = retourne_fonction();
     unsigned long tabDegrade[gDonnees.rangMax];     // On pourrait faire une struct de vars actuelles
-    //if(1){
     if(gTests.calccouleurs){
         printf("Calcul de couleur\n");
         couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tabDegrade);
@@ -29,8 +28,7 @@ void gestionAffichage(void*) {
     if (ligne<H_ZONE){
         if (gTests.calcul)
             convergenceLigne(ligne, fonction);
-        if(gTests.dessin)   // Inutile comme test,non ?
-            afficheLigne(ligne, tabDegrade);
+        afficheLigne(ligne, tabDegrade);
         ligne+=2;
         Fl::add_timeout(0.00, gestionAffichage, NULL);
     }

@@ -17,85 +17,69 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
     static int y1;
     static int x2;
     static int y2;
-    int bouton=Fl::event_button();
-    //cout<<bouton<<endl;
-    // prise des coordonnees initiales de la souris
-    if(Fl::event() == FL_PUSH && bouton ==3){
-        printf("Mouse push = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
-        x1=Fl::event_x();
-        y1=Fl::event_y();
-    }
-    // prise des coordonnees finales
-    if(Fl::event() == FL_RELEASE && bouton == 3){
-        printf("Mouse release = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
-        x2=Fl::event_x();
-        y2=Fl::event_y();
-        // Recadrage de l'image
-        if(x1<x2)
-            real(gDonnees.ig)=real(gDonnees.ig)+(x1)*gDonnees.pasxy;
-        else
-            real(gDonnees.ig)=real(gDonnees.ig)+(x2)*gDonnees.pasxy;
-
-        if (y1>y2)
-            imag(gDonnees.ig)=imag(gDonnees.ig)+(H_ZONE-y1)*gDonnees.pasxy;
-        else
-            imag(gDonnees.ig)=imag(gDonnees.ig)+(H_ZONE-y2)*gDonnees.pasxy;
-
-        // Modification du pas
-        if(x1<x2)
-          gDonnees.pasxy=gDonnees.pasxy*(x2-x1)/L_ZONE;
-        else
-            gDonnees.pasxy=gDonnees.pasxy*(x1-x2)/L_ZONE;
-
-        //if(x1<x2){
-        //    gDonnees.pasxy=gDonnees.pasxy*(x2-x1)/L_ZONE;
-        //}
-
-        //else{
-        //    gDonnees.pasxy=gDonnees.pasxy*(x1-x2)/L_ZONE;
-        //}
-            //Definit C pour Julia
-
-        gInterface.ZoneDessin->redraw();
-    }
-
-
-    //Gestion du zoom roulette
-    if(Fl::event() == FL_MOUSEWHEEL) {
-        gDonnees.pasxy = gDonnees.pasxy*(1.+0.2*(double)(Fl::event_dy()));
-        gInterface.ZoneDessin->redraw();
-    }
 
     //Gestion du déplacement (clic gauche)
-    static int u1;
-    static int u2;
-    static int v1;
-    static int v2;
-    // prise des coordonnees initiales de la souris
-    if(Fl::event() == FL_PUSH && bouton ==1){
-        printf("Mouse push = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
-        u1=Fl::event_x();
-        v1=Fl::event_y();
-    }
-    // prise des coordonnees finales
-    if(Fl::event() == FL_RELEASE && bouton == 1){
-        printf("Mouse release = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
-        u2=Fl::event_x();
-        v2=Fl::event_y();
-        //déplacement de l'image
-        real(gDonnees.ig)=real(gDonnees.ig)+(u1-u2)*gDonnees.pasxy;
-        imag(gDonnees.ig)=imag(gDonnees.ig)+(v2-v1)*gDonnees.pasxy;
-        gInterface.ZoneDessin->redraw();
+    static int deplX;
+    static int deplY;
+    bool deplacement=false;
+
+    // Il serait peut-être intéressant d'utiliser FL_DRAG.
+
+    switch(Fl::event_button()){
+        case 1: if(Fl::event()==FL_PUSH){   // Déplacement
+                    deplX=Fl::event_x();
+                    deplY=Fl::event_y();
+                    printf("Mouse push,    x = %d, y = %d\n", deplX, deplY);
+                }
+                else if(Fl::event()==FL_RELEASE){
+                    real(gDonnees.ig)=real(gDonnees.ig)+(deplX-Fl::event_x())*gDonnees.pasxy;
+                    imag(gDonnees.ig)=imag(gDonnees.ig)+(Fl::event_y()-deplY)*gDonnees.pasxy;
+                    printf("Deplacement en x = %d, y = %d\n", real(gDonnees.ig), imag(gDonnees.ig));
+                    deplacement=true;
+                }
+            break;
+
+        case 2: if (Fl::event()==FL_PUSH) {     // Définition de la constante C pour Julia et Cos+C
+                    real(gDonnees.C)=real(gDonnees.ig)+(Fl::event_x()-X_ZONE)*gDonnees.pasxy;// Pas les bons calculs de coordonnées.
+                    imag(gDonnees.C)=imag(gDonnees.ig)+(Fl::event_y()-Y_ZONE)*gDonnees.pasxy;
+                    cout<<"C= : ("<<real(gDonnees.C)<<","<<imag(gDonnees.C)<<")"<<endl;
+                    deplacement=false;      // En fait il faudrait quand même redraw si Julia.
+                }
+            break;
+
+        case 3: if(Fl::event()==FL_PUSH){   // Zoom avec cadrage
+                    printf("Mouse push = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
+                    x1=Fl::event_x()-X_ZONE;
+                    y1=Fl::event_y()-Y_ZONE;
+                }
+                // prise des coordonnees finales
+                if(Fl::event()==FL_RELEASE){
+                    printf("Mouse release = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
+                    x2=Fl::event_x()-X_ZONE;
+                    y2=Fl::event_y()-Y_ZONE;
+                    // Recalcul du point ig --ce serait bien de faire un truc un peu plus "scientifiquement" ;)
+                    real(gDonnees.ig)=real(gDonnees.ig)+min(x1, x2)*gDonnees.pasxy;
+                    imag(gDonnees.ig)=imag(gDonnees.ig)+(H_ZONE-max(y1, y2))*gDonnees.pasxy;
+                    // Modification du pas
+                    gDonnees.pasxy=gDonnees.pasxy*abs(x1-x2)/L_ZONE;
+
+                    deplacement=true;
+                }
+            break;
+
+        default:
+            break;
     }
 
-    //Definit C pour Julia
-    if(Fl::event_button()==2 && Fl::event()==FL_PUSH){
-        double x,y;
-        x=Fl::event_x();
-        y=Fl::event_y();
-        real(gDonnees.C)=real(gDonnees.ig)+x*gDonnees.pasxy;
-        imag(gDonnees.C)=imag(gDonnees.ig)+y*gDonnees.pasxy;
-        cout<<"C= : ("<<real(gDonnees.C)<<","<<imag(gDonnees.C)<<")"<<endl;
+    //Gestion du zoom roulette. Il faudra aussi modifier le point ig.
+    if(Fl::event() == FL_MOUSEWHEEL) {
+        gDonnees.pasxy = gDonnees.pasxy*(1.+0.2*(double)(Fl::event_dy()));
+        deplacement=true;
+    }
+
+    if(deplacement) {
+        gTests.calcul=1;
+        gTests.dessin=1;
         gInterface.ZoneDessin->redraw();
     }
 }
@@ -115,15 +99,16 @@ void BoutonEnregistrerCB(Fl_Widget* w, void* data){
 void BoutonResetCB(Fl_Widget* w, void* data){
     // retour aux paramètres initiaux
     InitialiserDonnees();
+    gTests.calcul=1;
+    gTests.dessin=1;
     gInterface.ZoneDessin->redraw();
 }
 
 
 void ChampProfondeurCB(Fl_Widget* w, void* data){
-     //gInterface.ChampProfondeur->value(gDonnees.rangMax);
     float temp=gDonnees.rangMax; //c'est pour réduire le rang des couleurs en mm temps
     gDonnees.rangMax = (int)gInterface.ChampProfondeur->value();
-    printf("ChampProfondeurCB : %d\n", gDonnees.rangMax);
+
     temp=temp/gDonnees.rangMax;
     gDonnees.rangColor1=gDonnees.rangColor1/temp;
     gDonnees.rangColor2=gDonnees.rangColor2/temp;
@@ -134,12 +119,15 @@ void ChampProfondeurCB(Fl_Widget* w, void* data){
     gInterface.Slider2->color(gDonnees.color2,gDonnees.color2);
     gInterface.Slider3->scrollvalue(gDonnees.rangColor3,0,0,gDonnees.rangMax);
     gInterface.Slider3->color(gDonnees.color3,gDonnees.color3);
+    gTests.calcul=1;
+    gTests.dessin=1;
     gInterface.ZoneDessin->redraw();
 }
 
 void ChampModuleDeSortieCB(Fl_Widget* w, void* data){
     gDonnees.moduleMax = (int)gInterface.ChampModuleDeSortie->value();
-    printf("ChampModuleDeSortieCB : %lf\n", gDonnees.moduleMax);
+    gTests.calcul=1;
+    gTests.dessin=1;
     gInterface.ZoneDessin->redraw();
 }
 
