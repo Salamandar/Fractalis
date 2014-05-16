@@ -87,14 +87,14 @@ int personna(complex<double> position) {
 void convergenceLigne(pointeurFct fonction, int j){
     double pas=gDonnees.pasxy;
     complex<double> position= gDonnees.ig;
-    imag(position)+=j*pas;
+    imag(position)+=(H_ZONE-j)*pas;
     for (int i = 0; i < L_ZONE; ++i) {      // Boucle ligne par ligne
         gDonnees.Tab[i][j].n=fonction(position);
         position+=pas;
     }
 }
 
-// Calcule et enregistre tous les rangs de convergence dans le tableau
+// Calcule et enregistre tous les rangs de convergence dans le tableau. Fonction inutilisée.
 void convergencePlan(){
     pointeurFct fonction = retourne_fonction(); // Détermine la fonction
     for (int j = 0; j < gDonnees.hauteur; ++j)

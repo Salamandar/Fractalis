@@ -24,8 +24,10 @@ void gestionAffichage(void*) {
     static int ligne=0;     // Indice de la ligne en cours de calcul + affichage (static pour la conserver cross-lignes :) )
     pointeurFct fonction = retourne_fonction();
     unsigned long tabDegrade[gDonnees.rangMax];
-    if(1==1){couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tabDegrade);
-        gTests.calccouleurs=0;}
+    if(1==1){
+        couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tabDegrade);
+        gTests.calccouleurs=0;
+    }
     if (ligne<H_ZONE){
        if(gTests.dessin==0){ convergenceLigne(fonction, ligne);}
         afficheLigne(ligne, tabDegrade);
