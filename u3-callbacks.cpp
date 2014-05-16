@@ -88,7 +88,15 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
     }
     //Definit C pour Julia
     cout<<Fl::event_button()<<endl;
-     //gInterface.ZoneDessin->redraw();
+    if(Fl::event_button()==2 && Fl::event()==FL_PUSH){
+        double x,y;
+        x=Fl::event_x();
+        y=Fl::event_y();
+        real(gDonnees.C)=real(gDonnees.ig)+x*gDonnees.pasxy;
+        imag(gDonnees.C)=imag(gDonnees.ig)+y*gDonnees.pasxy;
+        cout<<"C= : ("<<real(gDonnees.C)<<","<<imag(gDonnees.C)<<")"<<endl;
+        gInterface.ZoneDessin->redraw();
+    }     
 }
 
 
