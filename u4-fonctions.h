@@ -5,7 +5,7 @@
 // Max d'étapes à vérifier
 #define PROFONDEUR_MAX 100
 // Données utilisateurs initiales :
-#define FRACT_INIT JULIA
+#define FRACT_INIT SINZO
 #define RANGMAX_INIT    50
 #define MODULEMAX_INIT  2
 #define C_INIT  (0.3, 0.5)
@@ -19,6 +19,8 @@ typedef int (*pointeurFct)(complex<double>);
 enum fractype {
     MANDELBROT,
     JULIA,
+    COSC,
+    SINZO,
     PERSONNA
 };
 
@@ -61,6 +63,8 @@ pointeurFct retourne_fonction();    // Pointe vers les fonctions suivantes en fo
  // Donnent un rang de convergence pour un point du plan complexe, pour chaque fonction.
 int mandelbrot(complex<double> position);
 int julia     (complex<double> position);
+int sinzo     (complex<double> position);
+int cosc      (complex<double> position);
 int personna  (complex<double> position);
 
 void convergenceLigne(pointeurFct fonction, int j);

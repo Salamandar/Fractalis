@@ -52,6 +52,10 @@ pointeurFct retourne_fonction() {
             break;
         case JULIA: return julia;
             break;
+        case SINZO: return sinzo;
+            break;
+        case COSC: return cosc;
+            break;
         case PERSONNA: return personna;
             break;
     }
@@ -66,10 +70,28 @@ int mandelbrot(std::complex<double> position){
     return rang==gDonnees.rangMax ? -1 : rang;      // Opération ternaire
 }
 int julia(complex<double> position) {
-    int rang=1;
+    int rang=0;
     complex<double> Zrang=position;
     do {
         Zrang=Zrang*Zrang + gDonnees.C;
+        rang++;
+    } while (std::abs(Zrang) < gDonnees.moduleMax && rang<gDonnees.rangMax);
+    return rang==gDonnees.rangMax ? -1 : rang;      // Opération ternaire
+}
+int sinzo     (complex<double> position){
+    int rang=0;
+    complex<double> Zrang=position;
+    do {
+        Zrang=sin(Zrang) + position;
+        rang++;
+    } while (std::abs(Zrang) < gDonnees.moduleMax && rang<gDonnees.rangMax);
+    return rang==gDonnees.rangMax ? -1 : rang;      // Opération ternaire
+}
+int cosc      (complex<double> position){
+    int rang=0;
+    complex<double> Zrang=position;
+    do {
+        Zrang=cos(Zrang) + gDonnees.C;
         rang++;
     } while (std::abs(Zrang) < gDonnees.moduleMax && rang<gDonnees.rangMax);
     return rang==gDonnees.rangMax ? -1 : rang;      // Opération ternaire
