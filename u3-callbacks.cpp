@@ -134,6 +134,20 @@ void ChampModuleDeSortieCB(Fl_Widget* w, void* data){
 
 
 void MenuFractaleCB(Fl_Widget* w, void* data){
+    int Fractale = (int)gInterface.MenuFractale->value() ;
+
+
+    if(Fractale==0){
+        gDonnees.Fractale=MANDELBROT;
+        }
+    if (Fractale==1){
+        gDonnees.Fractale=JULIA;
+    }
+
+    if (Fractale==2){
+        gDonnees.Fractale=JULIA;
+    }
+        gInterface.ZoneDessin->redraw();
 
 }
 
@@ -154,6 +168,8 @@ void ChampYMinCB(Fl_Widget* w, void* data){
 void ChampLargeurCB(Fl_Widget* w, void* data){
     gDonnees.pasxy = ((double)gInterface.ChampLargeur->value())/L_ZONE;
     printf("ChampLargeurCB : %lf\n", gDonnees.pasxy*L_ZONE);
+    gInterface.ZoneDessin->redraw();
+
 
 }
 
