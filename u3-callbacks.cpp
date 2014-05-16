@@ -16,10 +16,10 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
 
 
     // Gestion du zoom cadre
-    static int x1;
-    static int x2;
-    static int y1;
-    static int y2;
+     static int x1;
+     static int x2;
+     static int y1;
+     static int y2;
     int bouton=Fl::event_button();
     //cout<<bouton<<endl;
     // prise des coordonnees initiales de la souris
@@ -37,15 +37,36 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
         //cout<<"plop"<<endl;
 
           //recadrage de l'image
-        if(x1<x2){real(gDonnees.ig)=real(gDonnees.ig)+(x1-X_ZONE)*gDonnees.pasxy;}
-        else {real(gDonnees.ig)=real(gDonnees.ig)+(x2-X_ZONE)*gDonnees.pasxy;}
-        if (y1>y2){imag(gDonnees.ig)=imag(gDonnees.ig)+(y1-Y_ZONE-H_ZONE)*gDonnees.pasxy;}
-        else {imag(gDonnees.ig)=imag(gDonnees.ig)+(y2-Y_ZONE-H_ZONE)*gDonnees.pasxy;}
-
         if(x1<x2){
-            gDonnees.pasxy=gDonnees.pasxy*(x2-x1)/L_ZONE;
-        }
-        //gDonnees.pasxy =
+            cout << "Xinit" << real(gDonnees.ig)<<endl ;
+            real(gDonnees.ig)=real(gDonnees.ig)+(x1-X_ZONE)*gDonnees.pasxy;
+            cout << "Xfin"<< real(gDonnees.ig)<<endl ;
+            }
+        else {
+            cout << "Xinit" << real(gDonnees.ig)<<endl ;
+            real(gDonnees.ig)=real(gDonnees.ig)+(x2-X_ZONE)*gDonnees.pasxy;
+            cout << "Xfin" << real(gDonnees.ig)<<endl ;
+            }
+        if (y1>y2){
+            cout << "Yinit" << imag(gDonnees.ig)<<endl ;
+            imag(gDonnees.ig)=imag(gDonnees.ig)+(y1-Y_ZONE-H_ZONE)*gDonnees.pasxy;
+            cout << "Yfin" << imag(gDonnees.ig)<<endl ;
+            }
+        else {
+            cout << "Yfin" << imag(gDonnees.ig)<<endl ;
+            imag(gDonnees.ig)=imag(gDonnees.ig)+(y2-Y_ZONE-H_ZONE)*gDonnees.pasxy;
+            cout << "Yfin" << imag(gDonnees.ig)<<endl ;
+            }
+
+
+        //if(x1<x2){
+        //    gDonnees.pasxy=gDonnees.pasxy*(x2-x1)/L_ZONE;
+        //}
+
+        //else{
+        //    gDonnees.pasxy=gDonnees.pasxy*(x1-x2)/L_ZONE;
+        //}
+
 
         gInterface.ZoneDessin->redraw();
     }
@@ -64,7 +85,7 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
         zoom=Fl::event_dy();
         //cout<<"zoom : "<<zoom<<endl;
         gDonnees.pasxy = gDonnees.pasxy*(1.+0.2*((double)(zoom)));
-        cout<<"zoom -> pasxy = "<<gDonnees.pasxy<<endl;
+        //cout<<"zoom -> pasxy = "<<gDonnees.pasxy<<endl;
         gInterface.ZoneDessin->redraw();
     }
 }
