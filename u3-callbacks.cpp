@@ -66,7 +66,7 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
         //else{
         //    gDonnees.pasxy=gDonnees.pasxy*(x1-x2)/L_ZONE;
         //}
-
+            //Definit C pour Julia
 
         gInterface.ZoneDessin->redraw();
     }
@@ -87,6 +87,9 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
         //cout<<"zoom -> pasxy = "<<gDonnees.pasxy<<endl;
         gInterface.ZoneDessin->redraw();
     }
+    //Definit C pour Julia
+    cout<<Fl::event_button()<<endl;
+     //gInterface.ZoneDessin->redraw();
 }
 
 
