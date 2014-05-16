@@ -1,13 +1,14 @@
 #ifndef _u4_fonctions_h
 #define _u4_fonctions_h
 
+#include <complex>
 // Max d'étapes à vérifier
 #define PROFONDEUR_MAX 100
 // Données utilisateurs initiales :
-#define FRACT_INIT MANDELBROT
+#define FRACT_INIT JULIA
 #define RANGMAX_INIT    50
 #define MODULEMAX_INIT  2
-#define C_INIT  (-0, -0.600)
+#define C_INIT  (0.3, 0.5)
 #define IG_INIT (-2.2,-1.5)
 #define PASXY   0.005
 #define Couleur_Init 0
@@ -37,14 +38,6 @@ struct Donnees {
     double pasxy;           // Pas de la matrice (incrémentation, en fait, et égale dans les 2 dimensions, car pixels carrés)
                             // À changer pendant le zoom :)
     struct Pixel Tab[L_ZONE][H_ZONE]; // Matrice des pixels de l'image.
-    /*
-    H
-    |———————|
-    y       |
-    |       |
-    |______x|L_ZONE
-    */
-
     // Données de détermination des couleurs
     unsigned long int    color1,     color2,     color3;
     int rangColor1, rangColor2, rangColor3;
@@ -52,10 +45,10 @@ struct Donnees {
 };
 
 struct Tests {
-bool dessin;
-bool calccouleurs;
-bool CB;
-int slider;
+    bool dessin;
+    bool calccouleurs;
+    bool CB;
+    int slider;
 };
 extern Donnees gDonnees;
 extern Tests gTests;
@@ -65,12 +58,11 @@ void InitialiserDonnees() ;
 void realFromTab(double *bi, double *bj);
 
 pointeurFct retourne_fonction();    // Pointe vers les fonctions suivantes en fonction de la fractale choisie
+ // Donnent un rang de convergence pour un point du plan complexe, pour chaque fonction.
 int mandelbrot(complex<double> position);
 int julia     (complex<double> position);
 int personna  (complex<double> position);
 
-int convergence(complex<double> position, pointeurFct); // Donne un rang de convergence pour un point du plan complexe
-void convergencePlan();
 void convergenceLigne(pointeurFct fonction, int j);
 
 

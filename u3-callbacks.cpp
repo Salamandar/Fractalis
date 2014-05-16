@@ -1,5 +1,4 @@
 #include <iostream>
-#include <complex>
 #include <stdlib.h>
 #include <FL/Fl.H>
 #include <FL/fl_ask.H>
@@ -45,6 +44,7 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
         else {
             imag(gDonnees.ig)=imag(gDonnees.ig)+(H_ZONE-y2)*gDonnees.pasxy;
             }
+<<<<<<< HEAD
             //modification du pas
         if(x1<x2){
           gDonnees.pasxy=gDonnees.pasxy*(x2-x1)/L_ZONE;
@@ -52,6 +52,19 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
         else{
             gDonnees.pasxy=gDonnees.pasxy*(x1-x2)/L_ZONE;
         }
+=======
+
+
+        //if(x1<x2){
+        //    gDonnees.pasxy=gDonnees.pasxy*(x2-x1)/L_ZONE;
+        //}
+
+        //else{
+        //    gDonnees.pasxy=gDonnees.pasxy*(x1-x2)/L_ZONE;
+        //}
+            //Definit C pour Julia
+
+>>>>>>> 8a8ecbe0bb6b7a104747e3cd24b3fea887082f19
         gInterface.ZoneDessin->redraw();
     }
 
@@ -63,6 +76,7 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
         gDonnees.pasxy = gDonnees.pasxy*(1.+0.2*((double)(zoom)));
         gInterface.ZoneDessin->redraw();
     }
+<<<<<<< HEAD
 
 
 
@@ -90,6 +104,19 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
     }
 
 
+=======
+    //Definit C pour Julia
+    cout<<Fl::event_button()<<endl;
+    if(Fl::event_button()==2 && Fl::event()==FL_PUSH){
+        double x,y;
+        x=Fl::event_x();
+        y=Fl::event_y();
+        real(gDonnees.C)=real(gDonnees.ig)+x*gDonnees.pasxy;
+        imag(gDonnees.C)=imag(gDonnees.ig)+y*gDonnees.pasxy;
+        cout<<"C= : ("<<real(gDonnees.C)<<","<<imag(gDonnees.C)<<")"<<endl;
+        gInterface.ZoneDessin->redraw();
+    }     
+>>>>>>> 8a8ecbe0bb6b7a104747e3cd24b3fea887082f19
 }
 
 
@@ -138,20 +165,21 @@ void ChampModuleDeSortieCB(Fl_Widget* w, void* data){
 
 
 void MenuFractaleCB(Fl_Widget* w, void* data){
-    int Fractale=0;
-    Fractale= (int)gInterface.MenuFractale->value() ;
+    int Fractale = (int)gInterface.MenuFractale->value() ;
 
 
-    if(Fractale==1){
+    if(Fractale==0){
         gDonnees.Fractale=MANDELBROT;
         }
+    if (Fractale==1){
+        gDonnees.Fractale=JULIA;
+    }
+
     if (Fractale==2){
         gDonnees.Fractale=JULIA;
     }
+        gInterface.ZoneDessin->redraw();
 
-    if (Fractale==3){
-        gDonnees.Fractale=JULIA;
-    }
 }
 
 void ChampXMinCB(Fl_Widget* w, void* data){
@@ -171,6 +199,8 @@ void ChampYMinCB(Fl_Widget* w, void* data){
 void ChampLargeurCB(Fl_Widget* w, void* data){
     gDonnees.pasxy = ((double)gInterface.ChampLargeur->value())/L_ZONE;
     printf("ChampLargeurCB : %lf\n", gDonnees.pasxy*L_ZONE);
+    gInterface.ZoneDessin->redraw();
+
 
 }
 
