@@ -11,6 +11,7 @@
 #define IG_INIT (-2,-2)
 #define PASXY   0.005
 #define Couleur_Init 0
+
 typedef complex<double> (*pointeurFct)(complex<double>, complex<double>);
     // Type d'une fonction qui renvoie un pointeur vers le type de fractale
 
@@ -49,8 +50,14 @@ struct Donnees {
     int rangColor1, rangColor2, rangColor3;
     int hauteur;
 };
-extern Donnees gDonnees;
 
+struct Tests {
+bool dessin;
+bool CB;
+int slider;
+};
+extern Donnees gDonnees;
+extern Tests gTests;
 void InitialiserDonnees() ;
 
     // Donne une correspondance entre coordonnées du tableau et coordonnées du plan complexe

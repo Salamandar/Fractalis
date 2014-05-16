@@ -32,6 +32,9 @@ struct Interface {
     Fl_Value_Input*     ChampYMin;
     Fl_Value_Input*     ChampLargeur;       // largeur d'affichage
     Fl_Color_Chooser*   CarreChoixCouleur;  //
+    Fl_Value_Slider*    Slider1;
+    Fl_Value_Slider*    Slider2;
+    Fl_Value_Slider*    Slider3;
 };
 extern struct Interface gInterface;
 

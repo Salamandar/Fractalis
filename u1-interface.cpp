@@ -2,6 +2,7 @@
 #include "u1-interface.h"
 #include "u2-dessin.h"
 #include "u3-callbacks.h"
+//#include "u4-fonctions.h"
 
 // Definition des donnees de l'interface - structure globale de variables
 struct Interface gInterface;
@@ -27,7 +28,7 @@ void CreerInterface() {
 
 
     // Creation du menu de choix du type de fractale
-    gInterface.MenuFractale=new Fl_Choice(X_ZONE+L_ZONE+200 , 50,100, 20, "Type de Fractale : ");
+    gInterface.MenuFractale=new Fl_Choice(X_ZONE+L_ZONE+200, 50, 100, 20, "Type de Fractale :");
     gInterface.MenuFractale->add("Mandelbrot", "", MenuFractaleCB);
     gInterface.MenuFractale->add("Julia", "", MenuFractaleCB);
     gInterface.MenuFractale->add("Cosinus", "", MenuFractaleCB);
@@ -35,21 +36,23 @@ void CreerInterface() {
     gInterface.MenuFractale->value(0);
 
     // Creation du champ de saisie module de sortie
-    gInterface.ChampModuleDeSortie = new Fl_Value_Input(X_ZONE+L_ZONE+200, 90 , 100, 20, "Module de sortie : ");
+    gInterface.ChampModuleDeSortie = new Fl_Value_Input(X_ZONE+L_ZONE+200, 90 , 100, 20, "Module de sortie :");
+    //gInterface.ChampModuleDeSortie->value(gDonnees.moduleMax);
     gInterface.ChampModuleDeSortie->when(FL_WHEN_ENTER_KEY | FL_WHEN_RELEASE);
     gInterface.ChampModuleDeSortie->callback(ChampModuleDeSortieCB, NULL);
 
     // Creation du champ de saisie profondeur
-    gInterface.ChampProfondeur = new Fl_Value_Input(X_ZONE+L_ZONE+200, 130 , 100, 20, "Profondeur : ");
+    gInterface.ChampProfondeur = new Fl_Value_Input(X_ZONE+L_ZONE+200, 130 , 100, 20, "Profondeur :");
+    //gInterface.ChampProfondeur->value(gDonnees.rangMax);
     gInterface.ChampProfondeur->when(FL_WHEN_ENTER_KEY | FL_WHEN_RELEASE);
     gInterface.ChampProfondeur->callback(ChampProfondeurCB, NULL);
 
     //Choix du coin inférieur gauche
-    gInterface.ChampXMin = new Fl_Value_Input(X_ZONE+L_ZONE+200, 170, 25, 20, "coordonnées du Min ");
+    gInterface.ChampXMin = new Fl_Value_Input(X_ZONE+L_ZONE+200, 170, 50, 20, "Coordonnées du Min :");
     gInterface.ChampXMin->when(FL_WHEN_ENTER_KEY | FL_WHEN_RELEASE);
     gInterface.ChampXMin->callback(ChampXMinCB, NULL);
 
-    gInterface.ChampYMin = new Fl_Value_Input(X_ZONE+L_ZONE+250, 170, 25, 20);
+    gInterface.ChampYMin = new Fl_Value_Input(X_ZONE+L_ZONE+250, 170, 50, 20);
     gInterface.ChampYMin->when(FL_WHEN_ENTER_KEY | FL_WHEN_RELEASE);
     gInterface.ChampYMin->callback(ChampYMinCB, NULL);
 
@@ -60,7 +63,19 @@ void CreerInterface() {
 
     //Carré couleur
     gInterface.CarreChoixCouleur = new Fl_Color_Chooser(X_ZONE+L_ZONE+125,250, 200, 150);
+    gInterface.CarreChoixCouleur->rgb(1,0,0);
     gInterface.CarreChoixCouleur->callback(CarreChoixCouleurCB, NULL);
+
+    //Sliders
+    gInterface.Slider1 = new Fl_Value_Slider(X_ZONE+L_ZONE+125,410,200,20,"Couleur 1");
+    gInterface.Slider1->type(FL_HOR_NICE_SLIDER);
+    gInterface.Slider1->callback(Slider1CB, NULL);
+    gInterface.Slider2 = new Fl_Value_Slider(X_ZONE+L_ZONE+125,450,200,20,"Couleur 2");
+    gInterface.Slider2->type(FL_HOR_NICE_SLIDER);
+    gInterface.Slider2->callback(Slider2CB, NULL);
+    gInterface.Slider3 = new Fl_Value_Slider(X_ZONE+L_ZONE+125,490,200,20,"Couleur 3");
+    gInterface.Slider3->type(FL_HOR_NICE_SLIDER);
+    gInterface.Slider3->callback(Slider3CB, NULL);
 
     // Affichage de la fenetre
     gInterface.Fenetre->end();

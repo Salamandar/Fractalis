@@ -17,6 +17,7 @@ int main (int argc, char ** argv) {
     CreerInterface();
     InitialiserDonnees();
     gInterface.ZoneDessin->redraw();
+
     Fl::run();
 }
 
@@ -34,17 +35,17 @@ DrawingArea::DrawingArea(int X,int Y,int W,int H) : Fl_Widget(X,Y,W,H) {
     _keyboard_callback_data = NULL;
 }
 
-void DrawingArea::draw_callback( void (*Function) ( Fl_Widget* w, void* data), void* Data ){
+void DrawingArea::draw_callback(void (*Function)(Fl_Widget* w, void* data), void* Data){
     _draw_callback_function = Function;
     _draw_callback_data = Data;
 }
 
-void DrawingArea::mouse_callback( void (*Function) ( Fl_Widget* w, void* data), void* Data ){
+void DrawingArea::mouse_callback(void (*Function)(Fl_Widget* w, void* data), void* Data){
     _mouse_callback_function = Function;
     _mouse_callback_data = Data;
 }
 
-void DrawingArea::keyboard_callback( void (*Function) ( Fl_Widget* w, void* data), void* Data ){
+void DrawingArea::keyboard_callback(void (*Function)(Fl_Widget* w, void* data), void* Data) {
     _keyboard_callback_function = Function;
     _keyboard_callback_data = Data;
 }
@@ -77,7 +78,7 @@ int DrawingArea::handle(int event){
              if ( _mouse_callback_function != NULL )
                 (* _mouse_callback_function ) ( this, _mouse_callback_data ) ;
             return 1 ;
-            break ;
+            break;
 
         case FL_KEYBOARD:
              if ( _keyboard_callback_function != NULL )
