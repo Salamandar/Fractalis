@@ -32,8 +32,7 @@ void CreerInterface() {
     gInterface.MenuFractale=new Fl_Choice(X_ZONE+L_ZONE+200, 50, 100, 20, "Type de Fractale :");
     gInterface.MenuFractale->add("Mandelbrot", "", MenuFractaleCB);
     gInterface.MenuFractale->add("Julia", "", MenuFractaleCB);
-    gInterface.MenuFractale->add("Cosinus", "", MenuFractaleCB);
-    gInterface.MenuFractale->add("Sinus", "", MenuFractaleCB);
+    gInterface.MenuFractale->add("Personna", "", MenuFractaleCB);
     gInterface.MenuFractale->value(0);
 
     // Creation du champ de saisie module de sortie
