@@ -21,6 +21,7 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
     //Gestion du déplacement (clic gauche)
     static int deplX;
     static int deplY;
+    int diffX, diffY;
     bool deplacement=false;
 
     // Il serait peut-être intéressant d'utiliser FL_DRAG.
@@ -32,10 +33,13 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
                     printf("Mouse push,    x = %d, y = %d\n", deplX, deplY);
                 }
                 else if(Fl::event()==FL_RELEASE){
-                    real(gDonnees.ig)=real(gDonnees.ig)+(deplX-Fl::event_x())*gDonnees.pasxy;
-                    imag(gDonnees.ig)=imag(gDonnees.ig)+(Fl::event_y()-deplY)*gDonnees.pasxy;
-                    printf("Deplacement en x = %d, y = %d\n", real(gDonnees.ig), imag(gDonnees.ig));
-                    deplacement=true;
+                    diffX=deplX-Fl::event_x();
+                    diffY=Fl::event_y()-deplY;
+                    real(gDonnees.ig)=real(gDonnees.ig)+diffX*gDonnees.pasxy;
+                    imag(gDonnees.ig)=imag(gDonnees.ig)+diffY*gDonnees.pasxy;
+                    printf("Deplacement de x = %d, y = %d\n", diffX, diffY);
+                    if (diffX!=0 && diffY!=0)
+                        deplacement=true;
                 }
             break;
 
