@@ -135,6 +135,7 @@ void ChampModuleDeSortieCB(Fl_Widget* w, void* data){
 
 
 void MenuFractaleCB(Fl_Widget* w, void* data){
+
 }
 
 void ChampXMinCB(Fl_Widget* w, void* data){
