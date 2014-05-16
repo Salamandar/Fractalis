@@ -44,7 +44,7 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
         else {
             imag(gDonnees.ig)=imag(gDonnees.ig)+(H_ZONE-y2)*gDonnees.pasxy;
             }
-<<<<<<< HEAD
+
             //modification du pas
         if(x1<x2){
           gDonnees.pasxy=gDonnees.pasxy*(x2-x1)/L_ZONE;
@@ -52,7 +52,7 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
         else{
             gDonnees.pasxy=gDonnees.pasxy*(x1-x2)/L_ZONE;
         }
-=======
+
 
 
         //if(x1<x2){
@@ -64,7 +64,7 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
         //}
             //Definit C pour Julia
 
->>>>>>> 8a8ecbe0bb6b7a104747e3cd24b3fea887082f19
+
         gInterface.ZoneDessin->redraw();
     }
 
@@ -76,7 +76,7 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
         gDonnees.pasxy = gDonnees.pasxy*(1.+0.2*((double)(zoom)));
         gInterface.ZoneDessin->redraw();
     }
-<<<<<<< HEAD
+
 
 
 
@@ -104,9 +104,8 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
     }
 
 
-=======
+
     //Definit C pour Julia
-    cout<<Fl::event_button()<<endl;
     if(Fl::event_button()==2 && Fl::event()==FL_PUSH){
         double x,y;
         x=Fl::event_x();
@@ -116,7 +115,7 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
         cout<<"C= : ("<<real(gDonnees.C)<<","<<imag(gDonnees.C)<<")"<<endl;
         gInterface.ZoneDessin->redraw();
     }     
->>>>>>> 8a8ecbe0bb6b7a104747e3cd24b3fea887082f19
+
 }
 
 
