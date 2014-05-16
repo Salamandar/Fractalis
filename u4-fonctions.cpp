@@ -150,7 +150,7 @@ void couleurs(unsigned long int A, unsigned long int B, unsigned long int C, int
     }
     for(int i=N2; i<N3 ; i++) {
         tab[i]=255+256*tab3[i-N2][2]+256*256*tab3[i-N2][1]+256*256*256*tab3[i-N2][0];
-        //cout<<tab[i]<<";"<<i<<endl;
+        cout<<tab[i]<<";"<<i<<endl;
     }
     for(int i=N3; i<gDonnees.rangMax; i++) {
         tab[i]=255+256*tab4[i-N3][2]+256*256*tab4[i-N3][1]+256*256*256*tab4[i-N3][0];
