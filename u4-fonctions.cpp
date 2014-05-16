@@ -29,6 +29,7 @@ void InitialiserDonnees() {
     //Init des tests
     gTests.slider=1;
     gTests.dessin=0;
+    gTests.calccouleurs=1;
 
     //interface, je met la car ça bug quand j'include u4 fct dans u1 interface
     gInterface.ChampModuleDeSortie->value(gDonnees.moduleMax);
@@ -129,6 +130,7 @@ void degradeRGB(unsigned long int A, unsigned long int B, int N, int tab[][3]) {
 }
 
 void couleurs(unsigned long int A, unsigned long int B, unsigned long int C, int N1, int N2, int N3, unsigned long int tab[]) {
+    cout<<"calculcouleurs"<<endl;
     unsigned long int I=Couleur_Init;
     int tab1[N1][3];
     int tab2[N2][3];

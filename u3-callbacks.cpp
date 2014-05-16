@@ -17,19 +17,23 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
     static int x2;
     static int y1;
     static int y2;
-
+    int bouton=Fl::event_button();
+    cout<<bouton<<endl;
     // prise des coordonnees initiales de la souris
-    if(Fl::event() == FL_PUSH){
+    if(Fl::event() == FL_PUSH && bouton ==3){
         printf("Mouse push = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
         x1=Fl::event_x();
         y1=Fl::event_y();
+        cout<<"aze"<<endl;
     }
 
     // prise des coordonnees finales
-    if(Fl::event() == FL_RELEASE){
+    if(Fl::event() == FL_RELEASE && bouton == 3){
         printf("Mouse release = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
         x2=Fl::event_x();
         y2=Fl::event_y();
+        cout<<"plop"<<endl;
+
         //cout<<"x1 x2 y1 y2 \n"<<x1<<endl<<x2<<endl<<y1<<endl<<y2<<endl;
 
           // calcul du décalage à effectuer

@@ -53,6 +53,7 @@ struct Donnees {
 
 struct Tests {
 bool dessin;
+bool calccouleurs;
 bool CB;
 int slider;
 };
