@@ -49,7 +49,7 @@ void CreerInterface() {
     gInterface.ChampProfondeur->callback(ChampProfondeurCB, NULL);
 
     //Choix du coin inférieur gauche
-    gInterface.ChampXMin = new Fl_Value_Input(X_ZONE+L_ZONE+200, 170, 50, 20, "Coordonnées du Min :");
+    gInterface.ChampXMin = new Fl_Value_Input(X_ZONE+L_ZONE+200, 170, 50, 20, "Coordonnees du Min :");
     gInterface.ChampXMin->when(FL_WHEN_ENTER_KEY | FL_WHEN_RELEASE);
     gInterface.ChampXMin->callback(ChampXMinCB, NULL);
 

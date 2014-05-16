@@ -103,30 +103,7 @@ void BoutonEnregistrerCB(Fl_Widget* w, void* data){
 
 void BoutonResetCB(Fl_Widget* w, void* data){
     // retour au parametre initiales
-    gDonnees.Fractale=FRACT_INIT;
-    gDonnees.rangMax=RANGMAX_INIT;
-    gDonnees.moduleMax=MODULEMAX_INIT;
-    gDonnees.C=C_INIT;
-    gDonnees.ig=complex<double>IG_INIT;
-    gDonnees.pasxy=PASXY;
-    gDonnees.color1=0xFF000000;
-    gDonnees.color2=0x00FF0000;
-    gDonnees.color3=0x0000FF00;
-    gDonnees.rangColor1=10;
-    gDonnees.rangColor2=20;
-    gDonnees.rangColor3=30;
-    gDonnees.hauteur=H_ZONE;
-    gInterface.ChampXMin->value(real(gDonnees.ig));
-    gInterface.ChampYMin->value(imag(gDonnees.ig));
-    gInterface.ChampProfondeur->value(gDonnees.rangMax);
-    gInterface.ChampModuleDeSortie->value(gDonnees.moduleMax);
-    gInterface.CarreChoixCouleur->rgb(1,0,0);
-    gInterface.Slider1->scrollvalue(gDonnees.rangColor1,0,0,gDonnees.rangMax);
-    gInterface.Slider1->color(gDonnees.color1,gDonnees.color1);
-    gInterface.Slider2->scrollvalue(gDonnees.rangColor2,0,0,gDonnees.rangMax);
-    gInterface.Slider2->color(gDonnees.color2,gDonnees.color2);
-    gInterface.Slider3->scrollvalue(gDonnees.rangColor3,0,0,gDonnees.rangMax);
-    gInterface.Slider3->color(gDonnees.color3,gDonnees.color3);
+   InitialiserDonnees();
     gInterface.ZoneDessin->redraw();
 }
 
@@ -161,14 +138,14 @@ void MenuFractaleCB(Fl_Widget* w, void* data){
 }
 
 void ChampXMinCB(Fl_Widget* w, void* data){
-    real(gDonnees.ig) = (int)gInterface.ChampXMin->value();
+    real(gDonnees.ig) = gInterface.ChampXMin->value();
     printf("ChampXMinCB : %lf\n", real(gDonnees.ig));
     gInterface.ZoneDessin->redraw();
 
 }
 
 void ChampYMinCB(Fl_Widget* w, void* data){
-    imag(gDonnees.ig) = (int)gInterface.ChampYMin->value();
+    imag(gDonnees.ig) = gInterface.ChampYMin->value();
     printf("ChampYMinCB : %lf\n", imag(gDonnees.ig));
     gInterface.ZoneDessin->redraw();
 
