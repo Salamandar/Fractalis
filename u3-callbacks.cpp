@@ -18,13 +18,13 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
     static int y1;
     static int y2;
     int bouton=Fl::event_button();
-    cout<<bouton<<endl;
+    //cout<<bouton<<endl;
     // prise des coordonnees initiales de la souris
     if(Fl::event() == FL_PUSH && bouton ==3){
         printf("Mouse push = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
         x1=Fl::event_x();
         y1=Fl::event_y();
-        cout<<"aze"<<endl;
+        //cout<<"aze"<<endl;
     }
 
     // prise des coordonnees finales
@@ -32,7 +32,7 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
         printf("Mouse release = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
         x2=Fl::event_x();
         y2=Fl::event_y();
-        cout<<"plop"<<endl;
+        //cout<<"plop"<<endl;
 
         //cout<<"x1 x2 y1 y2 \n"<<x1<<endl<<x2<<endl<<y1<<endl<<y2<<endl;
 
@@ -87,9 +87,22 @@ void BoutonResetCB(Fl_Widget* w, void* data){
     gDonnees.C=C_INIT;
     gDonnees.ig=IG_INIT;
     gDonnees.pasxy=PASXY;
+    gDonnees.color1=0xFF000000;
+    gDonnees.color2=0x00FF0000;
+    gDonnees.color3=0x0000FF00;
+    gDonnees.rangColor1=10;
+    gDonnees.rangColor2=20;
+    gDonnees.rangColor3=30;
+    gDonnees.hauteur=H_ZONE;
     gInterface.ChampProfondeur->value(gDonnees.rangMax);
     gInterface.ChampModuleDeSortie->value(gDonnees.moduleMax);
     gInterface.CarreChoixCouleur->rgb(1,0,0);
+    gInterface.Slider1->scrollvalue(gDonnees.rangColor1,0,0,gDonnees.rangMax);
+    gInterface.Slider1->color(gDonnees.color1,gDonnees.color1);
+    gInterface.Slider2->scrollvalue(gDonnees.rangColor2,0,0,gDonnees.rangMax);
+    gInterface.Slider2->color(gDonnees.color2,gDonnees.color2);
+    gInterface.Slider3->scrollvalue(gDonnees.rangColor3,0,0,gDonnees.rangMax);
+    gInterface.Slider3->color(gDonnees.color3,gDonnees.color3);
     gInterface.ZoneDessin->redraw();
 }
 
@@ -103,6 +116,12 @@ void ChampProfondeurCB(Fl_Widget* w, void* data){
     gDonnees.rangColor1=gDonnees.rangColor1/temp;
     gDonnees.rangColor2=gDonnees.rangColor2/temp;
     gDonnees.rangColor3=gDonnees.rangColor3/temp;
+    gInterface.Slider1->scrollvalue(gDonnees.rangColor1,0,0,gDonnees.rangMax);
+    gInterface.Slider1->color(gDonnees.color1,gDonnees.color1);
+    gInterface.Slider2->scrollvalue(gDonnees.rangColor2,0,0,gDonnees.rangMax);
+    gInterface.Slider2->color(gDonnees.color2,gDonnees.color2);
+    gInterface.Slider3->scrollvalue(gDonnees.rangColor3,0,0,gDonnees.rangMax);
+    gInterface.Slider3->color(gDonnees.color3,gDonnees.color3);
     gInterface.ZoneDessin->redraw();
 }
 
