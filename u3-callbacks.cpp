@@ -87,7 +87,7 @@ void BoutonResetCB(Fl_Widget* w, void* data){
     gDonnees.rangMax=RANGMAX_INIT;
     gDonnees.moduleMax=MODULEMAX_INIT;
     gDonnees.C=C_INIT;
-    gDonnees.ig=IG_INIT;
+    gDonnees.ig=complex<double>IG_INIT;
     gDonnees.pasxy=PASXY;
     gDonnees.color1=0xFF000000;
     gDonnees.color2=0x00FF0000;
@@ -96,6 +96,8 @@ void BoutonResetCB(Fl_Widget* w, void* data){
     gDonnees.rangColor2=20;
     gDonnees.rangColor3=30;
     gDonnees.hauteur=H_ZONE;
+    gInterface.ChampXMin->value(real(gDonnees.ig));
+    gInterface.ChampYMin->value(imag(gDonnees.ig));
     gInterface.ChampProfondeur->value(gDonnees.rangMax);
     gInterface.ChampModuleDeSortie->value(gDonnees.moduleMax);
     gInterface.CarreChoixCouleur->rgb(1,0,0);
@@ -141,11 +143,15 @@ void MenuFractaleCB(Fl_Widget* w, void* data){
 void ChampXMinCB(Fl_Widget* w, void* data){
     real(gDonnees.ig) = (int)gInterface.ChampXMin->value();
     printf("ChampXMinCB : %lf\n", real(gDonnees.ig));
+    gInterface.ZoneDessin->redraw();
+
 }
 
 void ChampYMinCB(Fl_Widget* w, void* data){
     imag(gDonnees.ig) = (int)gInterface.ChampYMin->value();
     printf("ChampYMinCB : %lf\n", imag(gDonnees.ig));
+    gInterface.ZoneDessin->redraw();
+
 }
 
 void ChampLargeurCB(Fl_Widget* w, void* data){

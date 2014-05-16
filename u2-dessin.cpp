@@ -18,6 +18,8 @@ void ZoneDessinInitialisation(Fl_Widget* widget, void* data) {
 }
 
 void gestionAffichage(void*) {
+    //cout<<gDonnees.ig<<endl;
+    //cout<<gDonnees.pasxy<<endl;
     //cout<<gTests.dessin<<endl;
     static int ligne=0;     // Indice de la ligne en cours de calcul + affichage (static pour la conserver cross-lignes :) )
     pointeurFct fonction = retourne_fonction();
