@@ -135,20 +135,21 @@ void ChampModuleDeSortieCB(Fl_Widget* w, void* data){
 
 
 void MenuFractaleCB(Fl_Widget* w, void* data){
-    int Fractale=0;
-    Fractale= (int)gInterface.MenuFractale->value() ;
+    int Fractale = (int)gInterface.MenuFractale->value() ;
 
 
-    if(Fractale==1){
+    if(Fractale==0){
         gDonnees.Fractale=MANDELBROT;
         }
+    if (Fractale==1){
+        gDonnees.Fractale=JULIA;
+    }
+
     if (Fractale==2){
         gDonnees.Fractale=JULIA;
     }
+        gInterface.ZoneDessin->redraw();
 
-    if (Fractale==3){
-        gDonnees.Fractale=JULIA;
-    }
 }
 
 void ChampXMinCB(Fl_Widget* w, void* data){
