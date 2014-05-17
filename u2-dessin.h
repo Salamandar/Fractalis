@@ -8,7 +8,5 @@ void gestionAffichage_iter(void* data);
 void afficheFractale();
 void afficheFractaleLigne();
 void afficheLigne(int j, unsigned long tableau[]);
-void* calc1(void* tab);
-void* calc2(void* tab);
 
 #endif
