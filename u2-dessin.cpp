@@ -8,6 +8,8 @@ using namespace std;
 #include "u2-dessin.h"
 #include "u3-callbacks.h"
 #include "u4-fonctions.h"
+#include <pthread.h>
+#include <unistd.h>
 
 void ZoneDessinInitialisation(Fl_Widget* widget, void* data) {
     fl_color(FL_BLACK);
@@ -46,33 +48,45 @@ void gestionAffichage(void*) {
     }
 }
 
+void * calc1(void* arg){
+    int ligne=600;
+    printf("Calcul de couleur\n");
+    unsigned long tabDegrade[gDonnees.rangMax];
+    couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tabDegrade);
+    //gTests.calccouleurs=0;
+    while(ligne>0){
+        Fl::wait(0);
+        pointeurFct fonction = retourne_fonction();
+        if (gTests.calcul||1){
+            convergenceLigne(ligne, fonction);}
+        afficheLigne(ligne, tabDegrade);
+        ligne-=2;
+        }
+}
+
+void * calc2(void* arg){
+    int ligne=1;
+    printf("Calcul de couleur\n");
+    unsigned long tabDegrade[gDonnees.rangMax];
+    couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tabDegrade);
+    //gTests.calccouleurs=0;
+    while(ligne<H_ZONE){
+        Fl::wait(0);
+        pointeurFct fonction = retourne_fonction();
+        if (gTests.calcul||1){
+            convergenceLigne(ligne, fonction);}
+        afficheLigne(ligne, tabDegrade);
+        ligne+=2;
+        }
+}
+
+
 void gestionAffichage_iter(void*){
-static int ligne =0;
-pointeurFct fonction = retourne_fonction();
-    unsigned long tabDegrade[gDonnees.rangMax];     // On pourrait faire une struct de vars actuelles
-    //if(gTests.calccouleurs)
-    {
-        ligne=0;
-        printf("Calcul de couleur\n");
-        couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tabDegrade);
-        gTests.calccouleurs=0;}
-    while(ligne<H_ZONE){
-        Fl::wait(0);
-        if (gTests.calcul){
-            convergenceLigne(ligne, fonction);}
-        afficheLigne(ligne, tabDegrade);
-        ligne+=2;
-        }
-    ligne=1;
-    while(ligne<H_ZONE){
-        Fl::wait(0);
-        if (gTests.calcul){
-            convergenceLigne(ligne, fonction);}
-        afficheLigne(ligne, tabDegrade);
-        ligne+=2;
-        }
-gTests.calcul=0;
-gTests.calccouleurs=0;
+pthread_t t1, t2 ;
+pthread_create( &t1, NULL, calc1,NULL); // create a thread running function1
+pthread_create( &t2, NULL, calc2,NULL); // create a thread running function2
+//gTests.calcul=0;
+//gTests.calccouleurs=0;
 }
 
 void afficheLigne(int j, unsigned long tableauCouleurs[]){
