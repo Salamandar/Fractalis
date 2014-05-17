@@ -234,12 +234,15 @@ void CarreChoixCouleurCB(Fl_Widget* w, void* data){
     switch(gTests.slider){
         case 1: gDonnees.color1=255+256*(int)b+256*256*(int)g+256*256*256*(int)r;
                 gInterface.Slider1->color(gDonnees.color1,gDonnees.color1);
+                gInterface.Slider1->redraw();
             break;
         case 2: gDonnees.color2=255+256*(int)b+256*256*(int)g+256*256*256*(int)r;
                 gInterface.Slider2->color(gDonnees.color2,gDonnees.color2);
+                gInterface.Slider2->redraw();
             break;
         case 3: gDonnees.color3=255+256*(int)b+256*256*(int)g+256*256*256*(int)r;
                 gInterface.Slider3->color(gDonnees.color3,gDonnees.color3);
+                gInterface.Slider3->redraw();
             break;
         default:
             break;
