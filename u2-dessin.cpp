@@ -13,7 +13,7 @@ void ZoneDessinInitialisation(Fl_Widget* widget, void* data) {
     fl_color(FL_BLACK);
     fl_rectf(X_ZONE, Y_ZONE, L_ZONE, H_ZONE);
     // On initialise la gestion de l'affichage de la fractale seulement quand la fenêtre est correctement créée
-    Fl::add_timeout(0, gestionAffichage, NULL );
+    Fl::add_timeout(0, gestionAffichage_iter, NULL );
 }
 
 void gestionAffichage(void*) {
@@ -44,6 +44,33 @@ void gestionAffichage(void*) {
             Fl::add_timeout(0.0, gestionAffichage, NULL);
         }
     }
+}
+
+void gestionAffichage_iter(void*){
+static int ligne =0;
+pointeurFct fonction = retourne_fonction();
+    unsigned long tabDegrade[gDonnees.rangMax];     // On pourrait faire une struct de vars actuelles
+    //if(gTests.calccouleurs)
+    {
+        ligne=0;
+        printf("Calcul de couleur\n");
+        couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tabDegrade);
+        gTests.calccouleurs=0;}
+    while(ligne<H_ZONE){
+        if (gTests.calcul){
+            convergenceLigne(ligne, fonction);}
+        afficheLigne(ligne, tabDegrade);
+        ligne+=2;
+        }
+    ligne=1;
+    while(ligne<H_ZONE){
+        if (gTests.calcul){
+            convergenceLigne(ligne, fonction);}
+        afficheLigne(ligne, tabDegrade);
+        ligne+=2;
+        }
+gTests.calcul=0;
+gTests.calccouleurs=0;
 }
 
 void afficheLigne(int j, unsigned long tableauCouleurs[]){
