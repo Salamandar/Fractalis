@@ -20,7 +20,7 @@ void gestionAffichage(void*) {
     static int ligne=0;     // Indice de la ligne en cours de calcul + affichage (static pour la conserver cross-lignes :) )
     pointeurFct fonction = retourne_fonction();
     unsigned long tabDegrade[gDonnees.rangMax];     // On pourrait faire une struct de vars actuelles
-    if(gTests.calccouleurs){
+    if(gTests.calccouleurs||1){
         printf("Calcul de couleur\n");
         couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tabDegrade);
         gTests.calccouleurs=0;
