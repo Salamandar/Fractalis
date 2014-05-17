@@ -57,6 +57,7 @@ pointeurFct fonction = retourne_fonction();
         couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tabDegrade);
         gTests.calccouleurs=0;}
     while(ligne<H_ZONE){
+        Fl::wait(0);
         if (gTests.calcul){
             convergenceLigne(ligne, fonction);}
         afficheLigne(ligne, tabDegrade);
@@ -64,6 +65,7 @@ pointeurFct fonction = retourne_fonction();
         }
     ligne=1;
     while(ligne<H_ZONE){
+        Fl::wait(0);
         if (gTests.calcul){
             convergenceLigne(ligne, fonction);}
         afficheLigne(ligne, tabDegrade);
