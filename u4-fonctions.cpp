@@ -119,18 +119,18 @@ void convergenceLigne(int j, pointeurFct fonction){
 void degradeRGB(unsigned long int A, unsigned long int B, int N, int tab[][3]) {
     A=(A-A%256)/256;
     B=(B-B%256)/256;
-    tab[0][2]=A % 256;
+        tab[0][2]=A % 256;
+        tab[N-1][2]=B % 256;
     A=(A-tab[0][2])/256;
-    tab[0][1]=A % 256;
-    A=(A-tab[0][1])/256;
-    tab[0][0]=A%256;
-    tab[N-1][2]=B % 256;
     B=(B-tab[N-1][2])/256;
-    tab[N-1][1]=B % 256;
+        tab[0][1]=A % 256;
+        tab[N-1][1]=B % 256;
+    A=(A-tab[0][1])/256;
     B=(B-tab[N-1][1])/256;
-    tab[N-1][0]=B%256;
+        tab[0][0]=A%256;
+        tab[N-1][0]=B%256;
 
-    //codage du dégradé dans un tableau de triplets RGB de N case tab[N][3], et oui, vive les cast
+    // codage du dégradé dans un tableau de triplets RGB de N case tab[N][3], et oui, vive les cast
     // C'est ça qui sera donc à changer pour avoir une interpolation de couleurs plus "belle"
     double dr,dg,db;
     dr=((double)(tab[N-1][0]-tab[0][0]))/N;
@@ -147,7 +147,7 @@ void degradeRGB(unsigned long int A, unsigned long int B, int N, int tab[][3]) {
 
 void couleurs(unsigned long int A, unsigned long int B, unsigned long int C, int N1, int N2, int N3, unsigned long int tab[]) {
     //cout<<"calculcouleurs"<<endl;
-    unsigned long int I=Couleur_Init;
+    unsigned long int I=COULEUR_INIT;
     int tab1[N1][3];
     int tab2[N2][3];
     int tab3[N3][3];

@@ -11,7 +11,7 @@
 #define C_INIT  (0.3, 0.5)
 #define IG_INIT (-2.2,-1.5)
 #define PASXY   0.005
-#define Couleur_Init 0
+#define COULEUR_INIT 0
 
 typedef int (*pointeurFct)(complex<double>);
     // Type d'une fonction qui renvoie un pointeur vers le type de fractale

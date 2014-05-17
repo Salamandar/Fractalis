@@ -188,6 +188,7 @@ void Slider1CB(Fl_Widget* w, void* data){
         gDonnees.rangColor3=gDonnees.rangColor1;
         gInterface.Slider3->value(gDonnees.rangColor3);
     }
+    setColorChooserColor(gDonnees.color1);
     gTests.dessin=1;
     gInterface.ZoneDessin->redraw();
 }
@@ -203,6 +204,7 @@ void Slider2CB(Fl_Widget* w, void* data){
         gDonnees.rangColor3=gDonnees.rangColor2;
         gInterface.Slider3->value(gDonnees.rangColor3);
     }
+    setColorChooserColor(gDonnees.color2);
     gTests.dessin=1;
     gInterface.ZoneDessin->redraw();
 }
@@ -219,6 +221,7 @@ void Slider3CB(Fl_Widget* w, void* data){
         gDonnees.rangColor2=gDonnees.rangColor3;
         gInterface.Slider2->value(gDonnees.rangColor2);
     }
+    setColorChooserColor(gDonnees.color3);
     gTests.dessin=1;
     gInterface.ZoneDessin->redraw();
 }
@@ -243,4 +246,22 @@ void CarreChoixCouleurCB(Fl_Widget* w, void* data){
     }
     gTests.dessin=1;
     gInterface.ZoneDessin->redraw();
+}
+
+
+
+
+// Ne fonctionne pas correctement.
+
+void setColorChooserColor(unsigned int couleur){
+    double r, g, b;
+    couleur-=255;
+    couleur/=256;   b=((double)(couleur%256))/255;
+
+    couleur-=couleur%256;
+    couleur/=256;   g=((double)(couleur%256))/255;
+
+    couleur-=couleur%256;
+    couleur/=256;   r=((double)(couleur%256))/255;
+    gInterface.CarreChoixCouleur->rgb(r,g,b);
 }
