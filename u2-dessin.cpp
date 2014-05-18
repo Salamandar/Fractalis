@@ -49,6 +49,7 @@ void gestionAffichage(void*) {
 void gestionAffichage_iter(void*){
     gTests.dessin=false;
     pointeurFct fonction = retourne_fonction();
+    int ligne;
     unsigned long tabDegrade[gDonnees.rangMax];     // On pourrait faire une struct de vars actuelles
     //if(gTests.calccouleurs) {
         printf("Calcul de couleur\n");
@@ -57,7 +58,7 @@ void gestionAffichage_iter(void*){
         gTests.calccouleurs=0;
     //}
 
-    for (int ligne = 0; ligne < H_ZONE; ligne+=2) {
+    for (ligne=0 ; ligne<H_ZONE; ligne+=2) {
         if (gTests.dessin)
             return void();
         Fl::wait(0);
@@ -66,7 +67,7 @@ void gestionAffichage_iter(void*){
         afficheLigne(ligne, tabDegrade);
     }
 
-    for (int ligne = 599; ligne > 0; ligne-=2) {
+    for (ligne-- ; ligne>0; ligne-=2) {
         if (gTests.dessin)
             return void();
         Fl::wait(0);

@@ -20,9 +20,9 @@ void InitialiserDonnees() {
     gDonnees.color1=0xFF000000;
     gDonnees.color2=0x00FF0000;
     gDonnees.color3=0x0000FF00;
-    gDonnees.rangColor1=10;
-    gDonnees.rangColor2=20;
-    gDonnees.rangColor3=30;
+    gDonnees.rangColor1=4;
+    gDonnees.rangColor2=17;
+    gDonnees.rangColor3=34;
     gDonnees.hauteur=H_ZONE;
 
     //Init des tests
