@@ -47,7 +47,7 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
                     real(gDonnees.C)=real(gDonnees.ig)+(Fl::event_x()-X_ZONE)*gDonnees.pasxy;// Pas les bons calculs de coordonnées.
                     imag(gDonnees.C)=imag(gDonnees.ig)+(Fl::event_y()-Y_ZONE)*gDonnees.pasxy;
                     cout<<"C= : ("<<real(gDonnees.C)<<","<<imag(gDonnees.C)<<")"<<endl;
-                    deplacement=false;      // En fait il faudrait quand même redraw si Julia.
+                    deplacement=true;      // En fait il faudrait quand même redraw si Julia.
                 }
             break;
 
