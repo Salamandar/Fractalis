@@ -83,7 +83,6 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
 
     if(deplacement) {
         gTests.calcul=1;
-        gTests.dessin=1;
         gInterface.ZoneDessin->redraw();
     }
 }
@@ -104,7 +103,6 @@ void BoutonResetCB(Fl_Widget* w, void* data){
     // retour aux paramètres initiaux
     InitialiserDonnees();
     gTests.calcul=1;
-    gTests.dessin=1;
     gInterface.ZoneDessin->redraw();
 }
 
@@ -124,14 +122,12 @@ void ChampProfondeurCB(Fl_Widget* w, void* data){
     gInterface.Slider3->scrollvalue(gDonnees.rangColor3,0,0,gDonnees.rangMax);
     gInterface.Slider3->color(gDonnees.color3,gDonnees.color3);
     gTests.calcul=1;
-    gTests.dessin=1;
     gInterface.ZoneDessin->redraw();
 }
 
 void ChampModuleDeSortieCB(Fl_Widget* w, void* data){
     gDonnees.moduleMax = (int)gInterface.ChampModuleDeSortie->value();
     gTests.calcul=1;
-    gTests.dessin=1;
     gInterface.ZoneDessin->redraw();
 }
 
@@ -152,28 +148,24 @@ void MenuFractaleCB(Fl_Widget* w, void* data){
             break;
     }
     gTests.calcul=1;
-    gTests.dessin=1;
     gInterface.ZoneDessin->redraw();
 }
 
 void ChampXMinCB(Fl_Widget* w, void* data){
     real(gDonnees.ig) = gInterface.ChampXMin->value();
     gTests.calcul=1;
-    gTests.dessin=1;
     gInterface.ZoneDessin->redraw();
 }
 
 void ChampYMinCB(Fl_Widget* w, void* data){
     imag(gDonnees.ig) = gInterface.ChampYMin->value();
     gTests.calcul=1;
-    gTests.dessin=1;
     gInterface.ZoneDessin->redraw();
 }
 
 void ChampLargeurCB(Fl_Widget* w, void* data){
     gDonnees.pasxy = ((double)gInterface.ChampLargeur->value())/L_ZONE;
     gTests.calcul=1;
-    gTests.dessin=1;
     gInterface.ZoneDessin->redraw();
 }
 
@@ -189,7 +181,6 @@ void Slider1CB(Fl_Widget* w, void* data){
         gInterface.Slider3->value(gDonnees.rangColor3);
     }
     setColorChooserColor(gDonnees.color1);
-    gTests.dessin=1;
     gInterface.ZoneDessin->redraw();
 }
 
@@ -205,7 +196,6 @@ void Slider2CB(Fl_Widget* w, void* data){
         gInterface.Slider3->value(gDonnees.rangColor3);
     }
     setColorChooserColor(gDonnees.color2);
-    gTests.dessin=1;
     gInterface.ZoneDessin->redraw();
 }
 
@@ -222,7 +212,6 @@ void Slider3CB(Fl_Widget* w, void* data){
         gInterface.Slider2->value(gDonnees.rangColor2);
     }
     setColorChooserColor(gDonnees.color3);
-    gTests.dessin=1;
     gInterface.ZoneDessin->redraw();
 }
 
@@ -247,7 +236,6 @@ void CarreChoixCouleurCB(Fl_Widget* w, void* data){
         default:
             break;
     }
-    gTests.dessin=1;
     gInterface.ZoneDessin->redraw();
 }
 

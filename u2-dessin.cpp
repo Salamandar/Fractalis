@@ -13,6 +13,7 @@ void ZoneDessinInitialisation(Fl_Widget* widget, void* data) {
     fl_color(FL_BLACK);
     fl_rectf(X_ZONE, Y_ZONE, L_ZONE, H_ZONE);
     // On initialise la gestion de l'affichage de la fractale seulement quand la fenêtre est correctement créée
+    gTests.dessin=true;
     Fl::add_timeout(0, gestionAffichage_iter, NULL );
 }
 
@@ -36,7 +37,6 @@ void gestionAffichage(void*) {
         if(ligne&1) {   // On a tout affiché
             ligne=0;
             gTests.calcul=0;    // On n'a plus besoin de calculer jusqu'à modif des params de calcul
-            gTests.dessin=0;    // On n'a plus besoin d'afficher jusqu'à modif des params de calcul ou d'affichage
             gTests.calccouleurs=1;  // On n'a pas à calculer le dégradé de couleurs jusqu'à modif des params de couleur. À virer…
         }
         else {          // On n'a affiché que les lignes paires
@@ -47,32 +47,36 @@ void gestionAffichage(void*) {
 }
 
 void gestionAffichage_iter(void*){
-static int ligne =0;
-pointeurFct fonction = retourne_fonction();
+    gTests.dessin=false;
+    pointeurFct fonction = retourne_fonction();
     unsigned long tabDegrade[gDonnees.rangMax];     // On pourrait faire une struct de vars actuelles
-    //if(gTests.calccouleurs)
-    {
-        ligne=0;
+    //if(gTests.calccouleurs) {
         printf("Calcul de couleur\n");
-        couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tabDegrade);
-        gTests.calccouleurs=0;}
-    while(ligne<H_ZONE){
+        couleurs(gDonnees.color1,    gDonnees.color2,    gDonnees.color3,
+                 gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tabDegrade);
+        gTests.calccouleurs=0;
+    //}
+
+    for (int ligne = 0; ligne < H_ZONE; ligne+=2) {
+        if (gTests.dessin)
+            return void();
         Fl::wait(0);
-        if (gTests.calcul){
-            convergenceLigne(ligne, fonction);}
+        if (gTests.calcul)
+            convergenceLigne(ligne, fonction);
         afficheLigne(ligne, tabDegrade);
-        ligne+=2;
-        }
-    ligne=1;
-    while(ligne<H_ZONE){
+    }
+
+    for (int ligne = 1; ligne < H_ZONE; ligne+=2) {
+        if (gTests.dessin)
+            return void();
         Fl::wait(0);
-        if (gTests.calcul){
-            convergenceLigne(ligne, fonction);}
+        if (gTests.calcul)
+            convergenceLigne(ligne, fonction);
         afficheLigne(ligne, tabDegrade);
-        ligne+=2;
-        }
-gTests.calcul=0;
-gTests.calccouleurs=0;
+    }
+
+    gTests.calcul=0;
+    gTests.calccouleurs=0;
 }
 
 void afficheLigne(int j, unsigned long tableauCouleurs[]){
