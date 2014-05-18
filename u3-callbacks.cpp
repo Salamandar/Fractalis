@@ -98,7 +98,7 @@ void BoutonQuitterCB(Fl_Widget* w, void* data){
 }
 
 void BoutonEnregistrerCB(Fl_Widget* w, void* data){
-    enregistrerPPM(300,"pics.ppm");
+    enregistrerPPM(3000,"pics.ppm");
     // Enregistre le fichier image et texte
 
 }
