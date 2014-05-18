@@ -116,11 +116,11 @@ void ChampProfondeurCB(Fl_Widget* w, void* data){
     gDonnees.rangColor1=gDonnees.rangColor1/temp;
     gDonnees.rangColor2=gDonnees.rangColor2/temp;
     gDonnees.rangColor3=gDonnees.rangColor3/temp;
-    gInterface.Slider1->scrollvalue(gDonnees.rangColor1,0,0,gDonnees.rangMax);
+    gInterface.Slider1->scrollvalue(gDonnees.rangColor1,0,0,gDonnees.rangMax-1);
     gInterface.Slider1->color(gDonnees.color1,gDonnees.color1);
-    gInterface.Slider2->scrollvalue(gDonnees.rangColor2,0,0,gDonnees.rangMax);
+    gInterface.Slider2->scrollvalue(gDonnees.rangColor2,0,0,gDonnees.rangMax-1);
     gInterface.Slider2->color(gDonnees.color2,gDonnees.color2);
-    gInterface.Slider3->scrollvalue(gDonnees.rangColor3,0,0,gDonnees.rangMax);
+    gInterface.Slider3->scrollvalue(gDonnees.rangColor3,0,0,gDonnees.rangMax-1);
     gInterface.Slider3->color(gDonnees.color3,gDonnees.color3);
     gTests.calcul=1;
     gInterface.ZoneDessin->redraw();
