@@ -85,7 +85,7 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
         gTests.calcul=1;
         gInterface.ChampLargeur->value(gDonnees.pasxy*H_ZONE);
         gInterface.ChampXMin->value(real(gDonnees.ig));
-        gInterface.ChampYMin->value(real(gDonnees.ig));
+        gInterface.ChampYMin->value(imag(gDonnees.ig));
         gInterface.ZoneDessin->redraw();
     }
 }
