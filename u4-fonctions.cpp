@@ -32,6 +32,7 @@ void InitialiserDonnees() {
     gTests.calccouleurs=1;
 
     //interface, je met la car ça bug quand j'include u4 fct dans u1 interface
+    gInterface.MenuFractale->value(0);
     gInterface.ChampModuleDeSortie->value(gDonnees.moduleMax);
     gInterface.ChampProfondeur->value(gDonnees.rangMax);
     gInterface.ChampXMin->value(real(gDonnees.ig));
