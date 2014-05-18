@@ -245,15 +245,14 @@ void CarreChoixCouleurCB(Fl_Widget* w, void* data){
 
 // Ne fonctionne pas correctement.
 
-void setColorChooserColor(unsigned int couleur){
-    double r, g, b;
-    couleur-=255;
-    couleur/=256;   b=((double)(couleur%256))/255;
+void setColorChooserColor(unsigned long int A){
+     double R,G,B;
+                    A=(A-A%256)/256;
+                    B=A % 256;
+                    A=(A-B)/256;
+                    G=A % 256;
+                    A=(A-G)/256;
+                    R=A%256;
 
-    couleur-=couleur%256;
-    couleur/=256;   g=((double)(couleur%256))/255;
-
-    couleur-=couleur%256;
-    couleur/=256;   r=((double)(couleur%256))/255;
-    gInterface.CarreChoixCouleur->rgb(r,g,b);
+    gInterface.CarreChoixCouleur->rgb(R/255,G/255,B/255);
 }
