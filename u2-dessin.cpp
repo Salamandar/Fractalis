@@ -66,7 +66,7 @@ void gestionAffichage_iter(void*){
         afficheLigne(ligne, tabDegrade);
     }
 
-    for (int ligne = 1; ligne < H_ZONE; ligne+=2) {
+    for (int ligne = 599; ligne > 0; ligne-=2) {
         if (gTests.dessin)
             return void();
         Fl::wait(0);

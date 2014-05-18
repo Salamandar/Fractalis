@@ -175,35 +175,46 @@ void couleurs(unsigned long int A, unsigned long int B, unsigned long int C, int
 }
 
 void enregistrerPPM(int Largeur, char Fichier[32]){
-    FILE* ptrFichier;
-    ptrFichier=fopen(Fichier,"w");
-    if(ptrFichier=NULL){cout<<"impossible d'acceder au fichier";}
-
-    fprintf(ptrFichier,"P3\n%d %d\n256\n",Largeur,Largeur*H_ZONE/L_ZONE);
-
-
+    FILE* pFile;
+    pFile = fopen(Fichier,"w");
+    fprintf(pFile,"P3\n%d %d\n255\n",Largeur,Largeur*H_ZONE/L_ZONE);
 
     pointeurFct fonction = retourne_fonction(); // Détermine la fonction
-    double pas=gDonnees.pasxy*Largeur/gDonnees.hauteur*L_ZONE/H_ZONE;
+    int hauteur=Largeur*H_ZONE/L_ZONE;
+    double pas=gDonnees.pasxy/Largeur*(gDonnees.hauteur*L_ZONE/H_ZONE);
     double x_ini=real(gDonnees.ig);
     double y_ini=imag(gDonnees.ig);
     complex<double>coord_init=gDonnees.ig;
-    complex<double>pas_complx=(0,gDonnees.pasxy);
+    complex<double>pas_complx=(0,pas);
     complex<double>coordonnees=coord_init;
-
-    int tempHauteur=gDonnees.hauteur;
-    gDonnees.hauteur=Largeur*H_ZONE/L_ZONE;
     unsigned long int tab[gDonnees.rangMax];
     couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tab);
-    	for (int j = 0; j < gDonnees.hauteur; ++j) {
-        convergenceLigne(j, fonction);
-        coordonnees=complex<double>(x_ini,y_ini+j*pas);
         //coordonnees=coord_init+(double)j*pas_complx;
-        	for (int i = 0; i < L_ZONE; ++i) {
-                if (gDonnees.Tab[i][j].n==-1 )
-                    fprintf(ptrFichier, "0 0 0 ");
-                else{}
-        	}
-    	}
-}
+        	for (int j = 0; j < hauteur; j++) {
+        	    coordonnees=complex<double>(x_ini,y_ini+j*pas);
+        	    for(int i = 0; i<Largeur;i++){
+        	        int rang=fonction(coordonnees);
+        	        coordonnees+=pas_complx;
 
+
+                if (rang==-1 )
+                    fprintf(pFile, "0 0 0 ");
+                else{
+                    unsigned long A=tab[rang];
+                    int R,G,B;
+                    A=(A-A%256)/256;
+                    B=A % 256;
+                    A=(A-B)/256;
+                    G=A % 256;
+                    A=(A-G)/256;
+                    R=A%256;
+                    fprintf(pFile,"%d %d %d ",R,G,B);
+
+                }
+                }
+
+        	}
+
+  fclose(pFile);
+
+}

@@ -78,4 +78,5 @@ void couleurs(unsigned long int A, unsigned long int B, unsigned long int C, int
 void enregistrerPPM(int Largeur, char Fichier[32]);
 
 
+
 #endif
