@@ -1,7 +1,5 @@
 #include <iostream>
 #include <stdio.h>
-#include <api/inc/fmod.h>
-#include <api/inc/fmod_errors.h>
 using namespace std;
 #include "u1-interface.h"
 #include "u4-fonctions.h"
