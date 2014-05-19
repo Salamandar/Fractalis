@@ -57,7 +57,7 @@ void CreerInterface() {
     gInterface.ChampXMin->when(FL_WHEN_ENTER_KEY | FL_WHEN_RELEASE);
     gInterface.ChampXMin->callback(ChampXMinCB, NULL);
 
-    gInterface.ChampYMin = new Fl_Value_Input(X_ZONE+L_ZONE+200, 150, 100, 20,"Y ");
+    gInterface.ChampYMin = new Fl_Value_Input(X_ZONE+L_ZONE+200, 140, 100, 20,"Y ");
     gInterface.ChampYMin->when(FL_WHEN_ENTER_KEY | FL_WHEN_RELEASE);
     gInterface.ChampYMin->callback(ChampYMinCB, NULL);
 
@@ -66,19 +66,28 @@ void CreerInterface() {
     gInterface.ChampLargeur->when(FL_WHEN_ENTER_KEY | FL_WHEN_RELEASE);
     gInterface.ChampLargeur->callback(ChampLargeurCB, NULL);
 
+    //Chammp C
+    gInterface.ChampCX = new Fl_Value_Input(X_ZONE+L_ZONE+200, 210 , 100, 20, "Coordonnees de C : X ");
+    gInterface.ChampCX->callback(ChampCXCB, NULL);
+
+
+    gInterface.ChampCY = new Fl_Value_Input(X_ZONE+L_ZONE+200, 230 , 100, 20, "Y ");
+    gInterface.ChampCY->callback(ChampCYCB, NULL);
+
+
     //Carré couleur
-    gInterface.CarreChoixCouleur = new Fl_Color_Chooser(X_ZONE+L_ZONE+75,210, 225, 150);
+    gInterface.CarreChoixCouleur = new Fl_Color_Chooser(X_ZONE+L_ZONE+75,270, 225, 150);
     gInterface.CarreChoixCouleur->rgb(1,0,0);
     gInterface.CarreChoixCouleur->callback(CarreChoixCouleurCB, NULL);
 
     //Sliders
-    gInterface.Slider1 = new Fl_Value_Slider(X_ZONE+L_ZONE+75,370,225,20,"Couleur 1");
+    gInterface.Slider1 = new Fl_Value_Slider(X_ZONE+L_ZONE+75,430,225,20,"Couleur 1");
     gInterface.Slider1->type(FL_HOR_NICE_SLIDER);
     gInterface.Slider1->callback(Slider1CB, NULL);
-    gInterface.Slider2 = new Fl_Value_Slider(X_ZONE+L_ZONE+75,410,225,20,"Couleur 2");
+    gInterface.Slider2 = new Fl_Value_Slider(X_ZONE+L_ZONE+75,470,225,20,"Couleur 2");
     gInterface.Slider2->type(FL_HOR_NICE_SLIDER);
     gInterface.Slider2->callback(Slider2CB, NULL);
-    gInterface.Slider3 = new Fl_Value_Slider(X_ZONE+L_ZONE+75,450,225,20,"Couleur 3");
+    gInterface.Slider3 = new Fl_Value_Slider(X_ZONE+L_ZONE+75,510,225,20,"Couleur 3");
     gInterface.Slider3->type(FL_HOR_NICE_SLIDER);
     gInterface.Slider3->callback(Slider3CB, NULL);
 

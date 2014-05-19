@@ -98,9 +98,17 @@ void BoutonQuitterCB(Fl_Widget* w, void* data){
 }
 
 void BoutonEnregistrerCB(Fl_Widget* w, void* data){
-    enregistrerPPM(3000,"pics.ppm");
-    // Enregistre le fichier image et texte
+    const char* Saisie ; // et pas : char Saisie[80]
+	int Entier=0 ;
+    int Ok ;
 
+	// Saisie de la valeur
+    Ok = 0 ;
+	Saisie = fl_input("Quelle résolution (largeur) ?", "" ) ;
+		if ( Saisie != NULL )
+		Ok = sscanf( Saisie, "%d", &Entier ) ;
+	if (Entier!=0){enregistrerPPM(Entier,"pics.ppm");
+	}
 }
 
 void BoutonResetCB(Fl_Widget* w, void* data){
@@ -171,6 +179,12 @@ void ChampLargeurCB(Fl_Widget* w, void* data){
     gDonnees.pasxy = ((double)gInterface.ChampLargeur->value())/L_ZONE;
     gTests.calcul=1;
     gInterface.ZoneDessin->redraw();
+}
+
+void ChampCXCB(Fl_Widget* w, void* data){
+}
+
+void ChampCYCB(Fl_Widget* w, void* data){
 }
 
 void Slider1CB(Fl_Widget* w, void* data){
