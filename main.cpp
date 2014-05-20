@@ -9,7 +9,7 @@ using namespace std;
 #include "u2-dessin.h"
 #include "u3-callbacks.h"
 #include "u4-fonctions.h"
-
+#include <png.h>
 
 int main (int argc, char ** argv) {
     // int ligne_actuelle=0;
