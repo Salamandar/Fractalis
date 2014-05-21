@@ -13,7 +13,7 @@ void ZoneDessinInitialisation(Fl_Widget* widget, void* data)
 {
     fl_color(FL_BLACK);
     fl_rectf(X_ZONE, Y_ZONE, L_ZONE, H_ZONE);
-     On initialise la gestion de l'affichage de la fractale seulement quand la fenêtre est correctement créée
+//     On initialise la gestion de l'affichage de la fractale seulement quand la fenêtre est correctement créée
     gTests.dessin=true;
     Fl::add_timeout(0, gestionAffichage_iter, NULL );
 }
