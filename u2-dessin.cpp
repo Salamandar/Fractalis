@@ -56,7 +56,7 @@ void gestionAffichage_iter(void*)
         gTests.calcul=0;
         gTests.calccouleurs=0;
     }
-    else
+    else //ANIMATION
     {
         gTests.dessin=false;
         pointeurFct fonction = retourne_fonction();
@@ -75,24 +75,35 @@ void gestionAffichage_iter(void*)
             if (gTests.calcul)
                 convergenceLigne(ligne, fonction);
         }
-        unsigned long tabDegrade[gDonnees.rangMax];     // On pourrait faire une struct de vars actuelles
+        unsigned long tabDegrade[gDonnees.rangMax][3];     // On pourrait faire une struct de vars actuelles
         //if(gTests.calccouleurs) {
         printf("Calcul de couleur\n");
-        couleurs(gDonnees.color1,    gDonnees.color2,    gDonnees.color3,
-                 gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tabDegrade);
-        for(int j=0;j<H_ZONE;j++){
-        for (int i = 0; i < L_ZONE; ++i)
+        couleursRGB(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tabDegrade);
+        for(int j=0; j<H_ZONE; j++)
         {
-            //if (gDonnees.Tab[i][j].n==-1 )
-                fl_color(FL_BLUE);
-            //else
-              //  fl_color(tabDegrade[gDonnees.Tab[i][j].n]);
-            fl_point(i+X_ZONE,j+Y_ZONE);
-        }
+            for (int i = 0; i < L_ZONE; i=i+3)
+            {
+                if (gDonnees.Tab[i][j].n==-1 )
+                {
+                    gDonnees.buffer[i+L_ZONE*j]=0;
+                    gDonnees.buffer[i+L_ZONE*j+1]=0;
+                    gDonnees.buffer[i+L_ZONE*j+2]=0;
+                }
+
+                else
+                {
+
+                    gDonnees.buffer[i+L_ZONE*j]=tabDegrade[gDonnees.Tab[i][j].n][0];
+                    gDonnees.buffer[i+L_ZONE*j+1]=tabDegrade[gDonnees.Tab[i][j].n][1];
+                    gDonnees.buffer[i+L_ZONE*j+2]=tabDegrade[gDonnees.Tab[i][j].n][2];
+                }
+            }
+            //cout<<tabDegrade[gDonnees.Tab[100][j].n][0]<<" "<<tabDegrade[gDonnees.Tab[100][j].n][1]<<" "<<tabDegrade[gDonnees.Tab[100][j].n][2]<<endl;
+            cout<<j<<endl;
         }
         gTests.calccouleurs=0;
         gTests.calcul=0;
-
+        fl_draw_image(gDonnees.buffer,X_ZONE,Y_ZONE,L_ZONE,H_ZONE,3);
     }
 }
 
