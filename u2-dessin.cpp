@@ -85,9 +85,9 @@ void gestionAffichage_iter(void*)
             {
                 if (gDonnees.Tab[i][j].n==-1 )
                 {
-                    //gDonnees.buffer[i+L_ZONE*j]=0;
-                    //gDonnees.buffer[i+L_ZONE*j+1]=0;
-                    //gDonnees.buffer[i+L_ZONE*j+2]=0;
+                    gDonnees.buffer[3*i+3*L_ZONE*j]=0;
+                    gDonnees.buffer[3*i+3*L_ZONE*j+1]=0;
+                    gDonnees.buffer[3*i+3*L_ZONE*j+2]=0;
                 }
 
                 else
