@@ -19,6 +19,8 @@ void CarreChoixCouleurCB(Fl_Widget* w, void* data);
 void Slider1CB          (Fl_Widget* w, void* data);
 void Slider2CB          (Fl_Widget* w, void* data);
 void Slider3CB          (Fl_Widget* w, void* data);
+void AnimationCB        (Fl_Widget* w, void* data);
+
 
 void setColorChooserColor(unsigned long int couleur);
 #endif

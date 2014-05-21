@@ -51,6 +51,7 @@ struct Tests {
     bool calcul;
     bool calccouleurs;
     bool CB;
+    bool animation;
     int slider;
 };
 extern Donnees gDonnees;
