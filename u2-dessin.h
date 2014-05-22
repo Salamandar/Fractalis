@@ -7,6 +7,7 @@ void gestionAffichage(void* data);
 void gestionAffichage_iter(void* data);
 void afficheFractale();
 void afficheFractaleLigne();
-void afficheLigne(int j, unsigned long tableau[]);
+//void afficheLigne(int j, unsigned long tableau[]); remplacée pour afficher avec buffer
+void afficheLigneRGB(int j, unsigned long tableauCouleurs[][3]);
 
 #endif

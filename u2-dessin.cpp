@@ -25,10 +25,10 @@ void gestionAffichage_iter(void*)
         gTests.dessin=false;
         pointeurFct fonction = retourne_fonction();
         int ligne;
-        unsigned long tabDegrade[gDonnees.rangMax];     // On pourrait faire une struct de vars actuelles
+        unsigned long tabDegrade[gDonnees.rangMax][3];     // On pourrait faire une struct de vars actuelles
         //if(gTests.calccouleurs) {
         printf("Calcul de couleur\n");
-        couleurs(gDonnees.color1,    gDonnees.color2,    gDonnees.color3,
+        couleursRGB(gDonnees.color1,    gDonnees.color2,    gDonnees.color3,
                  gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tabDegrade);
         gTests.calccouleurs=0;
         //}
@@ -40,7 +40,7 @@ void gestionAffichage_iter(void*)
                 convergenceLigne(ligne, fonction);
             if (gTests.dessin)
                 return void();
-            afficheLigne(ligne, tabDegrade);
+            afficheLigneRGB(ligne, tabDegrade);
         }
 
         for (ligne-- ; ligne>0; ligne-=2)
@@ -50,7 +50,7 @@ void gestionAffichage_iter(void*)
                 convergenceLigne(ligne, fonction);
             if (gTests.dessin)
                 return void();
-            afficheLigne(ligne, tabDegrade);
+            afficheLigneRGB(ligne, tabDegrade);
         }
 
         gTests.calcul=0;
@@ -99,15 +99,15 @@ void gestionAffichage_iter(void*)
                 }
 
             }
-            //for(int i=0;i<60;i=i+3)
+            fl_draw_image(&gDonnees.buffer[3*L_ZONE*j],X_ZONE,Y_ZONE+j,L_ZONE,1,3);
         }
         gTests.calccouleurs=0;
         gTests.calcul=0;
-        fl_draw_image(gDonnees.buffer,X_ZONE,Y_ZONE,L_ZONE,H_ZONE,3);
+
     }
 }
 
-void afficheLigne(int j, unsigned long tableauCouleurs[])
+/*void afficheLigne(int j, unsigned long tableauCouleurs[])
 {
     for (int i = 0; i < L_ZONE; ++i)
     {
@@ -117,4 +117,26 @@ void afficheLigne(int j, unsigned long tableauCouleurs[])
             fl_color(tableauCouleurs[gDonnees.Tab[i][j].n]);
         fl_point(i+X_ZONE,j+Y_ZONE);
     }
+}*/
+void afficheLigneRGB(int j, unsigned long tabDegrade[][3])
+{
+    for (int i = 0; i < L_ZONE; i=i+1)
+    {
+        if (gDonnees.Tab[i][j].n==-1 )
+        {
+            gDonnees.buffer[3*i+3*L_ZONE*j]=0;
+            gDonnees.buffer[3*i+3*L_ZONE*j+1]=0;
+            gDonnees.buffer[3*i+3*L_ZONE*j+2]=0;
+        }
+
+        else
+        {
+
+            gDonnees.buffer[3*i+3*L_ZONE*j]=tabDegrade[gDonnees.Tab[i][j].n][0];
+            gDonnees.buffer[3*i+3*L_ZONE*j+1]=tabDegrade[gDonnees.Tab[i][j].n][1];
+            gDonnees.buffer[3*i+3*L_ZONE*j+2]=tabDegrade[gDonnees.Tab[i][j].n][2];
+        }
+
+    }
+    fl_draw_image(&gDonnees.buffer[3*L_ZONE*j],X_ZONE,Y_ZONE+j,L_ZONE,1,3);
 }
