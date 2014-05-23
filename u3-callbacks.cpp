@@ -97,13 +97,19 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data )
             printf("Mouse release = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
             x2=Fl::event_x()-X_ZONE;
             y2=Fl::event_y()-Y_ZONE;
-            // Recalcul du point ig --ce serait bien de faire un truc un peu plus "scientifiquement" ;)
-            real(gDonnees.ig)=real(gDonnees.ig)+min(x1, x2)*gDonnees.pasxy;
-            imag(gDonnees.ig)=imag(gDonnees.ig)+(H_ZONE-max(y1, y2))*gDonnees.pasxy;
-            // Modification du pas
-            gDonnees.pasxy=gDonnees.pasxy*abs(x1-x2)/L_ZONE;
+            if(y2-y1>0)
+            y2=y1+max((x2-x1),(x1-x2))*H_ZONE/L_ZONE;
+            else
+            y2=y1-max((x2-x1),(x1-x2))*H_ZONE/L_ZONE;
+            // Recalcul du point ig
+                real(gDonnees.ig)=real(gDonnees.ig)+min(x1, x2)*gDonnees.pasxy;
 
-            deplacement=true;
+                imag(gDonnees.ig)=imag(gDonnees.ig)+(H_ZONE-max(y1,y2))*gDonnees.pasxy;
+                // Modification du pas
+                gDonnees.pasxy=gDonnees.pasxy*abs(x1-x2)/L_ZONE;
+
+                deplacement=true;
+
         }
         break;
 
@@ -359,6 +365,7 @@ void CarreChoixCouleurCB(Fl_Widget* w, void* data)
 
     switch(gTests.slider)
     {
+
     case 1:
         gDonnees.color1=255+256*(int)b+256*256*(int)g+256*256*256*(int)r;
         gInterface.Slider1->color(gDonnees.color1,gDonnees.color1);
