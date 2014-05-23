@@ -27,6 +27,7 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
 
 
     switch(Fl::event_button()){
+        int x,y;
         case 1: if(Fl::event()==FL_PUSH){   // Déplacement
                     deplX=Fl::event_x();// X_ZONE et Y_ZONE pas nécessaires car on fait une différence
                     deplY=Fl::event_y();
@@ -58,11 +59,13 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
                     y1=Fl::event_y()-Y_ZONE;
 
                 }
-                if (Fl::event()==FL_PUSH){
-                  int x=Fl::event_x()-X_ZONE;
-                    int y=Fl::event_y()-Y_ZONE;
+                if ( Fl::event_button3()){
+                  x=Fl::event_x()-X_ZONE;
+                  y=Fl::event_y()-Y_ZONE;
+                  gInterface.ZoneDessin->redraw();
                     tracerCadre(x1,y1,x,y);
-                   // gInterface.ZoneDessin->redraw();
+
+
 
                 }
 
@@ -128,10 +131,12 @@ void BoutonEnregistrerCB(Fl_Widget* w, void* data){
 	Saisie = fl_input("Quelle résolution (largeur) ?", "" ) ;
 		if ( Saisie != NULL )
 		Ok = sscanf( Saisie, "%d", &Entier ) ;
+		if (Entier!=0){
     Saisie = fl_input("Nom du fichier ?", "" ) ;
 		if ( Saisie != NULL )
 		Ok = sscanf( Saisie, "%s", filename ) ;
-	if (Entier!=0){enregistrerPPM(Entier,filename);
+		enregistrerPPM(Entier,filename);
+
 	}
 }
 
