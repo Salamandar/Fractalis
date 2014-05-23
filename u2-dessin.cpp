@@ -13,7 +13,7 @@ void ZoneDessinInitialisation(Fl_Widget* widget, void* data)
 {
     //fl_color(FL_BLACK);
     //fl_rectf(X_ZONE, Y_ZONE, L_ZONE, H_ZONE);
-    fl_draw_image(gDonnees.buffer,X_ZONE,Y_ZONE,L_ZONE,H_ZONE,3);
+    fl_draw_image(gDonnees.buffer,X_ZONE,Y_ZONE,L_ZONE,H_ZONE,3);//evite l'écran noir lors du refresh mais affiche un double lors des redraw.
 //     On initialise la gestion de l'affichage de la fractale seulement quand la fenêtre est correctement créée
     gTests.dessin=true;
     Fl::add_timeout(0, gestionAffichage_iter, NULL );
