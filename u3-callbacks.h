@@ -11,6 +11,7 @@ void BoutonQuitterCB    (Fl_Widget* w, void* data);
 void BoutonEnregistrerCB(Fl_Widget* w, void* data);
 void BoutonResetCB      (Fl_Widget* w, void* data);
 void BoutonAideCB       (Fl_Widget* w, void* data);
+void BoutonSaveParamsCB (Fl_Widget* w, void* data);
 void ChampXMinCB        (Fl_Widget* w, void* data);
 void ChampYMinCB        (Fl_Widget* w, void* data);
 void ChampLargeurCB     (Fl_Widget* w, void* data);

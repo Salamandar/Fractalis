@@ -247,3 +247,5 @@ void enregistrerPPM(int Largeur, char Fichier[32]){
   fclose(pFile);
 
 }
+
+

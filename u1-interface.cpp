@@ -21,11 +21,12 @@ void CreerInterface() {
     gInterface.BoutonReset      = new Fl_Button(X_ZONE+100, 0, 100, Y_ZONE, "Reset");
     gInterface.BoutonQuitter    = new Fl_Button(X_ZONE+200, 0, 100, Y_ZONE, "Quitter");
     gInterface.BoutonAide       = new Fl_Button(X_ZONE+300, 0, 100, Y_ZONE, "Aide");
+    gInterface.BoutonSaveParams = new Fl_Button(X_ZONE+400, 0, 200, Y_ZONE, "Enregistrer Paramètres");
     gInterface.BoutonEnregistrer->callback(BoutonEnregistrerCB, NULL);
     gInterface.BoutonReset      ->callback(BoutonResetCB,       NULL);
     gInterface.BoutonQuitter    ->callback(BoutonQuitterCB,     NULL);
     gInterface.BoutonAide       ->callback(BoutonAideCB,     NULL);
-
+    gInterface.BoutonSaveParams ->callback(BoutonSaveParamsCB, NULL);
     // Creation de la zone de dessin
     gInterface.ZoneDessin=new DrawingArea(X_ZONE,Y_ZONE,L_ZONE,H_ZONE);
     gInterface.ZoneDessin->draw_callback(ZoneDessinInitialisation, NULL);
