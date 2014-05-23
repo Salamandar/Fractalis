@@ -78,7 +78,7 @@ void couleurs(unsigned long int A, unsigned long int B, unsigned long int C, int
 void couleursRGB(unsigned long int A, unsigned long int B, unsigned long int C, int N1, int N2, int N3, unsigned long int tab[][3]) ;
 
 //Enregistre une image de largeur Largeur au format PPM, dans un fichier Fichier en recalculant tout
-void enregistrerPPM(int Largeur, char Fichier[32]);
+int enregistrerPPM(int Largeur, char Fichier[32]);
 
 void enregistrerParams(const char* fichier);
 void restaurerParams(const char* fichier);

@@ -203,9 +203,10 @@ unsigned long int I=COULEUR_INIT;
 }
 
 
-void enregistrerPPM(int Largeur, char Fichier[32]){
+int enregistrerPPM(int Largeur, char Fichier[32]){
     FILE* pFile;
     pFile = fopen(Fichier,"w");
+    if (pFile==NULL){return 0;};
     fprintf(pFile,"P3\n%d %d\n255\n",Largeur,Largeur*H_ZONE/L_ZONE);
 
     pointeurFct fonction = retourne_fonction(); // Détermine la fonction
@@ -242,6 +243,7 @@ void enregistrerPPM(int Largeur, char Fichier[32]){
         }
     }
     fclose(pFile);
+    return(1);
 }
 
 

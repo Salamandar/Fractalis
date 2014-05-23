@@ -153,17 +153,31 @@ void BoutonEnregistrerCB(Fl_Widget* w, void* data)
     int Ok ;
 
     // Saisie de la valeur
-    char filename[32];
     Ok = 0 ;
     Saisie = fl_input("Quelle résolution (largeur) ?", "" ) ;
     if ( Saisie != NULL )
         Ok = sscanf( Saisie, "%d", &Entier ) ;
     if (Entier!=0)
     {
-        Saisie = fl_input("Nom du fichier ?", "" ) ;
+    char* NomFichier ;  // et pas : char NomFichier[128]
+
+    NomFichier = (char*) fl_file_chooser("Choisissez un fichier", "*.ppm", NULL);
+
+    if ( NomFichier != NULL )
+    {
+        printf("BoutonChoisirFichierCB : Fichier choisi = %s\n", NomFichier);
+    }
+    else
+    {
+        printf("BoutonChoisirFichierCB : Aucun fichier choisi\n");
+    }
+
+        /*Saisie = fl_input("Nom du fichier ?", "" ) ;
         if ( Saisie != NULL )
-            Ok = sscanf( Saisie, "%s", filename ) ;
-        enregistrerPPM(Entier,filename);
+            Ok = sscanf( Saisie, "%s", filename ) ;*/
+        int err = enregistrerPPM(Entier,NomFichier);
+        if(err==0){fl_message("Erreur lors de la création/ouverture du fichier");}
+        if(err==1){fl_message("Image enregistrée dans %s",NomFichier);}
 
     }
 }
