@@ -54,17 +54,6 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
         }
 
 
-
-        //if(x1<x2){
-        //    gDonnees.pasxy=gDonnees.pasxy*(x2-x1)/L_ZONE;
-        //}
-
-        //else{
-        //    gDonnees.pasxy=gDonnees.pasxy*(x1-x2)/L_ZONE;
-        //}
-            //Definit C pour Julia
-
-
         gInterface.ZoneDessin->redraw();
     }
 
@@ -72,8 +61,16 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
     //Gestion du zoom roulette
     int zoom=0;
     if(Fl::event() == FL_MOUSEWHEEL){
+        int s=Fl::event_x();
+        int t=Fl::event_y();
+        double realFixe =gDonnees.pasxy*s;
+        double imagFixe =gDonnees.pasxy*t;
         zoom=Fl::event_dy();
+        real(gDonnees.ig)=real(gDonnees.ig)-(gDonnees.pasxy*s*0.2*((double)(zoom)));
+        imag(gDonnees.ig)=imag(gDonnees.ig)-(gDonnees.pasxy*(H_ZONE+t)*0.2*((double)(zoom)));
         gDonnees.pasxy = gDonnees.pasxy*(1.+0.2*((double)(zoom)));
+        cout <<real(gDonnees.ig)<< endl;
+        cout << imag(gDonnees.ig)<< endl;
         gInterface.ZoneDessin->redraw();
     }
 
@@ -81,7 +78,6 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
 
 
     //Gestion du déplacement (clic gauche)
-
      static int u1;
      static int u2;
      static int v1;
@@ -114,7 +110,7 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
         imag(gDonnees.C)=imag(gDonnees.ig)+y*gDonnees.pasxy;
         cout<<"C= : ("<<real(gDonnees.C)<<","<<imag(gDonnees.C)<<")"<<endl;
         gInterface.ZoneDessin->redraw();
-    }     
+    }
 
 }
 
