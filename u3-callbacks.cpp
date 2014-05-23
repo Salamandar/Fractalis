@@ -170,40 +170,14 @@ void BoutonAideCB(Fl_Widget* w, void* data)
 }
 
 void BoutonSaveParamsCB(Fl_Widget* w, void* data){
-    const char* Saisie ; // et pas : char Saisie[80]
-    int Entier=0 ;
-    int Ok ;
-
-    // Saisie de la valeur
-    char filename[32];
-    Ok = 0 ;
-    Saisie = fl_input("Quelle résolution (largeur) ?", "" ) ;
-        if ( Saisie != NULL )
-        Ok = sscanf( Saisie, "%d", &Entier ) ;
-    Saisie = fl_input("Nom du fichier ?", "" ) ;
-        if ( Saisie != NULL )
-        Ok = sscanf( Saisie, "%s", filename ) ;
-    if (Entier!=0){enregistrerPPM(Entier,filename);
-    }
-
+    const char* Saisie = fl_input("Quel nouveau fichier de configuration ?", "" ) ;
+    if (Saisie != NULL)
+        enregistrerParams(Saisie);
 }
 void BoutonBackParamsCB(Fl_Widget* w, void* data){
-    const char* Saisie ; // et pas : char Saisie[80]
-    int Entier=0 ;
-    int Ok ;
-
-    // Saisie de la valeur
-    char filename[32];
-    Ok = 0 ;
-    Saisie = fl_input("Quelle résolution (largeur) ?", "" ) ;
-        if ( Saisie != NULL )
-        Ok = sscanf( Saisie, "%d", &Entier ) ;
-    Saisie = fl_input("Nom du fichier ?", "" ) ;
-        if ( Saisie != NULL )
-        Ok = sscanf( Saisie, "%s", filename ) ;
-    if (Entier!=0){enregistrerPPM(Entier,filename);
-    }
-
+    const char* Saisie = fl_input("Lire quel fichier de configuration ?", "" ) ;
+    if (Saisie != NULL)
+        restaurerParams(Saisie);
 }
 
 void ChampProfondeurCB(Fl_Widget* w, void* data)

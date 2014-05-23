@@ -218,34 +218,92 @@ void enregistrerPPM(int Largeur, char Fichier[32]){
     complex<double>coordonnees=coord_init;
     unsigned long int tab[gDonnees.rangMax];
     couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tab);
-        //coordonnees=coord_init+(double)j*pas_complx;
-        	for (int j = 0; j < hauteur; j++) {
-        	    coordonnees=complex<double>(x_ini,y_ini+j*pas);
-        	    for(int i = 0; i<Largeur;i++){
-        	        int rang=fonction(coordonnees);
-        	        coordonnees+=pas_complx;
+    //coordonnees=coord_init+(double)j*pas_complx;
+    for (int j = 0; j < hauteur; j++) {
+        coordonnees=complex<double>(x_ini,y_ini+j*pas);
+        for(int i = 0; i<Largeur;i++){
+            int rang=fonction(coordonnees);
+            coordonnees+=pas_complx;
 
 
-                if (rang==-1 )
-                    fprintf(pFile, "0 0 0 ");
-                else{
-                    unsigned long A=tab[rang];
-                    int R,G,B;
-                    A=(A-A%256)/256;
-                    B=A % 256;
-                    A=(A-B)/256;
-                    G=A % 256;
-                    A=(A-G)/256;
-                    R=A%256;
-                    fprintf(pFile,"%d %d %d ",R,G,B);
-
-                }
-                }
-
-        	}
-
-  fclose(pFile);
-
+            if (rang==-1 )
+                fprintf(pFile, "0 0 0 ");
+            else{
+                unsigned long A=tab[rang];
+                int R,G,B;
+                A=(A-A%256)/256;
+                B=A % 256;
+                A=(A-B)/256;
+                G=A % 256;
+                A=(A-G)/256;
+                R=A%256;
+                fprintf(pFile,"%d %d %d ",R,G,B);
+            }
+        }
+    }
+    fclose(pFile);
 }
 
+
+void enregistrerParams(const char* fichier){
+    FILE* fichierEcriture=fopen(fichier, "w");
+    fprintf(fichierEcriture, "Fractale  : %d\n", gDonnees.Fractale);
+    fprintf(fichierEcriture, "Rang Max  : %d\n", gDonnees.rangMax);
+    fprintf(fichierEcriture, "ModuleMax : %lf\n", gDonnees.moduleMax);
+    fprintf(fichierEcriture, "Constante : %lf+i*%lf\n", real(gDonnees.C )+imag(gDonnees.C ));
+    fprintf(fichierEcriture, "PtInfGauc : %lf+i*%lf\n", real(gDonnees.ig)+imag(gDonnees.ig));
+    fprintf(fichierEcriture, "PasAffXY  : %lf\n", gDonnees.pasxy);
+    fprintf(fichierEcriture, "Couleur1  : %lu\n", gDonnees.color1);
+    fprintf(fichierEcriture, "Couleur2  : %lu\n", gDonnees.color2);
+    fprintf(fichierEcriture, "Couleur3  : %lu\n", gDonnees.color3);
+    fprintf(fichierEcriture, "RangCoul1 : %d\n", gDonnees.rangColor1);
+    fprintf(fichierEcriture, "RangCoul2 : %d\n", gDonnees.rangColor2);
+    fprintf(fichierEcriture, "RangCoul3 : %d\n", gDonnees.rangColor3);
+    fprintf(fichierEcriture, "Hauteur   : %d\n", gDonnees.hauteur);
+//    unsigned long int    color1,     color2,     color3;
+    fclose(fichierEcriture);
+}
+
+
+void restaurerParams(const char* fichier){
+
+
+
+
+/*
+    gDonnees.Fractale = FRACT_INIT;
+    gDonnees.rangMax  = RANGMAX_INIT;
+    gDonnees.moduleMax= MODULEMAX_INIT;
+    gDonnees.C =complex<double>C_INIT;
+    gDonnees.ig=complex<double>IG_INIT;
+    gDonnees.pasxy= PASXY;
+    gDonnees.color1=0xFF000000;
+    gDonnees.color2=0x00FF0000;
+    gDonnees.color3=0x0000FF00;
+    gDonnees.rangColor1=4;
+    gDonnees.rangColor2=17;
+    gDonnees.rangColor3=34;
+    gDonnees.hauteur=H_ZONE;
+
+    //Init des tests
+    gTests.slider=1;
+    gTests.dessin=1;
+    gTests.calcul=1;
+    gTests.animation=0;
+    gTests.calccouleurs=1;
+
+    //interface, je met la car ça bug quand j'include u4 fct dans u1 interface
+    gInterface.MenuFractale->value(0);
+    gInterface.ChampModuleDeSortie->value(gDonnees.moduleMax);
+    gInterface.ChampProfondeur->value(gDonnees.rangMax);
+    gInterface.ChampXMin->value(real(gDonnees.ig));
+    gInterface.ChampYMin->value(imag(gDonnees.ig));
+    gInterface.ChampLargeur->value(gDonnees.pasxy*L_ZONE);
+    gInterface.Slider1->scrollvalue(gDonnees.rangColor1,0,0,gDonnees.rangMax-1);
+    gInterface.Slider1->color(gDonnees.color1,gDonnees.color1);
+    gInterface.Slider2->scrollvalue(gDonnees.rangColor2,0,0,gDonnees.rangMax-1);
+    gInterface.Slider2->color(gDonnees.color2,gDonnees.color2);
+    gInterface.Slider3->scrollvalue(gDonnees.rangColor3,0,0,gDonnees.rangMax-1);
+    gInterface.Slider3->color(gDonnees.color3,gDonnees.color3);*/
+}
 
