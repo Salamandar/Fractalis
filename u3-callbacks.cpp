@@ -59,6 +59,8 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data )
             imag(gDonnees.C)=imag(gDonnees.ig)+(Fl::event_y()-Y_ZONE)*gDonnees.pasxy;
             cout<<"C= : ("<<real(gDonnees.C)<<","<<imag(gDonnees.C)<<")"<<endl;
             deplacement=true;      // En fait il faudrait quand même redraw si Julia.
+            gInterface.ChampCX->value(real(gDonnees.C));
+            gInterface.ChampCY->value(real(gDonnees.C));
         }
         break;
 
@@ -250,10 +252,15 @@ void ChampLargeurCB(Fl_Widget* w, void* data)
 
 void ChampCXCB(Fl_Widget* w, void* data)
 {
+    real(gDonnees.C) = gInterface.ChampCX->value();
+    gTests.calcul=1;
+    gInterface.ZoneDessin->redraw();
 }
 
 void ChampCYCB(Fl_Widget* w, void* data)
-{
+{   imag(gDonnees.C) = gInterface.ChampCY->value();
+    gTests.calcul=1;
+    gInterface.ZoneDessin->redraw();
 }
 
 void Slider1CB(Fl_Widget* w, void* data)
