@@ -72,17 +72,23 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data )
             y1=Fl::event_y()-Y_ZONE;
 
         }
-        if ( Fl::event_button3())
+        if ( Fl::event_button3())//draw cadre
         {
             fl_draw_image(gDonnees.buffer,X_ZONE,Y_ZONE,L_ZONE,H_ZONE,3);
             x=Fl::event_x()-X_ZONE;
             y=Fl::event_y()-Y_ZONE;
-            if(y-y1>0)
-            y=y1+max((x-x1),(x1-x))*H_ZONE/L_ZONE;
-            else
-            y=y1-max((x-x1),(x1-x))*H_ZONE/L_ZONE;
-            tracerCadre(x1,y1+Y_ZONE,x,y+Y_ZONE);
+            if(x<L_ZONE&&x>0)
+            {
 
+                if(y-y1>0)
+                    y=y1+max((x-x1),(x1-x))*H_ZONE/L_ZONE;
+                else
+                    y=y1-max((x-x1),(x1-x))*H_ZONE/L_ZONE;
+                if(y<Y_ZONE+H_ZONE&&y>0)
+                {
+                    tracerCadre(x1,y1+Y_ZONE,x,y+Y_ZONE);
+                }
+            }
         }
 
         // prise des coordonnees finales
@@ -175,12 +181,14 @@ void BoutonAideCB(Fl_Widget* w, void* data)
     fl_message(" Aide :\n Bouton gauche (maintient appui)->Déplacement\n Molette Souris : Zoom\n Appui molette : Définition de C à l'endroit du curseur \n Bouton droit (maintient appui) : Zoom cadre");
 }
 
-void BoutonSaveParamsCB(Fl_Widget* w, void* data){
+void BoutonSaveParamsCB(Fl_Widget* w, void* data)
+{
     const char* Saisie = fl_input("Quel nouveau fichier de configuration ?", "" ) ;
     if (Saisie != NULL)
         enregistrerParams(Saisie);
 }
-void BoutonBackParamsCB(Fl_Widget* w, void* data){
+void BoutonBackParamsCB(Fl_Widget* w, void* data)
+{
     const char* Saisie = fl_input("Lire quel fichier de configuration ?", "" ) ;
     if (Saisie != NULL)
         restaurerParams(Saisie);
@@ -268,7 +276,8 @@ void ChampCXCB(Fl_Widget* w, void* data)
 }
 
 void ChampCYCB(Fl_Widget* w, void* data)
-{   imag(gDonnees.C) = gInterface.ChampCY->value();
+{
+    imag(gDonnees.C) = gInterface.ChampCY->value();
     gTests.calcul=1;
     gInterface.ZoneDessin->redraw();
 }
