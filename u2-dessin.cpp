@@ -142,3 +142,18 @@ void afficheLigneRGB(int j, unsigned long tabDegrade[][3])
     }
     fl_draw_image(&gDonnees.buffer[3*L_ZONE*j],X_ZONE,Y_ZONE+j,L_ZONE,1,3);
 }
+
+void tracerCadre (int x1, int y1 , int x2, int y2)
+{
+    int a=x1;
+    int b=y1;
+    int a1=x1;
+    int b1=y2;
+    int a2=x2;
+    int b2=y2;
+    int a3=x2;
+    int b3=y1;
+
+    fl_loop(a, b, a1, b1, a2, b2, a3, b3);
+
+}
