@@ -117,11 +117,15 @@ void BoutonEnregistrerCB(Fl_Widget* w, void* data){
     int Ok ;
 
 	// Saisie de la valeur
+    char filename[32];
     Ok = 0 ;
 	Saisie = fl_input("Quelle résolution (largeur) ?", "" ) ;
 		if ( Saisie != NULL )
 		Ok = sscanf( Saisie, "%d", &Entier ) ;
-	if (Entier!=0){enregistrerPPM(Entier,"pics.ppm");
+    Saisie = fl_input("Nom du fichier ?", "" ) ;
+		if ( Saisie != NULL )
+		Ok = sscanf( Saisie, "%d", filename ) ;
+	if (Entier!=0){enregistrerPPM(Entier,filename);
 	}
 }
 
