@@ -130,7 +130,7 @@ void BoutonEnregistrerCB(Fl_Widget* w, void* data){
 		Ok = sscanf( Saisie, "%d", &Entier ) ;
     Saisie = fl_input("Nom du fichier ?", "" ) ;
 		if ( Saisie != NULL )
-		Ok = sscanf( Saisie, "%d", filename ) ;
+		Ok = sscanf( Saisie, "%s", filename ) ;
 	if (Entier!=0){enregistrerPPM(Entier,filename);
 	}
 }
