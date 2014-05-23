@@ -133,7 +133,7 @@ void BoutonResetCB(Fl_Widget* w, void* data){
 }
 
 void BoutonAideCB(Fl_Widget* w, void* data){
-    fl_message(" Aide :\n Bouton gauche (maintient appui)->Déplacement\n Molette Souris : Zoom\n Appui molette : Définition de C à l'endroit du curseur \n Bouton droit (maintient appui : Zoom cadre");
+    fl_message(" Aide :\n Bouton gauche (maintient appui)->Déplacement\n Molette Souris : Zoom\n Appui molette : Définition de C à l'endroit du curseur \n Bouton droit (maintient appui) : Zoom cadre");
 }
 
 
