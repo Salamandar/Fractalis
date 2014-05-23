@@ -11,7 +11,7 @@
 #define C_INIT  (0.3, 0.5)
 #define IG_INIT (-2.2,-1.5)
 #define PASXY   0.005
-#define Couleur_Init 0
+#define COULEUR_INIT 0
 
 typedef int (*pointeurFct)(complex<double>);
     // Type d'une fonction qui renvoie un pointeur vers le type de fractale
@@ -19,6 +19,8 @@ typedef int (*pointeurFct)(complex<double>);
 enum fractype {
     MANDELBROT,
     JULIA,
+    COSC,
+    SINZO,
     PERSONNA
 };
 
@@ -46,6 +48,7 @@ struct Donnees {
 
 struct Tests {
     bool dessin;
+    bool calcul;
     bool calccouleurs;
     bool CB;
     int slider;
@@ -61,20 +64,19 @@ pointeurFct retourne_fonction();    // Pointe vers les fonctions suivantes en fo
  // Donnent un rang de convergence pour un point du plan complexe, pour chaque fonction.
 int mandelbrot(complex<double> position);
 int julia     (complex<double> position);
+int sinzo     (complex<double> position);
+int cosc      (complex<double> position);
 int personna  (complex<double> position);
 
-void convergenceLigne(pointeurFct fonction, int j);
+void convergenceLigne(int j, pointeurFct fonction);
 
-
-
-
-
-//Prends en arg 2 unsigned long int et ressort le dégradé sur N dans un tableau de taille[N][3]
+//Prend en arg 2 unsigned long int et ressort le dégradé sur N dans un tableau de taille[N][3]
 void degradeRGB(unsigned long int A, unsigned long int  B,int N, int tab[][3]);
 void couleurs(unsigned long int A, unsigned long int B, unsigned long int C, int N1, int N2, int N3, unsigned long int tab[]);
 
 //Enregistre une image de largeur Largeur au format PPM, dans un fichier Fichier en recalculant tout
 void enregistrerPPM(int Largeur, char Fichier[32]);
+
 
 
 #endif

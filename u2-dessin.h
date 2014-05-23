@@ -4,6 +4,7 @@
 
 void ZoneDessinInitialisation(Fl_Widget* widget, void* data);
 void gestionAffichage(void* data);
+void gestionAffichage_iter(void* data);
 void afficheFractale();
 void afficheFractaleLigne();
 void afficheLigne(int j, unsigned long tableau[]);
