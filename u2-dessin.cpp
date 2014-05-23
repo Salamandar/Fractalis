@@ -16,6 +16,8 @@ void ZoneDessinInitialisation(Fl_Widget* widget, void* data)
 //     On initialise la gestion de l'affichage de la fractale seulement quand la fenêtre est correctement créée
     gTests.dessin=true;
     Fl::add_timeout(0, gestionAffichage_iter, NULL );
+    //Fl::wait(0);
+    //gestionAffichage_iter(NULL);
 }
 
 void gestionAffichage_iter(void*)
