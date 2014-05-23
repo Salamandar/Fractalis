@@ -3,6 +3,7 @@
 #include <FL/Fl.H>
 #include <FL/fl_ask.H>
 #include <FL/Fl_File_Chooser.H>
+#include <FL/fl_draw.H>
 using namespace std;
 #include "u1-interface.h"
 #include "u2-dessin.h"
@@ -58,6 +59,8 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data )
             imag(gDonnees.C)=imag(gDonnees.ig)+(Fl::event_y()-Y_ZONE)*gDonnees.pasxy;
             cout<<"C= : ("<<real(gDonnees.C)<<","<<imag(gDonnees.C)<<")"<<endl;
             deplacement=true;      // En fait il faudrait quand même redraw si Julia.
+            gInterface.ChampCX->value(real(gDonnees.C));
+            gInterface.ChampCY->value(real(gDonnees.C));
         }
         break;
 
@@ -71,11 +74,14 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data )
         }
         if ( Fl::event_button3())
         {
+            fl_draw_image(gDonnees.buffer,X_ZONE,Y_ZONE,L_ZONE,H_ZONE,3);
             x=Fl::event_x()-X_ZONE;
             y=Fl::event_y()-Y_ZONE;
-            tracerCadre(x1,y1,x,y);
-
-
+            if(y-y1>0)
+            y=y1+max((x-x1),(x1-x))*H_ZONE/L_ZONE;
+            else
+            y=y1-max((x-x1),(x1-x))*H_ZONE/L_ZONE;
+            tracerCadre(x1,y1+Y_ZONE,x,y+Y_ZONE);
 
         }
 
@@ -256,10 +262,15 @@ void ChampLargeurCB(Fl_Widget* w, void* data)
 
 void ChampCXCB(Fl_Widget* w, void* data)
 {
+    real(gDonnees.C) = gInterface.ChampCX->value();
+    gTests.calcul=1;
+    gInterface.ZoneDessin->redraw();
 }
 
 void ChampCYCB(Fl_Widget* w, void* data)
-{
+{   imag(gDonnees.C) = gInterface.ChampCY->value();
+    gTests.calcul=1;
+    gInterface.ZoneDessin->redraw();
 }
 
 void Slider1CB(Fl_Widget* w, void* data)
