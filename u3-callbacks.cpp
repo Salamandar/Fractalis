@@ -86,7 +86,7 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
         double imagFixe =gDonnees.pasxy*t;
         zoom=Fl::event_dy();
         real(gDonnees.ig)=real(gDonnees.ig)-(gDonnees.pasxy*s*0.2*((double)(zoom)));
-        imag(gDonnees.ig)=imag(gDonnees.ig)-(gDonnees.pasxy*(H_ZONE+t)*0.2*((double)(zoom)));
+        imag(gDonnees.ig)=imag(gDonnees.ig)-(gDonnees.pasxy*(-t+H_ZONE)*0.2*((double)(zoom)));
         gDonnees.pasxy = gDonnees.pasxy*(1.+0.2*((double)(zoom)));
         cout <<gDonnees.pasxy<< endl;
         //cout << imag(gDonnees.ig)<< endl;
