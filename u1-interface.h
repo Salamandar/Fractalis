@@ -25,6 +25,7 @@ struct Interface {
     Fl_Button*          BoutonQuitter;      // Quitter le programme
     Fl_Button*          BoutonEnregistrer;  // Enregistrer l'image
     Fl_Button*          BoutonReset;        // Revenir aux param?es par d?aut
+    Fl_Button*          BoutonAide;
     Fl_Value_Input*     ChampModuleDeSortie;// Module de sortie
     Fl_Value_Input*     ChampProfondeur;    // Profondeur
     Fl_Choice*          MenuFractale;       // Type de fractale
@@ -37,6 +38,7 @@ struct Interface {
     Fl_Value_Slider*    Slider1;
     Fl_Value_Slider*    Slider2;
     Fl_Value_Slider*    Slider3;
+    Fl_Check_Button*    Animation;
 };
 extern struct Interface gInterface;
 

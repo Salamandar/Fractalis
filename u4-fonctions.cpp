@@ -27,6 +27,7 @@ void InitialiserDonnees() {
     gTests.slider=1;
     gTests.dessin=1;
     gTests.calcul=1;
+    gTests.animation=0;
     gTests.calccouleurs=1;
 
     //interface, je met la car ça bug quand j'include u4 fct dans u1 interface
@@ -172,6 +173,35 @@ void couleurs(unsigned long int A, unsigned long int B, unsigned long int C, int
     }
     //cout<<gDonnees.rangMax;
 }
+void couleursRGB(unsigned long int A, unsigned long int B, unsigned long int C, int N1, int N2, int N3, unsigned long int tab[][3]) {
+unsigned long int I=COULEUR_INIT;
+    int tab1[N1][3];
+    int tab2[N2][3];
+    int tab3[N3][3];
+    int tab4[gDonnees.rangMax-N3][3];
+    degradeRGB(I,A,N1,tab1);
+    degradeRGB(A,B,N2-N1,tab2);
+    degradeRGB(B,C,N3-N2,tab3);
+    degradeRGB(C,I,gDonnees.rangMax-N3,tab4);
+
+    tab[0][0]=tab[0][1]=tab[0][2]=0;
+    for(int j=0;j<3;j++){
+    for(int i=1; i<N1; i++) {
+        tab[i][j]=tab1[i][j];
+    }
+    for(int i=N1; i<N2; i++) {
+        tab[i][j]=tab2[i-N1][j];
+    }
+    for(int i=N2; i<N3 ; i++) {
+        tab[i][j]=tab3[i-N2][j];
+    }
+    for(int i=N3; i<gDonnees.rangMax; i++) {
+        tab[i][j]=tab4[i-N3][j];
+        }
+    }
+
+}
+
 
 void enregistrerPPM(int Largeur, char Fichier[32]){
     FILE* pFile;

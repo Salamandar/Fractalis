@@ -12,7 +12,7 @@ struct Interface gInterface;
 
 void CreerInterface() {
     // Creation de la fenetre principale
-    gInterface.Fenetre=new Fl_Double_Window(X_ZONE+L_ZONE+400,Y_ZONE+H_ZONE);
+    gInterface.Fenetre=new Fl_Double_Window(X_ZONE+L_ZONE+450,Y_ZONE+H_ZONE);
     gInterface.Fenetre->label("Générateur de fractales");
     gInterface.Fenetre->begin();
 
@@ -20,9 +20,11 @@ void CreerInterface() {
     gInterface.BoutonEnregistrer= new Fl_Button(X_ZONE,     0, 100, Y_ZONE, "Enregistrer");
     gInterface.BoutonReset      = new Fl_Button(X_ZONE+100, 0, 100, Y_ZONE, "Reset");
     gInterface.BoutonQuitter    = new Fl_Button(X_ZONE+200, 0, 100, Y_ZONE, "Quitter");
+    gInterface.BoutonAide       = new Fl_Button(X_ZONE+300, 0, 100, Y_ZONE, "Aide");
     gInterface.BoutonEnregistrer->callback(BoutonEnregistrerCB, NULL);
     gInterface.BoutonReset      ->callback(BoutonResetCB,       NULL);
     gInterface.BoutonQuitter    ->callback(BoutonQuitterCB,     NULL);
+    gInterface.BoutonAide       ->callback(BoutonAideCB,     NULL);
 
     // Creation de la zone de dessin
     gInterface.ZoneDessin=new DrawingArea(X_ZONE,Y_ZONE,L_ZONE,H_ZONE);
@@ -33,7 +35,7 @@ void CreerInterface() {
         Ceci est la définition des champs à droite.
 */
     int hauteur=0;          // Permet une modification simplifiée de l'interface
-    int y_champs=160;
+    int y_champs=200;
     int largeur_champs=235;
     int largeur_smalls=(largeur_champs-30)/2;   // Il faut réserver 30px pour le texte + i*
 
@@ -102,7 +104,7 @@ void CreerInterface() {
 
     int y_colorc=75;
     int largeurc=y_champs-y_colorc+largeur_champs;
-    int hauteurc=250;
+    int hauteurc=200;
     //Carré couleur
     gInterface.CarreChoixCouleur =
         new Fl_Color_Chooser(X_ZONE+L_ZONE+y_colorc, hauteur, largeurc, hauteurc);
@@ -127,6 +129,11 @@ void CreerInterface() {
     gInterface.Slider3->type(FL_HOR_NICE_SLIDER);
     gInterface.Slider3->callback(Slider3CB, NULL);
     hauteur+=40;
+
+
+    // Creation de la case a cocher Animation
+    gInterface.Animation = new Fl_Check_Button(X_ZONE+L_ZONE+y_colorc, hauteur,largeurc,20,"Animation") ;
+    gInterface.Animation->callback( AnimationCB, NULL ) ;
 
     // Affichage de la fenetre
     gInterface.Fenetre->end();
