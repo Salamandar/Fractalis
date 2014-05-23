@@ -3,6 +3,7 @@
 #include <FL/Fl.H>
 #include <FL/fl_ask.H>
 #include <FL/Fl_File_Chooser.H>
+#include <FL/fl_draw.H>
 using namespace std;
 #include "u1-interface.h"
 #include "u2-dessin.h"
@@ -71,11 +72,14 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data )
         }
         if ( Fl::event_button3())
         {
+            fl_draw_image(gDonnees.buffer,X_ZONE,Y_ZONE,L_ZONE,H_ZONE,3);
             x=Fl::event_x()-X_ZONE;
             y=Fl::event_y()-Y_ZONE;
-            tracerCadre(x1,y1,x,y);
-
-
+            if(y-y1>0)
+            y=y1+max((x-x1),(x1-x))*H_ZONE/L_ZONE;
+            else
+            y=y1-max((x-x1),(x1-x))*H_ZONE/L_ZONE;
+            tracerCadre(x1,y1+Y_ZONE,x,y+Y_ZONE);
 
         }
 
