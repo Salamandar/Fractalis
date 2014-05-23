@@ -131,7 +131,9 @@ void CreerInterface() {
     hauteur+=40;
 
 
-
+    // Creation de la case a cocher Animation
+    gInterface.Animation = new Fl_Check_Button(X_ZONE+L_ZONE+y_colorc, hauteur,largeurc,20,"Animation") ;
+    gInterface.Animation->callback( AnimationCB, NULL ) ;
 
     // Affichage de la fenetre
     gInterface.Fenetre->end();

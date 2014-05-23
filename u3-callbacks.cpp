@@ -261,6 +261,10 @@ void CarreChoixCouleurCB(Fl_Widget* w, void* data){
     gInterface.ZoneDessin->redraw();
 }
 
+void AnimationCB(Fl_Widget* w, void* data){
+gTests.animation=gInterface.Animation->value();
+gInterface.ZoneDessin->redraw();}
+
 
 // Ne fonctionne pas correctement.
 
