@@ -38,7 +38,6 @@ struct Interface {
     Fl_Value_Slider*    Slider1;
     Fl_Value_Slider*    Slider2;
     Fl_Value_Slider*    Slider3;
-    Fl_Check_Button*    Animation;
 };
 extern struct Interface gInterface;
 
