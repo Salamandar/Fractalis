@@ -13,7 +13,7 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
     // ATTENTION : X et Y ne sont pas relatifs a la zone mais a la fenetre qui la contient !!!!
 
 
-
+    //Gestion du zoom cadre
     static int x1;
     static int y1;
     static int x2;
@@ -25,11 +25,10 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
     int diffX, diffY;
     bool deplacement=false;
 
-    // Il serait peut-être intéressant d'utiliser FL_DRAG.
 
     switch(Fl::event_button()){
         case 1: if(Fl::event()==FL_PUSH){   // Déplacement
-                    deplX=Fl::event_x();
+                    deplX=Fl::event_x();// X_ZONE et Y_ZONE pas nécessaires car on fait une différence
                     deplY=Fl::event_y();
                     printf("Mouse push,    x = %d, y = %d\n", deplX, deplY);
                 }
@@ -53,11 +52,20 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
                 }
             break;
 
-        case 3: if(Fl::event()==FL_PUSH){   // Zoom avec cadrage
+        case 3: if(Fl::event()==FL_PUSH){   // Zoom avec cadrage ; prise des coordonnées initiales
                     printf("Mouse push = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
                     x1=Fl::event_x()-X_ZONE;
                     y1=Fl::event_y()-Y_ZONE;
+
                 }
+                if (Fl::event()==FL_PUSH){
+                  int x=Fl::event_x()-X_ZONE;
+                    int y=Fl::event_y()-Y_ZONE;
+                    tracerCadre(x1,y1,x,y);
+                   // gInterface.ZoneDessin->redraw();
+
+                }
+
                 // prise des coordonnees finales
                 if(Fl::event()==FL_RELEASE){
                     printf("Mouse release = %i x = %i y = %i\n", Fl::event_button(), Fl::event_x(), Fl::event_y());
@@ -80,10 +88,8 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
     //Gestion du zoom roulette. Il faudra aussi modifier le point ig.
       int zoom=0;
       if(Fl::event() == FL_MOUSEWHEEL){
-        int s=Fl::event_x();
-        int t=Fl::event_y();
-        double realFixe =gDonnees.pasxy*s;
-        double imagFixe =gDonnees.pasxy*t;
+        int s=Fl::event_x()-X_ZONE;
+        int t=Fl::event_y()-Y_ZONE;
         zoom=Fl::event_dy();
         real(gDonnees.ig)=real(gDonnees.ig)-(gDonnees.pasxy*s*0.2*((double)(zoom)));
         imag(gDonnees.ig)=imag(gDonnees.ig)-(gDonnees.pasxy*(-t+H_ZONE)*0.2*((double)(zoom)));
@@ -124,7 +130,7 @@ void BoutonEnregistrerCB(Fl_Widget* w, void* data){
 		Ok = sscanf( Saisie, "%d", &Entier ) ;
     Saisie = fl_input("Nom du fichier ?", "" ) ;
 		if ( Saisie != NULL )
-		Ok = sscanf( Saisie, "%d", filename ) ;
+		Ok = sscanf( Saisie, "%s", filename ) ;
 	if (Entier!=0){enregistrerPPM(Entier,filename);
 	}
 }

@@ -9,5 +9,6 @@ void afficheFractale();
 void afficheFractaleLigne();
 //void afficheLigne(int j, unsigned long tableau[]); remplacée pour afficher avec buffer
 void afficheLigneRGB(int j, unsigned long tableauCouleurs[][3]);
+void tracerCadre (int x1, int y1 , int x2, int y2);
 
 #endif
