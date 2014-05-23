@@ -145,8 +145,41 @@ void BoutonResetCB(Fl_Widget* w, void* data){
 void BoutonAideCB(Fl_Widget* w, void* data){
     fl_message(" Aide :\n Bouton gauche (maintient appui)->Déplacement\n Molette Souris : Zoom\n Appui molette : Définition de C à l'endroit du curseur \n Bouton droit (maintient appui) : Zoom cadre");
 }
+
 void BoutonSaveParamsCB(Fl_Widget* w, void* data){
-cout<<"auie"<<endl;
+    const char* Saisie ; // et pas : char Saisie[80]
+    int Entier=0 ;
+    int Ok ;
+
+    // Saisie de la valeur
+    char filename[32];
+    Ok = 0 ;
+    Saisie = fl_input("Quelle résolution (largeur) ?", "" ) ;
+        if ( Saisie != NULL )
+        Ok = sscanf( Saisie, "%d", &Entier ) ;
+    Saisie = fl_input("Nom du fichier ?", "" ) ;
+        if ( Saisie != NULL )
+        Ok = sscanf( Saisie, "%s", filename ) ;
+    if (Entier!=0){enregistrerPPM(Entier,filename);
+    }
+
+}
+void BoutonBackParamsCB(Fl_Widget* w, void* data){
+    const char* Saisie ; // et pas : char Saisie[80]
+    int Entier=0 ;
+    int Ok ;
+
+    // Saisie de la valeur
+    char filename[32];
+    Ok = 0 ;
+    Saisie = fl_input("Quelle résolution (largeur) ?", "" ) ;
+        if ( Saisie != NULL )
+        Ok = sscanf( Saisie, "%d", &Entier ) ;
+    Saisie = fl_input("Nom du fichier ?", "" ) ;
+        if ( Saisie != NULL )
+        Ok = sscanf( Saisie, "%s", filename ) ;
+    if (Entier!=0){enregistrerPPM(Entier,filename);
+    }
 
 }
 

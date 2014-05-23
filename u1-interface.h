@@ -27,6 +27,8 @@ struct Interface {
     Fl_Button*          BoutonReset;        // Revenir aux param?es par d?aut
     Fl_Button*          BoutonAide;
     Fl_Button*          BoutonSaveParams;
+    Fl_Button*          BoutonBackParams;
+
     Fl_Value_Input*     ChampModuleDeSortie;// Module de sortie
     Fl_Value_Input*     ChampProfondeur;    // Profondeur
     Fl_Choice*          MenuFractale;       // Type de fractale
