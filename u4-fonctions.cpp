@@ -43,7 +43,7 @@ void InitialiserDonnees() {
     gInterface.Slider2->color(gDonnees.color2,gDonnees.color2);
     gInterface.Slider3->scrollvalue(gDonnees.rangColor3,0,0,gDonnees.rangMax-1);
     gInterface.Slider3->color(gDonnees.color3,gDonnees.color3);
-    gInterface.Degrade->redraw();
+
 }
 
 // Pointe vers les fonctions suivantes en fonction de la fractale choisie
