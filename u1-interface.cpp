@@ -35,6 +35,8 @@ void CreerInterface() {
     gInterface.ZoneDessin->draw_callback(ZoneDessinInitialisation, NULL);
     gInterface.ZoneDessin->mouse_callback(ZoneDessinSourisCB, NULL);
 
+
+
 /*
         Ceci est la définition des champs à droite.
 */
@@ -134,6 +136,9 @@ void CreerInterface() {
     gInterface.Slider3->callback(Slider3CB, NULL);
     hauteur+=40;
 
+    gInterface.Degrade=new DrawingArea(X_ZONE+L_ZONE+110,550,325,20);
+    gInterface.Degrade->draw_callback(zoneDegrade, NULL);
+    //gInterface.Degrade->mouse_callback(ZoneDessinSourisCB, NULL);
 
 
     // Affichage de la fenetre

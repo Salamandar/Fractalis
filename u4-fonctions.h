@@ -45,6 +45,7 @@ struct Donnees {
     int rangColor1, rangColor2, rangColor3;
     int hauteur;
     unsigned char buffer[3*L_ZONE*H_ZONE];
+    unsigned char bufferDeg[3*325];
 };
 
 struct Tests {
@@ -82,5 +83,5 @@ int enregistrerPPM(int Largeur, char Fichier[32]);
 
 void enregistrerParams(const char* fichier);
 void restaurerParams(const char* fichier);
-
+void calcBuffer(unsigned long int tabdeg[][3]);
 #endif

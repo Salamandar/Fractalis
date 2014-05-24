@@ -41,6 +41,7 @@ struct Interface {
     Fl_Value_Slider*    Slider1;
     Fl_Value_Slider*    Slider2;
     Fl_Value_Slider*    Slider3;
+    DrawingArea*        Degrade;
 };
 extern struct Interface gInterface;
 

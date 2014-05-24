@@ -43,6 +43,7 @@ void InitialiserDonnees() {
     gInterface.Slider2->color(gDonnees.color2,gDonnees.color2);
     gInterface.Slider3->scrollvalue(gDonnees.rangColor3,0,0,gDonnees.rangMax-1);
     gInterface.Slider3->color(gDonnees.color3,gDonnees.color3);
+    gInterface.Degrade->redraw();
 }
 
 // Pointe vers les fonctions suivantes en fonction de la fractale choisie
@@ -244,6 +245,17 @@ int enregistrerPPM(int Largeur, char Fichier[32]){
     }
     fclose(pFile);
     return(1);
+}
+
+void calcBuffer(unsigned long int tabdeg[][3]){
+	for (int i = 0; i < 325; i++)
+	{
+		for (int j = 0; j < 3; ++j)
+		{
+			gDonnees.bufferDeg[3*i+j]=tabdeg[(i*gDonnees.rangMax/325)][j];
+		}
+		
+	}
 }
 
 
