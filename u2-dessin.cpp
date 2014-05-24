@@ -23,91 +23,40 @@ void ZoneDessinInitialisation(Fl_Widget* widget, void* data)
 
 void gestionAffichage_iter(void*)
 {
-    if(!gTests.animation)
+    gTests.dessin=false;
+    pointeurFct fonction = retourne_fonction();
+    int ligne;
+    unsigned long tabDegrade[gDonnees.rangMax][3];     // On pourrait faire une struct de vars actuelles
+    //if(gTests.calccouleurs) {
+    printf("Calcul de couleur\n");
+    couleursRGB(gDonnees.color1,    gDonnees.color2,    gDonnees.color3,
+            gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tabDegrade);
+    gTests.calccouleurs=0;
+    //}
+
+    for (ligne=0 ; ligne<H_ZONE; ligne+=2)
     {
-        gTests.dessin=false;
-        pointeurFct fonction = retourne_fonction();
-        int ligne;
-        unsigned long tabDegrade[gDonnees.rangMax][3];     // On pourrait faire une struct de vars actuelles
-        //if(gTests.calccouleurs) {
-        printf("Calcul de couleur\n");
-        couleursRGB(gDonnees.color1,    gDonnees.color2,    gDonnees.color3,
-                 gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tabDegrade);
-        gTests.calccouleurs=0;
-        //}
-
-        for (ligne=0 ; ligne<H_ZONE; ligne+=2)
-        {
-            Fl::wait(0);
-            if (gTests.calcul)
-                convergenceLigne(ligne, fonction);
-            if (gTests.dessin)
-                return void();
-            afficheLigneRGB(ligne, tabDegrade);
-        }
-
-        for (ligne-- ; ligne>0; ligne-=2)
-        {
-            Fl::wait(0);
-            if (gTests.calcul)
-                convergenceLigne(ligne, fonction);
-            if (gTests.dessin)
-                return void();
-            afficheLigneRGB(ligne, tabDegrade);
-        }
-
-        gTests.calcul=0;
-        gTests.calccouleurs=0;
+        Fl::wait(0);
+        if (gTests.calcul)
+            convergenceLigne(ligne, fonction);
+        if (gTests.dessin)
+            return void();
+        afficheLigneRGB(ligne, tabDegrade);
     }
-    else //ANIMATION
+
+    for (ligne-- ; ligne>0; ligne-=2)
     {
-        gTests.dessin=false;
-        pointeurFct fonction = retourne_fonction();
-        int ligne;
-
-        for (ligne=0 ; ligne<H_ZONE; ligne+=2)
-        {
-            Fl::wait(0);
-            if (gTests.calcul)
-                convergenceLigne(ligne, fonction);
-        }
-
-        for (ligne-- ; ligne>0; ligne-=2)
-        {
-            Fl::wait(0);
-            if (gTests.calcul)
-                convergenceLigne(ligne, fonction);
-        }
-        unsigned long tabDegrade[gDonnees.rangMax][3];     // On pourrait faire une struct de vars actuelles
-        //if(gTests.calccouleurs) {
-        printf("Calcul de couleur\n");
-        couleursRGB(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tabDegrade);
-        for(int j=0; j<H_ZONE; j++)
-        {
-            for (int i = 0; i < L_ZONE; i=i+1)
-            {
-                if (gDonnees.Tab[i][j].n==-1 )
-                {
-                    gDonnees.buffer[3*i+3*L_ZONE*j]=0;
-                    gDonnees.buffer[3*i+3*L_ZONE*j+1]=0;
-                    gDonnees.buffer[3*i+3*L_ZONE*j+2]=0;
-                }
-
-                else
-                {
-
-                    gDonnees.buffer[3*i+3*L_ZONE*j]=tabDegrade[gDonnees.Tab[i][j].n][0];
-                    gDonnees.buffer[3*i+3*L_ZONE*j+1]=tabDegrade[gDonnees.Tab[i][j].n][1];
-                    gDonnees.buffer[3*i+3*L_ZONE*j+2]=tabDegrade[gDonnees.Tab[i][j].n][2];
-                }
-
-            }
-            fl_draw_image(&gDonnees.buffer[3*L_ZONE*j],X_ZONE,Y_ZONE+j,L_ZONE,1,3);
-        }
-        gTests.calccouleurs=0;
-        gTests.calcul=0;
-
+        Fl::wait(0);
+        if (gTests.calcul)
+            convergenceLigne(ligne, fonction);
+        if (gTests.dessin)
+            return void();
+        afficheLigneRGB(ligne, tabDegrade);
     }
+
+    gTests.calcul=0;
+    gTests.calccouleurs=0;
+    
 }
 
 /*void afficheLigne(int j, unsigned long tableauCouleurs[])
