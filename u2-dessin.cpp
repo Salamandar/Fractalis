@@ -28,7 +28,7 @@ void gestionAffichage_iter(void*)
     gTests.dessin=false;
     pointeurFct fonction = retourne_fonction();
     int ligne;
-    unsigned long tabDegrade[gDonnees.rangMax][3];     // On pourrait faire une struct de vars actuelles
+    int tabDegrade[gDonnees.rangMax][3];     // On pourrait faire une struct de vars actuelles
     
     printf("Calcul de couleur\n");
     couleursRGB(gDonnees.color1,    gDonnees.color2,    gDonnees.color3,
@@ -80,7 +80,7 @@ void gestionAffichage_iter(void*)
         fl_point(i+X_ZONE,j+Y_ZONE);
     }
 }*/
-void afficheLigneRGB(int j, unsigned long tabDegrade[][3])
+void afficheLigneRGB(int j, int tabDegrade[][3])
 {
     for (int i = 0; i < L_ZONE; i=i+1)
     {

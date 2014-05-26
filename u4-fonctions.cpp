@@ -174,18 +174,14 @@ void couleurs(unsigned long int A, unsigned long int B, unsigned long int C, int
     }
     //cout<<gDonnees.rangMax;
 }
-void couleursRGB(unsigned long int A, unsigned long int B, unsigned long int C, int N1, int N2, int N3, unsigned long int tab[][3]) {
+void couleursRGB(unsigned long int A, unsigned long int B, unsigned long int C, int N1, int N2, int N3, int tab[][3]) {
 unsigned long int I=COULEUR_INIT;
-    int tab1[N1][3];
-    int tab2[N2][3];
-    int tab3[N3][3];
-    int tab4[gDonnees.rangMax-N3][3];
-    degradeRGB(I,A,N1,tab1);
-    degradeRGB(A,B,N2-N1,tab2);
-    degradeRGB(B,C,N3-N2,tab3);
-    degradeRGB(C,I,gDonnees.rangMax-N3,tab4);
+    degradeRGB(I,A,N1,&tab[0]);
+    degradeRGB(A,B,N2-N1,&tab[N1]);
+    degradeRGB(B,C,N3-N2,&tab[N2]);
+    degradeRGB(C,I,gDonnees.rangMax-N3,&tab[N3]);
 
-    tab[0][0]=tab[0][1]=tab[0][2]=0;
+    /*tab[0][0]=tab[0][1]=tab[0][2]=0;
     for(int j=0;j<3;j++){
     for(int i=1; i<N1; i++) {
         tab[i][j]=tab1[i][j];
@@ -199,7 +195,7 @@ unsigned long int I=COULEUR_INIT;
     for(int i=N3; i<gDonnees.rangMax; i++) {
         tab[i][j]=tab4[i-N3][j];
         }
-    }
+    }*/
 
 }
 
@@ -247,7 +243,7 @@ int enregistrerPPM(int Largeur, char Fichier[32]){
     return(1);
 }
 
-void calcBuffer(unsigned long int tabdeg[][3]){
+void calcBuffer(int tabdeg[][3]){
 	for (int i = 0; i < 325; i++)
 	{
 		for (int j = 0; j < 3; ++j)
