@@ -35,7 +35,6 @@ void gestionAffichage_iter(void*)
             gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tabDegrade);
 
     
-    gTests.calccouleurs=0;
     
 
     for (ligne=0 ; ligne<H_ZONE; ligne+=2)
@@ -59,9 +58,14 @@ void gestionAffichage_iter(void*)
     }
     
     gTests.calcul=0;
-    gTests.calccouleurs=0;
     calcBuffer(tabDegrade);
-    gInterface.Degrade->redraw();
+    if(gTests.calccouleurs){
+        gInterface.Degrade->redraw();
+        gInterface.ZoneDessin->redraw();
+    }
+    gTests.calccouleurs=0;
+    
+    
 
 }
 
@@ -111,6 +115,7 @@ void tracerCadre (int x1, int y1 , int x2, int y2)
     int b3=y1;
 
     fl_loop(a, b, a1, b1, a2, b2, a3, b3);
+    fl_loop(a+1,b+1,a1+1,b1+1,a2+1,b2+1,a3+1,b3+1);
 
 }
 

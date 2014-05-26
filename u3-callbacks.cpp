@@ -317,6 +317,7 @@ void Slider1CB(Fl_Widget* w, void* data)
         gInterface.Slider3->value(gDonnees.rangColor3);
     }
     setColorChooserColor(gDonnees.color1);
+    gTests.calccouleurs=1;
     gInterface.ZoneDessin->redraw();
 }
 
@@ -335,6 +336,8 @@ void Slider2CB(Fl_Widget* w, void* data)
         gInterface.Slider3->value(gDonnees.rangColor3);
     }
     setColorChooserColor(gDonnees.color2);
+    gTests.calccouleurs=1;
+
     gInterface.ZoneDessin->redraw();
 }
 
@@ -354,6 +357,8 @@ void Slider3CB(Fl_Widget* w, void* data)
         gInterface.Slider2->value(gDonnees.rangColor2);
     }
     setColorChooserColor(gDonnees.color3);
+    gTests.calccouleurs=1;
+
     gInterface.ZoneDessin->redraw();
 }
 
@@ -384,6 +389,8 @@ void CarreChoixCouleurCB(Fl_Widget* w, void* data)
     default:
         break;
     }
+    gTests.calccouleurs=1;
+
     gInterface.ZoneDessin->redraw();
 }
 
