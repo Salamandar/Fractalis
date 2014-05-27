@@ -15,8 +15,8 @@ void ZoneDessinInitialisation(Fl_Widget* widget, void* data)
         fl_color(FL_BLACK);
         fl_rectf(X_ZONE, Y_ZONE, L_ZONE, H_ZONE);
 }
- else   fl_draw_image(gDonnees.buffer,X_ZONE,Y_ZONE,L_ZONE,H_ZONE,3);//evite l'écran noir lors du refresh mais affiche un double lors des redraw.
-//     On initialise la gestion de l'affichage de la fractale seulement quand la fenêtre est correctement créée
+ else   fl_draw_image(gDonnees.buffer,X_ZONE,Y_ZONE,L_ZONE,H_ZONE,3);//evite l'ecran noir lors du refresh mais affiche un double lors des redraw.
+//     On initialise la gestion de l'affichage de la fractale seulement quand la fenêtre est correctement creee
     gTests.dessin=true;
     Fl::add_timeout(0, gestionAffichage_iter, NULL );
     //Fl::wait(0);
@@ -28,12 +28,10 @@ void gestionAffichage_iter(void*)
     gTests.dessin=false;
     pointeurFct fonction = retourne_fonction();
     int ligne;
-    int tabDegrade[gDonnees.rangMax][3];     // On pourrait faire une struct de vars actuelles
+    int tabDegrade[gDonnees.rangMax+50][3];     // On pourrait faire une struct de vars actuelles
     
-    printf("Calcul de couleur\n");
-    couleursRGB(gDonnees.color1,    gDonnees.color2,    gDonnees.color3,
-            gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tabDegrade);
-
+    //printf("Calcul de couleur\n");
+   couleursRGB(gDonnees.slider,tabDegrade);
     
     
 
