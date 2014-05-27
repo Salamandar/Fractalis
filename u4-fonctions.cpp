@@ -29,13 +29,6 @@ void InitialiserDonnees() {
     gDonnees.hauteur=H_ZONE;
 
 
-   	  		gDonnees.color1=0xFF000000;
-			gDonnees.color2=0x00FF0000;
-  		  gDonnees.color3=0x0000FF00;
-  		  gDonnees.rangColor1=4;
-  		  gDonnees.rangColor2=17;
-  		  gDonnees.rangColor3=34;
-
 
     //Init des tests
     gTests.slider=1;
@@ -161,7 +154,7 @@ void degradeRGB(unsigned long int A, unsigned long int B, int N, int tab[][3]) {
     }
 }
 
-void couleurs(unsigned long int A, unsigned long int B, unsigned long int C, int N1, int N2, int N3, unsigned long int tab[]) {
+/*void couleurs(unsigned long int A, unsigned long int B, unsigned long int C, int N1, int N2, int N3, unsigned long int tab[]) {
     //cout<<"calculcouleurs"<<endl;
     unsigned long int I=COULEUR_INIT;
     int tab1[N1][3];
@@ -188,7 +181,7 @@ void couleurs(unsigned long int A, unsigned long int B, unsigned long int C, int
         tab[i]=255+256*tab4[i-N3][2]+256*256*tab4[i-N3][1]+256*256*256*tab4[i-N3][0];
     }
     //cout<<gDonnees.rangMax;
-}
+}*/
 void couleursRGB(unsigned long tabSlider[][2], int tab[][3]) {
 	unsigned long int I=COULEUR_INIT;
 	for (int i = 0; i < 50; ++i)
@@ -268,14 +261,15 @@ void enregistrerParams(const char* fichier){
     fprintf(fichierEcriture, "ModuleMax : %lf\n", gDonnees.moduleMax);
     fprintf(fichierEcriture, "Constante : %lf+i*%lf\n", real(gDonnees.C )+imag(gDonnees.C ));
     fprintf(fichierEcriture, "PtInfGauc : %lf+i*%lf\n", real(gDonnees.ig)+imag(gDonnees.ig));
-    fprintf(fichierEcriture, "PasAffXY  : %lf\n", gDonnees.pasxy);
+    /*fprintf(fichierEcriture, "PasAffXY  : %lf\n", gDonnees.pasxy);
     fprintf(fichierEcriture, "Couleur1  : %lu\n", gDonnees.color1);
     fprintf(fichierEcriture, "Couleur2  : %lu\n", gDonnees.color2);
     fprintf(fichierEcriture, "Couleur3  : %lu\n", gDonnees.color3);
     fprintf(fichierEcriture, "RangCoul1 : %d\n", gDonnees.rangColor1);
     fprintf(fichierEcriture, "RangCoul2 : %d\n", gDonnees.rangColor2);
     fprintf(fichierEcriture, "RangCoul3 : %d\n", gDonnees.rangColor3);
-    fprintf(fichierEcriture, "Hauteur   : %d\n", gDonnees.hauteur);
+    fprintf(fichierEcriture, "Hauteur   : %d\n", gDonnees.hauteur);*/
+    //n'existe plus, remplacé par le tableau gDonnee.slider
 //    unsigned long int    color1,     color2,     color3;
     fclose(fichierEcriture);
 }
