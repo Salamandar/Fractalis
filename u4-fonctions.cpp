@@ -15,13 +15,27 @@ void InitialiserDonnees() {
     gDonnees.C =complex<double>C_INIT;
     gDonnees.ig=complex<double>IG_INIT;
     gDonnees.pasxy= PASXY;
-    gDonnees.color1=0xFF000000;
-    gDonnees.color2=0x00FF0000;
-    gDonnees.color3=0x0000FF00;
-    gDonnees.rangColor1=4;
-    gDonnees.rangColor2=17;
-    gDonnees.rangColor3=34;
+    gDonnees.slider[0][0]=COULEUR_INIT;
+    gDonnees.slider[1][0]=0xFF000000;
+    gDonnees.slider[2][0]=0x00FF0000;
+    gDonnees.slider[3][0]=0x0000FF00;
+    gDonnees.slider[0][1]=0;
+    gDonnees.slider[1][1]=4;
+    gDonnees.slider[2][1]=17;
+    gDonnees.slider[3][1]=25;
+    gDonnees.nbSlider=3;
+    gDonnees.slider[gDonnees.nbSlider+1][0]=COULEUR_INIT;
+    gDonnees.slider[gDonnees.nbSlider+1][1]=gDonnees.rangMax;
     gDonnees.hauteur=H_ZONE;
+
+
+   	  		gDonnees.color1=0xFF000000;
+			gDonnees.color2=0x00FF0000;
+  		  gDonnees.color3=0x0000FF00;
+  		  gDonnees.rangColor1=4;
+  		  gDonnees.rangColor2=17;
+  		  gDonnees.rangColor3=34;
+
 
     //Init des tests
     gTests.slider=1;
@@ -37,12 +51,13 @@ void InitialiserDonnees() {
     gInterface.ChampXMin->value(real(gDonnees.ig));
     gInterface.ChampYMin->value(imag(gDonnees.ig));
     gInterface.ChampLargeur->value(gDonnees.pasxy*L_ZONE);
-    gInterface.Slider1->scrollvalue(gDonnees.rangColor1,0,0,gDonnees.rangMax-1);
-    gInterface.Slider1->color(gDonnees.color1,gDonnees.color1);
-    gInterface.Slider2->scrollvalue(gDonnees.rangColor2,0,0,gDonnees.rangMax-1);
-    gInterface.Slider2->color(gDonnees.color2,gDonnees.color2);
-    gInterface.Slider3->scrollvalue(gDonnees.rangColor3,0,0,gDonnees.rangMax-1);
-    gInterface.Slider3->color(gDonnees.color3,gDonnees.color3);
+    gInterface.Slider1->scrollvalue(gDonnees.slider[1][1],0,1,gDonnees.rangMax-1);
+    gInterface.Slider1->color(gDonnees.slider[1][0],gDonnees.slider[1][0]);
+    gInterface.Slider2->scrollvalue(gDonnees.slider[2][1],0,1,gDonnees.rangMax-1);
+    gInterface.Slider2->color(gDonnees.slider[2][0],gDonnees.slider[2][0]);
+    gInterface.Slider3->scrollvalue(gDonnees.slider[3][1],0,1,gDonnees.rangMax-1);
+    gInterface.Slider3->color(gDonnees.slider[3][0],gDonnees.slider[3][0]);
+
 }
 
 // Pointe vers les fonctions suivantes en fonction de la fractale choisie
@@ -67,7 +82,7 @@ int mandelbrot(std::complex<double> position){
         Zrang=Zrang*Zrang + position;
         rang++;
     } while (std::abs(Zrang) < gDonnees.moduleMax && rang<gDonnees.rangMax);
-    return rang==gDonnees.rangMax ? -1 : rang;      // Opération ternaire
+    return rang==gDonnees.rangMax ? -1 : rang;      // Operation ternaire
 }
 int julia(complex<double> position) {
     int rang=0;
@@ -76,7 +91,7 @@ int julia(complex<double> position) {
         Zrang=Zrang*Zrang + gDonnees.C;
         rang++;
     } while (std::abs(Zrang) < gDonnees.moduleMax && rang<gDonnees.rangMax);
-    return rang==gDonnees.rangMax ? -1 : rang;      // Opération ternaire
+    return rang==gDonnees.rangMax ? -1 : rang;      // Operation ternaire
 }
 int sinzo     (complex<double> position){
     int rang=0;
@@ -85,7 +100,7 @@ int sinzo     (complex<double> position){
         Zrang=sin(Zrang) + position;
         rang++;
     } while (std::abs(Zrang) < gDonnees.moduleMax && rang<gDonnees.rangMax);
-    return rang==gDonnees.rangMax ? -1 : rang;      // Opération ternaire
+    return rang==gDonnees.rangMax ? -1 : rang;      // Operation ternaire
 }
 int cosc      (complex<double> position){
     int rang=0;
@@ -94,22 +109,22 @@ int cosc      (complex<double> position){
         Zrang=cos(Zrang) + gDonnees.C;
         rang++;
     } while (std::abs(Zrang) < gDonnees.moduleMax && rang<gDonnees.rangMax);
-    return rang==gDonnees.rangMax ? -1 : rang;      // Opération ternaire
+    return rang==gDonnees.rangMax ? -1 : rang;      // Operation ternaire
 }
 int personna(complex<double> position) {
     return 0;//(0,0);
-    /*  À voir. Ce sera la fonction personnalisable, mais implémentée seulement quand TOUT le reste fonctionnera.
-        J'aurai besoin de maîtriser le parsage de fonction mathématique, puis l'allocation dynamique de fonction.
-        Ça sera extrêmement moche, donc si Nils a une idée elle est la bienvenue.
+    /*  À voir. Ce sera la fonction personnalisable, mais implementee seulement quand TOUT le reste fonctionnera.
+        J'aurai besoin de maîtriser le parsage de fonction mathematique, puis l'allocation dynamique de fonction.
+        Ça sera extrêmement moche, donc si Nils a une idee elle est la bienvenue.
     */
 }
 
-// Calcul d'indices de convergence pour une ligne. L_ZONE à virer.
+// Calcul d'indices de convergence pour une ligne. L_ZONE a virer.
 void convergenceLigne(int j, pointeurFct fonction){
     double pas=gDonnees.pasxy;
     complex<double> position= gDonnees.ig;
     imag(position)+=(H_ZONE-j)*pas;
-    for (int i = 0; i < L_ZONE; ++i) {      // Boucle ligne par ligne
+    for (int i = 0; i < L_ZONE; ++i) {// Boucle ligne par ligne
         gDonnees.Tab[i][j].n=fonction(position);
         position+=pas;
     }
@@ -117,6 +132,7 @@ void convergenceLigne(int j, pointeurFct fonction){
 
 
 void degradeRGB(unsigned long int A, unsigned long int B, int N, int tab[][3]) {
+	//cout<<"A"<<A<<" B"<<B<<" N "<<N<<endl;
     A=(A-A%256)/256;
     B=(B-B%256)/256;
         tab[0][2]=A % 256;
@@ -130,8 +146,8 @@ void degradeRGB(unsigned long int A, unsigned long int B, int N, int tab[][3]) {
         tab[0][0]=A%256;
         tab[N-1][0]=B%256;
 
-    // codage du dégradé dans un tableau de triplets RGB de N case tab[N][3], et oui, vive les cast
-    // C'est ça qui sera donc à changer pour avoir une interpolation de couleurs plus "belle"
+    // codage du degrade dans un tableau de triplets RGB de N case tab[N][3], et oui, vive les cast
+    // C'est ça qui sera donc a changer pour avoir une interpolation de couleurs plus "belle"
     double dr,dg,db;
     dr=((double)(tab[N-1][0]-tab[0][0]))/N;
     dg=((double)(tab[N-1][1]-tab[0][1]))/N;
@@ -141,7 +157,7 @@ void degradeRGB(unsigned long int A, unsigned long int B, int N, int tab[][3]) {
         tab[i][0]=tab[0][0]+i*dr;
         tab[i][1]=tab[0][1]+i*dg;
         tab[i][2]=tab[0][2]+i*db;
-       //cout << tab[i][0] << ";" << tab[i][1] << ";" << tab[i][2] << endl;
+      // cout << tab[i][0] << ";" << tab[i][1] << ";" << tab[i][2] << endl;
     }
 }
 
@@ -173,33 +189,27 @@ void couleurs(unsigned long int A, unsigned long int B, unsigned long int C, int
     }
     //cout<<gDonnees.rangMax;
 }
-void couleursRGB(unsigned long int A, unsigned long int B, unsigned long int C, int N1, int N2, int N3, unsigned long int tab[][3]) {
-unsigned long int I=COULEUR_INIT;
-    int tab1[N1][3];
-    int tab2[N2][3];
-    int tab3[N3][3];
-    int tab4[gDonnees.rangMax-N3][3];
-    degradeRGB(I,A,N1,tab1);
-    degradeRGB(A,B,N2-N1,tab2);
-    degradeRGB(B,C,N3-N2,tab3);
-    degradeRGB(C,I,gDonnees.rangMax-N3,tab4);
+void couleursRGB(unsigned long tabSlider[][2], int tab[][3]) {
+	unsigned long int I=COULEUR_INIT;
+	for (int i = 0; i < 50; ++i)
+	{for (int j = 0; j < 3; ++j)
+	{
+			tab[i][j]=0;
+	}
 
-    tab[0][0]=tab[0][1]=tab[0][2]=0;
-    for(int j=0;j<3;j++){
-    for(int i=1; i<N1; i++) {
-        tab[i][j]=tab1[i][j];
-    }
-    for(int i=N1; i<N2; i++) {
-        tab[i][j]=tab2[i-N1][j];
-    }
-    for(int i=N2; i<N3 ; i++) {
-        tab[i][j]=tab3[i-N2][j];
-    }
-    for(int i=N3; i<gDonnees.rangMax; i++) {
-        tab[i][j]=tab4[i-N3][j];
-        }
-    }
+	}
+	for (int i = 0; i < gDonnees.nbSlider+1; ++i){
+	   // printf("degradé entre le slider %d et %d, de rangs %d et %d, rang max=%d\n",i,i+1,tabSlider[i][1],tabSlider[i+1][1],gDonnees.rangMax);
+		degradeRGB(tabSlider[i][0],tabSlider[i+1][0],tabSlider[i+1][1]-tabSlider[i][1],&tab[tabSlider[i][1]]);
+		//degradeRGB(tabSlider[i][0],tabSlider[i+1][0],0,&tab[tabSlider[i][1]]);
+		//cout <<i<<"=1 ;"<< tabSlider[i][0] << "=tabSlider i 0;" << tab[i+1][0] << "=tabSlider i+1 0;" << tabSlider[i+1][1] - tabSlider[i][1] <<"=diff tab"<< endl;
+		//printf("ecriture de la case %lu a la case %lu\n",tabSlider[i][1],tabSlider[i+1][1]);
+	}
+	for (int i = 0; i < gDonnees.rangMax; ++i)
+	{
+		  //     cout <<i<<";"<< tab[i][0] << ";" << tab[i][1] << ";" << tab[i][2] << endl;
 
+	}
 }
 
 
@@ -209,7 +219,7 @@ int enregistrerPPM(int Largeur, char Fichier[32]){
     if (pFile==NULL){return 0;};
     fprintf(pFile,"P3\n%d %d\n255\n",Largeur,Largeur*H_ZONE/L_ZONE);
 
-    pointeurFct fonction = retourne_fonction(); // Détermine la fonction
+    pointeurFct fonction = retourne_fonction(); // Determine la fonction
     int hauteur=Largeur*H_ZONE/L_ZONE;
     double pas=gDonnees.pasxy/Largeur*(gDonnees.hauteur*L_ZONE/H_ZONE);
     double x_ini=real(gDonnees.ig);
@@ -217,8 +227,8 @@ int enregistrerPPM(int Largeur, char Fichier[32]){
     complex<double>coord_init=gDonnees.ig;
     complex<double>pas_complx=(0,pas);
     complex<double>coordonnees=coord_init;
-    unsigned long int tab[gDonnees.rangMax];
-    couleurs(gDonnees.color1,gDonnees.color2,gDonnees.color3,gDonnees.rangColor1,gDonnees.rangColor2,gDonnees.rangColor3,tab);
+    int tab[gDonnees.rangMax][3];
+    couleursRGB(gDonnees.slider,tab);
     //coordonnees=coord_init+(double)j*pas_complx;
     for (int j = 0; j < hauteur; j++) {
         coordonnees=complex<double>(x_ini,y_ini+j*pas);
@@ -230,20 +240,24 @@ int enregistrerPPM(int Largeur, char Fichier[32]){
             if (rang==-1 )
                 fprintf(pFile, "0 0 0 ");
             else{
-                unsigned long A=tab[rang];
-                int R,G,B;
-                A=(A-A%256)/256;
-                B=A % 256;
-                A=(A-B)/256;
-                G=A % 256;
-                A=(A-G)/256;
-                R=A%256;
-                fprintf(pFile,"%d %d %d ",R,G,B);
+
+                fprintf(pFile,"%d %d %d ",tab[rang][0],tab[rang][1],tab[rang][2]);
             }
         }
     }
     fclose(pFile);
     return(1);
+}
+
+void calcBuffer(int tabdeg[][3]){
+	for (int i = 0; i < 325; i++)
+	{
+		for (int j = 0; j < 3; ++j)
+		{
+			gDonnees.bufferDeg[3*i+j]=tabdeg[(i*gDonnees.rangMax/325)][j];
+		}
+
+	}
 }
 
 

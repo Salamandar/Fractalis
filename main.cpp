@@ -22,7 +22,7 @@ int main (int argc, char ** argv) {
 }
 
 
-// Déclaré dans drawing.h
+// Declare dans drawing.h
 // Classe et methodes DrawingArea : À considerer comme une librairie fournie, NE PAS MODIFIER
 DrawingArea::DrawingArea(int X,int Y,int W,int H) : Fl_Widget(X,Y,W,H) {
     _draw_callback_function = NULL;
