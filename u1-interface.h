@@ -35,14 +35,12 @@ struct Interface {
     Fl_Value_Input*     ChampXMin;          // definition du coin inferieur gauche
     Fl_Value_Input*     ChampYMin;
     Fl_Value_Input*     ChampLargeur;       // largeur d'affichage
-    Fl_Value_Input*     ChampCX;            //Coordonnees de C
+    Fl_Value_Input*     ChampCX;            //Coordonnées de C
     Fl_Value_Input*     ChampCY;
     Fl_Color_Chooser*   CarreChoixCouleur;  //
     Fl_Value_Slider*    Slider1;
     Fl_Value_Slider*    Slider2;
-    Fl_Choice*			ChoixSlider;
     Fl_Value_Slider*    Slider3;
-    DrawingArea*        Degrade;
 };
 extern struct Interface gInterface;
 
