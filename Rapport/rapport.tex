@@ -3,7 +3,9 @@
 \usepackage{xcolor}
 \usepackage{listingsutf8}
 \usepackage{textcomp}
+\usepackage{float}
 %\usepackage{minted}
+%décommente pas sauf si tu sais résoudre l'erreur de compile qui en résulte
 \lstset{
     language=C++,
     keywordstyle=\bfseries\ttfamily\color[rgb]{0,0,1},
@@ -12,10 +14,10 @@
     stringstyle=\ttfamily\color[rgb]{0.627,0.126,0.941},
     showstringspaces=false,
     basicstyle=\small,
-    numberstyle=\footnotesize,
-    numbers=left,
-    stepnumber=1,
-    numbersep=10pt,
+   % numberstyle=\footnotesize,
+    %numbers=left,
+    %stepnumber=1,
+    %numbersep=10pt,
     tabsize=2,
     breaklines=true,
     prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
@@ -39,41 +41,40 @@
 \include{0.TitlePage}     % Fichier de page de titre
 \tableofcontents          % Table des matières avec liens, générée automatiquement.
 \vspace{3cm}
-%\input{0.Intro.tex}       % Fichier d'intro, à mettre ici peut-être
+%\input{0.Intro.tex}
+%tu vireras ce comment quand t'auras rajouté le tex correspondant, fait que ça compile
 \newpage
 
 \section{Présentation du programme}
 Le sujet  sur lequel nous avons choisi de travailler est le projet « Fractales », grand classique de la programmation, utilisant le plan complexe.
-%\begin{figure}[h] \begin{center} \includegraphics[width=\textwidth]{Images/InterfaceTotale}
-    %\caption{}
-%\end{center} \end{figure}
+\begin{figure}[H] \begin{center} \includegraphics[width=\textwidth]{Images/InterfaceTotale}
+    \caption{}
+\end{center} \end{figure}
 
 Les fonctionnalités que nous avons choisi d'intégrer sont les suivantes :
 \begin{itemize}
-  \item Calcul et tracé dans la zone de dessin de 4 types de fractales (Mandelbrot, Julia, sin, cos). %image à changer, le type personna n'y est plus (pull and see)
-    %    \begin{figure}[h]  \begin{center} \includegraphics[width=0.5\textwidth]{Images/ChoixFractale.png}
-        %    \caption{}
-        %\end{center} \end{figure}
   \item Choix par l’utilisateur des différents paramètres de la fractale (type, module de sortie, rang maximal, coordonnées du point inférieur gauche, largeur de l’affichage, coordonnées de la constante).
-        %\begin{figure}[h] \begin{center} \includegraphics[width=0.5\textwidth]{Images/Parametres.png}
-            %\caption{}
-        %\end{center} \end{figure}
-  \item Choix des couleurs (jusqu'a 10 couleurs choisies par l’utilisateur avec écart modifiable). %image à changer
-        %\begin{figure}[h] \begin{center} \includegraphics[width=0.5\textwidth]{Images/ChoixCouleur.png}
-            %\caption{}
-        %\end{center} \end{figure}
+        \begin{figure}[H] \begin{center} \includegraphics[width=0.5\textwidth]{Images/Parametres.png}
+            \caption{}
+        \end{center} \end{figure}
+
+
+  \item Choix des couleurs (jusqu'a 10 couleurs choisies par l’utilisateur avec écart modifiable).
+        \begin{figure}[H] \begin{center} \includegraphics[width=0.5\textwidth]{Images/ChoixCouleurs.png}
+            \caption{}
+        \end{center} \end{figure}
   \item Enregistrement de l’image ainsi que des paramètres dans un fichier choisi par l’utilisateur avec une qualité choisie.
   \item Restauration de paramètres précédemment enregistrés.
   \item Remise à zéro des paramètres (bouton reset).
   \item Fonction « Quitter ».
   \item Un bouton aide expliquant les fonctionnalités des différents boutons de la souris.
-        %\begin{figure}[h] \begin{center} \includegraphics[width=0.5\textwidth]{Images/Aide.png}
-           % \caption{}
-        %\end{center} \end{figure}
+        \begin{figure}[H] \begin{center} \includegraphics[width=0.8\textwidth]{Images/Aide.png}
+            \caption{}
+        \end{center} \end{figure}
   \item 2 types de zoom : avec cadre(clic droit) ou grâce à la molette .
-        %\begin{figure}[h] \begin{center} \includegraphics[width=0.5\textwidth]{Images/ZoomBox.png}
-            %\caption{}
-        %\end{center} \end{figure}
+        \begin{figure}[H] \begin{center} \includegraphics[width=0.5\textwidth]{Images/Cadre.png}
+            \caption{}
+        \end{center} \end{figure}
   \item Déplacement de l’image (clic gauche maintenu).
 \end{itemize}
 
@@ -84,8 +85,8 @@ struct Pixel {
     complex<double> z;      //Coordonnées du pixel dans le plan complexe
     int n;                  //Rang de divergence du pixel
 };
-Cette strcure permettra de tracer la fractale à partir du rang de divergence et de la coordonnée de chaque pixel
 \end{lstlisting}
+Cette structure permettra de tracer la fractale à partir du rang de divergence et de la coordonnée de chaque pixel.
 \begin{lstlisting}
 struct Donnees {
     enum fractype Fractale; // Type de fractales choisie (Type énuméré)
@@ -124,7 +125,7 @@ enum fractype {
     PERSONNA//Originellement prévue pour une fractale personnalisée, non utilisée faute de temps
 };
 \end{lstlisting}
-Le type énuméré permet d’utiliser plus facilement les différents types de fractales.
+Le type énuméré permet d'utiliser plus facilement les différents types de fractales.
 
 
 \subsection{Fonctions }
