@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdio.h>
 using namespace std;
+#include <FL/Fl.H>
 #include "u1-interface.h"
 #include "u4-fonctions.h"
 
@@ -173,7 +174,8 @@ void couleurs(unsigned long int A, unsigned long int B, unsigned long int C, int
     }
     //cout<<gDonnees.rangMax;
 }
-void couleursRGB(unsigned long int A, unsigned long int B, unsigned long int C, int N1, int N2, int N3, unsigned long int tab[][3]) {
+void couleursRGB(unsigned long int A, unsigned long int B, unsigned long int C, int N1, int N2, int N3,
+				 unsigned long int tab[][3]) {
 unsigned long int I=COULEUR_INIT;
     int tab1[N1][3];
     int tab2[N2][3];
@@ -245,45 +247,110 @@ void enregistrerPPM(int Largeur, char Fichier[32]){
 }
 
 
-void enregistrerParams(const char* fichier){
-    FILE* fichierEcriture=fopen(fichier, "w");
-    fprintf(fichierEcriture, "Fractale  : %d\n", gDonnees.Fractale);
-    fprintf(fichierEcriture, "Rang Max  : %d\n", gDonnees.rangMax);
+int enregistrerParams(const char* fichier){
+    FILE* fichierEcriture=fopen(fichier, "wt");
+
+    if (fichierEcriture==NULL)
+        return 1;
+
+    uchar r=0, g=0, b=0;
+
+    fprintf(fichierEcriture, "Fichier créé par Fractalis\n");
+    fprintf(fichierEcriture, "Fractale… : %d\n", gDonnees.Fractale);
+    fprintf(fichierEcriture, "RangMaxCo : %d\n", gDonnees.rangMax);
     fprintf(fichierEcriture, "ModuleMax : %lf\n", gDonnees.moduleMax);
-    fprintf(fichierEcriture, "Constante : %lf+i*%lf\n", real(gDonnees.C )+imag(gDonnees.C ));
-    fprintf(fichierEcriture, "PtInfGauc : %lf+i*%lf\n", real(gDonnees.ig)+imag(gDonnees.ig));
-    fprintf(fichierEcriture, "PasAffXY  : %lf\n", gDonnees.pasxy);
-    fprintf(fichierEcriture, "Couleur1  : %lu\n", gDonnees.color1);
-    fprintf(fichierEcriture, "Couleur2  : %lu\n", gDonnees.color2);
-    fprintf(fichierEcriture, "Couleur3  : %lu\n", gDonnees.color3);
+    fprintf(fichierEcriture, "Constante : %lf+i*%lf\n", real(gDonnees.C ), imag(gDonnees.C ));
+    fprintf(fichierEcriture, "PtInfGauc : %lf+i*%lf\n", real(gDonnees.ig), imag(gDonnees.ig));
+    fprintf(fichierEcriture, "PasAffXY… : %lf\n", gDonnees.pasxy);
+
+    //get_color(gDonnees.color1, &r, &g, &b);
+    //fprintf(fichierEcriture, "Couleur1… : %c %c %c\n", r, g, b);
+    //get_color(gDonnees.color2, &r, &g, &b);
+    fprintf(fichierEcriture, "Couleur2… : %lu\n", gDonnees.color2);
+    //get_color(gDonnees.color3, &r, &g, &b);
+    fprintf(fichierEcriture, "Couleur3… : %lu\n", gDonnees.color3);
     fprintf(fichierEcriture, "RangCoul1 : %d\n", gDonnees.rangColor1);
     fprintf(fichierEcriture, "RangCoul2 : %d\n", gDonnees.rangColor2);
     fprintf(fichierEcriture, "RangCoul3 : %d\n", gDonnees.rangColor3);
-    fprintf(fichierEcriture, "Hauteur   : %d\n", gDonnees.hauteur);
-//    unsigned long int    color1,     color2,     color3;
+    fprintf(fichierEcriture, "Hauteur…… : %d\n", gDonnees.hauteur);
     fclose(fichierEcriture);
 }
 
 
-void restaurerParams(const char* fichier){
+int restaurerParams(const char* fichier){
 
+    FILE* fichierLecture=fopen(fichier, "r");
+    if (fichierLecture==NULL)
+        return 1;
+    printf("auie\n");
+    //struct Donnees gTempDonnees;
+    int err;
+    char code_err[15], deux_points[3];
+    int tempInt;
+    double tempFloat1, tempFloat2;
+    unsigned long int tempCouleur;
 
+    
 
+    err=fscanf(fichierLecture, "%s %s %d\n",code_err, deux_points, &tempInt);
+    if (err!=3&&code_err!="Fractale…"&&deux_points!=":")
+        return 2;
+    else
+        gDonnees.Fractale=(fractype)tempInt;
+    printf("%d\n", gDonnees.Fractale);
 
-/*
-    gDonnees.Fractale = FRACT_INIT;
-    gDonnees.rangMax  = RANGMAX_INIT;
-    gDonnees.moduleMax= MODULEMAX_INIT;
-    gDonnees.C =complex<double>C_INIT;
-    gDonnees.ig=complex<double>IG_INIT;
-    gDonnees.pasxy= PASXY;
-    gDonnees.color1=0xFF000000;
-    gDonnees.color2=0x00FF0000;
-    gDonnees.color3=0x0000FF00;
-    gDonnees.rangColor1=4;
-    gDonnees.rangColor2=17;
-    gDonnees.rangColor3=34;
-    gDonnees.hauteur=H_ZONE;
+    err=fscanf(fichierLecture, "%s %s %d\n",code_err, deux_points, &tempInt);
+    if (err!=3&&code_err!="RangMaxCo"&&deux_points!=":")
+        return 3;
+    else
+        gDonnees.rangMax=tempInt;
+
+    err=fscanf(fichierLecture, "%s %s %lf\n",code_err, deux_points, &tempFloat1);
+    if (err!=3&&code_err!="ModuleMax"&&deux_points!=":")
+        return 4;
+    else gDonnees.moduleMax=tempFloat1;
+
+    err=fscanf(fichierLecture, "%s %s %lf+i*%lf\n",code_err, deux_points, &tempFloat1, &tempFloat2);
+    if (err!=3&&code_err!="Constante"&&deux_points!=":")
+        return 5;
+    else gDonnees.C=complex<double>(tempFloat1,tempFloat2);
+    err=fscanf(fichierLecture, "%s %s %lf+i*%lf\n",code_err, deux_points, &tempFloat1, &tempFloat2);
+    if (err!=3&&code_err!="PtInfGauc"&&deux_points!=":")
+        return 6;
+    else gDonnees.ig=complex<double>(tempFloat1,tempFloat2);
+
+    err=fscanf(fichierLecture, "%s %s %lf\n",code_err, deux_points, &tempFloat1);
+    if (err!=3&&code_err!="PasAffXY…"&&deux_points!=":")
+        return 7;
+    else
+        gDonnees.pasxy=tempFloat1;
+
+    // err=fscanf(fichierLecture, "%s %s %lu\n",code_err, deux_points, &tempCouleur);
+    // if (err!=3&&code_err!="Couleur1…"&&deux_points!=":")
+    //     return 8;
+    // else
+    //    gDonnees.color1=tempCouleur;
+
+    err=fscanf(fichierLecture, "%s %s %lu\n",code_err, deux_points, &gDonnees.color2);
+    if (err!=3&&code_err!="Couleur2…"&&deux_points!=":")
+        return 10;
+    err=fscanf(fichierLecture, "%s %s %lu\n",code_err, deux_points, &gDonnees.color3);
+    if (err!=3&&code_err!="Couleur3…"&&deux_points!=":")
+        return 11;
+    err=fscanf(fichierLecture, "%s %s %d\n",code_err, deux_points, &gDonnees.rangColor1);
+    if (err!=3&&code_err!="RangCoul1"&&deux_points!=":")
+        return 12;
+    err=fscanf(fichierLecture, "%s %s %d\n",code_err, deux_points, &gDonnees.rangColor2);
+    if (err!=3&&code_err!="RangCoul2"&&deux_points!=":")
+        return 14;
+    err=fscanf(fichierLecture, "%s %s %d\n",code_err, deux_points, &gDonnees.rangColor3);
+    if (err!=3&&code_err!="RangCoul3"&&deux_points!=":")
+        return 15;
+    err=fscanf(fichierLecture, "%s %s %d\n",code_err, deux_points, &gDonnees.hauteur);
+    if (err!=3&&code_err!="Hauteur……"&&deux_points!=":")
+        return 16;
+    fclose(fichierLecture);
+
 
     //Init des tests
     gTests.slider=1;
@@ -293,7 +360,7 @@ void restaurerParams(const char* fichier){
     gTests.calccouleurs=1;
 
     //interface, je met la car ça bug quand j'include u4 fct dans u1 interface
-    gInterface.MenuFractale->value(0);
+    gInterface.MenuFractale->value(gDonnees.Fractale);
     gInterface.ChampModuleDeSortie->value(gDonnees.moduleMax);
     gInterface.ChampProfondeur->value(gDonnees.rangMax);
     gInterface.ChampXMin->value(real(gDonnees.ig));
@@ -304,6 +371,8 @@ void restaurerParams(const char* fichier){
     gInterface.Slider2->scrollvalue(gDonnees.rangColor2,0,0,gDonnees.rangMax-1);
     gInterface.Slider2->color(gDonnees.color2,gDonnees.color2);
     gInterface.Slider3->scrollvalue(gDonnees.rangColor3,0,0,gDonnees.rangMax-1);
-    gInterface.Slider3->color(gDonnees.color3,gDonnees.color3);*/
+    gInterface.Slider3->color(gDonnees.color3,gDonnees.color3);
 }
 
+
+//fl_rgb_color(uchar r, uchar g, uchar b);
