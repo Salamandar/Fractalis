@@ -18,6 +18,7 @@
     %numbers=left,
     %stepnumber=1,
     %numbersep=10pt,
+    %j'aime pas afficher les numéros de ligne vu qu'on met que des extraits de code
     tabsize=2,
     breaklines=true,
     prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
@@ -47,7 +48,7 @@
 
 \section{Présentation du programme}
 Le sujet  sur lequel nous avons choisi de travailler est le projet « Fractales », grand classique de la programmation, utilisant le plan complexe.
-\begin{figure}[H] \begin{center} \includegraphics[width=\textwidth]{Images/InterfaceTotale}
+\begin{figure}[H] \begin{center} \includegraphics[width=\textwidth]{Images/InterfaceTotale.png}
     \caption{}
 \end{center} \end{figure}
 
@@ -78,7 +79,12 @@ Les fonctionnalités que nous avons choisi d'intégrer sont les suivantes :
   \item Déplacement de l’image (clic gauche maintenu).
 \end{itemize}
 
+
+
 \section{Sources}
+
+\subsection{Affichage}%à remplir
+
 \subsection{Structures de données}
 \begin{lstlisting}
 struct Pixel {
@@ -175,7 +181,7 @@ void restaurerParams(const char* fichier);
 \end{lstlisting}
 Permet d'enregistrer (et de lire, mais non finalisé) les paramètres permettants de redéssiner la fractale
 
-\subsection{Affichage}
+\subsection{Dessin}
 \begin{lstlisting}
 void ZoneDessinInitialisation(Fl_Widget* widget, void* data);
 \end{lstlisting}
@@ -199,39 +205,34 @@ Trace le cadre du zoom cadre a partir de 2 points (conserve le ratio d'écran)
 \begin{lstlisting}
 void zoneDegrade(Fl_Widget* widget, void* data);
 \end{lstlisting}
-Gère l'affichage de la zone d'apperçu du dégradé
+Gère l'affichage de la zone d’aperçu du dégradé
+
+\subsection{Callback}%à remplir
 
 
 
 \section{Critique}
+
+%En vrac, à retravailler mais l'idée est la : 
+\begin{itemize}
+\item La fonction d'affichage est chaotique, elle appelle d'abord initialiser affichage qui appelle elle même gestionAffichage\_iter.% Si je me souviens bien ça évitait un bug fut un temps, Félix, je te laisse en parler.
+\item La structure de données initiale pour les couleurs, qui limitaient le programme à 3 sliders. Il a fallu réécrire beaucoup de choses pour pouvoir augmenter le nombre de slider (maintenant on peut potentiellement mettre autant de point de couleurs que l'on veut)
+\item Le tableau contenant le dégradé n'est pas alloué dynamiquement->soit on utilise un très grand tableau en variable globale, soit on le recalcule dès qu'on en a besoin (option choisie, cela entraîne quelques calculs supplémentaire mais de temps faible devant le calcul de la fractale)
+\item Le programme ne fonctionne pas uniquement en RGB, mais on utilise un peu Fl\_Color, car nous nous sommes rendus compte après avoir tout implémenté avec Fl\_Color qu'il existait des accesseurs permettant d’accéder directement aux composantes RGB.\\
+Certains algorithmes ont étés réécris en RGB, qui est bien plus pratique à se représenter, mais aussi pour écrire dans des buffer (nous avons abandonnés l'affichage point par point avec Fl\_point pour utiliser Fl\_draw\_image, bien plus rapide).
+\item La gestion du multithreading, commencée mais abandonnée faute de temps (fonctionnait pour le calcul mais produisait des erreurs pour l'affichage).
+\item La gestion des animations (couleurs variable) a été commencée, mais ayant a l'époque un problème d'affichage (passage par un écran noir a chaque nouveau dessin à cause de l'appel de la fonction "initialiser\_affichage", le résultats était peu convainquant. Après résolution du problème, nous n'avons pas eu le temps de la ré-implémenter.
+\end{itemize}
+
+
 \section{Déroulement du projet}
-\begin{lstlisting}
-#ifndef _Main_h
-#define _Main_h
-#include <FL/Fl_Widget.H>
+%Je sais pas trop quoi mettre la dedans, mais je vais essayer quand même :
+Nous avions à l'origine effectué une répartition des taches (Julia pour l'interface et les Callbacks, Nils pour la gestion des couleurs, et Félix pour l'algorithmique des fractales et l'affichage). Cette répartition a été dans l'ensemble tenue,pour la base du programme, mais ensuite chaque nouvelle fonctionnalité a été codé intégralement par celui qui voulait l'implémenter, sans refaire de répartition des taches. 
 
-class DrawingArea : public Fl_Widget{
-public:
-    DrawingArea(int X,int Y,int W,int H);
-    void draw_callback( void (*Function) (Fl_Widget* w, void* data), void* Data);
-    void mouse_callback( void (*Function) (Fl_Widget* w, void* data), void* Data);
-    void keyboard_callback( void (*Function) (Fl_Widget* w, void* data), void* Data);
 
-private :
-    void draw();
-    int handle(int event);
 
-    void (*_draw_callback_function) ( Fl_Widget* w, void* data);
-    void* _draw_callback_data;
-
-    void (*_mouse_callback_function) ( Fl_Widget* w, void* data);
-    void* _mouse_callback_data;
-
-    void (*_keyboard_callback_function) ( Fl_Widget* w, void* data);
-    void* _keyboard_callback_data;
-};
-#endif
-
-\end{lstlisting}
-
+\section{Conclusion}
+%Hésitez pas à completer ou réecrire
+Coder un programme entier s'est révélé très intéressant même si très coûteux en temps, surtout pour arriver à une interface assez intuitive (si l'on connaît un minimum le vocabulaire des fractales) et efficace.
+Cela nous a permis de comprendre l'architecture d'un programme basé sur plusieurs fichiers et l'importance des structures de données. En effet, avec le recul, nos choix initiaux ne paraissent pas toujours optimaux, notamment si l'on veux modifier ou ajouter certaines fonctions (par exemple, il a fallu recoder beaucoup de chose pour passer à plus de trois point de couleurs, ce qui aurait pu être évité en choisissant une autre structure de donnée des le départ).
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.5.27)  28 MAY 2014 12:02
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.5.27)  28 MAY 2014 15:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -834,36 +834,36 @@ File: pgfmodulematrix.code.tex 2010/08/24  (rcs-revision 1.4)
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopat
 hs.code.tex
 File: tikzlibrarytopaths.code.tex 2008/06/17 v2.10 (rcs-revision 1.2)
-))) (./rapport.aux (./0.TitlePage.aux))
+))) (./rapport.aux)
 \openout1 = `rapport.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 40.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 40.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 41.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 41.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 40.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 41.
 
 (/usr/share/texmf/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Info: Redefining \degres on input line 40.
-LaTeX Info: Redefining \dots on input line 40.
-LaTeX Info: Redefining \up on input line 40.
+LaTeX Info: Redefining \degres on input line 41.
+LaTeX Info: Redefining \dots on input line 41.
+LaTeX Info: Redefining \up on input line 41.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -950,33 +950,7 @@ e
 
 
 No file 0.TitlePage.tex.
-(./rapport.toc
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 4.
- (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
-File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 4.
-
-(/usr/share/texmf/tex/latex/lm/omllmm.fd
-File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 4.
-
-(/usr/share/texmf/tex/latex/lm/omslmsy.fd
-File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 4.
-
-(/usr/share/texmf/tex/latex/lm/omxlmex.fd
-File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 4.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 4.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 4.
-)
+(./rapport.toc)
 \tf@toc=\write4
 \openout4 = `rapport.toc'.
 
@@ -985,38 +959,38 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<Images/InterfaceTotale.png, id=12, 1256.695pt x 652.4375pt>
+<Images/InterfaceTotale.png, id=11, 1256.695pt x 652.4375pt>
 File: Images/InterfaceTotale.png Graphic file (type png)
 
 <use Images/InterfaceTotale.png>
-Package pdftex.def Info: Images/InterfaceTotale.png used on input line 50.
+Package pdftex.def Info: Images/InterfaceTotale.png used on input line 51.
 (pdftex.def)             Requested size: 455.24411pt x 236.34076pt.
 
-<Images/Parametres.png, id=13, 419.5675pt x 174.6525pt>
+<Images/Parametres.png, id=12, 419.5675pt x 174.6525pt>
 File: Images/Parametres.png Graphic file (type png)
 
 <use Images/Parametres.png>
-Package pdftex.def Info: Images/Parametres.png used on input line 57.
+Package pdftex.def Info: Images/Parametres.png used on input line 58.
 (pdftex.def)             Requested size: 227.62206pt x 94.75066pt.
 
-<Images/ChoixCouleurs.png, id=14, 440.64626pt x 371.3875pt>
+<Images/ChoixCouleurs.png, id=13, 440.64626pt x 371.3875pt>
 File: Images/ChoixCouleurs.png Graphic file (type png)
 
 <use Images/ChoixCouleurs.png>
-Package pdftex.def Info: Images/ChoixCouleurs.png used on input line 63.
+Package pdftex.def Info: Images/ChoixCouleurs.png used on input line 64.
 (pdftex.def)             Requested size: 227.62206pt x 191.84187pt.
  [2 <./Images/InterfaceTotale.png (PNG copy)> <./Images/Parametres.png (PNG cop
 y)>]
-<Images/Aide.png, id=19, 755.82375pt x 224.84pt>
+<Images/Aide.png, id=18, 755.82375pt x 224.84pt>
 File: Images/Aide.png Graphic file (type png)
  <use Images/Aide.png>
-Package pdftex.def Info: Images/Aide.png used on input line 71.
+Package pdftex.def Info: Images/Aide.png used on input line 72.
 (pdftex.def)             Requested size: 364.19667pt x 108.34052pt.
 
-<Images/Cadre.png, id=20, 246.9225pt x 187.70125pt>
+<Images/Cadre.png, id=19, 246.9225pt x 187.70125pt>
 File: Images/Cadre.png Graphic file (type png)
  <use Images/Cadre.png>
-Package pdftex.def Info: Images/Cadre.png used on input line 75.
+Package pdftex.def Info: Images/Cadre.png used on input line 76.
 (pdftex.def)             Requested size: 227.62206pt x 173.02806pt.
 
 [3 <./Images/ChoixCouleurs.png (PNG copy)> <./Images/Aide.png (PNG copy)> <./Im
@@ -1024,20 +998,42 @@ ages/Cadre.png (PNG copy)>]
 (/usr/share/texlive/texmf-dist/tex/latex/base/latin1.def
 File: latin1.def 2008/03/30 v1.1d Input encoding file
 )
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 84.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 90.
 
 (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 84.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 90.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 90.
+
+(/usr/share/texmf/tex/latex/lm/ot1lmr.fd
+File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 90.
+
+(/usr/share/texmf/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 90.
+
+
+(/usr/share/texmf/tex/latex/lm/omslmsy.fd
+File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 90.
+
+
+(/usr/share/texmf/tex/latex/lm/omxlmex.fd
+File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 84.
+(Font)              <10> on input line 90.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 84.
+(Font)              <7> on input line 90.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 84.
-LaTeX Font Info:    Try loading font information for TS1+lmr on input line 85.
+(Font)              <5> on input line 90.
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 91.
 
 (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -1098,31 +1094,28 @@ File: latin1.def 2008/03/30 v1.1d Input encoding file
 )
 (/usr/share/texlive/texmf-dist/tex/latex/base/latin1.def
 File: latin1.def 2008/03/30 v1.1d Input encoding file
-) [5]
-(/usr/share/texlive/texmf-dist/tex/latex/base/latin1.def
-File: latin1.def 2008/03/30 v1.1d Input encoding file
-) [6] (./rapport.aux
-(./0.TitlePage.aux)) ) 
+) [5] [6]
+(./rapport.aux (./0.TitlePage.aux)) ) 
 Here is how much of TeX's memory you used:
- 14561 strings out of 493307
- 252975 string characters out of 6139905
- 436548 words of memory out of 5000000
- 17641 multiletter control sequences out of 15000+600000
- 54277 words of font info for 47 fonts, out of 8000000 for 9000
+ 14486 strings out of 493307
+ 251826 string characters out of 6139905
+ 436329 words of memory out of 5000000
+ 17576 multiletter control sequences out of 15000+600000
+ 40485 words of font info for 37 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 56i,7n,58p,397b,1778s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/
-share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/
-lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texmf/
-fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12
-.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texmf/font
-s/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb>
-</usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type
-1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb>
-Output written on rapport.pdf (6 pages, 321038 bytes).
+ 56i,7n,58p,494b,1778s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-ma
+thit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/f
+onts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</u
+sr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/p
+ublic/lm/lmcsc10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/s
+hare/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public
+/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/t
+exmf/fonts/type1/public/lm/lmtt10.pfb>
+Output written on rapport.pdf (6 pages, 296621 bytes).
 PDF statistics:
- 69 PDF objects out of 1000 (max. 8388607)
- 47 compressed objects within 1 object stream
+ 65 PDF objects out of 1000 (max. 8388607)
+ 44 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  38 words of extra memory for PDF output out of 10000 (max. 10000000)
 
