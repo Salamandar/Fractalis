@@ -53,7 +53,7 @@ void CreerInterface() {
     gInterface.MenuFractale->add("Julia",       "", MenuFractaleCB);
     gInterface.MenuFractale->add("Cos+C",       "", MenuFractaleCB);
     gInterface.MenuFractale->add("Sin+z0",      "", MenuFractaleCB);
-    gInterface.MenuFractale->add("Personna",    "", MenuFractaleCB);
+    //gInterface.MenuFractale->add("Personna",    "", MenuFractaleCB);
     gInterface.MenuFractale->value(0);
     gInterface.MenuFractale->callback(MenuFractaleCB);
 
