@@ -53,7 +53,6 @@ struct Tests {
     bool dessin;
     bool calcul;
     bool calccouleurs;
-    bool CB;
     bool animation;
     int slider;
 };

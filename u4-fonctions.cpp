@@ -34,7 +34,6 @@ void InitialiserDonnees() {
     gTests.slider=1;
     gTests.dessin=1;
     gTests.calcul=1;
-    gTests.animation=0;
     gTests.calccouleurs=1;
 
     //interface, je met la car ça bug quand j'include u4 fct dans u1 interface
@@ -299,7 +298,6 @@ void restaurerParams(const char* fichier){
     gTests.slider=1;
     gTests.dessin=1;
     gTests.calcul=1;
-    gTests.animation=0;
     gTests.calccouleurs=1;
 
     //interface, je met la car ça bug quand j'include u4 fct dans u1 interface

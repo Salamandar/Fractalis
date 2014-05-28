@@ -3,9 +3,9 @@
 #include <FL/Fl_Widget.H>
 
 void ZoneDessinInitialisation(Fl_Widget* widget, void* data);
-void gestionAffichage(void* data);
+
 void gestionAffichage_iter(void* data);
-void afficheFractale();
+//void afficheFractale();
 void afficheFractaleLigne();
 //void afficheLigne(int j, unsigned long tableau[]); remplacee pour afficher avec buffer
 void afficheLigneRGB(int j, int tableauCouleurs[][3]);
