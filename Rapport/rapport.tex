@@ -1,9 +1,6 @@
 \documentclass[a4paper,11pt]{article} \usepackage[T1]{fontenc} \usepackage[utf8]{inputenc} \usepackage[francais]{babel}
 \usepackage[top=2cm,left=2.5cm,right=2.5cm,bottom=2cm]{geometry} % Géométrie de la page, modifier selon le besoin
-\usepackage{xcolor}
-\usepackage{listingsutf8}
-\usepackage{textcomp}
-\usepackage{float}
+\usepackage{xcolor, listingsutf8, textcomp, float, lmodern, wrapfig, textcomp, tikz, graphicx}
 %\usepackage{minted}
 %décommente pas sauf si tu sais résoudre l'erreur de compile qui en résulte
 \lstset{
@@ -30,22 +27,12 @@
   inputencoding=utf8/latin1
 }
 
-
 \lstset{language=C++}
-\usepackage{lmodern, wrapfig, textcomp, tikz, graphicx}
-
-
-
-
-
 \begin{document}
 \include{0.TitlePage}     % Fichier de page de titre
 \tableofcontents          % Table des matières avec liens, générée automatiquement.
 \vspace{3cm}
-%\input{0.Intro.tex}
-%tu vireras ce comment quand t'auras rajouté le tex correspondant, fait que ça compile
-\newpage
-
+ 
 \section{Présentation du programme}
 Le sujet  sur lequel nous avons choisi de travailler est le projet « Fractales », grand classique de la programmation, utilisant le plan complexe.
 \begin{figure}[H] \begin{center} \includegraphics[width=\textwidth]{Images/InterfaceTotale.png}
@@ -118,8 +105,7 @@ struct Tests {
     bool calcul;//faut il refaire le calcul
     bool calccouleurs;//faut il refaire le calcul des couleurs ?
     int slider; //contient le slider actif
-};
-\end{lstlisting}
+};\end{lstlisting}
 Cette structure contient les variables nécessaires à la vérification des conditions, cela permet entre autre d’éviter les calculs inutiles.
 
 \begin{lstlisting}
@@ -129,82 +115,65 @@ enum fractype {
     COSC,
     SINZO,
     PERSONNA//Originellement prévue pour une fractale personnalisée, non utilisée faute de temps
-};
-\end{lstlisting}
+};\end{lstlisting}
 Le type énuméré permet d'utiliser plus facilement les différents types de fractales.
 
 
-\subsection{Fonctions }
+\subsection{Fonctions}
 \begin{lstlisting}
-void InitialiserDonnees() ;
-\end{lstlisting}
+void InitialiserDonnees(); \end{lstlisting}
 Initialise les données du programmes
 \begin{lstlisting}
-void realFromTab(double *bi, double *bj);
-\end{lstlisting}
+void realFromTab(double *bi, double *bj);\end{lstlisting}
 Effectue la correspondance entre les coordonnées complexe et les pixels
 \begin{lstlisting}
-pointeurFct retourne_fonction();    // Pointe vers les fonctions suivantes en fonction de la fractale choisie
-\end{lstlisting}
+pointeurFct retourne_fonction();    // Pointe vers les fonctions suivantes en fonction de la fractale choisie\end{lstlisting}
 %Félix t'expliqueras ça probab mieux que moi
 \begin{lstlisting}
 int mandelbrot(complex<double> position);
 int julia     (complex<double> position);
 int sinzo     (complex<double> position);
 int cosc      (complex<double> position);
-int personna  (complex<double> position);
-\end{lstlisting}
+int personna  (complex<double> position);\end{lstlisting}
 Ce sont les algorithmes de calcul de convergence
 \begin{lstlisting}
-void convergenceLigne(int j, pointeurFct fonction);
-\end{lstlisting}
+void convergenceLigne(int j, pointeurFct fonction);\end{lstlisting}
 Etudie la convergence ligne par ligne
 \begin{lstlisting}
-void degradeRGB(unsigned long int A, unsigned long int  B,int N, int tab[][3]);
-\end{lstlisting}
+void degradeRGB(unsigned long int A, unsigned long int  B,int N, int tab[][3]);\end{lstlisting}
 Effectue le calcul d'un dégradé de taille N entre une couleur A et une couleur B, et stocke les trois composantes RGB dans tab
 \begin{lstlisting}
-void couleursRGB(unsigned long tabSlider[][2],int tab[][3]) ;
-\end{lstlisting}
+void couleursRGB(unsigned long tabSlider[][2],int tab[][3]) ;\end{lstlisting}
 Remplis tab d'une suite de dégradé grace à degradeRGB à partir des informations contenues dans tabSlider
 \begin{lstlisting}
-void calcBuffer(int tabdeg[][3]);
-\end{lstlisting}
+void calcBuffer(int tabdeg[][3]);\end{lstlisting}
 calcule et stocke dans gDonnees.bufferDeg a partir d'un tableau de couleurs RGB
 \begin{lstlisting}
-int enregistrerPPM(int Largeur, char Fichier[32]);
-\end{lstlisting}
+int enregistrerPPM(int Largeur, char Fichier[32]);\end{lstlisting}
 Enregistre une image en ppm de Largeur pixel de large et de ratio constant dans Fichier.
 \begin{lstlisting}
 void enregistrerParams(const char* fichier);
-void restaurerParams(const char* fichier);
-\end{lstlisting}
+void restaurerParams(const char* fichier);\end{lstlisting}
 Permet d'enregistrer (et de lire, mais non finalisé) les paramètres permettants de redéssiner la fractale
 
 \subsection{Dessin}
 \begin{lstlisting}
-void ZoneDessinInitialisation(Fl_Widget* widget, void* data);
-\end{lstlisting}
+void ZoneDessinInitialisation(Fl_Widget* widget, void* data);\end{lstlisting}
 %Initialise la zone de dessin puis appelle gestionAffichage_iter
 \begin{lstlisting}
-void afficheFractaleLigne();
-\end{lstlisting}
+void afficheFractaleLigne();\end{lstlisting}
 Commande le calcul puis l'affichage d'une ligne
 \begin{lstlisting}
-void afficheLigneRGB(int j, int tableauCouleurs[][3]);
-\end{lstlisting}
+void afficheLigneRGB(int j, int tableauCouleurs[][3]);\end{lstlisting}
 Affiche la ligne j avec pour couleurs un tableau RGB
 \begin{lstlisting}
-void gestionAffichage_iter(void* data);//iter car en remplacement de la fonction récursive d'origine.
-\end{lstlisting}
+void gestionAffichage_iter(void* data);//iter car en remplacement de la fonction recursive d'origine.\end{lstlisting}
 Calcule SI nécéssaire la fractale puis l'affiche grace aux diverses autres fonctions.
 \begin{lstlisting}
-void tracerCadre (int x1, int y1 , int x2, int y2);
-\end{lstlisting}
+void tracerCadre (int x1, int y1 , int x2, int y2);\end{lstlisting}
 Trace le cadre du zoom cadre a partir de 2 points (conserve le ratio d'écran)
 \begin{lstlisting}
-void zoneDegrade(Fl_Widget* widget, void* data);
-\end{lstlisting}
+void zoneDegrade(Fl_Widget* widget, void* data);\end{lstlisting}
 Gère l'affichage de la zone d’aperçu du dégradé
 
 \subsection{Callback}%à remplir
@@ -216,7 +185,7 @@ Gère l'affichage de la zone d’aperçu du dégradé
 %En vrac, à retravailler mais l'idée est la : 
 \begin{itemize}
 \item La fonction d'affichage est chaotique, elle appelle d'abord initialiser affichage qui appelle elle même gestionAffichage\_iter.% Si je me souviens bien ça évitait un bug fut un temps, Félix, je te laisse en parler.
-\item La structure de données initiale pour les couleurs, qui limitaient le programme à 3 sliders. Il a fallu réécrire beaucoup de choses pour pouvoir augmenter le nombre de slider (maintenant on peut potentiellement mettre autant de point de couleurs que l'on veut)
+\item La structure de données initiale pour les couleurs, qui limitaient le programme à 3 sliders. Il a fallu réécrire beaucoup de choses pour pouvoir augmenter le nombre de slider (on peut maintenant potentiellement mettre autant de point de couleurs que l'on veut),
 \item Le tableau contenant le dégradé n'est pas alloué dynamiquement->soit on utilise un très grand tableau en variable globale, soit on le recalcule dès qu'on en a besoin (option choisie, cela entraîne quelques calculs supplémentaire mais de temps faible devant le calcul de la fractale)
 \item Le programme ne fonctionne pas uniquement en RGB, mais on utilise un peu Fl\_Color, car nous nous sommes rendus compte après avoir tout implémenté avec Fl\_Color qu'il existait des accesseurs permettant d’accéder directement aux composantes RGB.\\
 Certains algorithmes ont étés réécris en RGB, qui est bien plus pratique à se représenter, mais aussi pour écrire dans des buffer (nous avons abandonnés l'affichage point par point avec Fl\_point pour utiliser Fl\_draw\_image, bien plus rapide).
