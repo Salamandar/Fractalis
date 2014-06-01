@@ -61,7 +61,7 @@ Pour une organisation plus simple de l'interface utilisateur, des variables de p
 \subsection{Structures de données}
 \begin{lstlisting}
 struct Pixel {
-    complex<double> z;      //Coordonnées du pixel dans le plan complexe
+    complex<double> z;      //Coordonnees du pixel dans le plan complexe
     int n;                  //Rang de divergence du pixel
 };
 \end{lstlisting}
@@ -70,18 +70,24 @@ Cette structure permettra de tracer la fractale à partir du rang de divergence 
 
 \begin{lstlisting}
 struct Donnees {
-    enum fractype Fractale; // Type de fractales choisie (Type énuméré)
+    enum fractype Fractale; // Type de fractales choisie (Type enumere)
     int     rangMax;        // Rang maximal de convergence
-    double  moduleMax;      // Module de convergence (determination de la convergence on non de la fonction)
+    double  moduleMax;      // Module de convergence (determination de la
+                            // convergence on non de la fonction)
     complex<double> C;      // Constante de calcul
     complex<double> ig;     // Coordonnees du point inferieur gauche
-    double pasxy;           // Pas de la matrice (incrementation, en fait, et egale dans les 2 dimensions, car pixels carres)
-    struct Pixel Tab[L_ZONE][H_ZONE]; // Matrice des pixels de l'image.
-int hauteur;             //Hauteur de l'image
-    unsigned char buffer[3*L_ZONE*H_ZONE];//contient l'image sous forme RGB
-    unsigned char bufferDeg[3*325];//contient l'apperçu du dégradé sous forme RGB
-    int nbSlider;           //Nombre de slider actifs
-    unsigned long int slider[MAX_SLIDER+2][2];//contient le rang et la couleur de chaque slider
+    double pasxy;           // Pas de la matrice dans le plan complexe
+    struct Pixel Tab[L_ZONE][H_ZONE];
+                            // Matrice des pixels de l'image.
+    int hauteur;            // Hauteur de l'image
+    unsigned char buffer[3*L_ZONE*H_ZONE];
+                            // Contient l'image sous forme RGB
+    unsigned char bufferDeg[3*325];
+                            // Contient l'apercu du degrade sous forme RGB
+    int nbSlider;           // Nombre de slider actifs
+    
+    unsigned long int slider[MAX_SLIDER+2][2];
+                            // Contient le rang et la couleur des slider
 };
 
 \end{lstlisting}
@@ -90,10 +96,10 @@ Cette structure est la plus importante du programme.
 
 \begin{lstlisting}
 struct Tests {
-    bool dessin;//faut-il refaire le dessin?
-    bool calcul;//faut il refaire le calcul
-    bool calccouleurs;//faut il refaire le calcul des couleurs ?
-    int slider; //contient le slider actif
+    bool dessin;            // Faut-il refaire le dessin ?
+    bool calcul;            // Faut il refaire le calcul ?
+    bool calccouleurs;      // Faut il refaire le calcul des couleurs ?
+    int slider;             // Contient le slider actif
 };\end{lstlisting}
 
 Cette structure contient les variables nécessaires à la vérification des conditions, cela permet entre autre d’éviter les calculs inutiles.
@@ -104,7 +110,8 @@ enum fractype {
     JULIA,
     COSC,
     SINZO,
-    PERSONNA//Originellement prévue pour une fractale personnalisée, non utilisée faute de temps
+    PERSONNA      // Originellement prevu pour une fractale personnalisee,
+                  // non utilise faute de temps
 };\end{lstlisting}
 
 Le type énuméré permet d'utiliser plus facilement les différents types de fractales.\\
@@ -132,7 +139,7 @@ int sinzo     (complex<double> position);
 int cosc      (complex<double> position);
 int personna  (complex<double> position);\end{lstlisting}
 
-Voici alors les fonctions fractales utilisées ; elles retournent un rang de convergence en un point du plan complexe.
+Voici alors les fonctions fractales utilisées ; elles retournent un rang de convergence pour un point du plan complexe.
 
 
 \begin{lstlisting}
@@ -181,7 +188,8 @@ void afficheLigneRGB(int j, int tableauCouleurs[][3]);\end{lstlisting}
 Affiche la ligne j avec pour couleurs un tableau RGB
 
 \begin{lstlisting}
-void gestionAffichage_iter(void* data);//iter car en remplacement de la fonction recursive d'origine.\end{lstlisting}
+void gestionAffichage_iter(void* data);
+    // Iterative car en remplacement de la fonction recursive d'origine.\end{lstlisting}
 
 Calcule \emph{SI nécessaire} la fractale puis l'affiche grâce aux diverses autres fonctions.
 
