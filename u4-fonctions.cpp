@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdio.h>
+#include <string.h>
 using namespace std;
 #include <FL/Fl.H>
 #include "u1-interface.h"
@@ -123,7 +124,7 @@ void convergenceLigne(int j, pointeurFct fonction){
 // utiliser dans ton code, ce serait plus clair/évolué/propre ;)
 
 unsigned long int RGBtoFlColor(int r, int g, int b){
-
+    return 255+256*255*(int)b+256*256*255*(int)g+256*256*256*255*(int)r;
 }
 int FlColorToRgb(unsigned long int color, int* r, int* g, int* b){
     color=(color-color%256)/256;
@@ -154,7 +155,7 @@ void degradeRGB(unsigned long int A, unsigned long int B, int N, int tab[][3]) {
     double dr,dg,db;
     dr=((double)(tab[N-1][0]-tab[0][0]))/N;
     dg=((double)(tab[N-1][1]-tab[0][1]))/N;
-    db=((double)(tab[N-1][2]-tab[0][2]))/N;
+    db=((double)(tab[N-1][2]-   tab[0][2]))/N;
 
     for(int i=0; i<N; i++) {
         tab[i][0]=tab[0][0]+i*dr;
@@ -246,11 +247,12 @@ int enregistrerParams(const char* fichier){
     fprintf(fichierEcriture, "NbSliders : %d\n", gDonnees.nbSlider);
 
     for (int i = 1; i < MAX_SLIDER+1; ++i) {
-        FlColorToRgb(gDonnees.slider[i][2], &r, &g, &b); //===================================================================
+        FlColorToRgb(gDonnees.slider[i][2], &r, &g, &b);
         fprintf(fichierEcriture, "Couleur%d… : %d %d %d\n", i, r, g, b);
         fprintf(fichierEcriture, "RangCoul%d : %d\n", i, gDonnees.slider[i][1]);
     }
     fclose(fichierEcriture);
+    return 0;
 }
 
 
@@ -266,26 +268,26 @@ int restaurerParams(const char* fichier){
         return -1;
 
     err=fscanf(fichierLecture, "%s\n",fileTitle);
-    if (err!=1&&fileTitle!="FractalisFile")
+    if (err!=1||strcmp(fileTitle,"FractalisFile"))
         return ligne;
 
     ligne++;
     err=fscanf(fichierLecture, "%s %s %d\n",code_err, deux_points, &tempInt);
-    if (err!=3&&code_err!="Fractale…"&&deux_points!=":")
+    if (err!=3||strcmp(code_err,"Fractale…")||strcmp(deux_points,":"))
         return ligne;
     else
         gDonnees.Fractale=(fractype)tempInt;
 
     ligne++;
     err=fscanf(fichierLecture, "%s %s %d\n",code_err, deux_points, &tempInt);
-    if (err!=3&&code_err!="RangMaxCo"&&deux_points!=":")
+    if (err!=3||strcmp(code_err,"RangMaxCo")||strcmp(deux_points,":"))
         return ligne;
     else
         gDonnees.rangMax=tempInt;
 
     ligne++;
     err=fscanf(fichierLecture, "%s %s %lf\n",code_err, deux_points, &tempFloat1);
-    if (err!=3&&code_err!="ModuleMax"&&deux_points!=":")
+    if (err!=3||strcmp(code_err,"ModuleMax")||strcmp(deux_points,":"))
         return ligne;
     else
         gDonnees.moduleMax=tempFloat1;
@@ -294,35 +296,35 @@ int restaurerParams(const char* fichier){
 
     ligne++;
     err=fscanf(fichierLecture, "%s %s %lf+i*%lf\n", code_err, deux_points, &tempFloat1, &tempFloat2);
-    if (err!=4&&code_err!="Constante"&&deux_points!=":")
+    if (err!=4||strcmp(code_err,"Constante")||strcmp(deux_points,":"))
         return ligne;
     else
         gDonnees.C=complex<double>(tempFloat1,tempFloat2);
 
     ligne++;
     err=fscanf(fichierLecture, "%s %s %lf+i*%lf\n", code_err, deux_points, &tempFloat1, &tempFloat2);
-    if (err!=4&&code_err!="PtInfGauc"&&deux_points!=":")
+    if (err!=4||strcmp(code_err,"PtInfGauc")||strcmp(deux_points,":"))
         return ligne;
     else
         gDonnees.ig=complex<double>(tempFloat1,tempFloat2);
 
     ligne++;
     err=fscanf(fichierLecture, "%s %s %lf\n", code_err, deux_points, &tempFloat1);
-    if (err!=3&&code_err!="PasAffXY…"&&deux_points!=":")
+    if (err!=3||strcmp(code_err,"PasAffXY…")||strcmp(deux_points,":"))
         return ligne;
     else
         gDonnees.pasxy=tempFloat1;
 
     ligne++;
     err=fscanf(fichierLecture, "%s %s %d\n", code_err, deux_points, &tempInt);
-    if (err!=3&&code_err!="Hauteur……"&&deux_points!=":")
+    if (err!=3||strcmp(code_err,"Hauteur……")||strcmp(deux_points,":"))
         return ligne;
     else
         gDonnees.hauteur=tempInt;
 
     ligne++;
     err=fscanf(fichierLecture, "%s %s %d\n", code_err, deux_points, &tempInt);
-    if (err!=3&&code_err!="NbSliders"&&deux_points!=":")
+    if (err!=3||strcmp(code_err,"NbSliders")||strcmp(deux_points,":"))
         return ligne;
     else
         gDonnees.nbSlider=tempInt;
@@ -331,14 +333,14 @@ int restaurerParams(const char* fichier){
     for (int i = 1; i < MAX_SLIDER+1; ++i) {
     	ligne++;
         err=fscanf(fichierLecture, "Couleur%d… %s %d %d %d\n", &j, deux_points, &r, &g, &b);
-        if (err!=5&&j!=i&&deux_points!=":")
+        if (err!=5||j!=i||strcmp(deux_points,":"))
         	return ligne;
         else
-            //gDonnees.slider[i][2]=RGBtoFlColor(r, g, b); ========================================================================
+            gDonnees.slider[i][2]=RGBtoFlColor(r, g, b);
 
         ligne++;
         err=fscanf(fichierLecture, "RangCoul%d %s %d\n", &j, deux_points, &tempInt);
-        if (err!=3&&j!=i&&deux_points!=":"){
+        if (err!=3||j!=i||strcmp(deux_points,":")){
             return ligne;
             }
         else
@@ -373,6 +375,7 @@ int restaurerParams(const char* fichier){
     gInterface.Slider3->color(gDonnees.slider[gDonnees.nbSlider][0],gDonnees.slider[gDonnees.nbSlider][0]);
 
     gInterface.Fenetre->redraw();
+    return 0;
 }
 
 

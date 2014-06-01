@@ -186,32 +186,50 @@ void BoutonAideCB(Fl_Widget* w, void* data) {
 }
 
 void BoutonSaveParamsCB(Fl_Widget* w, void* data) {
-    const char* Saisie = fl_input("Quel nouveau fichier de configuration ?", "" ) ;
-    if (Saisie != NULL)
-        enregistrerParams(Saisie);
+    char* NomFichier;
+
+    NomFichier = (char*)fl_file_chooser("Choisissez un fichier", "*.frac", NULL);
+
+    if (NomFichier == NULL)
+        fl_message("Vous devez spécifiez un fichier valide");
+    else  {
+        if (!enregistrerParams(NomFichier))
+            fl_message("Paramètres enregistrés dans %s",NomFichier);
+        else
+            fl_message("Erreur lors de la creation/ouverture du fichier");
+    }
 }
-void BoutonBackParamsCB(Fl_Widget* w, void* data)
-{
-    const char* Saisie = fl_input("Lire quel fichier de configuration ?", "" ) ;
-    if (Saisie != NULL)
-        restaurerParams(Saisie);
+void BoutonBackParamsCB(Fl_Widget* w, void* data) {
+    char* NomFichier;
+    int err;
+
+    NomFichier = (char*)fl_file_chooser("Choisissez un fichier", "*.frac", NULL);
+
+    if (NomFichier == NULL)
+        fl_message("Vous devez spécifiez un fichier valide !");
+    else  {
+        err=restaurerParams(NomFichier);
+        if (err==0)
+            fl_message("Paramètres restaurés de %s !",NomFichier);
+        else if (err ==-1)
+            fl_message("Erreur d'ouverture du fichier %s.", NomFichier);
+        else
+            fl_message("Erreur de lecture du fichier à la ligne %d", err);
+    }
+    printf("err=%d\n",err);
 }
 
-void ChampProfondeurCB(Fl_Widget* w, void* data)
-{
+void ChampProfondeurCB(Fl_Widget* w, void* data) {
     float temp=gDonnees.rangMax; //c'est pour reduire le rang des couleurs en mm temps
     gDonnees.rangMax = (int)gInterface.ChampProfondeur->value();
 	gDonnees.slider[gDonnees.nbSlider+1][0]=COULEUR_INIT;
     gDonnees.slider[gDonnees.nbSlider+1][1]=gDonnees.rangMax;
     temp=temp/gDonnees.rangMax;
- 	for (int i = 0; i < gDonnees.nbSlider; ++i)
-    {
-    gDonnees.slider[i+1][1]= gDonnees.slider[i+1][1]/temp;
-    if (gDonnees.slider[i+1][1]==0)
-    {
-    	gDonnees.slider[i+1][1]=1;
-    }
-    //cout<<gDonnees.slider[i+1][1]<<"aaaze"<<endl;
+ 	for (int i = 0; i < gDonnees.nbSlider; ++i) {
+        gDonnees.slider[i+1][1]= gDonnees.slider[i+1][1]/temp;
+        if (gDonnees.slider[i+1][1]==0)
+            gDonnees.slider[i+1][1]=1;
+        //cout<<gDonnees.slider[i+1][1]<<"aaaze"<<endl;
 	}
     gInterface.Slider1->scrollvalue(gDonnees.slider[1][1],0,1,gDonnees.rangMax-1);
     gInterface.Slider1->color(gDonnees.slider[1][0],gDonnees.slider[1][0]);
