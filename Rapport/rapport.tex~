@@ -19,31 +19,31 @@ Le sujet  sur lequel nous avons choisi de travailler est le projet « Fractales 
     \caption{Aperçu du logiciel}
 \end{center} \end{figure}
 
-Ce logiciel permet d'afficher et d'explorer différents types de fractales, notamment les ensembles de Mandelbrot et de Julia. Vous pouvez vous déplacer, zoomer, et choisir les couleurs du dégradé permettant un affichage intéressant et confortable de la fractale.\\
+Ce logiciel permet d'afficher et d'explorer différents types de fractales, notamment les ensembles de Mandelbrot et de Julia. On peut se déplacer, zoomer, et choisir les couleurs du dégradé permettant un affichage intéressant de la fractale.\\
 
-Voici un petit guide d'utilisation détaillant les fonctionnalités que vous pouvez utiliser. L'interface est très facile d'utilisation et s'y retrouver ne devrait pas être un problème.\\
+Le logiciel se veut assez intuitif pour qui connaît le vocabulaire des fractales, et ses  principales fonctions sont décrite ici :\\
 
 \begin{itemize}
-  \item Choisissez différents paramètres de calcul et d'affichage de la fractale (type, module de sortie, rang maximal, coordonnées du point inférieur gauche, largeur de l’affichage, coordonnées de la constante C utilisée par Julia)
+  \item Une section de l'interface permet de choisir les différents paramètres de calcul et d'affichage de la fractale (type, module de sortie, rang maximal, coordonnées du point inférieur gauche, largeur de l’affichage, coordonnées de la constante C utilisée par Julia)
         \begin{figure}[H] \begin{center} \includegraphics[width=0.5\textwidth]{Images/Parametres.png}
             \caption{Choix des paramètres généraux de la fractale}
         \end{center} \end{figure}
 
 
-  \item Modifiez le dégradé de couleurs (jusqu'à 10 couleurs, avec écart modifiable).
+  \item Une autre permet la gestion des couleurs (jusqu'à 10 couleurs, avec écart modifiable selon le rang de divergence).
         \begin{figure}[H] \begin{center} \includegraphics[width=0.5\textwidth]{Images/ChoixCouleurs.png}
             \caption{Choix de la couleur et des points de contrôle du dégradé}
         \end{center} \end{figure}
-  \item Enregistrez l'image que vous voyez, ou même les paramètres que vous avez réglé !
+  \item On peut enregistrer l'image a résolution souhaitée, ou bien n'en enregistrer que les paramètres.
   \item Restaurez les paramètres précédemment enregistrés.
   \item Réinitialisez les paramètres (Bouton Reset).
   \item Fonction « Quitter ».
-  \item Si vous êtes perdus, un bouton vous expliquera les fonctionnalités des différents boutons de la souris.
+  \item Un bouton "Aide" donne les interactions possible avec la souris.
         \begin{figure}[H] \begin{center} \includegraphics[width=0.8\textwidth]{Images/Aide.png}
             \caption{Petite aide}
         \end{center} \end{figure}
-  \item Déplacez l’image avec le clic gauche maintenu
-  \item Vous avez accès à deux types de zoom : avec cadre (clic droit) ou grâce à la molette.
+  \item Déplacer l’image avec le clic gauche maintenu.
+  \item Zoom cadre (bouton droit) ou zoom centré sur la souris (molette).
         \begin{figure}[H] \begin{center} \includegraphics[width=0.5\textwidth]{Images/Cadre.png}
             \caption{Zoom cadre, en maintenant le bouton droit de la souris}
         \end{center} \end{figure}
@@ -54,8 +54,9 @@ Voici un petit guide d'utilisation détaillant les fonctionnalités que vous pou
 
 \section{Sources - Notice de maintenance}
 
-\subsection{Affichage}%à remplir
-
+\subsection{Interface}%à remplir
+L'interface est constituée de deux zones de dessin (la zone d'affichage principale et la zone d'affichage du dégradé, et d'un certain nombre de widgets. Chaque widget est relié à son callback widgetCB.
+Pour une organisation plus simple de l'interface utilisateur, des variables de positions sont utilisées pour faciliter l'insertion d'un widget ou le positionnement  de chaque widget.
 \subsection{Structures de données}
 \begin{lstlisting}
 struct Pixel {
@@ -268,10 +269,10 @@ void setColorChooserColor(unsigned long int couleur);\end{lstlisting}~\\
 \begin{itemize}
   \item La fonction d'affichage est chaotique, elle appelle d'abord "initialiser\_affichage" qui appelle elle même "gestionAffichage\_iter".% Si je me souviens bien ça évitait un bug fut un temps, Félix, je te laisse en parler.
 
-  \item La structure de données initiale pour les couleurs, qui limitaient le programme à 3 sliders. Il a fallu réécrire beaucoup de choses pour pouvoir augmenter le nombre de slider (on peut maintenant potentiellement mettre autant de point de couleurs que l'on veut). Au cours du développement il aurait donc été judicieux de tout travailler de manière à ce que les paramètres principaux soient facilement modifiables,une solution aurait été d'utiliser des fonctions intermédiaires entre les fonctions de calcul et les structures de données.
-  \item Le tableau contenant le dégradé n'est pas alloué dynamiquement->soit on utilise un très grand tableau en variable globale, soit on le recalcule dès qu'on en a besoin (option choisie, cela entraîne quelques calculs supplémentaire mais de temps faible devant le calcul de la fractale)
-  \item Le programme ne fonctionne pas uniquement en RGB, mais on utilise un peu Fl\_Color, car nous nous sommes rendus compte après avoir tout implémenté avec Fl\_Color qu'il existait des accesseurs permettant d’accéder directement aux composantes RGB.\\
-Certains algorithmes ont étés réécris en RGB, qui est bien plus pratique à se représenter, mais aussi pour écrire dans des buffer (nous avons abandonnés l'affichage point par point avec Fl\_point pour utiliser Fl\_draw\_image, bien plus rapide).
+  \item La structure de données initiale pour les couleurs, qui limitait le programme à 3 sliders. Il a fallu réécrire beaucoup de choses pour pouvoir augmenter le nombre de slider (on peut maintenant potentiellement mettre autant de points de couleurs que l'on veut). Au cours du développement il aurait donc été judicieux de tout travailler de manière à ce que les paramètres principaux soient facilement modifiables,une solution aurait été d'utiliser des fonctions intermédiaires entre les fonctions de calcul et les structures de données.
+  \item Le tableau contenant le dégradé n'est pas alloué dynamiquement, il faut soit utiliser un très grand tableau en variable globale, soit recalculer dès qu'on en a besoin (option choisie, cela entraîne quelques calculs supplémentaire mais de temps faible devant le calcul de la fractale)
+  \item Le programme ne fonctionne pas uniquement en RGB, mais on utilise aussi Fl\_Color, car nous nous sommes rendus compte après avoir tout implémenté avec Fl\_Color qu'il existait des accesseurs permettant d’accéder directement aux composantes RGB.\\
+Certains algorithmes ont étés réécris en RGB, qui est bien plus pratique à se représenter, mais aussi pour écrire dans des buffer (nous avons abandonnés l'affichage point par point avec Fl\_point pour utiliser Fl\_draw\_image, qui est bien plus rapide).
   \item La gestion du multithreading, commencée mais abandonnée faute de temps (fonctionnait pour le calcul mais produisait des erreurs pour l'affichage).
   \item La gestion des animations (couleurs variable) a été commencée, mais ayant a l'époque un problème d'affichage (passage par un écran noir a chaque nouveau dessin à cause de l'appel de la fonction "initialiser\_affichage", le résultats était peu convainquant. Après résolution du problème, nous n'avons pas eu le temps de la ré-implémenter.
 \end{itemize}
@@ -283,7 +284,12 @@ Nous avions à l'origine effectué une répartition des tâches (Julia pour l'in
 
 Cette répartition a été dans l'ensemble tenue, pour la base du programme, mais ensuite chaque nouvelle fonctionnalité a été codée intégralement par celui qui voulait l'implémenter, sans refaire de répartition des tâches.\\
 
-Une communication constante et le respect des dénominations ont été particulièrement importantes pour développer de manière cohérente le projet et prévenir les dysfonctionnement lors de la complexification du projet.
+Une communication constante et le respect des dénominations ont été particulièrement importantes pour développer de manière cohérente le projet et prévenir les dysfonctionnement lors de la complexification du projet.\\
+
+De plus, nous avons décidé dès le début du projet d'utiliser Git, un gestionnaire de version, très utile pour la gestion d'un projet d'informatique à plusieurs. Cette plateforme nous a permis une communication du code très facilitée, et donc une organisation beaucoup plus claire.
+
+Notre projet se trouve sur Github : \url{http://github.com/Salamandar/Fractalis}
+
 
 
 \section{Conclusion}
