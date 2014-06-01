@@ -10,8 +10,7 @@ using namespace std;
 #include "u3-callbacks.h"
 #include "u4-fonctions.h"
 
-void ZoneDessinSourisCB( Fl_Widget* widget, void* data )
-{
+void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
     // ATTENTION : X et Y ne sont pas relatifs a la zone mais a la fenetre qui la contient !!!!
 
 
@@ -146,50 +145,35 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data )
 
 
 
-void BoutonQuitterCB(Fl_Widget* w, void* data)
-{
+void BoutonQuitterCB(Fl_Widget* w, void* data) {
     // Fin du programme
     exit(0);
 }
 
-void BoutonEnregistrerCB(Fl_Widget* w, void* data)
-{
-    const char* Saisie ; // et pas : char Saisie[80]
-    int Entier=0 ;
-    int Ok ;
+void BoutonEnregistrerCB(Fl_Widget* w, void* data) {
+    char* NomFichier;
+    int ok;
+    int largeur=0 ;
 
     // Saisie de la valeur
-    Ok = 0 ;
-    Saisie = fl_input("Quelle resolution (largeur) ?", "" ) ;
-    if ( Saisie != NULL )
-        Ok = sscanf( Saisie, "%d", &Entier ) ;
-    if (Entier!=0)
-    {
-    char* NomFichier ;  // et pas : char NomFichier[128]
+    sscanf(fl_input("Quelle largeur d'image ?", ""), "%d", &largeur) ;
 
-    NomFichier = (char*) fl_file_chooser("Choisissez un fichier", "*.ppm", NULL);
-
-    if ( NomFichier != NULL )
-    {
-        printf("BoutonChoisirFichierCB : Fichier choisi = %s\n", NomFichier);
-    }
-    else
-    {
-        printf("BoutonChoisirFichierCB : Aucun fichier choisi\n");
-    }
-
-        /*Saisie = fl_input("Nom du fichier ?", "" ) ;
-        if ( Saisie != NULL )
-            Ok = sscanf( Saisie, "%s", filename ) ;*/
-        int err = enregistrerPPM(Entier,NomFichier);
-        if(err==0){fl_message("Erreur lors de la creation/ouverture du fichier");}
-        if(err==1){fl_message("Image enregistree dans %s",NomFichier);}
-
+    if (largeur <= 0)
+        fl_message("Vous devez rentrer un entier strictement positif !");
+    else {
+        NomFichier = (char*)fl_file_chooser("Choisissez un fichier", "*.ppm", NULL);
+        if (NomFichier == NULL)
+            fl_message("Vous devez spécifiez un fichier valide");
+        else  {
+            if (!enregistrerPPM(largeur, NomFichier))
+                fl_message("Image enregistree dans %s",NomFichier);
+            else
+                fl_message("Erreur lors de la creation/ouverture du fichier");
+        }
     }
 }
 
-void BoutonResetCB(Fl_Widget* w, void* data)
-{
+void BoutonResetCB(Fl_Widget* w, void* data) {
     // retour aux parametres initiaux
     InitialiserDonnees();
     gTests.calcul=1;
@@ -197,13 +181,11 @@ void BoutonResetCB(Fl_Widget* w, void* data)
     gInterface.Slider1->redraw();
 }
 
-void BoutonAideCB(Fl_Widget* w, void* data)
-{
+void BoutonAideCB(Fl_Widget* w, void* data) {
     fl_message(" Aide :\n Bouton gauche (maintient appui)->Deplacement\n Molette Souris : Zoom\n Appui molette : Definition de C a l'endroit du curseur \n Bouton droit (maintient appui) : Zoom cadre");
 }
 
-void BoutonSaveParamsCB(Fl_Widget* w, void* data)
-{
+void BoutonSaveParamsCB(Fl_Widget* w, void* data) {
     const char* Saisie = fl_input("Quel nouveau fichier de configuration ?", "" ) ;
     if (Saisie != NULL)
         enregistrerParams(Saisie);
@@ -369,8 +351,7 @@ void ChoixSliderCB(Fl_Widget* w, void* data){
 		gDonnees.nbSlider=gTests.slider;
 		gDonnees.slider[gTests.slider+1][1]=gDonnees.rangMax;
 		gDonnees.slider[gTests.slider+1][0]=COULEUR_INIT;
-		for (int i = start+1; i < gDonnees.nbSlider+1; ++i)
-		{
+		for (int i = start+1; i < gDonnees.nbSlider+1; ++i) {
 			gDonnees.slider[i][1]=gDonnees.slider[i-1][1];
 			gDonnees.slider[i][0]=gDonnees.slider[i-1][0];
 		}
@@ -382,8 +363,7 @@ void ChoixSliderCB(Fl_Widget* w, void* data){
 	gInterface.ZoneDessin->redraw();
 }
 
-void Slider3CB(Fl_Widget* w, void* data)
-{
+void Slider3CB(Fl_Widget* w, void* data) {
 	int n=gInterface.ChoixSlider->value()+3;
 	gDonnees.slider[n][1]=(int)gInterface.Slider3->value();
     if(gDonnees.slider[1][1]>=gDonnees.slider[n][1])
@@ -427,9 +407,7 @@ void CarreChoixCouleurCB(Fl_Widget* w, void* data)
 
 
    cout<<gTests.slider<<endl;
-    switch(gTests.slider)
-    {
-
+    switch(gTests.slider){
     case 1:
         gDonnees.slider[1][0]=255+256*(int)b+256*256*(int)g+256*256*256*(int)r;
         gInterface.Slider1->color(gDonnees.slider[1][0],gDonnees.slider[1][0]);
@@ -441,19 +419,15 @@ void CarreChoixCouleurCB(Fl_Widget* w, void* data)
         gInterface.Slider2->redraw();
         break;
     default:
-         for (int i = 3; i < gDonnees.nbSlider+1; ++i)
-    	{
+         for (int i = 3; i < gDonnees.nbSlider+1; ++i) {
     		if(gTests.slider==i){
     			gDonnees.slider[i][0]=255+256*(int)b+256*256*(int)g+256*256*256*(int)r;
        			gInterface.Slider3->color(gDonnees.slider[i][0],gDonnees.slider[i][0]);
-    	}
-    }
+    	   }
+        }
         break;
-
     }
-     ;
     gInterface.Slider3->redraw();
-
     gInterface.ZoneDessin->redraw();
 }
 
@@ -462,15 +436,8 @@ void CarreChoixCouleurCB(Fl_Widget* w, void* data)
 
 // Ne fonctionne pas correctement.
 
-void setColorChooserColor(unsigned long int A)
-{
-    double R,G,B;
-    A=(A-A%256)/256;
-    B=A % 256;
-    A=(A-B)/256;
-    G=A % 256;
-    A=(A-G)/256;
-    R=A%256;
-
+void setColorChooserColor(unsigned long int color) {
+    int R,G,B;
+    FlColorToRgb(color, &R, &G, &B);
     gInterface.CarreChoixCouleur->rgb(R/255,G/255,B/255);
 }

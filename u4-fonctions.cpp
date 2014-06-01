@@ -29,15 +29,13 @@ void InitialiserDonnees() {
     gDonnees.slider[gDonnees.nbSlider+1][1]=gDonnees.rangMax;
     gDonnees.hauteur=H_ZONE;
 
-
-
     //Init des tests
     gTests.slider=1;
     gTests.dessin=1;
     gTests.calcul=1;
     gTests.calccouleurs=1;
 
-    //interface, je met la car ça bug quand j'include u4 fct dans u1 interface
+    //Initialisation des valeurs de l'interface
     gInterface.MenuFractale->value(0);
     gInterface.ChampModuleDeSortie->value(gDonnees.moduleMax);
     gInterface.ChampProfondeur->value(gDonnees.rangMax);
@@ -50,7 +48,6 @@ void InitialiserDonnees() {
     gInterface.Slider2->color(gDonnees.slider[2][0],gDonnees.slider[2][0]);
     gInterface.Slider3->scrollvalue(gDonnees.slider[3][1],0,1,gDonnees.rangMax-1);
     gInterface.Slider3->color(gDonnees.slider[3][0],gDonnees.slider[3][0]);
-
 }
 
 // Pointe vers les fonctions suivantes en fonction de la fractale choisie
@@ -106,11 +103,9 @@ int cosc      (complex<double> position){
 }
 int personna(complex<double> position) {
     return 0;//(0,0);
-    /*  À voir. Ce sera la fonction personnalisable, mais implementee seulement quand TOUT le reste fonctionnera.
-        J'aurai besoin de maîtriser le parsage de fonction mathematique, puis l'allocation dynamique de fonction.
-        Ça sera extrêmement moche, donc si Nils a une idee elle est la bienvenue.
-    */
+    //  Cette fonction est destinée à un parsage éventuel de fonctions
 }
+
 
 // Calcul d'indices de convergence pour une ligne. L_ZONE a virer.
 void convergenceLigne(int j, pointeurFct fonction){
@@ -127,12 +122,16 @@ void convergenceLigne(int j, pointeurFct fonction){
 // À compléter s'il te plait Nils vu que tu t'occupes des couleurs. Tu peux changer la forme des fonctions pour les
 // utiliser dans ton code, ce serait plus clair/évolué/propre ;)
 
-
 unsigned long int RGBtoFlColor(int r, int g, int b){
 
 }
 int FlColorToRgb(unsigned long int color, int* r, int* g, int* b){
-    
+    color=(color-color%256)/256;
+    *b=color%256;
+    color=(color-*b)/256;
+    *g=color % 256;
+    color=(color-*g)/256;
+    *r=color%256;
 }
 
 
@@ -152,7 +151,6 @@ void degradeRGB(unsigned long int A, unsigned long int B, int N, int tab[][3]) {
         tab[N-1][0]=B%256;
 
     // codage du degrade dans un tableau de triplets RGB de N case tab[N][3], et oui, vive les cast
-    // C'est ça qui sera donc a changer pour avoir une interpolation de couleurs plus "belle"
     double dr,dg,db;
     dr=((double)(tab[N-1][0]-tab[0][0]))/N;
     dg=((double)(tab[N-1][1]-tab[0][1]))/N;
@@ -166,34 +164,7 @@ void degradeRGB(unsigned long int A, unsigned long int B, int N, int tab[][3]) {
     }
 }
 
-/*void couleurs(unsigned long int A, unsigned long int B, unsigned long int C, int N1, int N2, int N3, unsigned long int tab[]) {
-    //cout<<"calculcouleurs"<<endl;
-    unsigned long int I=COULEUR_INIT;
-    int tab1[N1][3];
-    int tab2[N2][3];
-    int tab3[N3][3];
-    int tab4[gDonnees.rangMax-N3][3];
-    degradeRGB(I,A,N1,tab1);
-    degradeRGB(A,B,N2-N1,tab2);
-    degradeRGB(B,C,N3-N2,tab3);
-    degradeRGB(C,I,gDonnees.rangMax-N3,tab4);
 
-    tab[0]=0;
-    for(int i=1; i<N1; i++) {
-        tab[i]=255+256*tab1[i   ][2]+256*256*tab1[i   ][1]+256*256*256*tab1[i   ][0];
-    }
-    for(int i=N1; i<N2; i++) {
-        tab[i]=255+256*tab2[i-N1][2]+256*256*tab2[i-N1][1]+256*256*256*tab2[i-N1][0];
-    }
-    for(int i=N2; i<N3 ; i++) {
-        tab[i]=255+256*tab3[i-N2][2]+256*256*tab3[i-N2][1]+256*256*256*tab3[i-N2][0];
-        //cout<<tab[i]<<";"<<i<<endl;
-    }
-    for(int i=N3; i<gDonnees.rangMax; i++) {
-        tab[i]=255+256*tab4[i-N3][2]+256*256*tab4[i-N3][1]+256*256*256*tab4[i-N3][0];
-    }
-    //cout<<gDonnees.rangMax;
-}*/
 void couleursRGB(unsigned long tabSlider[][2], int tab[][3]) {
     unsigned long int I=COULEUR_INIT;
     for (int i = 0; i < 50; ++i) {
@@ -202,18 +173,13 @@ void couleursRGB(unsigned long tabSlider[][2], int tab[][3]) {
         }
     }
     for (int i = 0; i < gDonnees.nbSlider+1; ++i) {
-       // printf("degradé entre le slider %d et %d, de rangs %d et %d, rang max=%d\n",i,i+1,tabSlider[i][1],tabSlider[i+1][1],gDonnees.rangMax);
         degradeRGB(tabSlider[i][0],tabSlider[i+1][0],tabSlider[i+1][1]-tabSlider[i][1],&tab[tabSlider[i][1]]);
-        //degradeRGB(tabSlider[i][0],tabSlider[i+1][0],0,&tab[tabSlider[i][1]]);
-        //cout <<i<<"=1 ;"<< tabSlider[i][0] << "=tabSlider i 0;" << tab[i+1][0] << "=tabSlider i+1 0;" << tabSlider[i+1][1] - tabSlider[i][1] <<"=diff tab"<< endl;
-        //printf("ecriture de la case %lu a la case %lu\n",tabSlider[i][1],tabSlider[i+1][1]);
-    }
-
-    for (int i = 0; i < gDonnees.rangMax; ++i) {
-          //     cout <<i<<";"<< tab[i][0] << ";" << tab[i][1] << ";" << tab[i][2] << endl;
     }
 }
 
+/*
+        Enregistrement d'une image
+*/
 
 int enregistrerPPM(int Largeur, char Fichier[32]){
     FILE* pFile;
@@ -237,18 +203,14 @@ int enregistrerPPM(int Largeur, char Fichier[32]){
         for(int i = 0; i<Largeur;i++){
             int rang=fonction(coordonnees);
             coordonnees+=pas_complx;
-
-
             if (rang==-1 )
                 fprintf(pFile, "0 0 0 ");
-            else{
-
+            else
                 fprintf(pFile,"%d %d %d ",tab[rang][0],tab[rang][1],tab[rang][2]);
-            }
         }
     }
     fclose(pFile);
-    return(1);
+    return 0;
 }
 
 void calcBuffer(int tabdeg[][3]){
@@ -258,6 +220,11 @@ void calcBuffer(int tabdeg[][3]){
         }
     }
 }
+
+/*
+        Enregistrement et restauration des paramètres utilisateurs
+*/
+
 
 
 int enregistrerParams(const char* fichier){
@@ -300,7 +267,7 @@ int restaurerParams(const char* fichier){
 
     err=fscanf(fichierLecture, "%s\n",fileTitle);
     if (err!=1&&fileTitle!="FractalisFile")
-        return ligne; 
+        return ligne;
 
     ligne++;
     err=fscanf(fichierLecture, "%s %s %d\n",code_err, deux_points, &tempInt);
@@ -377,7 +344,7 @@ int restaurerParams(const char* fichier){
         else
             gDonnees.slider[i][1]=tempInt;
     }
-    
+
     fclose(fichierLecture);
 
 
@@ -403,7 +370,7 @@ int restaurerParams(const char* fichier){
     gInterface.Slider2->scrollvalue(gDonnees.slider[2][1],0,1,gDonnees.rangMax-1);
     gInterface.Slider2->color(gDonnees.slider[2][0],gDonnees.slider[2][0]);
     gInterface.Slider3->scrollvalue(gDonnees.slider[3][1],0,1,gDonnees.rangMax-1);
-    gInterface.Slider3->color(gDonnees.slider[gDonnees.nbSlider][0],gDonnees.slider[gDonnees.nbSlider][0]);    
+    gInterface.Slider3->color(gDonnees.slider[gDonnees.nbSlider][0],gDonnees.slider[gDonnees.nbSlider][0]);
 
     gInterface.Fenetre->redraw();
 }
