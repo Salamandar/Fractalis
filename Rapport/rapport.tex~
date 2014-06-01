@@ -1,74 +1,58 @@
 \documentclass[a4paper,11pt]{article} \usepackage[T1]{fontenc} \usepackage[utf8]{inputenc} \usepackage[francais]{babel}
 \usepackage[top=2cm,left=2.5cm,right=2.5cm,bottom=2cm]{geometry} % Géométrie de la page, modifier selon le besoin
 \usepackage{xcolor, listingsutf8, textcomp, float, lmodern, wrapfig, textcomp, tikz, graphicx}
-%\usepackage{minted}
-%décommente pas sauf si tu sais résoudre l'erreur de compile qui en résulte
-\lstset{
-    language=C++,
-    keywordstyle=\bfseries\ttfamily\color[rgb]{0,0,1},
-    identifierstyle=\ttfamily,
-    commentstyle=\color[rgb]{0.133,0.545,0.133},
-    stringstyle=\ttfamily\color[rgb]{0.627,0.126,0.941},
-    showstringspaces=false,
-    basicstyle=\small,
-   % numberstyle=\footnotesize,
-    %numbers=left,
-    %stepnumber=1,
-    %numbersep=10pt,
-    %j'aime pas afficher les numéros de ligne vu qu'on met que des extraits de code
-    tabsize=2,
-    breaklines=true,
-    prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
-    breakatwhitespace=false,
-    aboveskip={\baselineskip},
-  columns=fixed,
-  upquote=true,
-  extendedchars=true,
-  inputencoding=utf8/latin1
-}
+\usepackage[colorlinks=true,citecolor=black,linkcolor=black, urlcolor=blue]{hyperref}
 
+\lstset{language=C++, keywordstyle=\bfseries\ttfamily\color[rgb]{0,0,1}, identifierstyle=\ttfamily, commentstyle=\color[rgb]{0.133,0.545,0.133},stringstyle=\ttfamily\color[rgb]{0.627,0.126,0.941}, showstringspaces=false, basicstyle=\small, tabsize=2, breaklines=true,prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}}, breakatwhitespace=false, aboveskip={\baselineskip}, columns=fixed,upquote=true, extendedchars=true, inputencoding=utf8/latin1}
 \lstset{language=C++}
+
 \begin{document}
-\include{0.TitlePage}     % Fichier de page de titre
-\tableofcontents          % Table des matières avec liens, générée automatiquement.
+  \include{0.TitlePage}     % Fichier de page de titre
+  \pagenumbering{arabic}  % Pas de numérotation
+  \tableofcontents          % Table des matières avec liens, générée automatiquement.
 \vspace{3cm}
- 
-\section{Présentation du programme}
+% On peut faire une nouvelle page avec  \newpage
+
+\section{Présentation du logiciel - Notice d'utilisation}
 Le sujet  sur lequel nous avons choisi de travailler est le projet « Fractales », grand classique de la programmation, utilisant le plan complexe.
 \begin{figure}[H] \begin{center} \includegraphics[width=\textwidth]{Images/InterfaceTotale.png}
-    \caption{}
+    \caption{Aperçu du logiciel}
 \end{center} \end{figure}
 
-Les fonctionnalités que nous avons choisi d'intégrer sont les suivantes :
+Ce logiciel permet d'afficher et d'explorer différents types de fractales, notamment les ensembles de Mandelbrot et de Julia. Vous pouvez vous déplacer, zoomer, et choisir les couleurs du dégradé permettant un affichage intéressant et confortable de la fractale.\\
+
+Voici un petit guide d'utilisation détaillant les fonctionnalités que vous pouvez utiliser. L'interface est très facile d'utilisation et s'y retrouver ne devrait pas être un problème.\\
+
 \begin{itemize}
-  \item Choix par l’utilisateur des différents paramètres de la fractale (type, module de sortie, rang maximal, coordonnées du point inférieur gauche, largeur de l’affichage, coordonnées de la constante).
+  \item Choisissez différents paramètres de calcul et d'affichage de la fractale (type, module de sortie, rang maximal, coordonnées du point inférieur gauche, largeur de l’affichage, coordonnées de la constante C utilisée par Julia)
         \begin{figure}[H] \begin{center} \includegraphics[width=0.5\textwidth]{Images/Parametres.png}
-            \caption{}
+            \caption{Choix des paramètres généraux de la fractale}
         \end{center} \end{figure}
 
 
-  \item Choix des couleurs (jusqu'a 10 couleurs choisies par l’utilisateur avec écart modifiable).
+  \item Modifiez le dégradé de couleurs (jusqu'à 10 couleurs, avec écart modifiable).
         \begin{figure}[H] \begin{center} \includegraphics[width=0.5\textwidth]{Images/ChoixCouleurs.png}
-            \caption{}
+            \caption{Choix de la couleur et des points de contrôle du dégradé}
         \end{center} \end{figure}
-  \item Enregistrement de l’image ainsi que des paramètres dans un fichier choisi par l’utilisateur avec une qualité choisie.
-  \item Restauration de paramètres précédemment enregistrés.
-  \item Remise à zéro des paramètres (bouton reset).
+  \item Enregistrez l'image que vous voyez, ou même les paramètres que vous avez réglé !
+  \item Restaurez les paramètres précédemment enregistrés.
+  \item Réinitialisez les paramètres (Bouton Reset).
   \item Fonction « Quitter ».
-  \item Un bouton aide expliquant les fonctionnalités des différents boutons de la souris.
+  \item Si vous êtes perdus, un bouton vous expliquera les fonctionnalités des différents boutons de la souris.
         \begin{figure}[H] \begin{center} \includegraphics[width=0.8\textwidth]{Images/Aide.png}
-            \caption{}
+            \caption{Petite aide}
         \end{center} \end{figure}
-  \item 2 types de zoom : avec cadre(clic droit) ou grâce à la molette .
+  \item Déplacez l’image avec le clic gauche maintenu
+  \item Vous avez accès à deux types de zoom : avec cadre (clic droit) ou grâce à la molette.
         \begin{figure}[H] \begin{center} \includegraphics[width=0.5\textwidth]{Images/Cadre.png}
-            \caption{}
+            \caption{Zoom cadre, en maintenant le bouton droit de la souris}
         \end{center} \end{figure}
-  \item Déplacement de l’image (clic gauche maintenu).
+
 \end{itemize}
 
 
 
-\section{Sources}
+\section{Sources - Notice de maintenance}
 
 \subsection{Affichage}%à remplir
 
@@ -79,7 +63,9 @@ struct Pixel {
     int n;                  //Rang de divergence du pixel
 };
 \end{lstlisting}
+
 Cette structure permettra de tracer la fractale à partir du rang de divergence et de la coordonnée de chaque pixel.
+
 \begin{lstlisting}
 struct Donnees {
     enum fractype Fractale; // Type de fractales choisie (Type énuméré)
@@ -97,6 +83,7 @@ int hauteur;             //Hauteur de l'image
 };
 
 \end{lstlisting}
+
 Cette structure est la plus importante du programme.
 
 \begin{lstlisting}
@@ -106,6 +93,7 @@ struct Tests {
     bool calccouleurs;//faut il refaire le calcul des couleurs ?
     int slider; //contient le slider actif
 };\end{lstlisting}
+
 Cette structure contient les variables nécessaires à la vérification des conditions, cela permet entre autre d’éviter les calculs inutiles.
 
 \begin{lstlisting}
@@ -116,45 +104,65 @@ enum fractype {
     SINZO,
     PERSONNA//Originellement prévue pour une fractale personnalisée, non utilisée faute de temps
 };\end{lstlisting}
-Le type énuméré permet d'utiliser plus facilement les différents types de fractales.
 
+Le type énuméré permet d'utiliser plus facilement les différents types de fractales.\\
 
 \subsection{Fonctions}
 \begin{lstlisting}
 void InitialiserDonnees(); \end{lstlisting}
+
 Initialise les données du programmes
+
 \begin{lstlisting}
 void realFromTab(double *bi, double *bj);\end{lstlisting}
+
 Effectue la correspondance entre les coordonnées complexe et les pixels
+
 \begin{lstlisting}
-pointeurFct retourne_fonction();    // Pointe vers les fonctions suivantes en fonction de la fractale choisie\end{lstlisting}
-%Félix t'expliqueras ça probab mieux que moi
+pointeurFct retourne_fonction();\end{lstlisting}
+
+Retourne la fonction de calcul de la fractale, pour son utilisation dans le projet. 
+
 \begin{lstlisting}
 int mandelbrot(complex<double> position);
 int julia     (complex<double> position);
 int sinzo     (complex<double> position);
 int cosc      (complex<double> position);
 int personna  (complex<double> position);\end{lstlisting}
-Ce sont les algorithmes de calcul de convergence
+
+Voici alors les fonctions fractales utilisées ; elles retournent un rang de convergence en un point du plan complexe.
+
+
 \begin{lstlisting}
 void convergenceLigne(int j, pointeurFct fonction);\end{lstlisting}
+
 Etudie la convergence ligne par ligne
+
 \begin{lstlisting}
-void degradeRGB(unsigned long int A, unsigned long int  B,int N, int tab[][3]);\end{lstlisting}
+void degradeRGB(unsigned long A, unsigned long B, int N, int tab[][3]);\end{lstlisting} 
+
 Effectue le calcul d'un dégradé de taille N entre une couleur A et une couleur B, et stocke les trois composantes RGB dans tab
+
 \begin{lstlisting}
-void couleursRGB(unsigned long tabSlider[][2],int tab[][3]) ;\end{lstlisting}
-Remplis tab d'une suite de dégradé grace à degradeRGB à partir des informations contenues dans tabSlider
+void couleursRGB(unsigned long tabSlider[][2],int tab[][3]);\end{lstlisting}
+
+Remplit tab d'une suite de dégradé grâce à degradeRGB à partir des informations contenues dans tabSlider
+
 \begin{lstlisting}
 void calcBuffer(int tabdeg[][3]);\end{lstlisting}
-calcule et stocke dans gDonnees.bufferDeg a partir d'un tableau de couleurs RGB
+
+Calcule et stocke dans gDonnees.bufferDeg à partir d'un tableau de couleurs RGB
+
 \begin{lstlisting}
 int enregistrerPPM(int Largeur, char Fichier[32]);\end{lstlisting}
+
 Enregistre une image en ppm de Largeur pixel de large et de ratio constant dans Fichier.
+
 \begin{lstlisting}
 void enregistrerParams(const char* fichier);
 void restaurerParams(const char* fichier);\end{lstlisting}
-Permet d'enregistrer (et de lire, mais non finalisé) les paramètres permettants de redéssiner la fractale
+
+Permet d'enregistrer (et de lire, mais non finalisé) les paramètres permettant de redessiner la fractale.\\
 
 \subsection{Dessin}
 \begin{lstlisting}
@@ -162,34 +170,51 @@ void ZoneDessinInitialisation(Fl_Widget* widget, void* data);\end{lstlisting}
 %Initialise la zone de dessin puis appelle gestionAffichage_iter
 \begin{lstlisting}
 void afficheFractaleLigne();\end{lstlisting}
+
 Commande le calcul puis l'affichage d'une ligne
+
 \begin{lstlisting}
 void afficheLigneRGB(int j, int tableauCouleurs[][3]);\end{lstlisting}
+
 Affiche la ligne j avec pour couleurs un tableau RGB
+
 \begin{lstlisting}
 void gestionAffichage_iter(void* data);//iter car en remplacement de la fonction recursive d'origine.\end{lstlisting}
-Calcule SI nécéssaire la fractale puis l'affiche grace aux diverses autres fonctions.
+
+Calcule \emph{SI nécessaire} la fractale puis l'affiche grâce aux diverses autres fonctions.
+
 \begin{lstlisting}
 void tracerCadre (int x1, int y1 , int x2, int y2);\end{lstlisting}
+
 Trace le cadre du zoom cadre a partir de 2 points (conserve le ratio d'écran)
+
 \begin{lstlisting}
 void zoneDegrade(Fl_Widget* widget, void* data);\end{lstlisting}
-Gère l'affichage de la zone d’aperçu du dégradé
+
+Gère l'affichage de la zone d’aperçu du dégradé.\\
 
 \subsection{Callback}
 \begin{lstlisting}
 void ZoneDessinSourisCB (Fl_Widget* widget, void* data ) ;\end{lstlisting}
+
 Gère l'ensemble des événements commandables à l'aide de la souris, à savoir le zoom molette, le zoom cadre(clic droit), le déplacement de l'affichage(clic gauche) et choix de la constante (clic molette)
+
 \begin{lstlisting}
 void ChampModuleDeSortieCB(Fl_Widget* w, void* data);\end{lstlisting}
-Permet de régler le module de sortie de la fractale (module à partir duquel on considére qu'il y a convergence)
+
+Permet de régler le module de sortie de la fractale (module à partir duquel on considère qu'il y a convergence)
+
 \begin{lstlisting}
 void ChampProfondeurCB  (Fl_Widget* w, void* data);\end{lstlisting}
+
 Choix du rang maximal d'étude
 
 \begin{lstlisting}
 void MenuFractaleCB     (Fl_Widget* w, void* data);\end{lstlisting}
-Mets en relation la fractale choisie par l'utilisateur avec sa fonction de calcul.
+
+Met en relation la fractale choisie par l'utilisateur avec sa fonction de calcul.\\
+
+Voici les différents boutons de la barre de menu :
 \begin{lstlisting}
 void BoutonQuitterCB    (Fl_Widget* w, void* data);\end{lstlisting}
 
@@ -204,20 +229,25 @@ void BoutonAideCB       (Fl_Widget* w, void* data);\end{lstlisting}
 
 \begin{lstlisting}
 void BoutonSaveParamsCB (Fl_Widget* w, void* data);\end{lstlisting}
+
 Permet de sauvegarder les paramètres actuels.
+
 \begin{lstlisting}
 void BoutonBackParamsCB (Fl_Widget* w, void* data);\end{lstlisting}
+
 Permet de revenir aux paramètres précédemment sauvegardés.
 
 \begin{lstlisting}
 void ChampXMinCB        (Fl_Widget* w, void* data);
 void ChampYMinCB        (Fl_Widget* w, void* data);
 void ChampLargeurCB     (Fl_Widget* w, void* data);\end{lstlisting}
+
 Définit le point inférieur gauche et la largeur de l'affichage ( taille en complexe)
 
 \begin{lstlisting}
 void ChampCXCB          (Fl_Widget* w, void* data);
 void ChampCYCB          (Fl_Widget* w, void* data);\end{lstlisting}
+
 Permet de rentrer une valeur de constante (utilisée dans certaines fractales)
 
 \begin{lstlisting}
@@ -226,34 +256,47 @@ void Slider1CB          (Fl_Widget* w, void* data);
 void Slider2CB          (Fl_Widget* w, void* data);
 void ChoixSliderCB		(Fl_Widget* w, void* data);
 void Slider3CB          (Fl_Widget* w, void* data);\end{lstlisting}
+
 Ces trois callbacks permettent la gestion des couleurs
 
 \begin{lstlisting}
-void setColorChooserColor(unsigned long int couleur);\end{lstlisting}
-
+void setColorChooserColor(unsigned long int couleur);\end{lstlisting}~\\
 
 \section{Critique}
 
 %En vrac, à retravailler mais l'idée est la : 
 \begin{itemize}
-\item La fonction d'affichage est chaotique, elle appelle d'abord initialiser affichage qui appelle elle même gestionAffichage\_iter.% Si je me souviens bien ça évitait un bug fut un temps, Félix, je te laisse en parler.
-\item La structure de données initiale pour les couleurs, qui limitaient le programme à 3 sliders. Il a fallu réécrire beaucoup de choses pour pouvoir augmenter le nombre de slider (on peut maintenant potentiellement mettre autant de point de couleurs que l'on veut). Au cours du développement il aurait donc été judicieux de tout travailler de manière à ce que les paramètres principaux soient facilement modifiables,une solution aurait été d'utiliser des fonctions intermédiaires entre les fonctions de calcul et les structures de données.
-\item Le tableau contenant le dégradé n'est pas alloué dynamiquement->soit on utilise un très grand tableau en variable globale, soit on le recalcule dès qu'on en a besoin (option choisie, cela entraîne quelques calculs supplémentaire mais de temps faible devant le calcul de la fractale)
-\item Le programme ne fonctionne pas uniquement en RGB, mais on utilise un peu Fl\_Color, car nous nous sommes rendus compte après avoir tout implémenté avec Fl\_Color qu'il existait des accesseurs permettant d’accéder directement aux composantes RGB.\\
+  \item La fonction d'affichage est chaotique, elle appelle d'abord "initialiser\_affichage" qui appelle elle même "gestionAffichage\_iter".% Si je me souviens bien ça évitait un bug fut un temps, Félix, je te laisse en parler.
+
+  \item La structure de données initiale pour les couleurs, qui limitaient le programme à 3 sliders. Il a fallu réécrire beaucoup de choses pour pouvoir augmenter le nombre de slider (on peut maintenant potentiellement mettre autant de point de couleurs que l'on veut). Au cours du développement il aurait donc été judicieux de tout travailler de manière à ce que les paramètres principaux soient facilement modifiables,une solution aurait été d'utiliser des fonctions intermédiaires entre les fonctions de calcul et les structures de données.
+  \item Le tableau contenant le dégradé n'est pas alloué dynamiquement->soit on utilise un très grand tableau en variable globale, soit on le recalcule dès qu'on en a besoin (option choisie, cela entraîne quelques calculs supplémentaire mais de temps faible devant le calcul de la fractale)
+  \item Le programme ne fonctionne pas uniquement en RGB, mais on utilise un peu Fl\_Color, car nous nous sommes rendus compte après avoir tout implémenté avec Fl\_Color qu'il existait des accesseurs permettant d’accéder directement aux composantes RGB.\\
 Certains algorithmes ont étés réécris en RGB, qui est bien plus pratique à se représenter, mais aussi pour écrire dans des buffer (nous avons abandonnés l'affichage point par point avec Fl\_point pour utiliser Fl\_draw\_image, bien plus rapide).
-\item La gestion du multithreading, commencée mais abandonnée faute de temps (fonctionnait pour le calcul mais produisait des erreurs pour l'affichage).
-\item La gestion des animations (couleurs variable) a été commencée, mais ayant a l'époque un problème d'affichage (passage par un écran noir a chaque nouveau dessin à cause de l'appel de la fonction "initialiser\_affichage", le résultats était peu convainquant. Après résolution du problème, nous n'avons pas eu le temps de la ré-implémenter.
+  \item La gestion du multithreading, commencée mais abandonnée faute de temps (fonctionnait pour le calcul mais produisait des erreurs pour l'affichage).
+  \item La gestion des animations (couleurs variable) a été commencée, mais ayant a l'époque un problème d'affichage (passage par un écran noir a chaque nouveau dessin à cause de l'appel de la fonction "initialiser\_affichage", le résultats était peu convainquant. Après résolution du problème, nous n'avons pas eu le temps de la ré-implémenter.
 \end{itemize}
 
 
 \section{Déroulement du projet}
 %Je sais pas trop quoi mettre la dedans, mais je vais essayer quand même :
-Nous avions à l'origine effectué une répartition des taches (Julia pour l'interface et les Callbacks, Nils pour la gestion des couleurs, et Félix pour l'algorithmique des fractales et l'affichage). Cette répartition a été dans l'ensemble tenue,pour la base du programme, mais ensuite chaque nouvelle fonctionnalité a été codé intégralement par celui qui voulait l'implémenter, sans refaire de répartition des taches. Une communication constante est le respect des dénominations ont été particulièrement importante pour développer de manière cohérente le projet et prévenir les disfonctionnement lors de la complexicification du projet.
+Nous avions à l'origine effectué une répartition des tâches (Julia pour l'interface et les Callbacks, Nils pour la gestion des couleurs, et Félix pour l'algorithmique des fractales et l'affichage).\\
 
+Cette répartition a été dans l'ensemble tenue, pour la base du programme, mais ensuite chaque nouvelle fonctionnalité a été codée intégralement par celui qui voulait l'implémenter, sans refaire de répartition des tâches.\\
+
+Une communication constante et le respect des dénominations ont été particulièrement importantes pour développer de manière cohérente le projet et prévenir les dysfonctionnement lors de la complexification du projet.
 
 
 \section{Conclusion}
-%Hésitez pas à completer ou réecrire
-Coder un programme entier s'est révélé très intéressant même si très coûteux en temps, surtout pour arriver à une interface assez intuitive (si l'on connaît un minimum le vocabulaire des fractales) et efficace. L'un des problèmes les difficiles à appréhender est l'affichage car il s'agit d'avoir une bonne définition et un visuel attractif tout en limitant le temps de création de l'image.
-Cela nous a permis de comprendre l'architecture d'un programme basé sur plusieurs fichiers et l'importance des structures de données. En effet, avec le recul, nos choix initiaux ne paraissent pas toujours optimaux, notamment si l'on veux modifier ou ajouter certaines fonctions (par exemple, il a fallu recoder beaucoup de chose pour passer à plus de trois point de couleurs, ce qui aurait pu être évité en choisissant une autre structure de donnée dès le départ).
+%Hésitez pas à compléter ou réécrire
+Coder un programme entier s'est révélé très intéressant même si très coûteux en temps, surtout pour arriver à une interface assez intuitive (si l'on connaît un minimum le vocabulaire des fractales) et efficace.
+
+L'un des problèmes les plus difficiles à appréhender a été l'affichage, car il s'agit d'avoir une bonne définition et un visuel attractif tout en limitant le temps de création de l'image. Nous avons réussi notre pari grâce à une fonction d'affichage assez complexe, tout en mettant en commun les connaissances de chacun.\\
+
+Notre organisation a permis une rapide évolution du logiciel une fois les briques de base posées.
+
+En effet, comme nous l'avons précisé plus haut, la répartition des tâches, très souple, nous a permis d'utiliser les compétences de chaque membre dans chaque partie du logiciel. Nous sommes donc assez peu restés bloqués grâce à ce travail de coopération.\\
+
+Ce travail nous a permis de comprendre l'architecture d'un programme basé sur plusieurs fichiers, et l'importance des structures de données. En effet, avec le recul, nos choix initiaux ne paraissent pas toujours optimaux, notamment si l'on veut modifier ou ajouter certaines fonctionnalités (par exemple, il a fallu recoder beaucoup de choses pour passer à plus de trois points de contrôle du dégradé, ce qui aurait pu être évité en choisissant une autre structure de donnée dès le départ).\\
+
+En résumé, ce projet nous a permis de découvrir de façon très intéressante la programmation modulaire et en groupe, et les bases qu'il nous a apportées nous permettront d'appréhender plus sereinement de futurs projets.
 \end{document}

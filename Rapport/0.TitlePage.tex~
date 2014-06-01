@@ -1,0 +1,26 @@
+\begin{titlepage}
+%\includegraphics[scale=0.45]{Images/logo_phelma.pdf}\hfill
+\begin{center}
+    \vspace*{1cm}
+    \textsc{\Large Bureau d'Études d'Informatique}\\
+    [4.5cm] \rule{\linewidth}{0.5mm}\\[0.4cm]
+    {\huge\bfseries Fractales et FLTK\\
+    [0.4cm]}\rule{\linewidth}{0.5mm}\\[1.0cm]
+    \textsc{pmpB}
+    \begin{flushright} \large
+        % \emph{Entrepreneurs :} \\
+        Julia \textsc{Dupuis}\\
+        Nils \textsc{Exibard}\\
+        Félix \textsc{Piédallu}\\
+    \end{flushright}
+    
+    
+  \begin{center}
+    \includegraphics[width=0.7\textwidth]{Images/Titlepage.png}
+  \end{center}
+
+    \vfill
+
+    \large{\today}
+\end{center}
+\end{titlepage}
