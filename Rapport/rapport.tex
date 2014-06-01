@@ -176,8 +176,60 @@ Trace le cadre du zoom cadre a partir de 2 points (conserve le ratio d'écran)
 void zoneDegrade(Fl_Widget* widget, void* data);\end{lstlisting}
 Gère l'affichage de la zone d’aperçu du dégradé
 
-\subsection{Callback}%à remplir
+\subsection{Callback}
+\begin{lstlisting}
+void ZoneDessinSourisCB (Fl_Widget* widget, void* data ) ;\end{lstlisting}
+Gère l'ensemble des événements commandables à l'aide de la souris, à savoir le zoom molette, le zoom cadre(clic droit), le déplacement de l'affichage(clic gauche) et choix de la constante (clic molette)
+\begin{lstlisting}
+void ChampModuleDeSortieCB(Fl_Widget* w, void* data);\end{lstlisting}
+Permet de régler le module de sortie de la fractale (module à partir duquel on considére qu'il y a convergence)
+\begin{lstlisting}
+void ChampProfondeurCB  (Fl_Widget* w, void* data);\end{lstlisting}
+Choix du rang maximal d'étude
 
+\begin{lstlisting}
+void MenuFractaleCB     (Fl_Widget* w, void* data);\end{lstlisting}
+Mets en relation la fractale choisie par l'utilisateur avec sa fonction de calcul.
+\begin{lstlisting}
+void BoutonQuitterCB    (Fl_Widget* w, void* data);\end{lstlisting}
+
+\begin{lstlisting}
+void BoutonEnregistrerCB(Fl_Widget* w, void* data);\end{lstlisting}
+
+\begin{lstlisting}
+void BoutonResetCB      (Fl_Widget* w, void* data);\end{lstlisting}
+
+\begin{lstlisting}
+void BoutonAideCB       (Fl_Widget* w, void* data);\end{lstlisting}
+
+\begin{lstlisting}
+void BoutonSaveParamsCB (Fl_Widget* w, void* data);\end{lstlisting}
+Permet de sauvegarder les paramètres actuels.
+\begin{lstlisting}
+void BoutonBackParamsCB (Fl_Widget* w, void* data);\end{lstlisting}
+Permet de revenir aux paramètres précédemment sauvegardés.
+
+\begin{lstlisting}
+void ChampXMinCB        (Fl_Widget* w, void* data);
+void ChampYMinCB        (Fl_Widget* w, void* data);
+void ChampLargeurCB     (Fl_Widget* w, void* data);\end{lstlisting}
+Définit le point inférieur gauche et la largeur de l'affichage ( taille en complexe)
+
+\begin{lstlisting}
+void ChampCXCB          (Fl_Widget* w, void* data);
+void ChampCYCB          (Fl_Widget* w, void* data);\end{lstlisting}
+Permet de rentrer une valeur de constante (utilisée dans certaines fractales)
+
+\begin{lstlisting}
+void CarreChoixCouleurCB(Fl_Widget* w, void* data);
+void Slider1CB          (Fl_Widget* w, void* data);
+void Slider2CB          (Fl_Widget* w, void* data);
+void ChoixSliderCB		(Fl_Widget* w, void* data);
+void Slider3CB          (Fl_Widget* w, void* data);\end{lstlisting}
+Ces trois callbacks permettent la gestion des couleurs
+
+\begin{lstlisting}
+void setColorChooserColor(unsigned long int couleur);\end{lstlisting}
 
 
 \section{Critique}
@@ -185,7 +237,7 @@ Gère l'affichage de la zone d’aperçu du dégradé
 %En vrac, à retravailler mais l'idée est la : 
 \begin{itemize}
 \item La fonction d'affichage est chaotique, elle appelle d'abord initialiser affichage qui appelle elle même gestionAffichage\_iter.% Si je me souviens bien ça évitait un bug fut un temps, Félix, je te laisse en parler.
-\item La structure de données initiale pour les couleurs, qui limitaient le programme à 3 sliders. Il a fallu réécrire beaucoup de choses pour pouvoir augmenter le nombre de slider (on peut maintenant potentiellement mettre autant de point de couleurs que l'on veut),
+\item La structure de données initiale pour les couleurs, qui limitaient le programme à 3 sliders. Il a fallu réécrire beaucoup de choses pour pouvoir augmenter le nombre de slider (on peut maintenant potentiellement mettre autant de point de couleurs que l'on veut). Au cours du développement il aurait donc été judicieux de tout travailler de manière à ce que les paramètres principaux soient facilement modifiables,une solution aurait été d'utiliser des fonctions intermédiaires entre les fonctions de calcul et les structures de données.
 \item Le tableau contenant le dégradé n'est pas alloué dynamiquement->soit on utilise un très grand tableau en variable globale, soit on le recalcule dès qu'on en a besoin (option choisie, cela entraîne quelques calculs supplémentaire mais de temps faible devant le calcul de la fractale)
 \item Le programme ne fonctionne pas uniquement en RGB, mais on utilise un peu Fl\_Color, car nous nous sommes rendus compte après avoir tout implémenté avec Fl\_Color qu'il existait des accesseurs permettant d’accéder directement aux composantes RGB.\\
 Certains algorithmes ont étés réécris en RGB, qui est bien plus pratique à se représenter, mais aussi pour écrire dans des buffer (nous avons abandonnés l'affichage point par point avec Fl\_point pour utiliser Fl\_draw\_image, bien plus rapide).
@@ -196,12 +248,12 @@ Certains algorithmes ont étés réécris en RGB, qui est bien plus pratique à 
 
 \section{Déroulement du projet}
 %Je sais pas trop quoi mettre la dedans, mais je vais essayer quand même :
-Nous avions à l'origine effectué une répartition des taches (Julia pour l'interface et les Callbacks, Nils pour la gestion des couleurs, et Félix pour l'algorithmique des fractales et l'affichage). Cette répartition a été dans l'ensemble tenue,pour la base du programme, mais ensuite chaque nouvelle fonctionnalité a été codé intégralement par celui qui voulait l'implémenter, sans refaire de répartition des taches. 
+Nous avions à l'origine effectué une répartition des taches (Julia pour l'interface et les Callbacks, Nils pour la gestion des couleurs, et Félix pour l'algorithmique des fractales et l'affichage). Cette répartition a été dans l'ensemble tenue,pour la base du programme, mais ensuite chaque nouvelle fonctionnalité a été codé intégralement par celui qui voulait l'implémenter, sans refaire de répartition des taches. Une communication constante est le respect des dénominations ont été particulièrement importante pour développer de manière cohérente le projet et prévenir les disfonctionnement lors de la complexicification du projet.
 
 
 
 \section{Conclusion}
 %Hésitez pas à completer ou réecrire
-Coder un programme entier s'est révélé très intéressant même si très coûteux en temps, surtout pour arriver à une interface assez intuitive (si l'on connaît un minimum le vocabulaire des fractales) et efficace.
-Cela nous a permis de comprendre l'architecture d'un programme basé sur plusieurs fichiers et l'importance des structures de données. En effet, avec le recul, nos choix initiaux ne paraissent pas toujours optimaux, notamment si l'on veux modifier ou ajouter certaines fonctions (par exemple, il a fallu recoder beaucoup de chose pour passer à plus de trois point de couleurs, ce qui aurait pu être évité en choisissant une autre structure de donnée des le départ).
+Coder un programme entier s'est révélé très intéressant même si très coûteux en temps, surtout pour arriver à une interface assez intuitive (si l'on connaît un minimum le vocabulaire des fractales) et efficace. L'un des problèmes les difficiles à appréhender est l'affichage car il s'agit d'avoir une bonne définition et un visuel attractif tout en limitant le temps de création de l'image.
+Cela nous a permis de comprendre l'architecture d'un programme basé sur plusieurs fichiers et l'importance des structures de données. En effet, avec le recul, nos choix initiaux ne paraissent pas toujours optimaux, notamment si l'on veux modifier ou ajouter certaines fonctions (par exemple, il a fallu recoder beaucoup de chose pour passer à plus de trois point de couleurs, ce qui aurait pu être évité en choisissant une autre structure de donnée dès le départ).
 \end{document}
