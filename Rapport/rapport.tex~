@@ -318,10 +318,4 @@ En effet, comme nous l'avons précisé plus haut, la répartition des tâches, t
 Ce travail nous a permis de comprendre l'architecture d'un programme basé sur plusieurs fichiers, et l'importance des structures de données. En effet, avec le recul, nos choix initiaux ne paraissent pas toujours optimaux, notamment si l'on veut modifier ou ajouter certaines fonctionnalités (par exemple, il a fallu recoder beaucoup de choses pour passer à plus de trois points de contrôle du dégradé, ce qui aurait pu être évité en choisissant une autre structure de donnée dès le départ).\\
 
 En résumé, ce projet nous a permis de découvrir de façon très intéressante la programmation modulaire et en groupe, et les bases qu'il nous a apportées nous permettront d'appréhender plus sereinement de futurs projets.
-\vfill
-\begin{figure}[h]
-  \begin{flushright}
-    \includegraphics[width=0.6\textwidth]{Images/fractal-cube.png}
-  \end{flushright}
-\end{figure}
 \end{document}

@@ -104,7 +104,7 @@ int cosc      (complex<double> position){
 }
 int personna(complex<double> position) {
     return 0;//(0,0);
-    //  Cette fonction est destinée à un parsage éventuel de fonctions
+    //  Cette fonction est destinee à un parsage eventuel de fonctions
 }
 
 
@@ -120,8 +120,8 @@ void convergenceLigne(int j, pointeurFct fonction){
 }
 
 
-// À compléter s'il te plait Nils vu que tu t'occupes des couleurs. Tu peux changer la forme des fonctions pour les
-// utiliser dans ton code, ce serait plus clair/évolué/propre ;)
+// À completer s'il te plait Nils vu que tu t'occupes des couleurs. Tu peux changer la forme des fonctions pour les
+// utiliser dans ton code, ce serait plus clair/evolue/propre ;)
 
 unsigned long int RGBtoFlColor(int r, int g, int b){
     return 255+256*(int)b+256*256*(int)g+256*256*256*(int)r;
@@ -223,7 +223,7 @@ void calcBuffer(int tabdeg[][3]){
 }
 
 /*
-        Enregistrement et restauration des paramètres utilisateurs
+        Enregistrement et restauration des parametres utilisateurs
 */
 
 
