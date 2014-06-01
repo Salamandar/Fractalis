@@ -124,7 +124,7 @@ void convergenceLigne(int j, pointeurFct fonction){
 // utiliser dans ton code, ce serait plus clair/évolué/propre ;)
 
 unsigned long int RGBtoFlColor(int r, int g, int b){
-    return 255+256*255*(int)b+256*256*255*(int)g+256*256*256*255*(int)r;
+    return 255+256*(int)b+256*256*(int)g+256*256*256*(int)r;
 }
 int FlColorToRgb(unsigned long int color, int* r, int* g, int* b){
     color=(color-color%256)/256;
