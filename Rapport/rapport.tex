@@ -1,15 +1,15 @@
 \documentclass[a4paper,11pt]{article} \usepackage[T1]{fontenc} \usepackage[utf8]{inputenc} \usepackage[francais]{babel}
 \usepackage[top=2cm,left=2.5cm,right=2.5cm,bottom=2cm]{geometry} % Géométrie de la page, modifier selon le besoin
 \usepackage{xcolor, listingsutf8, textcomp, float, lmodern, wrapfig, textcomp, tikz, graphicx}
-\lstset{language=C++, keywordstyle=\bfseries\ttfamily\color[rgb]{0,0,1}, identifierstyle=\ttfamily, commentstyle=\color[rgb]{0.133,0.545,0.133},
-    stringstyle=\ttfamily\color[rgb]{0.627,0.126,0.941}, showstringspaces=false, basicstyle=\small, tabsize=2, breaklines=true,
-    prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}}, breakatwhitespace=false, aboveskip={\baselineskip}, columns=fixed,
-    upquote=true, extendedchars=true, inputencoding=utf8/latin1}
+\usepackage[colorlinks=true,citecolor=black,linkcolor=black, urlcolor=blue]{hyperref}
+
+\lstset{language=C++, keywordstyle=\bfseries\ttfamily\color[rgb]{0,0,1}, identifierstyle=\ttfamily, commentstyle=\color[rgb]{0.133,0.545,0.133},stringstyle=\ttfamily\color[rgb]{0.627,0.126,0.941}, showstringspaces=false, basicstyle=\small, tabsize=2, breaklines=true,prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}}, breakatwhitespace=false, aboveskip={\baselineskip}, columns=fixed,upquote=true, extendedchars=true, inputencoding=utf8/latin1}
 \lstset{language=C++}
 
 \begin{document}
-\include{0.TitlePage}     % Fichier de page de titre
-\tableofcontents          % Table des matières avec liens, générée automatiquement.
+  \include{0.TitlePage}     % Fichier de page de titre
+  \pagenumbering{arabic}  % Pas de numérotation
+  \tableofcontents          % Table des matières avec liens, générée automatiquement.
 \vspace{3cm}
 % On peut faire une nouvelle page avec  \newpage
 
