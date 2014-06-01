@@ -1,26 +1,26 @@
 FractalisFile
 Fractale… : 0
-RangMaxCo : 100
+RangMaxCo : 50
 ModuleMax : 2.000000
-Constante : 1.000000+i*1.000000
-PtInfGauc : -0.855870+i*-0.563407
-PasAffXY… : 0.000483
+Constante : 0.300000+i*0.500000
+PtInfGauc : -2.200000+i*-1.500000
+PasAffXY… : 0.005000
 Hauteur…… : 600
-NbSliders : 6
-Couleur1… : 0 0 0
-RangCoul1 : 4
-Couleur2… : 0 0 0
-RangCoul2 : 11
+NbSliders : 3
+Couleur1… : 255 38 187
+RangCoul1 : 6
+Couleur2… : 0 0 255
+RangCoul2 : 18
 Couleur3… : 0 0 0
-RangCoul3 : 18
+RangCoul3 : 29
 Couleur4… : 0 0 0
-RangCoul4 : 30
+RangCoul4 : 50
 Couleur5… : 0 0 0
-RangCoul5 : 36
+RangCoul5 : 0
 Couleur6… : 0 0 0
-RangCoul6 : 100
+RangCoul6 : 0
 Couleur7… : 0 0 0
-RangCoul7 : 100
+RangCoul7 : 0
 Couleur8… : 0 0 0
 RangCoul8 : 0
 Couleur9… : 0 0 0
