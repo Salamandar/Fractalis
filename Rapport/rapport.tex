@@ -1,69 +1,53 @@
 \documentclass[a4paper,11pt]{article} \usepackage[T1]{fontenc} \usepackage[utf8]{inputenc} \usepackage[francais]{babel}
 \usepackage[top=2cm,left=2.5cm,right=2.5cm,bottom=2cm]{geometry} % Géométrie de la page, modifier selon le besoin
 \usepackage{xcolor, listingsutf8, textcomp, float, lmodern, wrapfig, textcomp, tikz, graphicx}
-%\usepackage{minted}
-%décommente pas sauf si tu sais résoudre l'erreur de compile qui en résulte
-\lstset{
-    language=C++,
-    keywordstyle=\bfseries\ttfamily\color[rgb]{0,0,1},
-    identifierstyle=\ttfamily,
-    commentstyle=\color[rgb]{0.133,0.545,0.133},
-    stringstyle=\ttfamily\color[rgb]{0.627,0.126,0.941},
-    showstringspaces=false,
-    basicstyle=\small,
-   % numberstyle=\footnotesize,
-    %numbers=left,
-    %stepnumber=1,
-    %numbersep=10pt,
-    %j'aime pas afficher les numéros de ligne vu qu'on met que des extraits de code
-    tabsize=2,
-    breaklines=true,
-    prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
-    breakatwhitespace=false,
-    aboveskip={\baselineskip},
-  columns=fixed,
-  upquote=true,
-  extendedchars=true,
-  inputencoding=utf8/latin1
-}
-
+\lstset{language=C++, keywordstyle=\bfseries\ttfamily\color[rgb]{0,0,1}, identifierstyle=\ttfamily, commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\ttfamily\color[rgb]{0.627,0.126,0.941}, showstringspaces=false, basicstyle=\small, tabsize=2, breaklines=true,
+    prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}}, breakatwhitespace=false, aboveskip={\baselineskip}, columns=fixed,
+    upquote=true, extendedchars=true, inputencoding=utf8/latin1}
 \lstset{language=C++}
+
 \begin{document}
 \include{0.TitlePage}     % Fichier de page de titre
 \tableofcontents          % Table des matières avec liens, générée automatiquement.
 \vspace{3cm}
- 
-\section{Présentation du programme}
+% On peut faire une nouvelle page avec  \newpage
+
+\section{Présentation du logiciel}
 Le sujet  sur lequel nous avons choisi de travailler est le projet « Fractales », grand classique de la programmation, utilisant le plan complexe.
 \begin{figure}[H] \begin{center} \includegraphics[width=\textwidth]{Images/InterfaceTotale.png}
-    \caption{}
+    \caption{Aperçu du logiciel}
 \end{center} \end{figure}
 
-Les fonctionnalités que nous avons choisi d'intégrer sont les suivantes :
+Ce logiciel permet d'afficher et d'explorer différents types de fractales, notamment les ensembles de Mandelbrot et de Julia. Vous pouvez vous déplacer, zoomer, et choisir les couleurs du dégradé permettant un affichage intéressant et confortable de la fractale.\\
+
+Voici un petit guide d'utilisation détaillant les fonctionnalités que vous pouvez utiliser. L'interface est très facile d'utilisation et s'y retrouver ne devrait pas être un problème.\\
+
 \begin{itemize}
-  \item Choix par l’utilisateur des différents paramètres de la fractale (type, module de sortie, rang maximal, coordonnées du point inférieur gauche, largeur de l’affichage, coordonnées de la constante).
+  \item Choisissez différents paramètres de calcul et d'affichage de la fractale (type, module de sortie, rang maximal, coordonnées du point inférieur gauche, largeur de l’affichage, coordonnées de la constante C utilisée par Julia)
         \begin{figure}[H] \begin{center} \includegraphics[width=0.5\textwidth]{Images/Parametres.png}
-            \caption{}
+            \caption{Choix des paramètres généraux de la fractale}
         \end{center} \end{figure}
 
 
-  \item Choix des couleurs (jusqu'a 10 couleurs choisies par l’utilisateur avec écart modifiable).
+  \item Modifiez le dégradé de couleurs (jusqu'à 10 couleurs, avec écart modifiable).
         \begin{figure}[H] \begin{center} \includegraphics[width=0.5\textwidth]{Images/ChoixCouleurs.png}
-            \caption{}
+            \caption{Choix de la couleur et des points de contrôle du dégradé}
         \end{center} \end{figure}
-  \item Enregistrement de l’image ainsi que des paramètres dans un fichier choisi par l’utilisateur avec une qualité choisie.
-  \item Restauration de paramètres précédemment enregistrés.
-  \item Remise à zéro des paramètres (bouton reset).
+  \item Enregistrez l'image que vous voyez, ou même les paramètres que vous avez réglé !
+  \item Restaurez les paramètres précédemment enregistrés.
+  \item Réinitialisez les paramètres (Bouton Reset).
   \item Fonction « Quitter ».
-  \item Un bouton aide expliquant les fonctionnalités des différents boutons de la souris.
+  \item Si vous êtes perdus, un bouton vous expliquera les fonctionnalités des différents boutons de la souris.
         \begin{figure}[H] \begin{center} \includegraphics[width=0.8\textwidth]{Images/Aide.png}
-            \caption{}
+            \caption{Petite aide}
         \end{center} \end{figure}
-  \item 2 types de zoom : avec cadre(clic droit) ou grâce à la molette .
+  \item Déplacez l’image avec le clic gauche maintenu
+  \item Vous avez accès à deux types de zoom : avec cadre (clic droit) ou grâce à la molette.
         \begin{figure}[H] \begin{center} \includegraphics[width=0.5\textwidth]{Images/Cadre.png}
-            \caption{}
+            \caption{Zoom cadre, en maintenant le bouton droit de la souris}
         \end{center} \end{figure}
-  \item Déplacement de l’image (clic gauche maintenu).
+
 \end{itemize}
 
 
