@@ -57,7 +57,7 @@ void ZoneDessinSourisCB( Fl_Widget* widget, void* data ) {
             real(gDonnees.C)=real(gDonnees.ig)+(Fl::event_x()-X_ZONE)*gDonnees.pasxy;// Pas les bons calculs de coordonnees.
             imag(gDonnees.C)=imag(gDonnees.ig)+(Fl::event_y()-Y_ZONE)*gDonnees.pasxy;
             cout<<"C= : ("<<real(gDonnees.C)<<","<<imag(gDonnees.C)<<")"<<endl;
-            deplacement=true;      // En fait il faudrait quand même redraw si Julia.
+            deplacement=true;      // En fait il faudrait quand mÃªme redraw si Julia.
             gInterface.ChampCX->value(real(gDonnees.C));
             gInterface.ChampCY->value(real(gDonnees.C));
         }
@@ -163,7 +163,7 @@ void BoutonEnregistrerCB(Fl_Widget* w, void* data) {
     else {
         NomFichier = (char*)fl_file_chooser("Choisissez un fichier", "*.ppm", NULL);
         if (NomFichier == NULL)
-            fl_message("Vous devez spécifiez un fichier valide");
+            fl_message("Vous devez specifiez un fichier valide");
         else  {
             if (!enregistrerPPM(largeur, NomFichier))
                 fl_message("Image enregistree dans %s",NomFichier);
@@ -191,10 +191,10 @@ void BoutonSaveParamsCB(Fl_Widget* w, void* data) {
     NomFichier = (char*)fl_file_chooser("Choisissez un fichier", "*.frac", NULL);
 
     if (NomFichier == NULL)
-        fl_message("Vous devez spécifiez un fichier valide");
+        fl_message("Vous devez specifiez un fichier valide");
     else  {
         if (!enregistrerParams(NomFichier))
-            fl_message("Paramètres enregistrés dans %s",NomFichier);
+            fl_message("Parametres enregistres dans %s",NomFichier);
         else
             fl_message("Erreur lors de la creation/ouverture du fichier");
     }
@@ -206,15 +206,15 @@ void BoutonBackParamsCB(Fl_Widget* w, void* data) {
     NomFichier = (char*)fl_file_chooser("Choisissez un fichier", "*.frac", NULL);
 
     if (NomFichier == NULL)
-        fl_message("Vous devez spécifiez un fichier valide !");
+        fl_message("Vous devez specifiez un fichier valide !");
     else  {
         err=restaurerParams(NomFichier);
         if (err==0)
-            fl_message("Paramètres restaurés de %s !",NomFichier);
+            fl_message("Parametres restaures de %s !",NomFichier);
         else if (err ==-1)
             fl_message("Erreur d'ouverture du fichier %s.", NomFichier);
         else
-            fl_message("Erreur de lecture du fichier à la ligne %d", err);
+            fl_message("Erreur de lecture du fichier Ã  la ligne %d", err);
     }
     printf("err=%d\n",err);
 }
@@ -332,6 +332,7 @@ void Slider1CB(Fl_Widget* w, void* data)
     }
     setColorChooserColor(gDonnees.slider[1][0]);
      ;
+     gTests.calccouleurs=1;
     gInterface.ZoneDessin->redraw();
 }
 
@@ -357,6 +358,7 @@ void Slider2CB(Fl_Widget* w, void* data)
     setColorChooserColor(gDonnees.slider[2][0]);
      ;
 
+     gTests.calccouleurs=1;
     gInterface.ZoneDessin->redraw();
 }
 
@@ -377,6 +379,7 @@ void ChoixSliderCB(Fl_Widget* w, void* data){
     gInterface.Slider3->value(gDonnees.slider[gTests.slider][1]);
 	gInterface.Slider3->color(gDonnees.slider[gTests.slider][0],gDonnees.slider[gTests.slider][0]);
     setColorChooserColor(gDonnees.slider[gTests.slider][0]);
+
 	gInterface.Slider3->redraw();
 	gInterface.ZoneDessin->redraw();
 }
@@ -411,7 +414,7 @@ void Slider3CB(Fl_Widget* w, void* data) {
 //    printf("n= %d, couleur slider 3=%d,gDonnees.slider[4][0]=%d\n",n,gDonnees.slider[3][0],gDonnees.slider[4][0]);
     setColorChooserColor(gDonnees.slider[n][0]);
      ;
-
+	gTests.calccouleurs=1;
     gInterface.Slider3->redraw();
 
     gInterface.ZoneDessin->redraw();
@@ -445,6 +448,7 @@ void CarreChoixCouleurCB(Fl_Widget* w, void* data)
         }
         break;
     }
+    gTests.calccouleurs=1;
     gInterface.Slider3->redraw();
     gInterface.ZoneDessin->redraw();
 }
