@@ -28,7 +28,7 @@ void gestionAffichage_iter(void*)
     gTests.dessin=false;
     pointeurFct fonction = retourne_fonction();
     int ligne;
-    int tabDegrade[gDonnees.rangMax+200][3];     // On pourrait faire une struct de vars actuelles
+    int tabDegrade[gDonnees.rangMax][3];     // On pourrait faire une struct de vars actuelles
 
     //printf("Calcul de couleur\n");
    couleursRGB(gDonnees.slider,tabDegrade);
