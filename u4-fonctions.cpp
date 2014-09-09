@@ -168,7 +168,7 @@ void degradeRGB(unsigned long int A, unsigned long int B, int N, int tab[][3]) {
 
 void couleursRGB(unsigned long tabSlider[][2], int tab[][3]) {
     unsigned long int I=COULEUR_INIT;
-    for (int i = 0; i < 50; ++i) {
+    for (int i = 0; i < gDonnees.nbSlider; ++i) {
         for (int j = 0; j < 3; ++j) {
             tab[i][j]=0;
         }
